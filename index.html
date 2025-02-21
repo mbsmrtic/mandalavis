@@ -1,8 +1,140 @@
-<html>
-    <head>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <h1>Hello to the World!</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        MandalaVis</title>
+    <link rel="icon" type="image/x-icon" href="images/blue_trans.png"> <!-- Favicon link -->
+    <!-- <link rel="stylesheet" href="styles.css"> Link to CSS file for styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .content {
+            flex: 3; /* Main content area */
+            margin-right: 20px;
+        }
+        .sidebar {
+            flex: 1; /* Sidebar area */
+            background: #f4f4f4;
+            padding: 15px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        article {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>
+        MandalaVis 
+        </br>
+        <img src="images/blue_trans.png" style="width: 56px; height: 56px;">  
+        <!-- <img src="images/blue_trans.png" style="width: 10%; height: 10%;">   -->
+    </h1>
+    <!-- <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav> -->
+</header>
+
+<div class="container">
+    <div class="content">
+        <article>
+            <h2>Hello World!</h2>
+            <p><small>Posted on February 21, 2025</small></p>
+            <p>Eric Lander once said 
+                "Things that are beautiful have a communicative power that things that are not beautiful do not".
+                When I was studying data visualization I was awestruck by the beauty that could be seen in data 
+                and it's ability to create understanding. I was studying biomedical engineering at the same time so 
+                I often used data visualization to help me understand complex biomedical data. 
+                I've recently become interested in the impact of the gut microbiome on overall human health, so 
+                I hope to share some of that research here and use data visualization to make it more understandable.
+                I've just taken my previous website (flashbit.com) off of AWS and will probably forward it to this page.
+                So if you are looking for flashbit and ended up here, that's why. I'm not sure which url I like better.
+                Maybe some day I'll use them for two different purposes, but for now, this is my focus.                 
+            </p>
+        </article>
+
+        <!-- <article>
+            <h2>Blog Post Title 2</h2>
+            <p><small>Posted on February 19, 2025 by Author</small></p>
+            <p>This is the content of the second blog post. Continue to add more posts as needed.</p>
+        </article> -->
+
+        <!-- Add more articles as needed -->
+    </div>
+
+    <aside class="sidebar">
+        <h3>About MandalaVis</h3>
+        <p>I am planning to use this space to explore some data visualization techniques
+            inspired by mandalas. 
+            My background is a combination of software development and biomedical engineering. 
+            My top two interests are
+            <ol>
+                <li>current research on the human gut microbiome and it's impact on overall health and</li>
+                <li>trying to develop some beautiful mandala inspired data visualizations.</li>
+            </ol>
+            I will combine these two things so I'll post some of the latest microbiome research and try to make some 
+            data visualizations with the goal of clarifying the data. 
+        </p>
+
+        <h3>Recent Posts</h3>
+        <ul>
+            <li><a href="#">Hello World</a></li>
+            <!-- <li><a href="#">Blog Post Title 2</a></li> -->
+            <!-- Add more recent posts as needed -->
+        </ul>
+
+        <!-- <h3>Categories</h3>
+        <ul>
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li> -->
+            <!-- Add more categories as needed -->
+        <!-- </ul> -->
+    </aside>
+</div>
+
+<!-- <footer>
+    &copy; 2025 . All Rights Reserved.
+</footer> -->
+
+</body>
 </html>
