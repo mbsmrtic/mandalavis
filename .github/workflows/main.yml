@@ -19,5 +19,5 @@ jobs:
             git pull origin main
             cp index.html /var/www/html/index.html
             cp -r images/* /var/www/html/images
-            cp -r static /var/www/html/static
+            cp -r static /var/www/html
             
