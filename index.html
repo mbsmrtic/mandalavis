@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        MandalaVis</title>
-    <link rel="icon" type="image/x-icon" href="images/blue_trans.png"> <!-- Favicon link -->
-    <!-- <link rel="stylesheet" href="styles.css"> Link to CSS file for styling -->
-    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
-</head>
-<body>
-
-<header>
-    <h1>
-        MandalaVis 
-        </br>
-        <img src="images/blue_trans.png" style="width: 56px; height: 56px;">  
-    </h1>
-    <!-- <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav> -->
-</header>
-
+<html>
+    <div id="header"></div>
 <div class="container">
     <div class="content">
+
+        <article id="article4">
+        </article>
         <article id="article3">
             <h2>Fun with Cubic Bézier curves in SVG</h2>
             <p><small>Posted on February 28, 2025</small></p>
-            <svg id="mandalas" width="542" height="537" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="mandala1" width="542" height="537" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
             </svg>         
             <p>I created a simple mandala using Cubic Bézier curves in SVG. 
                 I'll experiment with different ways to create mandalas with the 
@@ -97,6 +76,7 @@
         </article> -->
 
         <!-- Add more articles as needed -->
+        <div id="articles"></div>
     </div>
 
     <aside class="sidebar">
@@ -113,14 +93,6 @@
             data visualizations with the goal of clarifying the data. 
         </p>
 
-        <h3>Recent Posts</h3>
-        <ul>
-            <li><a href="#article1">Hello World</a></li>
-            <li><a href="#article3">Fun with Cubic Bézier curves in SVG</a></li>
-            <!-- <li><a href="#">Blog Post Title 2</a></li> -->
-            <!-- Add more recent posts as needed -->
-        </ul>
-
         <!-- <h3>Categories</h3>
         <ul>
             <li><a href="#">Category 1</a></li>
@@ -132,6 +104,22 @@
 <!-- <footer>
     &copy; 2025 . All Rights Reserved.
 </footer> -->
-<script src="static/js/mandalas.js"></script>
+<script src="static/js/mandala.js" type="module"></script>
+<script src="static/js/mandala1.js" type="module"></script>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script>
+    $(document).ready(
+        () => {
+            $('#header').load('pages/header.html');
+            // console.log('a');
+            const files = ['mandala2.html'];      //, 'article4.html'];
+            $(files).each((index, file) => {
+                 $('#articles').load('pages/articles/' + file);
+             })
+        }
+        );
+</script>
+
 </body>
 </html>
