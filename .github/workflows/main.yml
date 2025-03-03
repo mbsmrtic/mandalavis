@@ -20,4 +20,5 @@ jobs:
             cp *.html /var/www/html
             cp -r images/* /var/www/html/images
             cp -r static /var/www/html
+            cp -r pages /var/www/html
             
