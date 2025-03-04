@@ -40,7 +40,13 @@ export class Mandala {
         for (const key in attributes) {
             newEl.setAttribute(key, attributes[key]);
         }
+        // newEl.style.setProperty('stroke-width', '8');
+        // newEl.style.strokeWidth = 8;
+        // newEl.setAttribute('stroke-width', '8');
         // return Object.assign(document.createElement(tag), attributes);
+        if (! this.mandalaEl) {
+            this.mandalaEl = document.getElementById(this.elementId);
+        }
         this.mandalaEl.appendChild(newEl);
         return newEl;
     }
@@ -55,17 +61,17 @@ export class Mandala {
         `
     }
     
-    addDot(x, y, color = "black", rotation = 0) {
+    addDot(x, y, r = 2, color = "black", rotation = 0) {
         this.addElement("circle", {
             cx: x,
             cy: y,
-            r: 2,
+            r: r,
             fill: color,
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
         })
     }
     
-     droplet(rotation, color) {
+     droplet(rotation, color="black") {
         const startX = this.centerX + this.outerR;            //99
         const endX = startX + 28;                   //127
         const pathD = this.moveToString(startX, this.centerY) + 
@@ -89,17 +95,18 @@ export class Mandala {
                 startX + 6, startY + 9,           //nextCurve
                 startX + 1, startY + 3             //end
              );
-        this.addDot(startX + 2.5, startY + 2.5, "black", rotation);
+        this.addDot(startX + 2.5, startY + 2.5, 2, "black", rotation);
     
         this.addElement("path", {
             fill: "none",
             stroke: "black",
+            'stroke-width': .3,
             d: pathD,
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
         });    
     }
 
-    palmTree(x, rotation) {
+    palmTree(x, rotation, attributes = {}) {
         const startX = this.centerX + this.innerR + x;
         const pathD = this.moveToString(startX - 3, this.centerY - 5) + 
             this.curveToString(startX - .5, this.centerY - 2, //initialCurve
@@ -110,15 +117,20 @@ export class Mandala {
                 startX - .5, this.centerY + 2, //nextCurve
                 startX - 3, this.centerY + 5 //end
                  );
-        this.addElement("path", {
+        var elementAttrs = {
             file: "none",
             stroke: "black", 
+            'stroke-width': .3,
             d: pathD,
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
-        });
+        };
+        for (const key in attributes) {
+            elementAttrs[key] = attributes[key];
+        }
+        this.addElement("path", elementAttrs);
     }
     
-    curlyBracket(rotation) {
+    curlyBracket(rotation, attributes = {}) {
         const startX = this.centerX + this.outerR - 1.5;  //107
         const curveOutX = startX + 28;          //135
         const curveInX = startX + 13;           //120
@@ -136,14 +148,19 @@ export class Mandala {
              )
         console.log(pathD);
     
-        this.addElement("path", {
+        var elementAttrs = {
             fill: "none",
             stroke: "black",
+            'stroke-width': .3,
             d: pathD,
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
-        });    
-        this.addDot(curveOutX, startY, "black", rotation);
-        this.addDot(curveInX, this.centerY, "black", rotation);
-        this.addDot(curveOutX, endY, "black", rotation);
+        };
+        for (const key in attributes) {
+            elementAttrs[key] = attributes[key];
+        }
+        this.addElement("path", elementAttrs);
+        this.addDot(curveOutX, startY, 2, "black", rotation);
+        this.addDot(curveInX, this.centerY, 2, "black", rotation);
+        this.addDot(curveOutX, endY, 2, "black", rotation);
     }
 }

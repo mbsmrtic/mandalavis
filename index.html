@@ -4,7 +4,19 @@
     <div class="content">
 
         <article id="article4">
-        </article>
+            <h2>T-shirt Mandala</h2>
+            <p><small>Posted on March 4, 2025</small></p>
+            <svg id="mandala2" width="542" height="537" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>         
+            <p>I will get to creating some sophisticated data visualizations,
+                but this one made me laugh today, so I had to share it. 
+                I'm creating a collection of shapes that will be used 
+                to represent different kinds of data. I had these elegant
+                little curves that I called palm trees but when I was 
+                fiddling with the stroke width this one made me laugh because
+                they look like little t-shirts. 
+            </p>
+            </article>
         <article id="article3">
             <h2>Fun with Cubic Bezier curves in SVG</h2>
             <p><small>Posted on February 28, 2025</small></p>
@@ -104,8 +116,6 @@
 <!-- <footer>
     &copy; 2025 . All Rights Reserved.
 </footer> -->
-<script src="static/js/mandala.js" type="module"></script>
-<script src="static/js/mandala1.js" type="module"></script>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script>
@@ -113,13 +123,16 @@
         () => {
             $('#header').load('pages/header.html');
             // console.log('a');
-            // const files = ['mandala2.html'];      //, 'article4.html'];
+            // const files = ['article3.html'];      //, 'article4.html'];
             // $(files).each((index, file) => {
             //      $('#articles').load('pages/articles/' + file);
             //  })
         }
         );
 </script>
+<script src="static/js/mandala.js" type="module"></script>
+<script src="static/js/mandala1.js" type="module" defer></script>
+<script src="static/js/mandala2.js" type="module"></script>
 
 </body>
 </html>
