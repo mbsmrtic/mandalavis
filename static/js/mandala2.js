@@ -47,7 +47,7 @@ mandala.addElement("circle", {
 
 //palmTrees
 for (var rotation = 0; rotation < 360; rotation += 45) {
-    mandala.palmTree(54, rotation, {'stroke-width': 4});
+    mandala.palmTree(54, rotation, {'stroke-width': 5});
 //    mandala.palmTree(24, rotation);
 //    mandala.palmTree(14, rotation);
 }
