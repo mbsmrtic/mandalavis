@@ -3,7 +3,7 @@ import { Mandala } from "/static/js/mandala.js";
 const mandala = new Mandala("mandala2");
 
 // Create inner circle
-mandala.makeGradient();
+mandala.makeGradient("white", "black");
 mandala.addElement("circle", {
     cx: mandala.centerX,
     cy: mandala.centerY,
@@ -28,7 +28,7 @@ for (var rotation = 0; rotation < 360; rotation += 45) {
 
 // Dropets
 for (rotation = 22.5; rotation < 360; rotation += 45) {
-    mandala.droplet(rotation, "black");
+    mandala.droplet(rotation, "black", 28);
 }
 
 // Swirls
