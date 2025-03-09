@@ -1,9 +1,9 @@
 const svgUrl = "http://www.w3.org/2000/svg";
 export class Mandala {
-    constructor(elementId) {
+    constructor(elementId, centerX=70, centerY=68) {
         this.elementId = elementId;
-        this.centerX = 70;
-        this.centerY = 68;
+        this.centerX = centerX;
+        this.centerY = centerY;
         this.innerR = 10;
         this.outerR = 27;
         this.defaultColor = "black";
@@ -79,8 +79,8 @@ export class Mandala {
         })
     }
     
-     droplet(rotation, color="black", length) {
-        const startX = this.centerX + this.outerR;            //99
+     droplet(rotation, x=27, length=30, color="black") {
+        const startX = this.centerX + x;            //99
         const endX = startX + length;                   //127
         const pathD = this.moveToString(startX, this.centerY) + 
             this.curveToString(endX, this.centerY - 10, //initialCurve
@@ -232,11 +232,16 @@ export class Mandala {
         this.addElement("path", elementAttrs);
     }
     
-    curlyBracket(rotation, attributes = {}, dotSize=2, fill='none') {
-        const startX = this.centerX + this.outerR - 1.5;  //107
-        const curveOutX = startX + 28;          //135
-        const curveInX = startX + 13;           //120
-        const endX = this.centerX + this.outerR + 31.5;   //140
+    //todo fix the variable naming from foo
+    curlyBracket(rotation, attributes = {}, startXFoo=0, length=30, dotSize=2, fill='none') {
+        const bracketWidth = length;
+        const endXFoo = startXFoo + length;
+        const startX = this.centerX + startXFoo - 1.5;  //heuristic to account for curve //107
+        const curveOutX = startX + (bracketWidth * .9);    //+ 28;          //135
+        const curveInX = startX + (bracketWidth * .4); // 13;           //120
+        // const endX = this.centerX + this.outerR + 31.5 + endXOffset;   //140
+        // const endX = startX + 30 + endXOffset;   //140
+        const endX = startX + bracketWidth + 1.5;   //140
         const startY = this.centerY - 10;            //60
         const endY = this.centerY + 10;              //80
         const pathD = this.moveToString(startX, startY) + 
@@ -261,7 +266,7 @@ export class Mandala {
         for (const key in attributes) {
             elementAttrs[key] = attributes[key];
         }
-        this.addElement("path", elementAttrs);
+        this.addElement("path", elementAttrs, `curlyBracket ${startXFoo}, ${endXFoo} `);
         this.addDot(curveOutX, startY, dotSize, "black", rotation);
         this.addDot(curveInX, this.centerY, dotSize, "black", rotation);
         this.addDot(curveOutX, endY, dotSize, "black", rotation);
