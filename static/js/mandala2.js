@@ -23,12 +23,22 @@ mandala.addElement("circle", {
 
 // Curly bracket shape
 for (var rotation = 0; rotation < 360; rotation += 45) {
-    mandala.curlyBracket(rotation, {'stroke-width': .3}, mandala.outerR, 30);
+    mandala.curlyBracket({
+        rotation: rotation, 
+        attributes: {'stroke-width': .3}, 
+        x: mandala.outerR, 
+        length: 30
+    });
 }
 
 // Dropets
 for (rotation = 22.5; rotation < 360; rotation += 45) {
-    mandala.droplet(rotation, mandala.outerR, 30, "black", 28);
+    mandala.droplet({
+        rotation: rotation, 
+        x: mandala.outerR, 
+        length: 30, 
+        color: "black", 
+        width: 10});
 }
 
 // Swirls

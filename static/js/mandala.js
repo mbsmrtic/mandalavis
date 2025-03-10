@@ -79,12 +79,12 @@ export class Mandala {
         })
     }
     
-     droplet(rotation, x=27, length=30, color="black") {
+     droplet({rotation, x=27, length=30, color="black", width=10}) {
         const startX = this.centerX + x;            //99
         const endX = startX + length;                   //127
         const pathD = this.moveToString(startX, this.centerY) + 
-            this.curveToString(endX, this.centerY - 10, //initialCurve
-                endX, this.centerY + 10,
+            this.curveToString(endX, this.centerY - width, //initialCurve
+                endX, this.centerY + width,
                 startX, this.centerY                       //end
             );
         console.log("dropletPath: ", pathD)
@@ -93,6 +93,72 @@ export class Mandala {
             d: pathD,
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
         })
+    }
+
+    // a circle with multiple droplets coming out of it
+    pottedPlant({rotation, length}) {
+
+    }
+
+    // fswirl({rotation, x, width}) {
+    spiral({rotation, x, width}) {
+        // startX defines the center of the spiral, so we need to 
+        //   move the center over depending on the width.
+        const startX = this.centerX + x + (width / 2);  
+        const startY = this.centerY;            //60
+
+        //spiral
+        const turns = 2.14;
+        const radiusStep = width / 240; //.05;
+        var pathD ='';
+        let currentX = 0;
+        let currentY = 0;
+        for (let i = 0; i < turns * 360; i++) {
+            let angle = ((i * Math.PI) / 180);
+            let r = i * radiusStep;
+            currentY = startY + .2 * r * Math.cos(angle);
+            currentX = startX - .2 * r * Math.sin(angle);
+            pathD += (i === 0 ? "M" : "L") + currentX + ' ' + currentY;
+        }
+
+
+
+
+        // const pathD = this.moveToString(startX, startY) + 
+        //     this.curveToString(startX + 9, startY - 4,  //initialCurve
+        //         startX + 6, startY + 9,           //nextCurve
+        //         startX + 1, startY + 3             //end
+        //      );
+        
+        //'swirl' - looks like a crooked droplet
+        //const pathD = "M10 5 C 15 5, 15 10, 10 10 S 5 15, 5 10 S 10 5, 10 5";
+
+        // const pathD = this.moveToString(startX, startY) + 
+        //      this.curveToString(startX + (length * .4), startY + 6,  //initialCurve
+        //          startX + (length * .6), startY - 6,           //nextCurve
+        //          startX + (length * .8), startY + 1               //end
+        //       ) + 
+        //       this.curveToString(startX + (length * .8), startY + 5,
+        //         startX + (length * .5), startY + 4,
+        //         startX + length * .6, startY + 1)
+        //       ;
+        // this.addDot(startX + length * .66, startY + 2, 1.3, "black", rotation);
+    
+        // this.addDot(startX + (length * .4), startY + 6, 1, 'green');
+        // this.addDot(startX + (length * .6), startY - 6, 1, 'blue');
+        // this.addDot(startX + (length * .8), startY + 1, 1, 'red')
+
+        // this.addDot(startX + (length * .8), startY + 5, 1, 'purple');
+        // this.addDot(startX + (length * .5), startY + 4, 1, 'orange')
+        // this.addDot(startX + (length * .6), startY + 1, 1, 'orange')
+
+        this.addElement("path", {
+            fill: "white",
+            stroke: "black",
+            'stroke-width': .7,
+            d: pathD,
+            transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
+        }, rotation);    
     }
 
     swirl(rotation) {
@@ -204,7 +270,7 @@ export class Mandala {
             r: r,
             fill: color,      //"url(#myGradient)",
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
-        }, `${centerX}, ${centerY}`);
+        }, `${centerX}, ${centerY} ${rotation}`);
     }
 
 
@@ -232,11 +298,9 @@ export class Mandala {
         this.addElement("path", elementAttrs);
     }
     
-    //todo fix the variable naming from foo
-    curlyBracket(rotation, attributes = {}, startXFoo=0, length=30, dotSize=2, fill='none') {
+    curlyBracket({rotation, attributes = {}, x=0, length=30, dotSize=2, fill='none'}) {
         const bracketWidth = length;
-        const endXFoo = startXFoo + length;
-        const startX = this.centerX + startXFoo - 1.5;  //heuristic to account for curve //107
+        const startX = this.centerX + x - 1.5;  //heuristic to account for curve //107
         const curveOutX = startX + (bracketWidth * .9);    //+ 28;          //135
         const curveInX = startX + (bracketWidth * .4); // 13;           //120
         // const endX = this.centerX + this.outerR + 31.5 + endXOffset;   //140
@@ -266,7 +330,7 @@ export class Mandala {
         for (const key in attributes) {
             elementAttrs[key] = attributes[key];
         }
-        this.addElement("path", elementAttrs, `curlyBracket ${startXFoo}, ${endXFoo} `);
+        this.addElement("path", elementAttrs, `curlyBracket ${x}, ${length} `);
         this.addDot(curveOutX, startY, dotSize, "black", rotation);
         this.addDot(curveInX, this.centerY, dotSize, "black", rotation);
         this.addDot(curveOutX, endY, dotSize, "black", rotation);

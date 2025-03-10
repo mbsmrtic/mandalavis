@@ -20,11 +20,13 @@ mandala.addElement("circle", {
 
 // Curly bracket shape
 for (var rotation = 0; rotation < 360; rotation += 45) {
-    mandala.curlyBracket(rotation, {
-        'stroke-width': 1
-    }, mandala.outerR, 30);
+    mandala.curlyBracket({
+        rotation: rotation, 
+        attributes: {'stroke-width': 1}, 
+        x: mandala.outerR, 
+        length: 30});
 }
 
 for (rotation = 22.5; rotation < 360; rotation += 45) {
-    mandala.droplet(rotation);
+    mandala.droplet({rotation: rotation});
 }
