@@ -1,4 +1,6 @@
 import { Mandala } from "/static/js/mandala.js";
+import { SpiralShape } from "/static/js/mandala.js";
+import { DropletShape } from "/static/js/mandala.js";
 
 const mandala = new Mandala("mandala4", 95, 95);
 
@@ -8,22 +10,34 @@ mandala.addElement("circle", {
     cy: mandala.centerY,
     r: mandala.innerR,
     stroke: "black",
-    fill: "none"
+    fill: "none "
 });
 
+var s = new SpiralShape({
+    xStart: mandala.centerX + mandala.outerR, 
+    yStart: mandala.centerY,
+    width: 12, 
+    howMany: 15,
+    angleStart: 0
+});
+mandala.addShape({ shape: s});
 
-for (var rotation=0; rotation < 360; rotation += 24) {
-    mandala.spiral({rotation: rotation, x: mandala.outerR, width: 12});
-}
-for (var rotation=0; rotation < 360; rotation += 60) {
-    mandala.spiral({rotation: rotation, x: mandala.innerR - 1.5, width: 15});
-}
-for (var rotation=0; rotation < 360; rotation += 36) {
-    mandala.spiral({rotation: rotation, x: mandala.outerR + 10, width: 24});
-}
-for (var rotation=17; rotation < 360; rotation += 36) {
-    mandala.spiral({rotation: rotation, x: mandala.outerR + 29, width: 15});
-}
+s.xStart = mandala.centerX + mandala.innerR - 1.5;
+s.width = 15;
+s.howMany = 6;
+mandala.addShape({ shape: s});
+
+s.xStart = mandala.centerX + mandala.outerR + 11;
+s.width = 24;
+s.howMany = 10;
+mandala.addShape({ shape: s});
+
+s.xStart = mandala.centerX + mandala.outerR + 29;
+s.width = 15;
+s.howMany = 10;
+s.angleStart = 17;
+mandala.addShape({ shape: s});
+
 
 mandala.addElement("circle", {
     cx: mandala.centerX,
@@ -33,12 +47,12 @@ mandala.addElement("circle", {
     fill: "none"
 });
 
-
-for (var rotation = 20; rotation < 360; rotation += 36) {
-    mandala.droplet({
-        rotation: rotation,
-        x: 39,
-        length: 25,
-        color: "black"
-    });
-}
+const dropletShape = new DropletShape({
+    xStart: mandala.centerX + 39,
+    yStart: mandala.centerY,
+    length: 25,
+    width: 10,
+    howMany: 10,
+    angleStart: 20
+});
+mandala.addShape({shape: dropletShape});
