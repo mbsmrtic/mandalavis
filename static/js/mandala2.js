@@ -30,7 +30,7 @@ var curlyBracket = new CurlyBracket({
     width: 30,
     howMany: 8
 });
-mandala.addShape({ shape: curlyBracket });
+mandala.addShape(curlyBracket);
 
 // Dots
 var dotShape = new DotShape({
@@ -39,15 +39,15 @@ var dotShape = new DotShape({
     howMany: 8,
     width: 2
 });
-mandala.addShape({ shape: dotShape });
+mandala.addShape(dotShape);
 
 dotShape = new DotShape({
     xStart: curlyBracket.curveInX,
-    yStart: curlyBracket.yStart,
+    yStart: curlyBracket.y,
     howMany: 8,
     width: 2
 });
-mandala.addShape({ shape: dotShape });
+mandala.addShape(dotShape);
 
 dotShape = new DotShape({
     xStart: curlyBracket.curveOutX,
@@ -55,7 +55,7 @@ dotShape = new DotShape({
     howMany: 8,
     width: 2
 });
-mandala.addShape({ shape: dotShape });
+mandala.addShape(dotShape);
 
 var dropletShape = new DropletShape({
     xStart: mandala.centerX + mandala.outerR,
@@ -65,7 +65,7 @@ var dropletShape = new DropletShape({
     angleStart: 22.5,
     howMany: 8
 });
-mandala.addShape({ shape: dropletShape });
+mandala.addShape(dropletShape);
 
 
 // Dropets
@@ -77,7 +77,7 @@ var dropletShape = new DropletShape({
     angleStart: 22.5,
     howMany: 8
 });
-mandala.addShape({shape: dropletShape});
+mandala.addShape(dropletShape);
 
 // Swirls
 for (var rotation = 0; rotation < 360; rotation += 45) {

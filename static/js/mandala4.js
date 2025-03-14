@@ -20,23 +20,23 @@ var s = new SpiralShape({
     howMany: 15,
     angleStart: 0
 });
-mandala.addShape({ shape: s});
+mandala.addShape(s);
 
-s.xStart = mandala.centerX + mandala.innerR - 1.5;
+s.x = mandala.centerX + mandala.innerR - 1.5;
 s.width = 15;
 s.howMany = 6;
-mandala.addShape({ shape: s});
+mandala.addShape(s);
 
-s.xStart = mandala.centerX + mandala.outerR + 11;
+s.x = mandala.centerX + mandala.outerR + 11;
 s.width = 24;
 s.howMany = 10;
-mandala.addShape({ shape: s});
+mandala.addShape(s);
 
-s.xStart = mandala.centerX + mandala.outerR + 29;
+s.x = mandala.centerX + mandala.outerR + 29;
 s.width = 15;
 s.howMany = 10;
 s.angleStart = 17;
-mandala.addShape({ shape: s});
+mandala.addShape(s);
 
 
 mandala.addElement("circle", {
@@ -55,4 +55,4 @@ const dropletShape = new DropletShape({
     howMany: 10,
     angleStart: 20
 });
-mandala.addShape({shape: dropletShape});
+mandala.addShape(dropletShape);

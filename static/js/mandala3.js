@@ -1,4 +1,7 @@
+import { PalmTreeShape } from "/static/js/mandala.js";
 import { Mandala } from "/static/js/mandala.js";
+import { DotShape } from "/static/js/mandala.js";
+import { BetweenDotsDotShape } from "/static/js/mandala.js";
 
 const mandala = new Mandala("mandala3");
 
@@ -22,23 +25,41 @@ mandala.addElement("circle", {
     fill: "url(#m3Gradient)"
 });
 
-// todo - look at the colors that I used in my icon 
-//  maybe use those colors
+
+function addRowOfCircles(xStartOffset, r, color, count) {
+    //Bigger circles
+    var dotShape = new DotShape({
+        xStart: mandala.centerX + mandala.outerR + xStartOffset,
+        yStart: mandala.centerY, 
+        width: r,
+        color: color,
+        howMany: count
+    });
+    mandala.addShape(dotShape);
+    //smaller ones
+    var betweenDotShape = new BetweenDotsDotShape(dotShape);
+    mandala.addShape(betweenDotShape);    
+}
+
+
+var r = 2;
+const countOfCircles = 35;
+// green shapes
+addRowOfCircles(r, r, "#37653A", countOfCircles);
+r = 2.5;
+// yellow shapes
+addRowOfCircles(3 * r, r, "#FDCC0D", countOfCircles);
+// blue shapes
+addRowOfCircles(5.5 * r, r, "#2E2B89", countOfCircles + 2);
+// bright green
+addRowOfCircles(8 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
 
 // #ced7d8 
 // #ff6b6b 
 // #118ab2 
-// circle of dots
-var r = 2;
-const xFromOuter = 0;
-const countOfCircles = 35;
-mandala.rotatedCircles(r, xFromOuter, countOfCircles, '#37653A');
-r = 2.5;
-mandala.rotatedCircles(r, xFromOuter + 2 * r, countOfCircles,  '#FDCC0D');
-mandala.rotatedCircles(r, xFromOuter + 4.5 * r, countOfCircles + 2, '#2E2B89' );
-mandala.rotatedCircles(r, xFromOuter + 7 * r, countOfCircles - 5, 'rgb(98, 180, 103)' );
 r = 3
-mandala.rotatedCircles(r, xFromOuter + 9.5 * r, countOfCircles + 7,  '#69359C' );
+// purple
+addRowOfCircles(10.5 * r, r, "#69359C", countOfCircles + 7);
 
 // #006B3C green
 // #69359C purple
@@ -47,6 +68,9 @@ mandala.rotatedCircles(r, xFromOuter + 9.5 * r, countOfCircles + 7,  '#69359C' )
 //  69359C  purple
 
 //palmTrees
-for (var rotation = 0; rotation < 360; rotation += 8) {
-    mandala.palmTree(62, rotation, {'stroke-width': .3});
- }
+var shape = new PalmTreeShape({
+    xStart: mandala.centerX + mandala.innerR + 62,
+    yStart: mandala.centerY,
+    howMany: 45
+});
+mandala.addShape(shape);
