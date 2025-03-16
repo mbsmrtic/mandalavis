@@ -42,11 +42,10 @@ mandala.addElement("circle", {
 });
 
 const dropletShape = new DropletShape({
-    x: mandala.centerX + 39,
-    y: mandala.centerY,
+    x: mandala.centerX + 2,
+    y: mandala.centerY - 39,
     length: 25,
     width: 10,
     howMany: 10,
-    angleStart: 20
 });
 mandala.addShape(dropletShape);

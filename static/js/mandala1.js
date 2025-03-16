@@ -58,8 +58,8 @@ dotShape = new DotShape({
 mandala.addShape(dotShape );
 
 var dropletShape = new DropletShape({
-    x: mandala.centerX + mandala.outerR,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.outerR,
     length: 30,
     width: 10,
     angleStart: 22.5,

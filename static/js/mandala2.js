@@ -2,6 +2,7 @@ import { Mandala } from "/static/js/mandala.js";
 import { CurlyBracket } from "/static/js/mandala.js";
 import { DropletShape } from "/static/js/mandala.js";
 import { DotShape } from "/static/js/mandala.js";
+import { PalmTreeShape } from "/static/js/mandala.js";
 
 const mandala = new Mandala("mandala2");
 
@@ -58,23 +59,12 @@ dotShape = new DotShape({
 });
 mandala.addShape(dotShape);
 
+// Droplets
 var dropletShape = new DropletShape({
-    x: mandala.centerX + mandala.outerR,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.outerR,
     length: 30,
     width: 10,
-    angleStart: 22.5,
-    howMany: 8
-});
-mandala.addShape(dropletShape);
-
-
-// Dropets
-var dropletShape = new DropletShape({
-    x: mandala.centerX + mandala.outerR,
-    y: mandala.centerY,
-    width: 10,
-    length: 30,
     angleStart: 22.5,
     howMany: 8
 });
@@ -94,9 +84,18 @@ mandala.addElement("circle", {
     stroke: "black"
 })
 
+var p = new PalmTreeShape({
+    x: mandala.centerX, 
+    y: mandala.centerY - 54,
+    howMany: 8
+    }
+    , { 'stroke-width': 5}
+);
+mandala.addShape(p);
+
 //palmTrees
-for (var rotation = 0; rotation < 360; rotation += 45) {
-    mandala.palmTree(54, rotation, {'stroke-width': 5});
-//    mandala.palmTree(24, rotation);
-//    mandala.palmTree(14, rotation);
-}
+// for (var rotation = 0; rotation < 360; rotation += 45) {
+//     mandala.palmTree(54, rotation, {'stroke-width': 5});
+// //    mandala.palmTree(24, rotation);
+// //    mandala.palmTree(14, rotation);
+// }

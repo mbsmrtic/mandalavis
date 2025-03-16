@@ -69,26 +69,26 @@ export class MandalaShape {
 export class DropletShape extends MandalaShape {
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
-        const endX = this.x + this.length;
+        const topY = this.y - this.length;
         const pathD = this.moveToString(this.x, this.y) + 
-            this.curveToString(endX, this.y - this.width, //initialCurve
-                endX, this.y + this.width,
-                this.x, this.y);
-            console.log("droplet shape Path: ", pathD);
+            this.curveToString(this.x - this.width, topY, //initialCurve
+                this.x + this.width, topY,  //nextCurve
+                this.x, this.y);            //end
         return({fill: this.color, d: pathD});
     }
 }
 export class PalmTreeShape extends MandalaShape {
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
-        const pathD = this.moveToString(this.x - 3, this.y - 5) + 
-            this.curveToString(this.x - .5, this.y - 2, //initialCurve
-                this.x - 2, this.y, //nextCurve
-                this.x - 7, this.y //end
+        var foo = 5;
+        const pathD = this.moveToString(this.x - foo, this.y - 4) + 
+            this.curveToString(this.x - 2, this.y - 7, //initialCurve
+                this.x, this.y - 4, //nextCurve
+                this.x, this.y //end
                 ) + 
-            this.curveToString(this.x - 2, this.y, //initialCurve
-                this.x - .5, this.y + 2, //nextCurve
-                this.x - 3, this.y + 5 //end
+            this.curveToString(this.x, this.y - 4, //initialCurve
+                this.x + 2, this.y - 7, //nextCurve
+                this.x + foo, this.y - 4 //end
                 );
         var elementAttrs = {
             fill: "none",
@@ -445,31 +445,6 @@ export class Mandala {
             fill: color,      //"url(#myGradient)",
             transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
         }, `${centerX}, ${centerY} ${rotation}`);
-    }
-
-
-    palmTree(x, rotation, attributes = {}) {
-        const startX = this.centerX + this.innerR + x;
-        const pathD = this.moveToString(startX - 3, this.centerY - 5) + 
-            this.curveToString(startX - .5, this.centerY - 2, //initialCurve
-                startX - 2, this.centerY, //nextCurve
-                 startX - 7, this.centerY //end
-                ) + 
-            this.curveToString(startX - 2, this.centerY, //initialCurve
-                startX - .5, this.centerY + 2, //nextCurve
-                startX - 3, this.centerY + 5 //end
-                 );
-        var elementAttrs = {
-            fill: "none",
-            stroke: "black", 
-            'stroke-width': .3,
-            d: pathD,
-            transform: `rotate(${rotation} ${this.centerX} ${this.centerY})`
-        };
-        for (const key in attributes) {
-            elementAttrs[key] = attributes[key];
-        }
-        this.addElement("path", elementAttrs);
     }
     
 }

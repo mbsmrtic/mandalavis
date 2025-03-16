@@ -26,8 +26,8 @@ mandala.addCenteredCircle(mandala.outerR);
 // }));
 
 mandala.addShape(new DropletShape({
-    x: mandala.centerX + mandala.innerR,
-    y: mandala.centerY,
+    x: mandala.centerX, // + mandala.innerR,
+    y: mandala.centerY - mandala.innerR,
     length: mandala.outerR - mandala.innerR + 5,
     width: 10,
     angleStart: 0,
@@ -45,11 +45,10 @@ mandala.addShape(new DropletShape({
 // }));
 
 mandala.addShape(new DropletShape({
-    x: mandala.centerX + mandala.outerR + 4, 
-    y: mandala.centerY,
+    x: mandala.centerX, 
+    y: mandala.centerY - mandala.outerR - 4,
     width: 20,
     length: 20,
-    angleStart: 30,
     howMany: 6
 }, { fill: "black", stroke: "black", 'stroke-width': .5}));
 

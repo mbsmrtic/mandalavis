@@ -69,8 +69,8 @@ addRowOfCircles(10.5 * r, r, "#69359C", countOfCircles + 7);
 
 //palmTrees
 var shape = new PalmTreeShape({
-    x: mandala.centerX + mandala.innerR + 62,
-    y: mandala.centerY,
+    x: mandala.centerX, 
+    y: mandala.centerY - 65,
     howMany: 45
 });
 mandala.addShape(shape);
