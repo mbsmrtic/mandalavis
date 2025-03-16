@@ -29,8 +29,8 @@ mandala.addElement("circle", {
 function addRowOfCircles(xStartOffset, r, color, count) {
     //Bigger circles
     var dotShape = new DotShape({
-        xStart: mandala.centerX + mandala.outerR + xStartOffset,
-        yStart: mandala.centerY, 
+        x: mandala.centerX + mandala.outerR + xStartOffset,
+        y: mandala.centerY, 
         width: r,
         color: color,
         howMany: count
@@ -69,8 +69,8 @@ addRowOfCircles(10.5 * r, r, "#69359C", countOfCircles + 7);
 
 //palmTrees
 var shape = new PalmTreeShape({
-    xStart: mandala.centerX + mandala.innerR + 62,
-    yStart: mandala.centerY,
+    x: mandala.centerX + mandala.innerR + 62,
+    y: mandala.centerY,
     howMany: 45
 });
 mandala.addShape(shape);

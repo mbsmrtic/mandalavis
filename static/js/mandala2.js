@@ -25,41 +25,42 @@ mandala.addElement("circle", {
 });
 
 var curlyBracket = new CurlyBracket({
-    xStart: mandala.centerX + mandala.outerR,
-    yStart: mandala.centerY,
-    width: 30,
+    x: mandala.centerX + mandala.outerR,
+    y: mandala.centerY,
+    length: 30,
+    width: 20,
     howMany: 8
 });
 mandala.addShape(curlyBracket);
 
 // Dots
 var dotShape = new DotShape({
-    xStart: curlyBracket.curveOutX,
-    yStart: curlyBracket.bracketStartY,
+    x: curlyBracket.curveOutX,
+    y: curlyBracket.bracketStartY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    xStart: curlyBracket.curveInX,
-    yStart: curlyBracket.y,
+    x: curlyBracket.curveInX,
+    y: curlyBracket.y,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    xStart: curlyBracket.curveOutX,
-    yStart: curlyBracket.bracketEndY,
+    x: curlyBracket.curveOutX,
+    y: curlyBracket.bracketEndY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 var dropletShape = new DropletShape({
-    xStart: mandala.centerX + mandala.outerR,
-    yStart: mandala.centerY,
+    x: mandala.centerX + mandala.outerR,
+    y: mandala.centerY,
     length: 30,
     width: 10,
     angleStart: 22.5,
@@ -70,8 +71,8 @@ mandala.addShape(dropletShape);
 
 // Dropets
 var dropletShape = new DropletShape({
-    xStart: mandala.centerX + mandala.outerR,
-    yStart: mandala.centerY,
+    x: mandala.centerX + mandala.outerR,
+    y: mandala.centerY,
     width: 10,
     length: 30,
     angleStart: 22.5,

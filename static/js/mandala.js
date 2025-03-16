@@ -12,11 +12,11 @@ const svgUrl = "http://www.w3.org/2000/svg";
 //   to see what attributes can be set.  
 export class MandalaShape {
     constructor(
-        {xStart, yStart, length=20, width=15, howMany=1, angleStart=0, color="black"},
+        {x, y, length=20, width=15, howMany=1, angleStart=0, color="black"},
         svgElementAttributes={}
     ) {
-        this.x = xStart;
-        this.y = yStart;
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.angleStart = angleStart;
         this.angleStep = 360 / howMany;
@@ -60,6 +60,10 @@ export class MandalaShape {
         `
     }
 
+    arcString(xRadius, yRadius, rot, isLargeArc, isClockwise, endX, endY) {
+        return `A ${xRadius}, ${yRadius}  ${rot} ${isLargeArc} ${isClockwise} ${endX}, ${endY}`;
+    }
+
 }
 
 export class DropletShape extends MandalaShape {
@@ -96,6 +100,30 @@ export class PalmTreeShape extends MandalaShape {
     }
 }
 
+
+export class ArcShape extends MandalaShape {
+    shapeElementTag() { return "path"; }
+    shapeElementAttributes() {
+        const pathD = this.moveToString(this.x, this.y) + 
+            this.arcString(
+                //this.width / 2, this.length / 2, 
+                this.width, this.length,
+                //1, 1,
+                0,  //0 = centered, not skewed
+                1,  // 0 = smaller arc
+                1,  // 1 = clockwise
+                this.x + this.width * 2, 
+                this.y
+            )
+        return {
+            fill: "none",
+            stroke: "black",
+            'stroke-width': .3,
+            d: pathD
+        }
+    }
+}
+
 export class DotShape extends MandalaShape {
     shapeElementTag() { return "circle"; }
     shapeElementAttributes() {
@@ -108,13 +136,12 @@ export class DotShape extends MandalaShape {
     }
 }
 
-// @todo finish this to do the between dot calculations (take a DotShape arg?)
 export class BetweenDotsDotShape extends MandalaShape {
     constructor(biggerDot) {
         var littleR = biggerDot.width / 4;
         var shapeArgs = {
-            xStart: biggerDot.x + biggerDot.width - littleR,
-            yStart: biggerDot.y,
+            x: biggerDot.x + biggerDot.width - littleR,
+            y: biggerDot.y,
             width: littleR,
             color: biggerDot.color,
             howMany: biggerDot.howMany,
@@ -130,6 +157,26 @@ export class BetweenDotsDotShape extends MandalaShape {
             r: this.width,
             fill: this.color
         }
+    }
+}
+
+export class SShape extends MandalaShape {
+    shapeElementTag() { return "path"; }
+    shapeElementAttributes() {
+        const upCurveX = this.x + (this.length * .25);
+        const upCurveY = this.y - (this.width * .5);
+        const downCurveX = this.x + (this.length * .75);
+        const downCurveY = this.y + (this.width * .5);
+        const pathD = this.moveToString(this.x, this.y) + 
+            this.curveToString(upCurveX, upCurveY,   //initialCurve
+                downCurveX, downCurveY,             //nextCurve
+                this.x + this.length, this.y
+            );
+        return ({
+            fill: "none",
+            stroke: "black",
+            d: pathD
+        });
     }
 }
 
@@ -167,14 +214,14 @@ export class SpiralShape extends MandalaShape {
 export class CurlyBracket extends MandalaShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
-        const bracketWidth = this.width;
+        const bracketLength = this.length;
         var startX = this.x - 1.5;  //heuristic to account for curve
         this.bracketStartX = startX;
-        this.curveOutX = startX + (bracketWidth * .9);    //+ 28;          //135
-        this.curveInX = startX + (bracketWidth * .4); // 13;           //120
-        this.bracketEndX = startX + bracketWidth + 1.5;   //140
-        this.bracketStartY = this.y - 10;            //60
-        this.bracketEndY = this.y + 10;              //80
+        this.curveOutX = startX + (bracketLength * .9);    //+ 28;          //135
+        this.curveInX = startX + (bracketLength * .4); // 13;           //120
+        this.bracketEndX = startX + bracketLength + 1.5;   //140
+        this.bracketStartY = this.y - (this.width/2);      //10;            //60
+        this.bracketEndY = this.y + (this.width/2)        //10;              //80
     }
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
@@ -266,6 +313,16 @@ export class Mandala {
             // add the new element to the DOM
             this.mandalaEl.appendChild(newEl);
         }
+    }
+
+    addCenteredCircle(r, stroke="black", fill="none") {
+        this.addElement("circle", {
+            cx: this.centerX,
+            cy: this.centerY,
+            r: r,
+            stroke: stroke,
+            fill: fill
+        })
     }
 
    

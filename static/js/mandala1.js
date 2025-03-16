@@ -24,41 +24,42 @@ mandala.addElement("circle", {
 
 // Curly bracket shape
 var curlyBracket = new CurlyBracket({
-    xStart: mandala.centerX + mandala.outerR,
-    yStart: mandala.centerY,
+    x: mandala.centerX + mandala.outerR,
+    y: mandala.centerY,
     howMany: 8,
-    width: 30
+    length: 30,
+    width: 20,
 }, {stroke: 'black', 'stroke-width': 1});
 mandala.addShape(curlyBracket);
 
 // Dots
 var dotShape = new DotShape({
-    xStart: curlyBracket.curveOutX,
-    yStart: curlyBracket.bracketStartY,
+    x: curlyBracket.curveOutX,
+    y: curlyBracket.bracketStartY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    xStart: curlyBracket.curveInX,
-    yStart: curlyBracket.y,
+    x: curlyBracket.curveInX,
+    y: curlyBracket.y,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    xStart: curlyBracket.curveOutX,
-    yStart: curlyBracket.bracketEndY,
+    x: curlyBracket.curveOutX,
+    y: curlyBracket.bracketEndY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape );
 
 var dropletShape = new DropletShape({
-    xStart: mandala.centerX + mandala.outerR,
-    yStart: mandala.centerY,
+    x: mandala.centerX + mandala.outerR,
+    y: mandala.centerY,
     length: 30,
     width: 10,
     angleStart: 22.5,
