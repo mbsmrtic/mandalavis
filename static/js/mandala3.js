@@ -26,13 +26,14 @@ mandala.addElement("circle", {
 });
 
 
-function addRowOfCircles(xStartOffset, r, color, count) {
+function addRowOfCircles(yStartOffset, r, color, count) {
     //Bigger circles
     var dotShape = new DotShape({
-        x: mandala.centerX + mandala.outerR + xStartOffset,
-        y: mandala.centerY, 
+        x: mandala.centerX,
+        y: mandala.centerY - mandala.outerR - yStartOffset, 
         width: r,
         color: color,
+        // howMany: 22
         howMany: count
     });
     mandala.addShape(dotShape);

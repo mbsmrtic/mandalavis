@@ -106,9 +106,7 @@ export class ArcShape extends MandalaShape {
     shapeElementAttributes() {
         const pathD = this.moveToString(this.x, this.y) + 
             this.arcString(
-                //this.width / 2, this.length / 2, 
                 this.width, this.length,
-                //1, 1,
                 0,  //0 = centered, not skewed
                 1,  // 0 = smaller arc
                 1,  // 1 = clockwise
@@ -140,8 +138,8 @@ export class BetweenDotsDotShape extends MandalaShape {
     constructor(biggerDot) {
         var littleR = biggerDot.width / 4;
         var shapeArgs = {
-            x: biggerDot.x + biggerDot.width - littleR,
-            y: biggerDot.y,
+            x: biggerDot.x,
+            y: biggerDot.y - biggerDot.width + littleR,
             width: littleR,
             color: biggerDot.color,
             howMany: biggerDot.howMany,
