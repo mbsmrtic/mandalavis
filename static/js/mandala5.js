@@ -75,7 +75,7 @@ mandala.addShape(new DotShape({
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {
     mandala.addShape(new CurlyBracket({
-        x: mandala.centerX + mandala.outerR - 3,
+        x: mandala.centerX + mandala.outerR - 2,
         y: mandala.centerY,
         length: 35 - (i * 5),
         width: 28,
