@@ -178,7 +178,15 @@ export class SShape extends MandalaShape {
     }
 }
 
-
+// A note of caution here
+//  Most of these shapes are oriented so that you create the first one 
+//  (howMany: 1) at the top of the mandala, so x = mandala.centerX and 
+//   y = mandala.centerY - mandala.outerR.
+//  This shape, however, is doing the way that we used to do it -
+//    starting at the right side so x = mandala.centerX + mandala.outerR
+//   y = mandala.centerY. 
+//  Todo - reorient this so that the first shape is at the top. It's more
+//    intuitive when we talk about things like shape width. 
 export class SpiralShape extends MandalaShape {
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
