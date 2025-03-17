@@ -33,6 +33,19 @@ nav a {
     background: #f4f4f4;
     padding: 15px;
 }
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 6px;
+    z-index: 1;
+}
+.tooltip-trigger {
+    position: relative;
+    display: inline-block;
+}
 footer {
     text-align: center;
     padding: 10px 0;

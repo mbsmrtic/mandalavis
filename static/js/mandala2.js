@@ -6,24 +6,6 @@ import { PalmTreeShape } from "/static/js/mandala.js";
 
 const mandala = new Mandala("mandala2");
 
-// Create inner circle
-mandala.makeGradient("white", "black");
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.innerR,
-    fill: "url(#myGradient)"
-});
-
-
-// Outer circle
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.outerR,
-    'stroke-width': 2,
-    stroke: "black"
-});
 
 var curlyBracket = new CurlyBracket({
     x: mandala.centerX + mandala.outerR,
@@ -93,9 +75,21 @@ var p = new PalmTreeShape({
 );
 mandala.addShape(p);
 
-//palmTrees
-// for (var rotation = 0; rotation < 360; rotation += 45) {
-//     mandala.palmTree(54, rotation, {'stroke-width': 5});
-// //    mandala.palmTree(24, rotation);
-// //    mandala.palmTree(14, rotation);
-// }
+// Create inner circle
+mandala.makeGradient("white", "black");
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r: mandala.innerR,
+    fill: "url(#myGradient)"
+});
+
+
+// Outer circle
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r: mandala.outerR,
+    'stroke-width': 2,
+    stroke: "black"
+});
