@@ -8,28 +8,30 @@ const mandala = new Mandala("mandala4", 95, 95);
 mandala.addCenteredCircle(mandala.innerR);
 
 var s = new SpiralShape({
-    x: mandala.centerX + mandala.outerR, 
-    y: mandala.centerY,
+    x: mandala.centerX, 
+    y: mandala.centerY - mandala.outerR - 1,
     width: 12, 
     howMany: 15,
-    angleStart: 0
+    angleStart: 17
 });
 mandala.addShape(s);
 
-s.x = mandala.centerX + mandala.innerR - 1.5;
+s.y = mandala.centerY - mandala.innerR + .5;
 s.width = 15;
 s.howMany = 6;
+s.angleStart = 30;
 mandala.addShape(s);
 
-s.x = mandala.centerX + mandala.outerR + 11;
+s.y = mandala.centerY - mandala.outerR - 11;
 s.width = 24;
 s.howMany = 10;
+s.angleStart = 18;
 mandala.addShape(s);
 
-s.x = mandala.centerX + mandala.outerR + 29;
+s.y = mandala.centerY - mandala.outerR - 29;
 s.width = 15;
 s.howMany = 10;
-s.angleStart = 17;
+s.angleStart = 0;
 mandala.addShape(s);
 
 

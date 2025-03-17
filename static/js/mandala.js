@@ -178,22 +178,13 @@ export class SShape extends MandalaShape {
     }
 }
 
-// A note of caution here
-//  Most of these shapes are oriented so that you create the first one 
-//  (howMany: 1) at the top of the mandala, so x = mandala.centerX and 
-//   y = mandala.centerY - mandala.outerR.
-//  This shape, however, is doing the way that we used to do it -
-//    starting at the right side so x = mandala.centerX + mandala.outerR
-//   y = mandala.centerY. 
-//  Todo - reorient this so that the first shape is at the top. It's more
-//    intuitive when we talk about things like shape width. 
 export class SpiralShape extends MandalaShape {
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
         // startX defines the center of the spiral, so we need to 
-        //   move the center over depending on the width.
-        const startX = this.x + (this.width / 2);  
-        const startY = this.y;            //60
+        //   move the center up depending on the width of the shape.
+        const startX = this.x;  
+        const startY = this.y - (this.width / 2) + 1;
 
         //spiral
         const turns = 2.14;
@@ -204,8 +195,8 @@ export class SpiralShape extends MandalaShape {
         for (let i = 0; i < turns * 360; i++) {
             let angle = ((i * Math.PI) / 180);
             let r = i * radiusStep;
-            currentY = startY + .2 * r * Math.cos(angle);
-            currentX = startX - .2 * r * Math.sin(angle);
+            currentY = startY + .2 * r * Math.sin(angle);
+            currentX = startX + .2 * r * Math.cos(angle);
             pathD += (i === 0 ? "M" : "L") + currentX + ' ' + currentY;
         }
         return ({
