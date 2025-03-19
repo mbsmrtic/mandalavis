@@ -318,7 +318,8 @@ export class Mandala {
                 let x = event.x - 60;
                 if (x < 0) { x = 0; }
                 tooltip.style.left = x + 'px';
-                tooltip.style.top = event.y - 50 + 'px';
+                let y = event.pageY - ((event.y < 50) ? 0 : 50);
+                tooltip.style.top = y + 'px';
                 tooltip.textContent = newEl.textContent;
                 tooltip.style.display = 'block';
             };
