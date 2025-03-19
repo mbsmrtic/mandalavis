@@ -313,33 +313,29 @@ export class Mandala {
             for (const key in attributes) {
                 newEl.setAttribute(key, attributes[key]);
             }
-            // return Object.assign(document.createElement(tag), attributes);
+
+            function setToolTip(event, tooltip) {
+                let x = event.x - 60;
+                if (x < 0) { x = 0; }
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = event.y - 50 + 'px';
+                tooltip.textContent = newEl.textContent;
+                tooltip.style.display = 'block';
+            };
             // tooltip
             if (shape.toolTipText) {
                 newEl.textContent = shape.toolTipText;
                 const tooltip = document.querySelector('.tooltip');
                 newEl.addEventListener('mouseover', (event) => {
-                    if (tooltip) {
-                        tooltip.style.left = event.x - 60 + 'px';
-                        tooltip.style.top = event.y - 50 + 'px';
-                        tooltip.textContent = newEl.textContent;
-                        tooltip.style.display = 'block';
-                    }
+                    setToolTip(event, tooltip);
                 });
                 newEl.addEventListener('mouseout', () => {
-                    if (tooltip) {
-                        tooltip.style.display = 'none';
-                    }
-                })
+                    tooltip.style.display = 'none';
+                });
                 newEl.addEventListener('click', (event) => {
-                    if (tooltip) {
-                        tooltip.style.left = event.x - 60 + 'px';
-                        tooltip.style.top = event.y - 50 + 'px';
-                        tooltip.textContent = newEl.textContent;
-                        tooltip.style.display = 'block';
-                        tooltipJustOpened = true;
-                        console.log('clicked ');
-                    }
+                    setToolTip(event, tooltip);
+                    tooltipJustOpened = true;
+                    console.log('clicked ');
                 });    
             }
 
