@@ -1,4 +1,17 @@
 const svgUrl = "http://www.w3.org/2000/svg";
+let tooltipJustOpened = false;
+
+document.addEventListener('click', (event) => {
+    // The first time we get this event after opening a tooltip, we leave
+    //   it open.  After that, it means this click was not in a shape, so 
+    //   we close the tooltip.
+    if (tooltipJustOpened) {
+        tooltipJustOpened = false;
+    } else {
+        const tooltip = document.querySelector('.tooltip');
+        tooltip.style.display = 'none';
+    }
+});
 
 // The MandalaShape constructor takes some basic shape related args.
 // The pattern is:
@@ -303,10 +316,13 @@ export class Mandala {
             // return Object.assign(document.createElement(tag), attributes);
             // tooltip
             if (shape.toolTipText) {
-                const trigger = document.querySelector('.tooltip-trigger');
+                newEl.textContent = shape.toolTipText;
                 const tooltip = document.querySelector('.tooltip');
-                newEl.addEventListener('mouseover', () => {
+                newEl.addEventListener('mouseover', (event) => {
                     if (tooltip) {
+                        tooltip.style.left = event.x - 60 + 'px';
+                        tooltip.style.top = event.y - 50 + 'px';
+                        tooltip.textContent = newEl.textContent;
                         tooltip.style.display = 'block';
                     }
                 });
@@ -315,25 +331,16 @@ export class Mandala {
                         tooltip.style.display = 'none';
                     }
                 })
-                if (trigger) {
-                    newEl.addEventListener('click', () => {
-                        if (tooltip) {
-                            tooltip.style.display = 'block';
-                        }
-                    });    
-                }
-                document.addEventListener('click', (event) => {
-                    const trigger = document.querySelector('.tooltip-trigger');
-                    const tooltip = document.querySelector('.tooltip');
-                        if (trigger && !trigger.contains(event.target)) {
-                        if (tooltip) {
-                            tooltip.style.display = 'none';
-                        }
+                newEl.addEventListener('click', (event) => {
+                    if (tooltip) {
+                        tooltip.style.left = event.x - 60 + 'px';
+                        tooltip.style.top = event.y - 50 + 'px';
+                        tooltip.textContent = newEl.textContent;
+                        tooltip.style.display = 'block';
+                        tooltipJustOpened = true;
+                        console.log('clicked ');
                     }
-                });
-                const title = document.createElementNS(svgUrl, 'title');
-                title.textContent = shape.toolTipText;
-                newEl.appendChild(title);
+                });    
             }
 
             // add the new element to the DOM
