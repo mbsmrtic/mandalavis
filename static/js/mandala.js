@@ -317,9 +317,9 @@ export class Mandala {
             function setToolTip(event, tooltip) {
                 let x = event.x - 60;
                 if (x < 0) { x = 0; }
-                tooltip.style.left = x + 'px';
-                let y = event.pageY - ((event.y < 50) ? 0 : 50);
-                tooltip.style.top = y + 'px';
+                // tooltip.style.left = x + 'px';
+                // let y = event.pageY - ((event.y < 50) ? 0 : 50);
+                // tooltip.style.top = y + 'px';
                 tooltip.textContent = newEl.textContent;
                 tooltip.style.display = 'block';
             };
@@ -329,9 +329,21 @@ export class Mandala {
                 const tooltip = document.querySelector('.tooltip');
                 newEl.addEventListener('mouseover', (event) => {
                     setToolTip(event, tooltip);
+                    // move the element to the front (end of the svg)
+                    let svgEl = document.querySelector('svg');
+                    let clonedNode = newEl.cloneNode(true);
+                    clonedNode.classList.add('tempMoveToFront');
+                    clonedNode.setAttribute('stroke', 'black');
+                    clonedNode.setAttribute('stroke-width', 2);
+                    svgEl.appendChild(clonedNode);
                 });
                 newEl.addEventListener('mouseout', () => {
-                    tooltip.style.display = 'none';
+                    // tooltip.style.display = 'none';
+                    let elements = document.querySelectorAll('.tempMoveToFront');
+                    elements.forEach(element => element.parentNode.removeChild(element));
+                    // for (let i=0; i < elements.length; i++) {
+                    //     elements[i].parentNode.removeChild(elemen)
+                    // }
                 });
                 newEl.addEventListener('click', (event) => {
                     setToolTip(event, tooltip);

@@ -6,7 +6,7 @@ import { CurlyBracket } from "/static/js/mandala.js";
 import { DotShape } from "/static/js/mandala.js";
 import { SpiralShape } from "/static/js/mandala.js";
 
-const mandala = new Mandala("mandala6", 95, 95);
+const mandala = new Mandala("mandala6", 115, 105);
 
 
 // mandala.addShape(new SpiralShape({
