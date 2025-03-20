@@ -324,13 +324,13 @@ export class Mandala {
                 // tooltip.style.top = y + 'px';
                 tooltip.textContent = newEl.textContent;
                 tooltip.style.display = 'block';
-                    // move the element to the front (end of the svg)
-                    let svgEl = document.querySelector('svg');
-                    let clonedNode = newEl.cloneNode(true);
-                    clonedNode.classList.add('tempMoveToFront');
-                    clonedNode.setAttribute('stroke', 'black');
-                    clonedNode.setAttribute('stroke-width', 2);
-                    svgEl.appendChild(clonedNode);
+                // move the element to the front (end of the svg)
+                let svgEl = document.querySelector('svg');
+                let clonedNode = newEl.cloneNode(true);
+                clonedNode.classList.add('tempMoveToFront');
+                clonedNode.setAttribute('stroke', 'black');
+                clonedNode.setAttribute('stroke-width', 2);
+                svgEl.appendChild(clonedNode);
             };
             // tooltip
             if (shape.toolTipText) {
@@ -345,6 +345,9 @@ export class Mandala {
                     elements.forEach(element => element.parentNode.removeChild(element));
                 });
                 newEl.addEventListener('click', (event) => {
+                    let elements = document.querySelectorAll('.tempMoveToFront');
+                    elements.forEach(element => element.parentNode.removeChild(element));            
+                    const tooltip = document.querySelector('.tooltip');
                     setToolTip(event, tooltip);
                     tooltipJustOpened = true;
                     console.log('clicked ');
