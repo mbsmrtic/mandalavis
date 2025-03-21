@@ -1,19 +1,24 @@
 const svgUrl = "http://www.w3.org/2000/svg";
 let tooltipJustOpened = false;
 
+// Todo - test this and change the name of tooltipJustOpened
 document.addEventListener('click', (event) => {
-    // The first time we get this event after opening a tooltip, we leave
-    //   it open.  After that, it means this click was not in a shape, so 
+    // The first time we get this event after highlighting a shape, we leave
+    //   it.  After that, it means this click was not in a shape, so 
     //   we close the tooltip.
     if (tooltipJustOpened) {
         tooltipJustOpened = false;
     } else {
         const tooltip = document.querySelector('.tooltip');
         tooltip.style.display = 'none';
-        let elements = document.querySelectorAll('.tempMoveToFront');
-        elements.forEach(element => element.parentNode.removeChild(element));
+        clearHighlights();
     }
 });
+
+function clearHighlights() {
+    let elements = document.querySelectorAll('.tempMoveToFront');
+    elements.forEach(element => element.parentNode.removeChild(element));
+}
 
 // The MandalaShape constructor takes some basic shape related args.
 // The pattern is:
@@ -316,41 +321,38 @@ export class Mandala {
                 newEl.setAttribute(key, attributes[key]);
             }
 
-            function setToolTip(event, tooltip) {
-                let x = event.x - 60;
-                if (x < 0) { x = 0; }
-                // tooltip.style.left = x + 'px';
-                // let y = event.pageY - ((event.y < 50) ? 0 : 50);
-                // tooltip.style.top = y + 'px';
+            function selectShape(event) {
+                const tooltip = document.querySelector('.tooltip');
                 tooltip.textContent = newEl.textContent;
                 tooltip.style.display = 'block';
-                // move the element to the front (end of the svg)
-                let svgEl = document.querySelector('svg');
-                let clonedNode = newEl.cloneNode(true);
+                // To highlight the element, we make a temporary copy 
+                //    and append it to the DOM, putting it over all existing
+                //    elements
+                let clonedNode = event.target.cloneNode(true);
                 clonedNode.classList.add('tempMoveToFront');
                 clonedNode.setAttribute('stroke', 'black');
                 clonedNode.setAttribute('stroke-width', 2);
+                // move the element to the front (end of the svg)
+                let svgEl = document.querySelector('svg');
                 svgEl.appendChild(clonedNode);
             };
-            // tooltip
+            // tooltip and shape highlight
+            // todo - maybe move this code to the top
+            //     maybe we don't need one event listener for each shape
+            //     we could just capture them in one place at the top
+            //     and use event.target to access the relevant element
             if (shape.toolTipText) {
                 newEl.textContent = shape.toolTipText;
-                const tooltip = document.querySelector('.tooltip');
                 newEl.addEventListener('mouseover', (event) => {
-                    setToolTip(event, tooltip);
+                    selectShape(event);
                 });
                 newEl.addEventListener('mouseout', () => {
-                    // tooltip.style.display = 'none';
-                    let elements = document.querySelectorAll('.tempMoveToFront');
-                    elements.forEach(element => element.parentNode.removeChild(element));
+                    clearHighlights();
                 });
-                newEl.addEventListener('click', (event) => {
-                    let elements = document.querySelectorAll('.tempMoveToFront');
-                    elements.forEach(element => element.parentNode.removeChild(element));            
-                    const tooltip = document.querySelector('.tooltip');
-                    setToolTip(event, tooltip);
+                newEl.addEventListener('touchstart', (event) => {
+                    clearHighlights();
+                    selectShape(event);
                     tooltipJustOpened = true;
-                    console.log('clicked ');
                 });    
             }
 
