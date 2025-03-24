@@ -317,24 +317,31 @@ export class Mandala {
                 attributes['transform'] = `rotate(${angle} ${this.centerX} ${this.centerY})`;
             //create the DOM element
             const newEl = document.createElementNS(svgUrl, elementTag);
+            newEl.setAttribute('mandalaid', this.elementId);
             for (const key in attributes) {
                 newEl.setAttribute(key, attributes[key]);
             }
 
-            function selectShape(event) {
+            function selectShape(element) {
                 const tooltip = document.querySelector('.tooltip');
-                tooltip.textContent = newEl.textContent;
-                tooltip.style.display = 'block';
-                // To highlight the element, we make a temporary copy 
-                //    and append it to the DOM, putting it over all existing
-                //    elements
-                let clonedNode = event.target.cloneNode(true);
-                clonedNode.classList.add('tempMoveToFront');
-                clonedNode.setAttribute('stroke', 'black');
-                clonedNode.setAttribute('stroke-width', 2);
-                // move the element to the front (end of the svg)
-                let svgEl = document.querySelector('svg');
-                svgEl.appendChild(clonedNode);
+                if (element.textContent.length < 100) {
+                    tooltip.textContent = element.textContent;
+                    tooltip.style.display = 'block';    
+                    // To highlight the element, we make a temporary copy 
+                    //    and append it to the DOM, putting it over all existing
+                    //    elements
+                    let clonedNode = element.cloneNode(true);
+                    clonedNode.classList.add('tempMoveToFront');
+                    clonedNode.setAttribute('stroke', 'black');
+                    clonedNode.setAttribute('stroke-width', 2);
+                    // move the element to the front (end of the svg)
+                    let mandalaId = element.getAttribute('mandalaid');
+                    let svgEl = document.querySelector('#' + mandalaId);
+                    svgEl.appendChild(clonedNode);
+                }
+                else {
+                    console.log("tooltip text too long: " + element.textContent);
+                }
             };
             // tooltip and shape highlight
             // todo - maybe move this code to the top
@@ -344,16 +351,32 @@ export class Mandala {
             if (shape.toolTipText) {
                 newEl.textContent = shape.toolTipText;
                 newEl.addEventListener('mouseover', (event) => {
-                    selectShape(event);
+                    selectShape(event.target);
                 });
                 newEl.addEventListener('mouseout', () => {
                     clearHighlights();
                 });
                 newEl.addEventListener('touchstart', (event) => {
                     clearHighlights();
-                    selectShape(event);
+                    selectShape(event.target);
                     tooltipJustOpened = true;
                 });    
+                newEl.addEventListener('touchmove', (event) => {
+                    console.log('touchmove');
+                    const touch = event.touches[0]; // Get the first touch point
+                    const x = touch.clientX;
+                    const y = touch.clientY;
+                    const elementUnderTouch = document.elementFromPoint(x, y);
+
+                    // If the new element is in the same mandala, we will handle it
+                    var elementMandalaId = elementUnderTouch.getAttribute('mandalaid');
+                    if (elementMandalaId && elementMandalaId == event.target.getAttribute('mandalaid')) {
+                        clearHighlights();
+                        selectShape(elementUnderTouch);
+                        tooltipJustOpened = true;    
+                        event.stopPropagation();
+                    }
+                })
             }
 
             // add the new element to the DOM
