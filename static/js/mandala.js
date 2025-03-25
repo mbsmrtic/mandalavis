@@ -335,7 +335,7 @@ export class Mandala {
                     clonedNode.setAttribute('stroke', 'black');
                     clonedNode.setAttribute('stroke-width', 2);
                     // move the element to the front (end of the svg)
-                    let mandalaId = element.getAttribute('mandalaid');
+                    const mandalaId = element.getAttribute('mandalaid');
                     let svgEl = document.querySelector('#' + mandalaId);
                     svgEl.appendChild(clonedNode);
                 }
@@ -350,7 +350,7 @@ export class Mandala {
             //     and use event.target to access the relevant element
             if (shape.toolTipText) {
                 newEl.textContent = shape.toolTipText;
-                newEl.addEventListener('mouseover', (event) => {
+                newEl.addEventListener('mouseenter', (event) => {
                     selectShape(event.target);
                 });
                 newEl.addEventListener('mouseout', () => {
@@ -360,7 +360,9 @@ export class Mandala {
                     clearHighlights();
                     selectShape(event.target);
                     tooltipJustOpened = true;
-                });    
+                    event.stopPropagation();
+                    event.preventDefault();
+            });    
                 newEl.addEventListener('touchmove', (event) => {
                     console.log('touchmove');
                     const touch = event.touches[0]; // Get the first touch point
@@ -375,6 +377,7 @@ export class Mandala {
                         selectShape(elementUnderTouch);
                         tooltipJustOpened = true;    
                         event.stopPropagation();
+                        event.preventDefault();
                     }
                 })
             }
