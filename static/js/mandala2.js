@@ -1,8 +1,10 @@
+import { SwirlShape } from "/static/js/mandala.js";
 import { Mandala } from "/static/js/mandala.js";
 import { CurlyBracket } from "/static/js/mandala.js";
 import { DropletShape } from "/static/js/mandala.js";
 import { DotShape } from "/static/js/mandala.js";
 import { PalmTreeShape } from "/static/js/mandala.js";
+import { SCurve } from "/static/js/mandala.js";
 
 const mandala = new Mandala("mandala2");
 
@@ -52,10 +54,30 @@ var dropletShape = new DropletShape({
 });
 mandala.addShape(dropletShape);
 
-// Swirls
-for (var rotation = 0; rotation < 360; rotation += 45) {
-    mandala.swirl(rotation);
-}
+const swirlY = mandala.centerY - mandala.innerR;
+var swirlShape = new SwirlShape({
+    x: mandala.centerX,
+    y: swirlY,
+    // length: 30,
+    // width: 10,
+    color: 'black',
+    howMany: 8
+});
+mandala.addShape(swirlShape);
+mandala.addShape(new DotShape({
+    x: mandala.centerX + 2.5, y: swirlY - 2.5,
+    width: 2,
+    howMany: 8
+}));
+
+// mandala.addShape(new SCurve({
+//     x: mandala.centerX, 
+//     y: mandala.centerY - mandala.innerR - 7,
+//     width: 5,
+//     length: 9,
+//     color: 'black',
+//     howMany: 25
+// }, {'stroke-width': .2}));
 
 //circle 
 mandala.addElement("circle", {
