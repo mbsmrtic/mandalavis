@@ -1,0 +1,230 @@
+<!doctype html>
+    <div id="header"></div>
+<div class="container">
+    <div class="content">
+        <!-- <article id="article10">
+            <h2>Random</h2>
+            <p><small></small></p>
+            <svg id="mandala8" width="600" height="400" viewBox="0 00 192 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+            </article> -->
+        <article id="article9">
+            <h2>Says hello and waves</h2>
+            <p><small>Posted on March 26, 2025</small></p>
+            <svg id="mandala7" width="600" height="400" viewBox="0 00 192 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                </svg>
+            <p>This mandala was inspired by a mosaic that I saw in Florida. I liked the wave shape, so for 
+                this I added a wave shape to the toolbox. It wasn't easy to get the spirals perfect and keep it as one 
+                solid object. Instead of having each spiral start from the center, I had it start on the left,
+                spiral in to the center, then spiral out with a wider radius step around and to the right. 
+                Now I have that shape in the toolbox, it can take a size parameter. Maybe I'll add direction later
+                so that we can specify clockwise or counterclockwise. 
+            </p>
+        </article>
+        <article id="article8">
+            <h2>Layers of serenity</h2>
+            <p><small>Posted on March 17, 2025</small></p>
+            <div class="tooltip"></div>
+            <svg id="mandala6" width="600" height="400" viewBox="0 00 192 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+            <p>I've started adding a javascript driven tooltip here, although it still needs some work. 
+                For the tooltip to work on a curly bracket, the curly bracket  
+                 has to be more than just lines, it has to be a filled shape. So I changed the way the 
+                layering works. Until now my code has started with the center circle then added "layers" 
+                from the inside out.  But If I want the outer layers to be behind the inner layers, javascript 
+                really wants the outer layers to be added first. So, now I have to change my thinking about how 
+                I write the code for these, the inner layers have to come after the outer layers. 
+                Weird, I know. 
+            </p>            
+        </article>
+        <article id="article7">
+            <h2>Just for the beauty of it. </h2>
+            <p><small>Posted on March 15, 2025</small></p>
+            <svg id="mandala5" width="470" height="470" viewBox="0 0 192 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+            <p>For today's mandala I added an arc shape lined with dots. In it's current form 
+                it doesn't translate well to data visualization; I was just going for beauty. My next step is 
+                to add Flask to this site, and I'll also probably pull in D3 at some point. The code 
+                is currently vanilla javascript, but with Flask I'll be able to do some of my favorite language: Python!! 
+                I see beauty and elegance and symmetry in software and data and for me these mandalas are an expression
+                of that. 
+            </p>
+            </article>
+        <article id="article6">
+            <h2>The perfect spiral.</h2>
+            <p><small>Posted on March 10, 2025</small></p>
+            <svg id="mandala4" width="470" height="470" viewBox="0 0 192 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>         
+            <p>I started trying to make a spiral using Bezier curves. Bezier curves use 
+                control points that determine the curves. I could not get a spiral that I was 
+                happy with. They were crooked! They weren't perfect. So I changed the code to 
+                calculate 360 different lines for each turn around the center. The first time 
+                I ran that I knew it was right. It was perfect and looked beautiful. I now have spirals 
+                in my toolbox. They can take a size parameter. I've hardcoded them (for now) to have
+                two turns around the center because I liked the aesthetics of that. It will be 
+                easy to add a parameter for more turns later if necessary. 
+            </p>
+        </article>
+        <article id="article5">
+            <h2>Circle layers (and teeth) </h2>
+            <p><small>Posted on March 6, 2025</small></p>
+            <svg id="mandala3" width="342" height="350" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                </svg>
+            <p>For this mandala I added methods to draw layers of circles. To work for
+                future data visualizations, I wanted the javascript to take a size of and number of items for 
+                the layer and calculate where to place the circle as well as a smaller circle that
+                is centered between each one in the outer part of the layer. The smaller circles are 
+                aesthetically pleasing and may be useful for our data visualizations, we'll see. 
+                I added a simple tooltip since we will need those for the interactivity of our data visualizations, 
+                so this is the first step towards that. 
+                The outermost layer of this one is made up of some Y shaped objects that I call
+                palm trees. I added them here because when they were placed next to each other they looked like teeth to me which made me laugh. 
+                At some point the data will somewhat drive which colors and which shapes are chosen. I already get hit with 
+                surprises (like teeth and t-shirt shapes) when I'm experimenting. Finding out what shapes and colors the algorithm suggests for different datasets 
+                will be even more surprising I'm sure. 
+            </p>
+        </article>
+        <article id="article4">
+            <h2>T-shirt Mandala</h2>
+            <p><small>Posted on March 4, 2025</small></p>
+            <svg id="mandala2" width="570" height="570" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>         
+            <p>I will get to creating some sophisticated data visualizations,
+                but this one made me laugh today, so I had to share it. 
+                I'm creating a collection of shapes that will be used 
+                to represent different kinds of data. I had these elegant
+                little curves that I called palm trees but when I was 
+                fiddling with the stroke width this one made me laugh because
+                they look like little t-shirts. 
+            </p>
+            </article>
+        <article id="article3">
+            <h2>Fun with Cubic Bezier curves in SVG</h2>
+            <p><small>Posted on February 28, 2025</small></p>
+            <svg id="mandala1" width="542" height="537" viewBox="0 0 142 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </svg>         
+            <p>I created a simple mandala using Cubic Bezier curves in SVG. 
+                I'll experiment with different ways to create mandalas with the 
+                goal of creating interactive data visualizations. This one is static
+                and is created using javascript to create SVG elements. The key to the round
+                nature of mandalas was the transform rotation attribute in the SVG Path element.
+            </p>
+        
+        </article>
+        <!-- <article id="article2">
+            <h2>Advances in human gut microbiome research show its role in health. I have so many questions.</h2>
+            <p><small>Posted on February 26, 2025</small></p>
+            <p>How much influence does our gut microbiome have on our health? There are so many diseases that we have yet to understand. 
+                Could some of them be related to our microbiome? In my reading of recent microbiome research so far, these are the health issues 
+                that I've seen come up:
+                Inflammatory Bowel Disease (IBD), Irritable Bowel Syndrome (IBS), Coeliac Disease, Type 2 Diabetes, Colorectal Cancer,
+                Obesity, Hepatic Steatosis (liver), Rheumatoid Arthritis, Gout, Psoratic Arthritis, Eczema, Asthma, Kidney Disease, Acne, Osteoarthritis,
+                Depression, Anxiety, Schizophrenia, Bipolar Disorder, Autism, Parkinson's and Alzheimer's Disease. 
+                It's a lot, I know. I started this site because I want to create beautiful mandala data visualizations, so I will most likely
+                start with some simple data sets. But I'd like to get to the point where I can show some data from scientific research.
+                Will that help to clarify things? Maybe. 
+            </p>
+            <p>Can changes in diet heal gut problems and their corresponding health conditions? In my reading I'm seeing that adding fiber, probiotics, 
+                and fermented foods to our diets can help. Removing some harmful ingredients from processed foods is a good idea.   
+                And while not a diet change, also FMT (Fecal Microbiota Transplantation). There has been some success with FMT but could those same
+                effects come further upstream, by restoring the microbiome from things like probiotics? 
+            </p>
+            <p>Some important papers in microbiome research include: 
+                <ul>
+                    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4290017/">"The gut microbiome in health and in disease" (PMC, 2015)</a> 
+                        A review of research showing the microbiome's role in metabolic, immune and neurological health. </li>
+                    <li><a href="https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2022.999001/full">
+                        Human gut microbiota in health and disease" (Frontiers, 2022)</a>
+                    </li>
+                </ul>
+            </p>
+            <p>There are some accessible books out there. You could search by 'microbiome' or 'gut health'. 
+                One that I've read is Super Gut by William Davis. It's very accessible
+                and includes a step by step guide to healing your gut. Some people criticize it for it's lack of scientific citations, but 
+                I recommend it if you're looking for a clear guide to healing. 
+            </p>
+                
+        </article> -->
+
+        <article id="article1">
+            <h2>Hello World!</h2>
+            <p><small>Posted on February 21, 2025</small></p>
+            <p>Eric Lander once said 
+                "Things that are beautiful have a communicative power that things that are not beautiful do not".
+                When I was studying data visualization I was struck by the beauty that could be seen in data 
+                and it's ability to create understanding. I was studying biomedical engineering at the same time so 
+                I often used data visualization to help me understand complex biomedical data. 
+                I've recently become interested in the impact of the gut microbiome on overall human health, so 
+                I hope to share some of that research here and use data visualization to make it more understandable.
+                I've just taken my previous website (flashbit.com) off of AWS and will probably forward it to this page.
+                So if you are looking for flashbit and ended up here, that's why. I'm not sure which url I like better.
+                Maybe some day I'll use them for two different purposes, but for now, this is my focus.                 
+            </p>
+        </article>
+
+        <!-- <article>
+            <h2>Blog Post Title 2</h2>
+            <p><small>Posted on February 19, 2025 by Author</small></p>
+            <p>This is the content of the second blog post. Continue to add more posts as needed.</p>
+        </article> -->
+
+        <!-- Add more articles as needed -->
+        <div id="articles"></div>
+    </div>
+
+    <aside class="sidebar">
+        <h3>About MandalaVis</h3>
+        <p>I am planning to use this space to explore some data visualization techniques
+            inspired by mandalas. 
+            My background is a combination of software development and biomedical engineering. 
+            My top two interests are
+            <ol>
+                <li>current research on the human gut microbiome and it's impact on overall health and</li>
+                <li>developing beautiful mandala inspired data visualizations.</li>
+            </ol>
+            I will combine these two things so I'll post some of the latest microbiome research and I'll make some 
+            data visualizations with the goal of clarifying the data. 
+        </p>
+        <p>
+            Follow me on<br/>
+            <a href="https://bsky.app/profile/mbsmrtic.bsky.social" target="_blank">
+                <img src="{{ url_for('static', filename='images/bluesky.png') }}" width="175" height="50" alt="Follow me on Bluesky!"> 
+            </a>
+        </p>
+        <!-- <h3>Categories</h3>
+        <ul>
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li> -->
+            <!-- Add more categories as needed -->
+        <!-- </ul> -->
+    </aside>
+</div>
+<!-- <footer>
+    &copy; 2025 . All Rights Reserved.
+</footer> -->
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script>
+    $(document).ready(
+        () => {
+            $('#header').load('pages/header.html');
+            // console.log('a');
+            // const files = ['article3.html'];      //, 'article4.html'];
+            // $(files).each((index, file) => {
+            //      $('#articles').load('pages/articles/' + file);
+            //  })
+        }
+        );
+</script>
+<script src="static/js/mandala.js" type="module"></script>
+<script src="static/js/mandala1.js" type="module" defer></script>
+<script src="static/js/mandala2.js" type="module" defer></script>
+<script src="static/js/mandala3.js" type="module" defer></script>
+<script src="static/js/mandala4.js" type="module" defer></script>
+<script src="static/js/mandala5.js" type="module" defer></script>
+<script src="static/js/mandala6.js" type="module" defer></script>
+<script src="static/js/mandala7.js" type="module" defer></script>
+<script src="static/js/mandala8.js" type="module" defer></script>
+
+</body>
+</html>
