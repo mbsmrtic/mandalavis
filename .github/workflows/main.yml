@@ -17,7 +17,7 @@ jobs:
           script: |
             cd /home/mbsmrtic/repos/mandalavis
             git pull origin main
-            cp *.html /var/www/mandalavis
+            cp *.* /var/www/mandalavis
             cp -r images/* /var/www/mandalavis/images
             cp -r static /var/www/mandalavis
             cp -r pages /var/www/mandalavis
