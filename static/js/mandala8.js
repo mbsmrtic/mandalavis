@@ -1,14 +1,14 @@
-import { DropletShape } from "/static/js/mandala.js";
-import { PalmTreeShape } from "/static/js/mandala.js";
-import { SwirlShape } from "/static/js/mandala.js";
-import { ArcShape } from "/static/js/mandala.js";
-import { DotShape } from "/static/js/mandala.js";
-import { BetweenDotsDotShape } from "/static/js/mandala.js";
-import { SCurve } from "/static/js/mandala.js";
-import { SShape } from "/static/js/mandala.js";
-import { WaveShape } from "/static/js/mandala.js";
-import { SpiralShape } from "/static/js/mandala.js";
-import { CurlyBracket } from "/static/js/mandala.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
+import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
+import { SwirlShape } from "/static/js/shapes/swirl.js";
+import { ArcShape } from "/static/js/shapes/arc.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
+import { SCurve } from "/static/js/shapes/scurve.js";
+import { SShape } from "/static/js/shapes/s.js";
+import { WaveShape } from "/static/js/shapes/wave.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { Mandala } from "/static/js/mandala.js";
 
 let mandala = new Mandala("mandala8");

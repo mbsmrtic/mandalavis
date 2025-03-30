@@ -1,9 +1,9 @@
-import { DropletShape } from "/static/js/mandala.js";
-import { DotShape } from "/static/js/mandala.js";
-import { WaveShape } from "/static/js/mandala.js";
-import { SpiralShape } from "/static/js/mandala.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { WaveShape } from "/static/js/shapes/wave.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { Mandala } from "/static/js/mandala.js";
-import { CurlyBracket } from "/static/js/mandala.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 
 let mandala = new Mandala("mandala7");
 mandala.innerR = 12;

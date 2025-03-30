@@ -1,7 +1,7 @@
-import { PalmTreeShape } from "/static/js/mandala.js";
+import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 import { Mandala } from "/static/js/mandala.js";
-import { DotShape } from "/static/js/mandala.js";
-import { BetweenDotsDotShape } from "/static/js/mandala.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 
 const mandala = new Mandala("mandala3");
 

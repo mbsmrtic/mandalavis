@@ -1,10 +1,10 @@
-import { ArcShape } from "/static/js/mandala.js";
-import { SShape } from "/static/js/mandala.js";
-import { DropletShape } from "/static/js/mandala.js";
+import { ArcShape } from "/static/js/shapes/arc.js";
+import { SShape } from "/static/js/shapes/s.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
 import { Mandala } from "/static/js/mandala.js";
-import { CurlyBracket } from "/static/js/mandala.js";
-import { DotShape } from "/static/js/mandala.js";
-import { SpiralShape } from "/static/js/mandala.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js";
 
 const mandala = new Mandala("mandala6", 115, 105);
 

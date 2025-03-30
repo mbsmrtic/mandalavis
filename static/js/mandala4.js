@@ -1,6 +1,6 @@
 import { Mandala } from "/static/js/mandala.js";
-import { SpiralShape } from "/static/js/mandala.js";
-import { DropletShape } from "/static/js/mandala.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
 
 const mandala = new Mandala("mandala4", 95, 95);
 

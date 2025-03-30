@@ -1,7 +1,7 @@
-import { DropletShape } from "/static/js/mandala.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
 import { Mandala } from "/static/js/mandala.js";
-import { CurlyBracket } from "/static/js/mandala.js";
-import { DotShape } from "/static/js/mandala.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
+import { DotShape } from "/static/js/shapes/dot.js";
 
 const mandala = new Mandala("mandala1");
 
