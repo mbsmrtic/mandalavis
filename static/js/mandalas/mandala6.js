@@ -8,22 +8,13 @@ import { SpiralShape } from "/static/js/shapes/spiral.js";
 
 const mandala = new Mandala("mandala6", 115, 105);
 
-
-// mandala.addShape(new SpiralShape({
-//     x: mandala.centerX, 
-//     y: mandala.centerY - mandala.outerR + 1.4,
-//     width: 25, 
-//     toolTipText: 'A spiral',
-//     color: 'red'
-// }));
-
 var colors = ['#3674B5', '#A1E3F9', '#D1F8EF', '#578FCA']
 
 for (var layer=5; layer >= 0; layer--) {
     colors.forEach((color, i) => {
         mandala.addShape(new CurlyBracket({
-            x: mandala.centerX + mandala.outerR + layer * 8,
-            y: mandala.centerY,
+            x: mandala.centerX ,
+            y: mandala.centerY - mandala.outerR - layer * 8,
             width: 30,
             length: 34 - i * 5,
             howMany: 8,
@@ -52,8 +43,8 @@ mandala.addShape(new DotShape({
 const howMany = 8;
 mandala.addCenteredCircle(mandala.outerR, '#A1E3F9', '#A1E3F9');
 var cb = new CurlyBracket({
-    x: mandala.centerX + mandala.innerR - 1,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.innerR - 1,
     length: mandala.innerR + 8,
     width: 10,
     howMany: howMany,
@@ -63,16 +54,16 @@ var cb = new CurlyBracket({
 mandala.addShape(cb);
 
 mandala.addShape(new CurlyBracket({
-    x: mandala.centerX + mandala.innerR - 2,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.innerR + 2,
     length: mandala.innerR + 5,
     width: 10,
     howMany: howMany,
     toolTipText: 'A light blue curly bracket',
 }, { fill: '#A1E3F9', stroke: '#A1E3F9'}));
 mandala.addShape(new CurlyBracket({
-    x: mandala.centerX + mandala.innerR - 2,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.innerR + 2,
     length: mandala.innerR + 1,
     width: 10,
     howMany: howMany,

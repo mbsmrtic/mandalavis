@@ -10,12 +10,11 @@ const mandala = new Mandala("mandala5", 95, 95);
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {
     mandala.addShape(new CurlyBracket({
-        x: mandala.centerX + mandala.outerR + 16,
-        y: mandala.centerY,
+        x: mandala.centerX,
+        y: mandala.centerY - mandala.outerR - 16,
         length: 26 - (i * 4),
         width: 28,
         howMany: 6,
-        angleStart: 30,
         toolTipText: 'Layer curly bracket ' + i
     }, {'stroke-width': .7}));    
 }
@@ -23,10 +22,11 @@ for (var i = 0; i < 4; i++) {
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {
     mandala.addShape(new CurlyBracket({
-        x: mandala.centerX + mandala.outerR - 2,
-        y: mandala.centerY,
+        x: mandala.centerX ,
+        y: mandala.centerY - mandala.outerR + 2,
         length: 35 - (i * 5),
         width: 28,
+        angleStart: 30,
         howMany: 6,
     }, {'stroke-width': .7}));    
 }

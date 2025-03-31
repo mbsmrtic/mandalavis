@@ -12,6 +12,10 @@ def hello_world():
 def header():
     return render_template('header.html')
 
+@app.route('/post/<int:post_id>')
+def render_post(post_id):
+    return render_template(f'posts/post{post_id}.html')
+
 # @app.route('/images/blue_trans.png')
 # def mandalavis_icon():
 #     return 

@@ -1,38 +1,46 @@
 import { MandalaShape } from "./mandalashape.js";
 
 export class CurlyBracket extends MandalaShape {
-    constructor(shapeArgs, svgElementAttributes={}) {
+    constructor(shapeArgs, svgElementAttributes = {}) {
         super(shapeArgs, svgElementAttributes);
         const bracketLength = this.length;
-        var startX = this.x - 1.5;  //heuristic to account for curve
-        this.bracketStartX = startX;
-        this.curveOutX = startX + (bracketLength * .9);    //+ 28;          //135
-        this.curveInX = startX + (bracketLength * .4); // 13;           //120
-        this.bracketEndX = startX + bracketLength + 1.5;   //140
-        this.bracketStartY = this.y - (this.width/2);      //10;            //60
-        this.bracketEndY = this.y + (this.width/2)        //10;              //80
+        var startY = this.y + 1.5; // Heuristic to account for curve
+        this.bracketStartY = startY;
+        this.curveOutY = startY - (bracketLength * 0.9); // Curve outward
+        this.curveInY = startY - (bracketLength * 0.4);  // Curve inward
+        this.bracketEndY = startY - bracketLength - 1.5; // End of the bracket
+        this.bracketStartX = this.x - (this.width / 2);  // Start X position
+        this.bracketEndX = this.x + (this.width / 2);    // End X position
     }
-    shapeElementTag() { return "path"; }
+
+    shapeElementTag() {
+        return "path";
+    }
+
     shapeElementAttributes() {
-        const pathD = this.moveToString(this.bracketStartX, this.bracketStartY) + 
-            this.curveToString(this.curveOutX, this.bracketStartY,  //initialCurve
-                this.curveInX, this.y,           //nextCurve
-                this.bracketEndX, this.y                   //end
-             ) + 
-             this.curveToString(this.curveInX, this.y, //initialCurve
-                this.curveOutX, this.bracketEndY,              //nextCurve
-                this.bracketStartX, this.bracketEndY
-             )
+        const pathD =
+            this.moveToString(this.bracketStartX, this.bracketStartY) +
+            this.curveToString(
+                this.bracketStartX, this.curveOutY, // Initial curve outward
+                this.x, this.curveInY,             // Curve inward toward center
+                this.x, this.bracketEndY           // End at the top center
+            ) +
+            this.curveToString(
+                this.x, this.curveInY,             // Curve inward from center
+                this.bracketEndX, this.curveOutY,  // Curve outward again
+                this.bracketEndX, this.bracketStartY // End back at start Y
+            );
 
         // We need a fill here so that the tooltip works correctly
         var elementAttrs = {
             fill: "white",
             stroke: this.color,
-            'stroke-width': .3,
-            d: pathD
+            'stroke-width': 0.3,
+            d: pathD,
         };
         return elementAttrs;
     }
 };
+
 
 

@@ -10,8 +10,8 @@ const mandala = new Mandala("mandala2");
 
 
 var curlyBracket = new CurlyBracket({
-    x: mandala.centerX + mandala.outerR,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - mandala.outerR,
     length: 30,
     width: 20,
     howMany: 8
@@ -20,24 +20,24 @@ mandala.addShape(curlyBracket);
 
 // Dots
 var dotShape = new DotShape({
-    x: curlyBracket.curveOutX,
-    y: curlyBracket.bracketStartY,
+    x: curlyBracket.bracketStartX,
+    y: curlyBracket.curveOutY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    x: curlyBracket.curveInX,
-    y: curlyBracket.y,
+    x: curlyBracket.x,
+    y: curlyBracket.curveInY,
     howMany: 8,
     width: 2
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
-    x: curlyBracket.curveOutX,
-    y: curlyBracket.bracketEndY,
+    x: curlyBracket.bracketEndX,
+    y: curlyBracket.curveOutY,
     howMany: 8,
     width: 2
 });

@@ -49,16 +49,16 @@ mandala.addElement("circle", {
 });
 
 mandala.addShape(new CurlyBracket({
-    x: mandala.centerX + 26,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - 26,
     width: 10,
     length: 14,
-    // angleStart: 20,
+    angleStart: 18,
     howMany: 10,
 }, { fill: 'white'}));
 mandala.addShape(new DotShape({
-    x: mandala.centerX + 36,
-    y: mandala.centerY,
+    x: mandala.centerX,
+    y: mandala.centerY - 36,
     width: 1,
     angleStart: 10,
     howMany: 20,
