@@ -11,7 +11,7 @@ import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { Mandala } from "/static/js/mandala.js";
 
-let mandala = new Mandala("mandalarandom", 110, 90);
+let mandala = new Mandala("mandalarandom", 110, 110);
 
 function dot(shapeArgs) {
     shapeArgs['width'] = shapeArgs['width'] / 2;
