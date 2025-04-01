@@ -3,14 +3,15 @@ import { MandalaShape } from "./mandalashape.js";
 export class ArcShape extends MandalaShape {
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
-        const pathD = this.moveToString(this.x, this.y) + 
+        const radius = this.width / 2;
+        const pathD = this.moveToString(this.x - radius, this.y) + 
             this.arcString(
-                this.width, this.length,
+                radius, this.length,
                 0,  //0 = centered, not skewed
                 1,  // 0 = smaller arc
                 1,  // 1 = clockwise
-                this.x + this.width * 2, 
-                this.y
+                this.x + radius,  //x end
+                this.y  //y end
             )
         return {
             fill: "none",

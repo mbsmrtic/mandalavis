@@ -34,8 +34,8 @@ for (var i = 0; i < 4; i++) {
 // dots over those Curly Brackets
 mandala.addShape(new DotShape({
     x: mandala.centerX + mandala.outerR + 3,
-    y: mandala.centerY,
-    width: 1.5,
+    y: mandala.centerY + 2,
+    width: 2,
     color: "black",
     howMany: 18
 }));
@@ -45,12 +45,12 @@ mandala.addShape(new DotShape({
 // Arcs 
 var w = 18;
 var l = 18;
-var xStart = mandala.centerX - w;
+var xStart = mandala.centerX; //- w;
 var yStart = mandala.centerY - mandala.outerR - 26;
 mandala.addShape(new ArcShape({
     x: xStart,
     y: yStart,
-    width: w,
+    width: w * 2,
     length: l,
     color: "black",
     howMany: 6,
@@ -58,6 +58,7 @@ mandala.addShape(new ArcShape({
 }, {'stroke': 'black', 'stroke-width': .7}));
 
 // Dots inside the arcs
+xStart -= w;
 let currentX = xStart;
 let currentY = yStart;
 w = w * 4;
@@ -68,9 +69,9 @@ for (let i=10; i < 180; i+=20) {
 
     mandala.addShape(new DotShape({
         x: currentX,
-        y: currentY,
+        y: currentY + 1,
         color: "black",
-        width: 1,
+        width: 1.25,
         howMany: 6,
         angleStart: 30
         }));
@@ -79,7 +80,7 @@ for (let i=10; i < 180; i+=20) {
 mandala.addShape(new DropletShape({
     x: mandala.centerX, // + mandala.innerR,
     y: mandala.centerY - mandala.innerR,
-    length: mandala.outerR - mandala.innerR + 5,
+    length: mandala.outerR - mandala.innerR + 1,
     width: 10,
     angleStart: 0,
     howMany: 18
@@ -89,13 +90,13 @@ mandala.addShape(new DropletShape({
     x: mandala.centerX, 
     y: mandala.centerY - mandala.outerR - 4,
     width: 20,
-    length: 20,
+    length: 16,
     howMany: 6
 }, { fill: "black", stroke: "black", 'stroke-width': .5}));
 mandala.addShape(new DotShape({
     x: mandala.centerX + mandala.outerR + 14,
-    y: mandala.centerY,
-    width: 1.5,
+    y: mandala.centerY + 2,
+    width: 1.9,
     color: "white",
     angleStart: 30,
     howMany: 6

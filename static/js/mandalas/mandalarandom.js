@@ -11,57 +11,91 @@ import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { Mandala } from "/static/js/mandala.js";
 
-let mandala = new Mandala("mandalarandom");
+let mandala = new Mandala("mandalarandom", 110, 90);
+
+function dot(shapeArgs) {
+    shapeArgs['width'] = shapeArgs['width'] / 2;
+    return new DotShape(shapeArgs);
+}
+
+function droplet(shapeArgs) {
+    shapeArgs['length'] = 15;
+    return new DropletShape(shapeArgs);
+} 
+
+function curlybracket(shapeArgs) {
+    return new CurlyBracket(shapeArgs);
+}
+function spiral(shapeArgs) {
+    return new SpiralShape(shapeArgs);
+}
+function betweenDotsDot(shapeArgs) {
+    var dotShape = dot(shapeArgs);
+    mandala.addShape(dotShape);
+    return new BetweenDotsDotShape(dotShape);
+}
+function wave(shapeArgs) {
+    shapeArgs['width'] = shapeArgs['width'] + 3;
+    return (new WaveShape(shapeArgs));
+}
+function arc(shapeArgs) {
+    return (new ArcShape(shapeArgs));
+}
+function palmtree(shapeArgs) {
+    return (new PalmTreeShape(shapeArgs));
+}
+
+function s(shapeArgs) {
+    return (new SShape(shapeArgs));
+}
+
+function scurve(shapeArgs) {
+    return (new SCurve(shapeArgs));
+}
+
+function swirl(shapeArgs) {
+    return (new SwirlShape(shapeArgs));
+}
 
 let makeShapFns = [
-    function droplet(shapeArgs) {
-        shapeArgs['length'] = 15;
-        return new DropletShape(shapeArgs);
-    },
-    function curlybracket(shapeArgs) {
-        return new CurlyBracket(shapeArgs);
-    },
-    function spiral(shapeArgs) {
-        return new SpiralShape(shapeArgs);
-    },
-    // function arc() {
-
-    // },
-    function dot(shapeArgs) {
-        shapeArgs['width'] = shapeArgs['width'] / 2;
-        return new DotShape(shapeArgs);
-    },
-    // function betweenDotsDot() {
-
-    // },
-    function wave(shapeArgs) {
-        return (new WaveShape(shapeArgs));
-    }
+    droplet, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, swirl
 ];
 
 function howMany(r, width) {
     const circumference = 2 * Math.PI * r;
-    return Math.floor(circumference / width);
+    var c =  Math.floor(circumference / width);
+    console.log("howMany: " + c);
+    return c;
 }
 
-mandala.addCenteredCircle(10);
-const yHeight = 12;
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+//outer circle
+mandala.addCenteredCircle(109, 'black', 'white');
+
+let yHeight = 18;
 // If each shape were actually it's proper width we could calculate howMany
 for (let i = 5; i > 0; i--) {
     const randomShapeIndex = Math.floor(Math.random() * makeShapFns.length);
-    let randomWidth = Math.floor(Math.random() * 30);
-    randomWidth = 12;
+    let randomWidth = getRandomNumber(10, 18);
+    console.log(`Random width: ${randomWidth}`);
+
+    //randomWidth = 12;
     let y = i * yHeight;
     let shapeArgs = { 
         x: mandala.centerX, 
         y: mandala.centerY - y,
         width: randomWidth,
+        length: yHeight - 2,
         howMany: howMany(y, randomWidth)
     }
    let shape = makeShapFns[randomShapeIndex](shapeArgs);
     mandala.addShape(shape);
-    mandala.addCenteredCircle(y, 'black', 'white');
+    mandala.addCenteredCircle(y, 'white', 'white');
 }
 
+mandala.addCenteredCircle(18, 'black', 'white');
 
 

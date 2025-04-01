@@ -43,24 +43,24 @@ function addRowOfCircles(yStartOffset, r, color, count) {
 }
 
 
-var r = 2;
+var r = 2.5;
 const countOfCircles = 35;
 // green shapes
-addRowOfCircles(r, r, "#37653A", countOfCircles);
-r = 2.5;
+addRowOfCircles(r - 3, r, "#37653A", countOfCircles);
+r = 3;
 // yellow shapes
-addRowOfCircles(3 * r, r, "#FDCC0D", countOfCircles);
+addRowOfCircles(1.5 * r, r, "#FDCC0D", countOfCircles);
 // blue shapes
-addRowOfCircles(5.5 * r, r, "#2E2B89", countOfCircles + 2);
+addRowOfCircles(3.5 * r, r, "#2E2B89", countOfCircles + 2);
 // bright green
-addRowOfCircles(8 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
+addRowOfCircles(5.5 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
 
 // #ced7d8 
 // #ff6b6b 
 // #118ab2 
-r = 3
+r = 4 //3.5
 // purple
-addRowOfCircles(10.5 * r, r, "#69359C", countOfCircles + 7);
+addRowOfCircles(7 * r, r, "#69359C", countOfCircles + 7);
 
 // #006B3C green
 // #69359C purple

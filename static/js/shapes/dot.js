@@ -5,8 +5,8 @@ export class DotShape extends MandalaShape {
     shapeElementAttributes() {
         return {
             cx: this.x,
-            cy: this.y,
-            r: this.width,
+            cy: this.y - this.width,
+            r: this.width * .8,
             fill: this.color
         }
     }
@@ -14,10 +14,10 @@ export class DotShape extends MandalaShape {
 
 export class BetweenDotsDotShape extends MandalaShape {
     constructor(biggerDot) {
-        var littleR = biggerDot.width / 4;
+        var littleR = biggerDot.width / 5;
         var shapeArgs = {
             x: biggerDot.x,
-            y: biggerDot.y - biggerDot.width + littleR,
+            y: biggerDot.y - biggerDot.width * 2 + littleR * 2,
             width: littleR,
             color: biggerDot.color,
             howMany: biggerDot.howMany,

@@ -8,7 +8,7 @@ import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 let mandala = new Mandala("mandala7");
 mandala.innerR = 12;
 
-// outermost circles
+// outermost circle
 mandala.addElement("circle", {
     cx: mandala.centerX,
     cy: mandala.centerY,
@@ -25,8 +25,8 @@ mandala.addShape(new WaveShape({
 }));
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - 56,
-    width: 2,
+    y: mandala.centerY - 53.5,
+    width: 2.5,
     angleStart: 12,
     howMany: 12,
 }));
@@ -58,8 +58,8 @@ mandala.addShape(new CurlyBracket({
 }, { fill: 'white'}));
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - 36,
-    width: 1,
+    y: mandala.centerY - 34.75,
+    width: 1.25,
     angleStart: 10,
     howMany: 20,
 }));
@@ -71,7 +71,7 @@ mandala.addCenteredCircle(25);
 mandala.addShape(new DropletShape({
     x: mandala.centerX,
     y:mandala.centerY - 37,
-    length: -15, width: 10,
+    length: -19, width: 10,
     howMany: 10,
 }));
 
@@ -87,10 +87,10 @@ mandala.addShape(new WaveShape({
 // Create inner circle
 mandala.addCenteredCircle(mandala.innerR, 'black', 'white');
 // flower shape in the center
-mandala.addShape(new DotShape({width: 2, x: mandala.centerX, y: mandala.centerY}));
+mandala.addShape(new DotShape({width: 2.5, x: mandala.centerX, y: mandala.centerY + 2.5}));
 mandala.addShape(new DropletShape({
     x: mandala.centerX, y: mandala.centerY - 9, 
-    length: -9, width: 5,
+    length: -13, width: 5,
     howMany: 8
 }));
 

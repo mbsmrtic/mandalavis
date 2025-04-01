@@ -19,32 +19,32 @@ mandala.addShape(curlyBracket);
 // Dots
 var dotShape = new DotShape({
     x: curlyBracket.bracketStartX,
-    y: curlyBracket.curveOutY,
+    y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2
+    width: 2.5
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
     x: curlyBracket.x,
-    y: curlyBracket.curveInY,
+    y: curlyBracket.curveInY + 2.5,
     howMany: 8,
-    width: 2
+    width: 2.5
 });
 mandala.addShape(dotShape);
 
 dotShape = new DotShape({
     x: curlyBracket.bracketEndX,
-    y: curlyBracket.curveOutY,
+    y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2
+    width: 2.5
 });
 mandala.addShape(dotShape );
 
 var dropletShape = new DropletShape({
     x: mandala.centerX,
     y: mandala.centerY - mandala.outerR,
-    length: 30,
+    length: 26,
     width: 10,
     angleStart: 22.5,
     howMany: 8

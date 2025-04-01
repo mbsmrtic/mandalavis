@@ -26,15 +26,15 @@ for (var layer=5; layer >= 0; layer--) {
 
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR - 11,
-    width: 2,
+    y: mandala.centerY - mandala.outerR - 8.5,
+    width: 2.5,
     howMany: 8,
 }));
 
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR - 19,
-    width: 2,
+    y: mandala.centerY - mandala.outerR - 16.5,
+    width: 2.5,
     howMany: 8,
     angleStart: 22.5,
 }));
@@ -72,16 +72,16 @@ mandala.addShape(new CurlyBracket({
 
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR + 4,
-    width: 3,
+    y: mandala.centerY - mandala.outerR + 8,
+    width: 3.75,
     color: "#3674B5",
     howMany: howMany,
     angleStart: 22.5
 }))
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - mandala.innerR - 4,
-    width: 1,
+    y: mandala.centerY - mandala.innerR - 3,
+    width: 1.2,
     howMany: 8,
 }));
 

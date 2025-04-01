@@ -46,7 +46,7 @@ mandala.addElement("circle", {
 const dropletShape = new DropletShape({
     x: mandala.centerX + 2,
     y: mandala.centerY - 39,
-    length: 25,
+    length: 21,
     width: 10,
     howMany: 10,
 });
