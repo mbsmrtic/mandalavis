@@ -14,11 +14,7 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    return render_template(f'posts/post{post_id}.html')
-
-# @app.route('/images/blue_trans.png')
-# def mandalavis_icon():
-#     return 
+    return render_template(f'post.html', post_id=post_id)
 
 with app.test_request_context():
     print(url_for('hello_world'))

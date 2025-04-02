@@ -1,27 +1,5 @@
-<!doctype html>
-<!-- I'm working on this to be a template for pulling up one article/mandala at a time
-    I need to figure out how to pass an argument in here telling which 
-    post number to include
--->
-<div id="header">
-    {% include 'header.html' %}
-</div>
-<div class="container">
-    <div class="content">
+{% extends 'base.html' %}
 
-        <article id="article9">
-            {% include 'posts/post8.html' %}
-        </article>
-    </div>
-
-    {% include 'sidebar.html' %}
-</div>
-
-<footer>
-    &copy; 2025 MandalaVis.com. All rights reserved.
-</footer>
-
-<script src="static/js/mandala.js" type="module"></script>
-
-</body>
-</html>
+{% block content %}
+    {% include 'posts/post' ~ post_id ~ '.html' %}
+{% endblock %}

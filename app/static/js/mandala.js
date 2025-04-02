@@ -74,9 +74,9 @@ export class Mandala {
 
             function selectShape(element) {
                 const tooltip = document.querySelector('.tooltip');
-                if (element.textContent.length < 100) {
+                if (tooltip && element.textContent.length < 100) {
                     tooltip.textContent = element.textContent;
-                    tooltip.style.display = 'block';    
+                    tooltip.style.display = 'block';   
                     // To highlight the element, we make a temporary copy 
                     //    and append it to the DOM, putting it over all existing
                     //    elements
@@ -88,9 +88,6 @@ export class Mandala {
                     const mandalaId = element.getAttribute('mandalaid');
                     let svgEl = document.querySelector('#' + mandalaId);
                     svgEl.appendChild(clonedNode);
-                }
-                else {
-                    console.log("tooltip text too long: " + element.textContent);
                 }
             };
             // tooltip and shape highlight
