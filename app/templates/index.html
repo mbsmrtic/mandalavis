@@ -5,30 +5,14 @@
 <body>
     <div class="container">
         <div class="content">
-            <article id="article10">
-                {% include 'posts/post9.html' %}
-                </article>
-            <article id="article9">
-                {% include 'posts/post8.html' %}
-            </article>
-            <article id="article8">
-                {% include 'posts/post7.html' %}
-            </article>
-            <article id="article7">
-                {% include 'posts/post6.html' %}
-                </article>
-            <article id="article6">
-                {% include 'posts/post5.html' %}
-            </article>
-            <article id="article5">
-                {% include 'posts/post4.html' %}
-            </article>
-            <article id="article4">
-                {% include 'posts/post3.html' %}
-                </article>
-            <article id="article3">
-                {% include 'posts/post2.html' %}
-            </article>
+            {% include 'posts/post9.html' %}
+            {% include 'posts/post8.html' %}
+            {% include 'posts/post7.html' %}
+            {% include 'posts/post6.html' %}
+            {% include 'posts/post5.html' %}
+            {% include 'posts/post4.html' %}
+            {% include 'posts/post3.html' %}
+            {% include 'posts/post2.html' %}
             <!-- <article id="article2">
                 <h2>Advances in human gut microbiome research show its role in health. I have so many questions.</h2>
                 <p><small>Posted on February 26, 2025</small></p>
@@ -64,9 +48,7 @@
                     
             </article> -->
 
-            <article id="article1">
-                {% include 'posts/post1.html' %}
-            </article>
+            {% include 'posts/post1.html' %}
         </div>
 
         {% include 'sidebar.html' %}

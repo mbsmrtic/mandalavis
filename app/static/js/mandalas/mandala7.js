@@ -22,6 +22,7 @@ mandala.addShape(new WaveShape({
     y: mandala.centerY - 43,
     width: 26, 
     howMany: 12,
+    toolTipText: 'a wave'
 }));
 mandala.addShape(new DotShape({
     x: mandala.centerX,
