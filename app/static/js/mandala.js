@@ -73,7 +73,9 @@ export class Mandala {
             }
 
             function selectShape(element) {
-                const tooltip = document.querySelector('.tooltip');
+                // const tooltip = document.querySelector('.tooltip');
+                const article = element.closest('article');
+                const tooltip = article.querySelector('.tooltip');
                 if (tooltip && element.textContent.length < 100) {
                     tooltip.textContent = element.textContent;
                     tooltip.style.display = 'block';   
