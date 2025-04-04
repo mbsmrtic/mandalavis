@@ -73,3 +73,19 @@ export class MandalaShape {
 
 }
 
+export class GroupedShape extends MandalaShape {
+    constructor(shapeArgs, svgElementAttributes={}) {
+        super(shapeArgs, svgElementAttributes);
+        this.shapes = [];
+    }
+    //The group howMany and angleStart override the shape's.
+    addShape(shape) {
+        shape.howMany = this.howMany;
+        shape.angleStart = this.angleStart;
+        this.shapes.push(shape);
+    }
+    getShapes() {
+        return this.shapes;
+    }
+}
+
