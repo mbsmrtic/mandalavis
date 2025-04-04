@@ -73,7 +73,7 @@ export class MandalaShape {
 
 }
 
-export class GroupedShape extends MandalaShape {
+export class CompositeShape extends MandalaShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
         this.shapes = [];
