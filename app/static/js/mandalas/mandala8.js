@@ -1,25 +1,37 @@
 import { Mandala } from "/static/js/mandala.js";
-import { DottedArcShape } from "/static/js/shapes/arc.js";
+import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
 import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { DropletShape } from "/static/js/shapes/droplet.js"
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js"
 import { DotShape, BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 
-let mandala = new Mandala("mandala8", 100, 150);
+let mandala = new Mandala("mandala8", 100, 120);
 
-let yDotted = 30;
-let dottedLength = 40;
-let yArc = yDotted + dottedLength;
+const outerColor = "white"; //"66B592";
+mandala.addCenteredCircle(95, "none", outerColor);
+mandala.addShape(new CurlyBracket({
+    x: mandala.centerX,
+    y: mandala.centerY - 95,
+    width: 60,
+    length: 16,
+    angleStart: 20,
+    howMany: 9,
+    toolTipText: "outer curly bracket"
+}, {fill: outerColor}))
 
-// // inner circle
-// mandala.addElement("circle", {
-//     cx: mandala.centerX,
-//     cy: mandala.centerY,
-//     r:  yDotted,
-//     stroke: "black",
-//     fill: "white"
-// });
+mandala.addCenteredCircle(82, "none", "lightblue");
+mandala.addShape(new DottedArcShape({
+    x: mandala.centerX, 
+    y: mandala.centerY - 80,
+    width: 55,
+    length: 20, // 15,
+    howMany: 9,
+    toolTipText: "outer blue dotted arc"
+}, 
+{ fill: 'lightblue'}
+));
+
 
 mandala.addShape(new PalmTreeShape({
     x: mandala.centerX, 
@@ -27,17 +39,19 @@ mandala.addShape(new PalmTreeShape({
     width: 42,
     length: 30, // 15,
     howMany: 9,
+    toolTipText: "palm tree"
 }));
 
+mandala.addCenteredCircle(66, "none", "white");
 mandala.addShape(new DottedArcShape({
     x: mandala.centerX, 
     y: mandala.centerY - 64,
     width: 42,
     length: 20, // 15,
     howMany: 9,
-    // toolTipText: 'woobly',
+    toolTipText: 'middle dotted arc',
     angleStart: 20
-}));
+}, { fill: "white"}));
 
 mandala.addCenteredCircle(48, "none", "lightblue");
 mandala.addShape(new DottedArcShape({
@@ -46,17 +60,16 @@ mandala.addShape(new DottedArcShape({
     width: 30,
     length: 20, // 15,
     howMany: 9,
-    // toolTipText: 'woobly',
+    toolTipText: "light blue dotted arc"
 }, { fill: 'lightblue'}));
 
-mandala.addCenteredCircle(34, "none", "white");
+mandala.addCenteredCircle(32, "none", "white");
 mandala.addShape(new CurlyBracket({
     x: mandala.centerX, 
-    y: mandala.centerY - 34,
+    y: mandala.centerY - 32,
     width: 15,
     length: 23, // 15,
     howMany: 9,
-    // toolTipText: 'woobly',
 }));
 
 
@@ -66,7 +79,6 @@ mandala.addShape(new DropletShape({
     width: 20,
     length: 25, // 15,
     howMany: 9,
-    // toolTipText: 'woobly',
     angleStart: 20,
 }));
 

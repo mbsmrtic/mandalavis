@@ -14,7 +14,8 @@ export class ArcShape extends MandalaShape {
                 1,  // 1 = clockwise
                 this.x + radius,  //x end
                 this.y  //y end
-            )
+            );
+
         return {
             fill: "none",
             stroke: this.color,
@@ -28,12 +29,13 @@ export class DottedArcShape extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
         this.addShape(new ArcShape(shapeArgs, svgElementAttributes));
+        const dotSize = 1;
+        this.y += dotSize;
         // make dots 
         const turns = 1;
         //const radiusStep = this.width / 240; //.05;
         const rx = this.width * 2;
         const ry = this.length * 4;
-        var pathD ='';
         var startX = this.x;
         var startY = this.y;
         for (let i = 0; i <= 180; i+= 12) {
@@ -46,18 +48,9 @@ export class DottedArcShape extends CompositeShape {
             this.addShape(new DotShape({
                 x: currentX,
                 y: currentY,
-                width: 1
+                width: dotSize
             }))
-            //pathD += (i === 0 ? "M" : " L") + currentX + ' ' + currentY;
         }
-
-        var foo = {
-            fill: "white",
-            stroke: "black",
-            'stroke-width': .7,
-            d: pathD
-        };
-
     }
 }
 
