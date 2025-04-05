@@ -5,8 +5,8 @@ export class SCurve extends MandalaShape {
     shapeElementAttributes() {
         const startX = this.x;  
         const startY = this.y;
-        const rightCurveX = startX + (this.width * .66);
-        const rightCurveY = startY - (this.length * .11);
+        const rightCurveX = startX + (this.width * 1); //.66);
+        const rightCurveY = startY - (this.length * 0); //.11);
         const leftCurveX = startX + (this.width * .44);
         const leftCurveY = startY - (this.length * .44);
         // We will make two s curves with some fill between them
@@ -20,7 +20,7 @@ export class SCurve extends MandalaShape {
             // second left s curve
             // second higher s curve
                 //left to startX - 3, then right to startX + 1
-            this.qCurveString(startX - (this.width * .33), startY - (this.length * .77), 
+            this.qCurveString(startX - (this.width * .33), startY - (this.length * 1.2), //.77), 
                 startX + (this.width * .11), startY - (this.length * .44)) +  
                 //right to startX + 3, then left to startX - 2
             this.qCurveString(startX + (this.width * .33), startY - (this.length * .11), 

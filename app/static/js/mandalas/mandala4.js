@@ -4,22 +4,13 @@ import { DropletShape } from "/static/js/shapes/droplet.js";
 
 const mandala = new Mandala("mandala4", 95, 95);
 
-// Create inner circle
-mandala.addCenteredCircle(mandala.innerR);
-
 var s = new SpiralShape({
     x: mandala.centerX, 
-    y: mandala.centerY - mandala.outerR - 1,
-    width: 12, 
-    howMany: 15,
-    angleStart: 17
+    y: mandala.centerY - mandala.outerR - 29,
+    width: 15, 
+    howMany: 10,
+    angleStart: 0
 });
-mandala.addShape(s);
-
-s.y = mandala.centerY - mandala.innerR + .5;
-s.width = 15;
-s.howMany = 6;
-s.angleStart = 30;
 mandala.addShape(s);
 
 s.y = mandala.centerY - mandala.outerR - 11;
@@ -28,11 +19,20 @@ s.howMany = 10;
 s.angleStart = 18;
 mandala.addShape(s);
 
-s.y = mandala.centerY - mandala.outerR - 29;
-s.width = 15;
-s.howMany = 10;
-s.angleStart = 0;
+s.y = mandala.centerY - mandala.outerR - 1;
+s.width = 12;
+s.howMany = 15;
+s.angleStart = 17;
 mandala.addShape(s);
+
+s.y = mandala.centerY - mandala.innerR + .5;
+s.width = 15;
+s.howMany = 6;
+s.angleStart = 30;
+mandala.addShape(s);
+
+// Create inner circle
+mandala.addCenteredCircle(mandala.innerR);
 
 
 mandala.addElement("circle", {

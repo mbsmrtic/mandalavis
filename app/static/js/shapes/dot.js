@@ -21,7 +21,7 @@ export class BetweenDotsDotShape extends MandalaShape {
             width: littleR,
             color: biggerDot.color,
             howMany: biggerDot.howMany,
-            angleStart: (360/biggerDot.howMany)/2
+            angleStart: (360/biggerDot.howMany)/2 - biggerDot.angleStart
         };        
         super(shapeArgs, biggerDot.svgElementAttributes);
     }

@@ -14,7 +14,8 @@ var curlyBracket = new CurlyBracket({
     y: mandala.centerY - mandala.outerR,
     length: 30,
     width: 20,
-    howMany: 8
+    howMany: 8,
+    color: 'black'
 });
 mandala.addShape(curlyBracket);
 
@@ -23,7 +24,8 @@ var dotShape = new DotShape({
     x: curlyBracket.bracketStartX,
     y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape);
 
@@ -31,7 +33,8 @@ dotShape = new DotShape({
     x: curlyBracket.x,
     y: curlyBracket.curveInY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape);
 
@@ -39,7 +42,8 @@ dotShape = new DotShape({
     x: curlyBracket.bracketEndX,
     y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape);
 
@@ -50,7 +54,8 @@ var dropletShape = new DropletShape({
     length: 26,
     width: 10,
     angleStart: 22.5,
-    howMany: 8
+    howMany: 8,
+    color: 'black'
 });
 mandala.addShape(dropletShape);
 
@@ -67,7 +72,8 @@ mandala.addShape(swirlShape);
 mandala.addShape(new DotShape({
     x: mandala.centerX + 2.5, y: swirlY,
     width: 2.5,
-    howMany: 8
+    howMany: 8,
+    color: 'black'
 }));
 
 // mandala.addShape(new SCurve({
@@ -91,9 +97,10 @@ mandala.addElement("circle", {
 var p = new PalmTreeShape({
     x: mandala.centerX, 
     y: mandala.centerY - 54,
-    howMany: 8
+    howMany: 8,
+    color: 'black'
     }
-    , { 'stroke-width': 5}
+    , {'stroke-width': 5}
 );
 mandala.addShape(p);
 

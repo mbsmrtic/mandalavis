@@ -19,7 +19,9 @@ export class SpiralShape extends MandalaShape {
             let r = i * radiusStep;
             currentY = startY + .2 * r * Math.sin(angle);
             currentX = startX + .2 * r * Math.cos(angle);
-            pathD += (i === 0 ? "M" : "L") + currentX + ' ' + currentY;
+            currentY = currentY.toFixed(4);
+            currentX = currentX.toFixed(4);
+            pathD += (i === 0 ? "M" : " L") + currentX + ' ' + currentY;
         }
         return ({
             fill: "white",

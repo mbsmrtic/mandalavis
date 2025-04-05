@@ -36,7 +36,6 @@ mandala.addShape(new DotShape({
     x: mandala.centerX + mandala.outerR + 3,
     y: mandala.centerY + 2,
     width: 2,
-    color: "black",
     howMany: 18
 }));
 
@@ -52,10 +51,9 @@ mandala.addShape(new ArcShape({
     y: yStart,
     width: w * 2,
     length: l,
-    color: "black",
     howMany: 6,
     angleStart: 30
-}, {'stroke': 'black', 'stroke-width': .7}));
+}, {'stroke-width': .7}));
 
 // Dots inside the arcs
 xStart -= w;
@@ -70,7 +68,6 @@ for (let i=10; i < 180; i+=20) {
     mandala.addShape(new DotShape({
         x: currentX,
         y: currentY + 1,
-        color: "black",
         width: 1.25,
         howMany: 6,
         angleStart: 30
@@ -84,7 +81,7 @@ mandala.addShape(new DropletShape({
     width: 10,
     angleStart: 0,
     howMany: 18
-}, { fill: "none", stroke: "black", 'stroke-width': .5}));
+}, { fill: "none", stroke: "#666", 'stroke-width': .5}));
 
 mandala.addShape(new DropletShape({
     x: mandala.centerX, 
@@ -92,7 +89,7 @@ mandala.addShape(new DropletShape({
     width: 20,
     length: 16,
     howMany: 6
-}, { fill: "black", stroke: "black", 'stroke-width': .5}));
+}, { fill: "#666", stroke: "#666", 'stroke-width': .5}));
 mandala.addShape(new DotShape({
     x: mandala.centerX + mandala.outerR + 14,
     y: mandala.centerY + 2,
@@ -100,7 +97,7 @@ mandala.addShape(new DotShape({
     color: "white",
     angleStart: 30,
     howMany: 6
-}, { fill: "white", stroke: "black", 'stroke-width': .5}));
+}, { fill: "white", stroke: "#666", 'stroke-width': .5}));
 
 mandala.addCenteredCircle(mandala.innerR);
 mandala.addCenteredCircle(mandala.outerR);

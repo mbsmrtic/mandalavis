@@ -29,6 +29,7 @@ mandala.addShape(new DotShape({
     y: mandala.centerY - mandala.outerR - 8.5,
     width: 2.5,
     howMany: 8,
+    color: 'black'
 }));
 
 mandala.addShape(new DotShape({
@@ -37,6 +38,7 @@ mandala.addShape(new DotShape({
     width: 2.5,
     howMany: 8,
     angleStart: 22.5,
+    color: 'black'
 }));
 
 
@@ -76,13 +78,15 @@ mandala.addShape(new DotShape({
     width: 3.75,
     color: "#3674B5",
     howMany: howMany,
-    angleStart: 22.5
+    angleStart: 22.5,
+    color: 'black'
 }))
 mandala.addShape(new DotShape({
     x: mandala.centerX,
     y: mandala.centerY - mandala.innerR - 3,
     width: 1.2,
     howMany: 8,
+    color: 'black'
 }));
 
 

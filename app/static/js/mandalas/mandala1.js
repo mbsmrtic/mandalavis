@@ -21,7 +21,8 @@ var dotShape = new DotShape({
     x: curlyBracket.bracketStartX,
     y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape);
 
@@ -29,7 +30,8 @@ dotShape = new DotShape({
     x: curlyBracket.x,
     y: curlyBracket.curveInY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape);
 
@@ -37,7 +39,8 @@ dotShape = new DotShape({
     x: curlyBracket.bracketEndX,
     y: curlyBracket.curveOutY + 2.5,
     howMany: 8,
-    width: 2.5
+    width: 2.5,
+    color: 'black'
 });
 mandala.addShape(dotShape );
 
@@ -47,7 +50,8 @@ var dropletShape = new DropletShape({
     length: 26,
     width: 10,
     angleStart: 22.5,
-    howMany: 8
+    howMany: 8,
+    color: 'black'
 });
 mandala.addShape(dropletShape);
 

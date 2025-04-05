@@ -50,8 +50,8 @@ export class WaveShape extends MandalaShape {
 
         // pathD += this.moveToString(startX + .2 * r * Math.cos(angle))
         return ({
-            fill: "black",
-            stroke: "black",
+            fill: "#666",
+            stroke: "#666",
             'stroke-width': .7,
             d: pathD
         });

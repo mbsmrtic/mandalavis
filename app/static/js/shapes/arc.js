@@ -1,5 +1,6 @@
 import { MandalaShape } from "/static/js/shapes/mandalashape.js";
 import { CompositeShape } from "/static/js/shapes/mandalashape.js";
+import { DotShape } from "/static/js/shapes/dot.js";
 
 export class ArcShape extends MandalaShape {
     shapeElementTag() { return "path"; }
@@ -27,13 +28,36 @@ export class DottedArcShape extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
         this.addShape(new ArcShape(shapeArgs, svgElementAttributes));
-        this.addShape(new ArcShape({
-                x: this.x,
-                y: this.y,
-                width: this.width - 5,
-                length: this.length - 3,
-            }, 
-            {'stroke-dasharray': 2, 'stroke-width': 2}));
+        // make dots 
+        const turns = 1;
+        //const radiusStep = this.width / 240; //.05;
+        const rx = this.width * 2;
+        const ry = this.length * 4;
+        var pathD ='';
+        var startX = this.x;
+        var startY = this.y;
+        for (let i = 0; i <= 180; i+= 12) {
+            let angle = ((i * Math.PI) / 180);
+            //let r = i * radiusStep;
+            let currentY = startY - .2 * ry * Math.sin(angle);
+            let currentX = startX + .2 * rx * Math.cos(angle);
+            currentY = currentY.toFixed(4);
+            currentX = currentX.toFixed(4);
+            this.addShape(new DotShape({
+                x: currentX,
+                y: currentY,
+                width: 1
+            }))
+            //pathD += (i === 0 ? "M" : " L") + currentX + ' ' + currentY;
         }
+
+        var foo = {
+            fill: "white",
+            stroke: "black",
+            'stroke-width': .7,
+            d: pathD
+        };
+
+    }
 }
 

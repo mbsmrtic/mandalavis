@@ -193,7 +193,7 @@ export class Mandala {
     }
 }
 
-    addCenteredCircle(r, stroke="black", fill="none") {
+    addCenteredCircle(r, stroke="#666", fill="none") {
         this.addElement("circle", {
             cx: this.centerX,
             cy: this.centerY,
