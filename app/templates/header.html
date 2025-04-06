@@ -1,16 +1,17 @@
 
     <head>
-        <title>
-            MandalaVis</title>
-        <link rel="icon" type="image/x-icon" href="static/images/blue_trans.png"> <!-- Favicon link -->
+        <title>MandalaVis</title>
+        <link rel="icon" type="image/x-icon" href="static/favicon.ico"> <!-- Favicon link -->
         <!-- <link rel="stylesheet" href="styles.css"> Link to CSS file for styling -->
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     </head>
     <header>
         <h1>
-            MandalaVis 
+            <a href="{{ url_for('index')}}" style="color: white; text-decoration: none;">MandalaVis</a> 
             </br>
-            <img src="{{ url_for('static', filename='images/blue_trans.png') }}"  style="width: 56px; height: 56px;">  
+            <a href="{{ url_for('index')}}">
+                <img src="{{ url_for('static', filename='images/blue_trans.png') }}"  style="width: 56px; height: 56px;"> 
+            </a> 
         </h1>
         <!-- <nav>
             <a href="#">Home</a>

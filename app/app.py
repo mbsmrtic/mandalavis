@@ -11,7 +11,7 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
-def hello_world():
+def index():
     return render_template('index.html')
 
 @app.route('/pages/header.html')
@@ -23,4 +23,4 @@ def render_post(post_id):
     return render_template(f'post.html', post_id=post_id)
 
 with app.test_request_context():
-    print(url_for('hello_world'))
+    print(url_for('index'))
