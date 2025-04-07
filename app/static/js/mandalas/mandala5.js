@@ -5,7 +5,7 @@ import { Mandala } from "/static/js/mandala.js";
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { DotShape } from "/static/js/shapes/dot.js";
 
-const mandala = new Mandala("mandala5", 95, 95);
+const mandala = new Mandala("mandala5", 70, 95);
 
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {

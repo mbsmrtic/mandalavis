@@ -46,6 +46,10 @@ nav a {
     position: relative;
     display: inline-block;
 }
+svg {  
+    display: block; /* Required for margin auto */  
+    margin: 0 auto; /* Horizontal centering */  
+}  
 footer {
     text-align: center;
     padding: 10px 0;
@@ -59,4 +63,5 @@ article {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
+    font-size: 1.25rem;
 }

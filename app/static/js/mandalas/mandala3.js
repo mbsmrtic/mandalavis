@@ -3,7 +3,7 @@ import { Mandala } from "/static/js/mandala.js";
 import { DotShape } from "/static/js/shapes/dot.js";
 import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 
-const mandala = new Mandala("mandala3");
+const mandala = new Mandala("mandala3", 70, 95);
 
 mandala.addElement("circle", {
     cx: mandala.centerX,

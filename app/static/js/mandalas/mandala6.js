@@ -6,7 +6,7 @@ import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { DotShape } from "/static/js/shapes/dot.js";
 import { SpiralShape } from "/static/js/shapes/spiral.js";
 
-const mandala = new Mandala("mandala6", 115, 105);
+const mandala = new Mandala("mandala6", 70, 100); //, 115, 105);
 
 var colors = ['#3674B5', '#A1E3F9', '#D1F8EF', '#578FCA']
 
