@@ -11,7 +11,9 @@ document.addEventListener('click', (event) => {
         tooltipJustOpened = false;
     } else {
         const tooltip = document.querySelector('.tooltip');
-        tooltip.style.display = 'none';
+        if (tooltip) {
+            tooltip.style.display = 'none';
+        }
         clearHighlights();
     }
 });
@@ -123,7 +125,8 @@ export class Mandala {
         }
 
         if (angle > 0)
-            attributes['transform'] = `rotate(${angle} ${this.centerX} ${this.centerY})`;
+            attributes['transform'] = 
+                `rotate(${angle} ${this.centerX} ${this.centerY}) ${attributes['transform'] || ''} `;
         //create the DOM element
         const newEl = document.createElementNS(svgUrl, elementTag);
         newEl.setAttribute('mandalaid', this.elementId);

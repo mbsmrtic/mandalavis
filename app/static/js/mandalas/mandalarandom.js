@@ -1,4 +1,4 @@
-import { DropletShape } from "/static/js/shapes/droplet.js";
+import { DropletShape, PottedPlant } from "/static/js/shapes/droplet.js";
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 import { SwirlShape } from "/static/js/shapes/swirl.js";
 import { ArcShape, DottedArcShape } from "/static/js/shapes/arc.js";
@@ -66,8 +66,12 @@ function swirl(shapeArgs) {
     return (new SwirlShape(shapeArgs));
 }
 
+function pottedPlant(shapeArgs) {
+    return (new PottedPlant(shapeArgs));
+}
+
 let makeShapFns = [
-    droplet, dottedArc, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, swirl
+    droplet, pottedPlant, dottedArc, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, swirl
 ];
 
 function howMany(r, width) {
