@@ -71,6 +71,11 @@ export class MandalaShape {
         return `A ${xRadius}, ${yRadius}  ${rot} ${isLargeArc} ${isClockwise} ${endX}, ${endY}`;
     }
 
+    smoothCurveString(curveX, curveY, endX, endY)
+    {
+        return ` S ${curveX} ${curveY}, ${endX} ${endY} `;
+    }
+
 }
 
 export class CompositeShape extends MandalaShape {
