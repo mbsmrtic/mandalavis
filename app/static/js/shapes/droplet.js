@@ -31,23 +31,29 @@ export class TiltedDropletShape extends DropletShape {
 export class PottedPlant extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
-        var dropletArgs = {...shapeArgs};
-        dropletArgs['y'] -= 4;
-        dropletArgs['width'] /= 3;
-        dropletArgs['length'] /= 2;
-        if (! dropletArgs.color) {
-            dropletArgs.color = 'none';
+        this.shapeArgs = {...shapeArgs};
+        this.shapeArgs['y'] -= 4;
+        this.shapeArgs['width'] /= 3;
+        this.shapeArgs['length'] /= 2;
+        if (! shapeArgs.color) {
+            this.shapeArgs.color = 'none';
         }
-        if (! svgElementAttributes['stroke']) {
-            svgElementAttributes['stroke'] = '#666';
+        if (! this.svgElementAttributes['stroke']) {
+            this.svgElementAttributes['stroke'] = '#666';
         }
-        this.addShape(new DropletShape(dropletArgs, svgElementAttributes));
-        this.addShape(new TiltedDropletShape(dropletArgs, svgElementAttributes, true)); //tiltLeft
-        this.addShape(new TiltedDropletShape(dropletArgs, svgElementAttributes, false));//tiltRight
-        var dotArgs = shapeArgs;
-        dotArgs['width'] = dropletArgs['width'] * .5;
-        dotArgs['color'] = '#666';
-        this.addShape(new DotShape(dotArgs, svgElementAttributes));
+    }
+
+    getShapes() {
+        if (this.shapes.length == 0){
+            this.addShape(new DropletShape(this.shapeArgs, this.svgElementAttributes));
+            this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, true)); //tiltLeft
+            this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, false));//tiltRight
+            var dotArgs = this.shapeArgs;
+            dotArgs['width'] = this.shapeArgs['width'] * .5;
+            dotArgs['color'] = '#666';
+            this.addShape(new DotShape(dotArgs, this.svgElementAttributes));
+        }
+        return this.shapes;
     }
 }
 
@@ -61,7 +67,7 @@ export class PottedPlant extends CompositeShape {
 export class CurvyDroplet extends MandalaShape {
     shapeElementTag() {return 'path'};
     shapeElementAttributes() {
-        this.width *= .9;
+        //this.width = this.width * .9;
         const rx = this.width/2 - 1;
         const pt1 = {x: this.x - rx + 1, y: this.y - this.length + rx};
         this.pt1 = pt1;
@@ -91,7 +97,7 @@ export class TiltedCurvyDroplet extends MandalaShape {
     shapeElementAttributes() {
         const rx = this.width/2 - 2;
 
-        var xOffset = 2;
+        var xOffset = 0; // 2;
         if (this.tiltLeft) xOffset *= -1;
         const pt1 = {x: this.x + xOffset, y: this.y};
         this.pt1 = pt1;
@@ -115,4 +121,29 @@ export class TiltedCurvyDroplet extends MandalaShape {
             this.smoothCurveString(pt2.x, pt2.y, pt1.x, pt1.y); 
         return({fill: this.color, d: pathD});
     };
+}
+
+export class CurvyDroplets extends CompositeShape {
+    constructor(shapeArgs, svgElementAttributes){
+        super(shapeArgs, svgElementAttributes);
+        this.shapeArgs = {...shapeArgs};
+        //enforce a length to width ratio of 2 - using the larger one
+        if (this.shapeArgs['length'] > this.shapeArgs['width'] * 2) {  //if it's too fat we make it taller
+            this.shapeArgs['length'] = this.shapeArgs['width'] * 2;
+        }
+        else { //if it's too skinny then we make it wider
+            this.shapeArgs['width'] = this.shapeArgs['length'] / 2;
+        }
+    }
+
+    getShapes() {
+        if (this.shapes.length == 0) {
+            this.addShape(new CurvyDroplet(this.shapeArgs, this.svgElementAttributes));
+            var dropletArgs = {...this.shapeArgs};
+            // dropletArgs['width'] = this.shapeArgs['width'] * .8;
+            this.addShape(new TiltedCurvyDroplet(dropletArgs, this.svgElementAttributes, true)); //tiltLeft
+            this.addShape(new TiltedCurvyDroplet(dropletArgs, this.svgElementAttributes, false)); //tiltRight
+        }
+        return this.shapes;
+    }
 }

@@ -1,6 +1,5 @@
-import { DropletShape, PottedPlant } from "/static/js/shapes/droplet.js";
+import { DropletShape, PottedPlant, CurvyDroplet, CurvyDroplets } from "/static/js/shapes/droplet.js";
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
-import { SwirlShape } from "/static/js/shapes/swirl.js";
 import { ArcShape, DottedArcShape } from "/static/js/shapes/arc.js";
 import { DotShape } from "/static/js/shapes/dot.js";
 import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
@@ -11,7 +10,7 @@ import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { Mandala } from "/static/js/mandala.js";
 
-let mandala = new Mandala("mandalarandom", 110, 110);
+let mandala = new Mandala("mandalarandom", 240, 230);
 
 function dot(shapeArgs) {
     shapeArgs['width'] = shapeArgs['width'] / 2;
@@ -70,8 +69,17 @@ function pottedPlant(shapeArgs) {
     return (new PottedPlant(shapeArgs));
 }
 
+function curvyDroplet(shapeArgs) {
+    return (new CurvyDroplet(shapeArgs));
+}
+
+function curvyDroplets(shapeArgs) {
+
+    return (new CurvyDroplets(shapeArgs));
+}
+
 let makeShapFns = [
-    droplet, pottedPlant, dottedArc, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, swirl
+    droplet, curvyDroplet, curvyDroplets, pottedPlant, dottedArc, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, 
 ];
 
 function howMany(r, width) {
@@ -86,13 +94,13 @@ function getRandomNumber(min, max) {
   };
 
 //outer circle
-mandala.addCenteredCircle(109, '#666', 'white');
+mandala.addCenteredCircle(159, '#666', 'white');
 
-let yHeight = 18;
+let yHeight = 34;
 let y = 18;
-for (let i = 5; i > 0; i--) {
+for (let i = 6; i > 0; i--) {
     const randomShapeIndex = Math.floor(Math.random() * makeShapFns.length);
-    let randomWidth = getRandomNumber(10, 20);      //10, 18);
+    let randomWidth = getRandomNumber(15, 40);      //10, 18);
     console.log(`Random width: ${randomWidth}`);
 
     //randomWidth = 12;
