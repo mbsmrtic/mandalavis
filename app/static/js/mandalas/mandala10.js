@@ -13,20 +13,11 @@ let mandala = new Mandala("mandala10", 150, 135);
 const length = 30;
 var width = 15;
 const howMany = 10;
-var curvyDroplet = new CurvyDroplets({
-    x: mandala.centerX,
-    y: mandala.centerY - 27,
-    width: width,
-    length: length,
-    color: '#333',
-    howMany: howMany,
-});
-mandala.addShape(curvyDroplet);
 mandala.addShape(new CurlyBracket({
     x: mandala.centerX,
-    y: mandala.centerY - 69,
+    y: mandala.centerY - 70,
     width: 30,
-    length: 25,
+    length: 23,
     howMany: howMany,
 }));
 mandala.addShape(new DotShape({ 
@@ -40,8 +31,19 @@ mandala.addShape(new DottedArcShape({
     x: mandala.centerX,
     y: mandala.centerY - 55,
     width: 40,
-    howMany: howMany
-}));
+    howMany: howMany,
+}, { fill: 'none'}));
+var curvyDroplet = new CurvyDroplets({
+    x: mandala.centerX,
+    y: mandala.centerY - 27,
+    width: width,
+    length: length,
+    color: '#333',
+    howMany: howMany,
+});
+mandala.addShape(curvyDroplet);
+
+
 mandala.addShape(new CurvyDroplets({
     x: mandala.centerX,
     y: mandala.centerY - 62,

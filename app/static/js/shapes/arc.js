@@ -28,29 +28,37 @@ export class ArcShape extends MandalaShape {
 export class DottedArcShape extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
-        this.addShape(new ArcShape(shapeArgs, svgElementAttributes));
-        const dotSize = 1;
-        this.y += dotSize;
-        // make dots 
-        const turns = 1;
-        //const radiusStep = this.width / 240; //.05;
-        const rx = this.width * 2;
-        const ry = this.length * 4;
-        var startX = this.x;
-        var startY = this.y;
-        for (let i = 0; i <= 180; i+= 12) {
-            let angle = ((i * Math.PI) / 180);
-            //let r = i * radiusStep;
-            let currentY = startY - .2 * ry * Math.sin(angle);
-            let currentX = startX + .2 * rx * Math.cos(angle);
-            currentY = currentY.toFixed(4);
-            currentX = currentX.toFixed(4);
-            this.addShape(new DotShape({
-                x: currentX,
-                y: currentY,
-                width: dotSize
-            }))
+        this.shapeArgs = {...shapeArgs}
+    }
+
+    getShapes() {
+        // If we haven't yet added the shapes, do it now
+        if (this.shapes.length == 0) {
+            this.addShape(new ArcShape(this.shapeArgs, this.svgElementAttributes));
+            const dotSize = 1;
+            this.y += dotSize;
+            // make dots 
+            const turns = 1;
+            //const radiusStep = this.width / 240; //.05;
+            const rx = this.width * 2;
+            const ry = this.length * 4;
+            var startX = this.x;
+            var startY = this.y;
+            for (let i = 0; i <= 180; i+= 12) {
+                let angle = ((i * Math.PI) / 180);
+                //let r = i * radiusStep;
+                let currentY = startY - .2 * ry * Math.sin(angle);
+                let currentX = startX + .2 * rx * Math.cos(angle);
+                currentY = currentY.toFixed(4);
+                currentX = currentX.toFixed(4);
+                this.addShape(new DotShape({
+                    x: currentX,
+                    y: currentY,
+                    width: dotSize
+                }))
+            }    
         }
+        return this.shapes;
     }
 }
 

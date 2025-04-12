@@ -137,6 +137,7 @@ export class CurvyDroplets extends CompositeShape {
     }
 
     getShapes() {
+        // If we haven't yet added the shapes, do it now
         if (this.shapes.length == 0) {
             this.addShape(new CurvyDroplet(this.shapeArgs, this.svgElementAttributes));
             var dropletArgs = {...this.shapeArgs};
