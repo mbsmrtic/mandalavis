@@ -20,8 +20,8 @@ mandala.addShape(new WaveShape({
 }));
 mandala.addCenteredCircle(70, 'white', 'white');
 
-let length = 30;
-let width = 20;
+let length = 20;
+let width = 10;
 mandala.addShape(new PottedPlant({
     x: mandala.centerX,
     y: mandala.centerY - 47,

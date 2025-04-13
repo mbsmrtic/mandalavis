@@ -33,8 +33,8 @@ export class PottedPlant extends CompositeShape {
         super(shapeArgs, svgElementAttributes);
         this.shapeArgs = {...shapeArgs};
         this.shapeArgs['y'] -= 4;
-        this.shapeArgs['width'] /= 3;
-        this.shapeArgs['length'] /= 2;
+        this.shapeArgs['width']; // /= 3;
+        this.shapeArgs['length']; // /= 2;
         if (! shapeArgs.color) {
             this.shapeArgs.color = 'none';
         }
@@ -49,7 +49,8 @@ export class PottedPlant extends CompositeShape {
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, true)); //tiltLeft
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, false));//tiltRight
             var dotArgs = this.shapeArgs;
-            dotArgs['width'] = this.shapeArgs['width'] * .5;
+            dotArgs['width'] = this.shapeArgs['width'] * .3;
+            dotArgs['y'] += dotArgs['width'];
             dotArgs['color'] = '#666';
             this.addShape(new DotShape(dotArgs, this.svgElementAttributes));
         }
@@ -65,6 +66,16 @@ export class PottedPlant extends CompositeShape {
 //      Q 100, 90  100, 70 ">
 // a curvy droplet</path>
 export class CurvyDroplet extends MandalaShape {
+    constructor(shapeArgs, svgElementAttributes) {
+        super(shapeArgs, svgElementAttributes);
+        //enforce a length to width ratio of 2 - using the larger one
+        if (this.length > this.width * 2) {  //if it's too fat we make it taller
+            this.length = this.width * 2;
+        }
+        else { //if it's too skinny then we make it wider
+            this.width = this.length / 2;
+        }
+    }
     shapeElementTag() {return 'path'};
     shapeElementAttributes() {
         //this.width = this.width * .9;
@@ -90,6 +101,13 @@ export class TiltedCurvyDroplet extends MandalaShape {
     constructor(shapeArgs, svgElementAttributes, tiltLeft=true) {
         super(shapeArgs, svgElementAttributes);
         this.tiltLeft = tiltLeft;
+        //enforce a length to width ratio of 2 - using the smaller one
+        if (this.length > this.width * 2) {  //if it's too tall we make it shorter
+            this.length = this.width * 2;
+        }
+        else { //if it's too fat then we make it thinner
+            this.width = this.length / 2;
+        }
         this.length *= .8;
         this.width *= .9;
     }
@@ -127,13 +145,13 @@ export class CurvyDroplets extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes){
         super(shapeArgs, svgElementAttributes);
         this.shapeArgs = {...shapeArgs};
-        //enforce a length to width ratio of 2 - using the larger one
-        if (this.shapeArgs['length'] > this.shapeArgs['width'] * 2) {  //if it's too fat we make it taller
-            this.shapeArgs['length'] = this.shapeArgs['width'] * 2;
-        }
-        else { //if it's too skinny then we make it wider
-            this.shapeArgs['width'] = this.shapeArgs['length'] / 2;
-        }
+        // //enforce a length to width ratio of 2 - using the larger one
+        // if (this.shapeArgs['length'] > this.shapeArgs['width'] * 2) {  //if it's too fat we make it taller
+        //     this.shapeArgs['length'] = this.shapeArgs['width'] * 2;
+        // }
+        // else { //if it's too skinny then we make it wider
+        //     this.shapeArgs['width'] = this.shapeArgs['length'] / 2;
+        // }
     }
 
     getShapes() {

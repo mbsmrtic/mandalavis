@@ -8,57 +8,39 @@
         }
         #labelsAndGridLines {
             color: red;
+            font-size: 10;
+        }
+        #labels {
+            font-size: 8;
+            fill: black;
         }
 
     </style>
 
     <g id="labelsAndGridlines">
         <g id="gridLines">
-            <path d="M10 0 V100"/>
-            <path d="M20 0 V100"/>
-            <path d="M30 0 V100"/>
-            <path d="M40 0 V100"/>
-            <path d="M50 0 V100"/>
-            <path d="M60 0 V100"/>
-            <path d="M70 0 V100"/>
-            <path d="M80 0 V100"/>
-            <path d="M90 0 V100"/>
+            {% for i in range(10, 400, 10) %}
+                <path d="M{{ i }} 0 V400"/>
+            {% endfor %}
 
-            <path d="M0 10 H100"/>
-            <path d="M0 20 H100"/>
-            <path d="M0 30 H100"/>
-            <path d="M0 40 H100"/>
-            <path d="M0 50 H100"/>
-            <path d="M0 60 H100"/>
-            <path d="M0 70 H100"/>
-            <path d="M0 80 H100"/>
-            <path d="M0 90 H100"/>
+            {% for i in range(10, 400, 10) %}
+                <path d="M0 {{ i }} H400"/>
+            {% endfor %}
 
-            <path stroke="green" stroke-width="1" d="M0 50 H100"/>
-            
-            <path stroke="green" stroke-width="1" d="M50 0 V100"/>
+            <path stroke="green" stroke-width="1" d="M0 50 H400"/>        
+            <path stroke="green" stroke-width="1" d="M50 0 V400"/>
+        </g>
     
-        <text x="0" y="49" font-size="5">x</text>
-        <text x="51" y="3" font-size="5">y</text>
+        <g id="labels">
+            <text x="0" y="49" font-size="10">x</text>
+            <text x="51" y="3" font-size="10">y</text>
 
-        <text x="47" y="10" font-size="2">10</text>
-        <text x="47" y="20" font-size="2">20</text>
-        <text x="47" y="30" font-size="2">30</text>
-        <text x="47" y="40" font-size="2">40</text>
-        <text x="47" y="49" font-size="2">50</text>
-        <text x="47" y="60" font-size="2">60</text>
-        <text x="47" y="70" font-size="2">70</text>
-        <text x="47" y="80" font-size="2">80</text>
-        <text x="47" y="90" font-size="2">90</text>
+            {% for i in range(20, 400, 20) %}
+                <text x="47" y="{{i}}">{{i}}</text>
+            {% endfor %}
 
-        <text x="10" y="49" font-size="2">10</text>
-        <text x="20" y="49" font-size="2">20</text>
-        <text x="30" y="49" font-size="2">30</text>
-        <text x="40" y="49" font-size="2">40</text>
-        <text x="50" y="49" font-size="2">50</text>
-        <text x="60" y="49" font-size="2">60</text>
-        <text x="70" y="49" font-size="2">70</text>
-        <text x="80" y="49" font-size="2">80</text>
-        <text x="90" y="49" font-size="2">90</text>
-    </g>
+            {% for i in range(20, 400, 20) %}
+                <text x="{{i}}" y="49">{{i}}</text>
+            {% endfor %}
+        </g>
 </g>

@@ -234,9 +234,4 @@ export class Mandala {
         })
     }
     
-    // a circle with multiple droplets coming out of it
-    pottedPlant({rotation, length}) {
-
-    }
-
 }

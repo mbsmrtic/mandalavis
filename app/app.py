@@ -22,5 +22,21 @@ def header():
 def render_post(post_id):
     return render_template(f'post.html', post_id=post_id)
 
+@app.route('/testmandala')
+def render_testMandala():
+    return render_template('/posts/testPost.html')
+
+@app.route('/tests/<template_name>')
+def render_test(template_name):
+    # base directory for test templates
+    test_templates_dir = os.path.join(app.template_folder, 'tests')
+
+    # Construct full template path and validate existence
+    template_path = f"tests/{template_name}"
+    if not os.path.exists(os.path.join(test_templates_dir, template_name)):
+       os.abort(404, description="Test template not found")
+    
+    return render_template(template_path)
+
 with app.test_request_context():
     print(url_for('index'))
