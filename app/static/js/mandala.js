@@ -32,6 +32,9 @@ export class Mandala {
         this.outerR = 27;
         this.defaultColor = "black";
         this.mandalaEl = document.getElementById(elementId);
+        if (! this.mandalaEl) {
+            throw new Error("Mandala element not found: " + elementId);
+        }
     }
 
     makeGradient(centerColor='white', outerColor='black', name="myGradient") {

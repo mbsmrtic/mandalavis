@@ -120,17 +120,17 @@ export class TiltedCurvyDroplet extends MandalaShape {
         const pt1 = {x: this.x + xOffset, y: this.y};
         this.pt1 = pt1;
 
-        const pt2 = {x: this.x, y: this.y - this.length/2 + 1};
+        const pt2 = {x: this.x, y: this.y - this.length * .5}; // + 1};
         this.pt2 = pt2;
 
-        xOffset = rx;
+        xOffset = rx * 1.1;
         if (this.tiltLeft) xOffset *= -1;
-        const pt3 = {x: this.x + xOffset, y: this.y - this.length + rx * .75};
+        const pt3 = {x: this.x + xOffset, y: this.y - this.length + rx * .5};// * .75};
         this.pt3 = pt3;
 
-        xOffset = rx * 2;
+        xOffset = rx * 2.1;
         if (this.tiltLeft) xOffset *= -1;
-        const pt4 = {x: this.x + xOffset, y: pt3.y + rx * 1.25};//rx + 2.5};    //pt2.y + 1};
+        const pt4 = {x: this.x + xOffset, y: pt3.y + rx * 1.5};//rx + 2.5};    //pt2.y + 1};
         this.pt4 = pt4;
         const clockwise = this.tiltLeft? 0 : 1;
         const pathD = this.moveToString(pt1.x, pt1.y) +

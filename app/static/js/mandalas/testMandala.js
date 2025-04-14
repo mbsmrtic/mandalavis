@@ -130,10 +130,11 @@ for (let i = 0; i < 3; i++) {
 let shapeArgs = {
     x: 200,
     y: 200 - 100,
-    width: 15, //22, //30,
-    length: 20, //44, //30
+    width: 36, //22, //30,
+    length: 34, //44, //30
     // howMany: 15,
     // toolTipText: 'll'
+    toolTipText: 'w: 15 l: 20'
 }
 mandala.addShape(new CurvyDroplet(shapeArgs));
 shapeArgs['y'] = 200 - 60;
@@ -141,20 +142,20 @@ mandala.addShape(new CurvyDroplets(shapeArgs));
 shapeArgs['y'] = 200 - 40;
 var tcd = new TiltedCurvyDroplet(shapeArgs);
 mandala.addShape(tcd);
-// mandala.addDot(tcd.pt1.x, tcd.pt1.y, 2, 'magenta');
-// mandala.addDot(tcd.pt2.x, tcd.pt2.y, 2, 'magenta');
-// mandala.addDot(tcd.pt3.x, tcd.pt3.y, 2, 'magenta');
-// mandala.addDot(tcd.pt4.x, tcd.pt4.y, 2, 'magenta');
+mandala.addElement("circle", {cx: tcd.pt1.x, cy: tcd.pt1.y, r: 2, fill: 'magenta', opacity: .4}, "pt1");
+mandala.addElement("circle", {cx: tcd.pt2.x, cy: tcd.pt2.y, r: 2, fill: 'magenta', opacity: .4}, "pt2");
+mandala.addElement("circle", {cx: tcd.pt3.x, cy: tcd.pt3.y, r: 2, fill: 'magenta', opacity: .4}, "pt3");
+mandala.addElement("circle", {cx: tcd.pt4.x, cy: tcd.pt4.y, r: 2, fill: 'magenta', opacity: .4}, "pt4");
 shapeArgs['y'] = 200;
 shapeArgs['width'] = 22;
 shapeArgs['length'] = 44;
+shapeArgs.toolTipText = "w: 22 l: 44";
 var tcdTall = new TiltedCurvyDroplet(shapeArgs, {stroke: 'black'})
 mandala.addShape(tcdTall);
-// mandala.addDot(tcdTall.pt1.x, tcdTall.pt1.y, 2, 'magenta');
-// mandala.addDot(tcdTall.pt2.x, tcdTall.pt2.y, 2, 'magenta');
-// mandala.addDot(tcdTall.pt3.x, tcdTall.pt3.y, 2, 'magenta');
-// mandala.addDot(tcdTall.pt4.x, tcdTall.pt4.y, 2, 'magenta');
-
+mandala.addElement("circle", {cx: tcdTall.pt1.x, cy: tcdTall.pt1.y, r: 2, fill: 'magenta', opacity: .4}, "pt1");
+mandala.addElement("circle", {cx: tcdTall.pt2.x, cy: tcdTall.pt2.y, r: 2, fill: 'magenta', opacity: .4}, "pt2");
+mandala.addElement("circle", {cx: tcdTall.pt3.x, cy: tcdTall.pt3.y, r: 2, fill: 'magenta', opacity: .4}, "pt3");
+mandala.addElement("circle", {cx: tcdTall.pt4.x, cy: tcdTall.pt4.y, r: 2, fill: 'magenta', opacity: .4}, "pt4");
 
 
 //We start at the outer loop because we add a white circle at each layer
