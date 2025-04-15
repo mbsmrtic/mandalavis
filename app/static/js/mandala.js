@@ -227,6 +227,10 @@ export class Mandala {
         return newEl;
     }
 
+    showControlPoint(pt) {
+        this.addElement("circle", {cx: pt.x, cy: pt.y, r: 2, fill: 'magenta', opacity: .4}, pt.name);
+    }
+    
     addDot(x, y, r = 2, color = "black", rotation = 0) {
         this.addElement("circle", {
             cx: x,

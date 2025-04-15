@@ -142,20 +142,20 @@ mandala.addShape(new CurvyDroplets(shapeArgs));
 shapeArgs['y'] = 200 - 40;
 var tcd = new TiltedCurvyDroplet(shapeArgs);
 mandala.addShape(tcd);
-mandala.addElement("circle", {cx: tcd.pt1.x, cy: tcd.pt1.y, r: 2, fill: 'magenta', opacity: .4}, "pt1");
-mandala.addElement("circle", {cx: tcd.pt2.x, cy: tcd.pt2.y, r: 2, fill: 'magenta', opacity: .4}, "pt2");
-mandala.addElement("circle", {cx: tcd.pt3.x, cy: tcd.pt3.y, r: 2, fill: 'magenta', opacity: .4}, "pt3");
-mandala.addElement("circle", {cx: tcd.pt4.x, cy: tcd.pt4.y, r: 2, fill: 'magenta', opacity: .4}, "pt4");
+mandala.showControlPoint(tcd.pt1);
+mandala.showControlPoint(tcd.pt2);
+mandala.showControlPoint(tcd.pt3);
+mandala.showControlPoint(tcd.pt4);
 shapeArgs['y'] = 200;
 shapeArgs['width'] = 22;
 shapeArgs['length'] = 44;
 shapeArgs.toolTipText = "w: 22 l: 44";
 var tcdTall = new TiltedCurvyDroplet(shapeArgs, {stroke: 'black'})
 mandala.addShape(tcdTall);
-mandala.addElement("circle", {cx: tcdTall.pt1.x, cy: tcdTall.pt1.y, r: 2, fill: 'magenta', opacity: .4}, "pt1");
-mandala.addElement("circle", {cx: tcdTall.pt2.x, cy: tcdTall.pt2.y, r: 2, fill: 'magenta', opacity: .4}, "pt2");
-mandala.addElement("circle", {cx: tcdTall.pt3.x, cy: tcdTall.pt3.y, r: 2, fill: 'magenta', opacity: .4}, "pt3");
-mandala.addElement("circle", {cx: tcdTall.pt4.x, cy: tcdTall.pt4.y, r: 2, fill: 'magenta', opacity: .4}, "pt4");
+mandala.showControlPoint(tcdTall.pt1);
+mandala.showControlPoint(tcdTall.pt2);
+mandala.showControlPoint(tcdTall.pt3);
+mandala.showControlPoint(tcdTall.pt4);
 
 
 //We start at the outer loop because we add a white circle at each layer
