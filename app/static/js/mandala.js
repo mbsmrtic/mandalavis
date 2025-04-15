@@ -110,8 +110,15 @@ export class Mandala {
             // newGroupEl.setAttribute('toolTipText', toolTipText);
             //loop through shapes in compositeShape
             //add to svg within a <g> element
+            let firstTime = compositeShape.shapes.length == 0;
             let shapes = compositeShape.getShapes();
             shapes.forEach((shape) => {
+                if (firstTime) {
+                    // Default attributes if not yet defined
+                    shape.x ??= this.centerX;
+                    shape.y ??= this.centerY - this.innerR;
+                    shape.y -= shape.offset ?? 0;
+                }
                 const newEl = this.createShapeElement(shape, angle, newGroupEl);
                 newGroupEl.appendChild(newEl);
             });
@@ -180,6 +187,10 @@ export class Mandala {
     }
 
     addShape(shape, groupElement = null) {
+        // Default attributes if not yet defined
+        shape.x ??= this.centerX;
+        shape.y ??= this.centerY - this.innerR;
+        shape.y -= shape.offset ?? 0;
         if (shape instanceof CompositeShape) {
             this.addCompositeShape(shape);
         }
