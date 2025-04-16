@@ -10,8 +10,7 @@ const mandala = new Mandala("mandala5", 70, 95);
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {
     mandala.addShape(new CurlyBracket({
-        x: mandala.centerX,
-        y: mandala.centerY - mandala.outerR - 16,
+        offset: mandala.outerR + 16,
         length: 26 - (i * 4),
         width: 28,
         howMany: 6,
@@ -22,8 +21,7 @@ for (var i = 0; i < 4; i++) {
 // layered CurlyBrackets
 for (var i = 0; i < 4; i++) {
     mandala.addShape(new CurlyBracket({
-        x: mandala.centerX ,
-        y: mandala.centerY - mandala.outerR + 2,
+        offset: mandala.outerR - 2,
         length: 35 - (i * 5),
         width: 28,
         angleStart: 30,
@@ -33,13 +31,11 @@ for (var i = 0; i < 4; i++) {
 
 // dots over those Curly Brackets
 mandala.addShape(new DotShape({
-    x: mandala.centerX + mandala.outerR + 3,
-    y: mandala.centerY + 2,
+    offset: mandala.outerR + 1,
     width: 2,
+    angleStart: 10,
     howMany: 18
 }));
-
-
 
 // Arcs 
 var w = 18;
@@ -75,8 +71,9 @@ for (let i=10; i < 180; i+=20) {
 }
 
 mandala.addShape(new DropletShape({
-    x: mandala.centerX, // + mandala.innerR,
-    y: mandala.centerY - mandala.innerR,
+    // x: mandala.centerX, // + mandala.innerR,
+    // y: mandala.centerY - mandala.innerR,
+    offset: mandala.innerR,
     length: mandala.outerR - mandala.innerR + 1,
     width: 10,
     angleStart: 0,
@@ -84,18 +81,17 @@ mandala.addShape(new DropletShape({
 }, { fill: "none", stroke: "#666", 'stroke-width': .5}));
 
 mandala.addShape(new DropletShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - mandala.outerR - 4,
+    // x: mandala.centerX, 
+    // y: mandala.centerY - mandala.outerR - 4,
+    offset: mandala.outerR + 4,
     width: 20,
     length: 16,
     howMany: 6
 }, { fill: "#666", stroke: "#666", 'stroke-width': .5}));
 mandala.addShape(new DotShape({
-    x: mandala.centerX + mandala.outerR + 14,
-    y: mandala.centerY + 2,
+    offset: mandala.outerR + 12,
     width: 1.9,
     color: "white",
-    angleStart: 30,
     howMany: 6
 }, { fill: "white", stroke: "#666", 'stroke-width': .5}));
 

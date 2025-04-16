@@ -189,8 +189,7 @@ export class Mandala {
     addShape(shape, groupElement = null) {
         // Default attributes if not yet defined
         shape.x ??= this.centerX;
-        shape.y ??= this.centerY - this.innerR;
-        shape.y -= shape.offset ?? 0;
+        shape.y ??= this.centerY - shape.offset ?? 0;
         if (shape instanceof CompositeShape) {
             this.addCompositeShape(shape);
         }

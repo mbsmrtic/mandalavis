@@ -8,10 +8,8 @@ import { SCurve } from "/static/js/shapes/scurve.js";
 
 const mandala = new Mandala("mandala2");
 
-
 var curlyBracket = new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR,
+    offset: mandala.outerR,
     length: 30,
     width: 20,
     howMany: 8,
@@ -49,8 +47,7 @@ mandala.addShape(dotShape);
 
 // Droplets
 var dropletShape = new DropletShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR,
+    offset: mandala.outerR,
     length: 26,
     width: 10,
     angleStart: 22.5,
@@ -61,29 +58,19 @@ mandala.addShape(dropletShape);
 
 const swirlY = mandala.centerY - mandala.innerR;
 var swirlShape = new SwirlShape({
-    x: mandala.centerX,
-    y: swirlY,
-    // length: 30,
-    // width: 10,
+    offset: mandala.innerR,
     color: 'black',
     howMany: 8
 });
 mandala.addShape(swirlShape);
 mandala.addShape(new DotShape({
-    x: mandala.centerX + 2.5, y: swirlY,
+    x: mandala.centerX + 2.5, //y: swirlY,
+    offset: mandala.innerR,
     width: 2.5,
     howMany: 8,
     color: 'black'
 }));
 
-// mandala.addShape(new SCurve({
-//     x: mandala.centerX, 
-//     y: mandala.centerY - mandala.innerR - 7,
-//     width: 5,
-//     length: 9,
-//     color: 'black',
-//     howMany: 25
-// }, {'stroke-width': .2}));
 
 //circle 
 mandala.addElement("circle", {
@@ -95,23 +82,16 @@ mandala.addElement("circle", {
 })
 
 var p = new PalmTreeShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 54,
+    offset: 54,
     howMany: 8,
     color: 'black'
-    }
-    , {'stroke-width': 5}
+    }, {'stroke-width': 5}
 );
 mandala.addShape(p);
 
 // Create inner circle
 mandala.makeGradient("white", "black");
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.innerR,
-    fill: "url(#myGradient)"
-});
+mandala.addCenteredCircle(mandala.innerR, 'none', 'url(#myGradient)');
 
 
 // Outer circle

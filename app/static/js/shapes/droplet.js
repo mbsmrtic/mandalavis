@@ -32,9 +32,6 @@ export class PottedPlant extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
         this.shapeArgs = {...shapeArgs};
-        this.shapeArgs['y'] -= 4;
-        this.shapeArgs['width']; // /= 3;
-        this.shapeArgs['length']; // /= 2;
         if (! shapeArgs.color) {
             this.shapeArgs.color = 'none';
         }
@@ -45,6 +42,7 @@ export class PottedPlant extends CompositeShape {
 
     getShapes() {
         if (this.shapes.length == 0){
+            this.shapeArgs['y'] -= 4;
             this.addShape(new DropletShape(this.shapeArgs, this.svgElementAttributes));
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, true)); //tiltLeft
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, false));//tiltRight

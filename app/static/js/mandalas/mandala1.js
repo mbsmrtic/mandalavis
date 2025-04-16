@@ -8,8 +8,9 @@ const mandala = new Mandala("mandala1");
 
 // Curly bracket shape
 var curlyBracket = new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR,
+    // x: mandala.centerX,
+    // y: mandala.centerY - mandala.outerR,
+    offset: mandala.outerR,
     howMany: 8,
     length: 30,
     width: 20,
@@ -45,8 +46,9 @@ dotShape = new DotShape({
 mandala.addShape(dotShape );
 
 var dropletShape = new DropletShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR,
+    // x: mandala.centerX,
+    // y: mandala.centerY - mandala.outerR,
+    offset: mandala.outerR,
     length: 26,
     width: 10,
     angleStart: 22.5,
@@ -56,18 +58,7 @@ var dropletShape = new DropletShape({
 mandala.addShape(dropletShape);
 
 // Create inner circle
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.innerR,
-    fill: "black"
-});
-
+mandala.addCenteredCircle(mandala.innerR, 'black', 'black');
 
 // Outer circle
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.outerR,
-    stroke: "black"
-});
+mandala.addCenteredCircle(mandala.outerR);

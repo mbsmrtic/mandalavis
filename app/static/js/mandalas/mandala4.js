@@ -5,8 +5,7 @@ import { DropletShape } from "/static/js/shapes/droplet.js";
 const mandala = new Mandala("mandala4", 70, 95);
 
 var s = new SpiralShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - mandala.outerR - 29,
+    offset: mandala.outerR + 29,
     width: 15, 
     howMany: 10,
     angleStart: 0
@@ -33,19 +32,11 @@ mandala.addShape(s);
 
 // Create inner circle
 mandala.addCenteredCircle(mandala.innerR);
-
-
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r:  mandala.outerR,     //64,
-    stroke: "black",
-    fill: "none"
-});
+mandala.addCenteredCircle(mandala.outerR);
 
 const dropletShape = new DropletShape({
     x: mandala.centerX + 2,
-    y: mandala.centerY - 39,
+    offset: 39,
     length: 21,
     width: 10,
     howMany: 10,

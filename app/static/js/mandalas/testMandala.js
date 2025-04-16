@@ -12,6 +12,8 @@ import { Mandala } from "/static/js/mandala.js";
 
 let mandala = new Mandala("testMandala", 200, 200);
 
+mandala.addShape(new CurlyBracket({x: 70, width: 10, length:10}));
+
 function dot(shapeArgs) {
     shapeArgs['width'] = shapeArgs['width'] / 2;
     return new DotShape(shapeArgs);

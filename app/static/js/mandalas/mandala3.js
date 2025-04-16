@@ -5,35 +5,18 @@ import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 
 const mandala = new Mandala("mandala3", 70, 95);
 
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: 65,
-    fill: "black",
-    'stroke-width': .3,
-    stroke: "black"
-});
-
-
+mandala.addCenteredCircle(65, 'black', 'black');
 
 // Create inner circle
 mandala.makeGradient("purple", "black", "m3Gradient");
-mandala.addElement("circle", {
-    cx: mandala.centerX,
-    cy: mandala.centerY,
-    r: mandala.outerR,
-    fill: "url(#m3Gradient)"
-});
-
+mandala.addCenteredCircle(mandala.outerR, 'none', 'url(#m3Gradient)');
 
 function addRowOfCircles(yStartOffset, r, color, count) {
     //Bigger circles
     var dotShape = new DotShape({
-        x: mandala.centerX,
-        y: mandala.centerY - mandala.outerR - yStartOffset, 
+        offset: mandala.outerR + yStartOffset,
         width: r,
         color: color,
-        // howMany: 22
         howMany: count
     });
     mandala.addShape(dotShape);
@@ -70,8 +53,7 @@ addRowOfCircles(7 * r, r, "#69359C", countOfCircles + 7);
 
 //palmTrees
 var shape = new PalmTreeShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 65,
+    offset: 65,
     howMany: 45
 });
 mandala.addShape(shape);

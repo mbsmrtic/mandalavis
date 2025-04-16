@@ -3,8 +3,6 @@ import { MandalaShape } from "./mandalashape.js";
 export class WaveShape extends MandalaShape {    
     constructor(shapeArgs, svgElementAttributes = {}) {
         super(shapeArgs, svgElementAttributes);
-        this.startX = this.x - (this.width * .2);  
-        this.startY = this.y - (this.width * .19);
     }
     thisPoint(i, radiusStep) {
         let angle = ((i * Math.PI) / 180);
@@ -13,8 +11,10 @@ export class WaveShape extends MandalaShape {
         let x = this.startX + .2 * r * Math.cos(angle);
         return { x, y };
     }
-        shapeElementTag() { return "path"; }
+    shapeElementTag() { return "path"; }
     shapeElementAttributes() {
+        this.startX = this.x - (this.width * .2);  
+        this.startY = this.y - (this.width * .19);
         // startX defines the center of the spiral, so we need to 
         //   move the center up depending on the width of the shape.
         let width = this.width;
