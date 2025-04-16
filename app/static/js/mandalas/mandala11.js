@@ -90,8 +90,8 @@ function buildThisMandala(mandala) {
     }));
     mandala.addShape(new CurvyDroplets({offset: mandala.innerR, howMany: 10}));
 }
-for (var xIndex=1; xIndex < 10; xIndex++) {
-    for (var yIndex=1; yIndex < 10; yIndex++) {
+for (var xIndex=1; xIndex < 6; xIndex++) {
+    for (var yIndex=1; yIndex < 6; yIndex++) {
         buildThisMandala(new Mandala("mandala11", xIndex*200, yIndex* 200));
     }
 }
