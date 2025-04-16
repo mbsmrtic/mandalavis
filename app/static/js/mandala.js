@@ -107,7 +107,6 @@ export class Mandala {
             const newGroupEl = document.createElementNS(svgUrl, "g");
             newGroupEl.textContent = compositeShape.toolTipText;
             newGroupEl.style.pointerEvents = 'all';
-            // newGroupEl.setAttribute('toolTipText', toolTipText);
             //loop through shapes in compositeShape
             //add to svg within a <g> element
             let firstTime = compositeShape.shapes.length == 0;
@@ -116,8 +115,7 @@ export class Mandala {
                 if (firstTime) {
                     // Default attributes if not yet defined
                     shape.x ??= this.centerX;
-                    shape.y ??= this.centerY - this.innerR;
-                    shape.y -= shape.offset ?? 0;
+                    shape.y ??= this.centerY - shape.offset ?? this.innerR;
                 }
                 const newEl = this.createShapeElement(shape, angle, newGroupEl);
                 newGroupEl.appendChild(newEl);
@@ -189,7 +187,7 @@ export class Mandala {
     addShape(shape, groupElement = null) {
         // Default attributes if not yet defined
         shape.x ??= this.centerX;
-        shape.y ??= this.centerY - shape.offset ?? 0;
+        shape.y ??= this.centerY - shape.offset ?? this.innerR;
         if (shape instanceof CompositeShape) {
             this.addCompositeShape(shape);
         }

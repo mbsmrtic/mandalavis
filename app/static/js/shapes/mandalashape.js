@@ -2,7 +2,7 @@
 // The pattern is:
 //   - create the shape object:   const dropletShape = new DropletShape({...})
 //   - add it to the mandala      mandala.addShape({ shape: })
-// It also takes svgElementAttributes. This object can take anything that 
+// It also takes svgElementAttributes. svgElementAttributes can take anything that 
 //   you want applied to the svgElement that will draw the shape. 
 //   If you want to alter things like stroke-width or color, look at the 
 //   shape's shapeElementTag, then look up that tag here:
