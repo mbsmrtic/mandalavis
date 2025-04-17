@@ -92,7 +92,7 @@ function buildThisMandala(mandala) {
 }
 
 var mandalaId = "mandala11";
-var cm = new CompositeMandala(mandalaId, 460, 480);
+var cm = new CompositeMandala(mandalaId, 470, 480);
 for (var i=0; i < 12; i++) {
     cm.addMandalaId(`${mandalaId}-${i}`);
 }
