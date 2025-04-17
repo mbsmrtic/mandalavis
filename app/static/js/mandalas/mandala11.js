@@ -99,13 +99,13 @@ for (var i=0; i < 12; i++) {
 
 for (var i=0; i < 6; i++) {
     var mandalaId = `mandala11-${i}`;
-    var center = cm.mandalaCenterPoint(i, 6, 250);
+    var center = cm.mandalaCenterPoint(i, 6, 250, .5);
     buildThisMandala(new Mandala(mandalaId, center.x, center.y));
 }
 
 for (var i=6; i < 12; i++) {
     var mandalaId = `mandala11-${i}`;
-    var center = cm.mandalaCenterPoint(12-i, 6, 375, .5);
+    var center = cm.mandalaCenterPoint(12-i, 6, 375);
     buildThisMandala(new Mandala(mandalaId, center.x, center.y));
 }
 
