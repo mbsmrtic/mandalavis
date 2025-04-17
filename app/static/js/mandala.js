@@ -250,3 +250,29 @@ export class Mandala {
     }
     
 }
+
+export class CompositeMandala extends Mandala {
+    constructor(elementId, centerX=70, centerY=68) {
+        super(elementId, centerX, centerY);
+        this.mandalaIds = [];
+    }
+
+    addMandalaId(mandalaId) {
+        this.mandalaIds.push(mandalaId);
+        const newGroupEl = document.createElementNS(svgUrl, "g"); 
+        newGroupEl.setAttribute("id", mandalaId);  
+        this.mandalaEl.appendChild(newGroupEl);     
+    }
+
+    mandalaCenterPoint(i, c, offset, angleStart = 0) {
+        var r = offset;
+        // var i = this.mandalaIds.indexOf(mandalaId);
+        // var angle = (2 * Math.PI * i) / this.mandalaIds.length; // angle in radians
+        var angle = (2 * Math.PI * i) / c; // angle in radians
+        angle += angleStart;
+        const x = this.centerX + r * Math.cos(angle);
+        const y = this.centerY + r * Math.sin(angle);
+        return { x: x, y: y };
+    }
+
+}

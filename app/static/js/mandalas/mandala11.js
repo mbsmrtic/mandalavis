@@ -1,4 +1,4 @@
-import { Mandala } from "/static/js/mandala.js";
+import { Mandala, CompositeMandala } from "/static/js/mandala.js";
 import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
 import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { TiltedCurvyDroplet, CurvyDroplets, DropletShape, CurvyDroplet, PottedPlant } from "/static/js/shapes/droplet.js"
@@ -90,21 +90,26 @@ function buildThisMandala(mandala) {
     }));
     mandala.addShape(new CurvyDroplets({offset: mandala.innerR, howMany: 10}));
 }
-for (var xIndex=1; xIndex < 6; xIndex++) {
-    for (var yIndex=1; yIndex < 6; yIndex++) {
-        buildThisMandala(new Mandala("mandala11", xIndex*200, yIndex* 200));
-    }
-}
-// buildThisMandala(new Mandala("mandala11", 290, 100));
-// buildThisMandala(new Mandala("mandala11", 500, 190));
-// buildThisMandala(new Mandala("mandala11", 290, 320));    
-// buildThisMandala(new Mandala("mandala11", 85, 340));
-// buildThisMandala(new Mandala("mandala11", 170, 550));
-// buildThisMandala(new Mandala("mandala11", 290, 680));
-// buildThisMandala(new Mandala("mandala11", 290, 100));
 
-// let mandala3 = new Mandala("mandala11", 100, 100);
-// mandala3.addCenteredCircle(mandala3.innerR);
-// mandala3.addShape(new Snowflake({ howMany: 4}));
+var mandalaId = "mandala11";
+var cm = new CompositeMandala(mandalaId, 425, 480);
+for (var i=0; i < 12; i++) {
+    cm.addMandalaId(`${mandalaId}-${i}`);
+}
+
+for (var i=0; i < 6; i++) {
+    var mandalaId = `mandala11-${i}`;
+    var center = cm.mandalaCenterPoint(i, 6, 250);
+    buildThisMandala(new Mandala(mandalaId, center.x, center.y));
+}
+
+for (var i=6; i < 12; i++) {
+    var mandalaId = `mandala11-${i}`;
+    var center = cm.mandalaCenterPoint(12-i, 6, 375, .5);
+    buildThisMandala(new Mandala(mandalaId, center.x, center.y));
+}
+
+
+cm.addCenteredCircle(150);
 
 
