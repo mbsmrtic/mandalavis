@@ -257,14 +257,34 @@ export class CompositeMandala extends Mandala {
         this.mandalaIds = [];
     }
 
-    addMandalaId(mandalaId) {
+    //In order to calculate the posiiton of this new mandala, 
+    // we need to know
+    // the index of this mandala withing the composite (i),
+    // the count that will be at this level (c), 
+    // the offset from the center of the composite mandala (offset),
+    // and the angleStart. 
+    addMandala(i, c, offset, angleStart = 0) {
+        var newElementId = `${this.elementId}-${i}`;
+        this.#addMandalaElement(newElementId);
+        var centerPoint = this.#mandalaCenterPoint(i, c, offset, angleStart);
+        var mandala = new Mandala(newElementId, centerPoint.x, centerPoint.y);
+        return mandala;
+    }
+
+    // This private method adds a new element to the DOM
+    #addMandalaElement(mandalaId) {
         this.mandalaIds.push(mandalaId);
         const newGroupEl = document.createElementNS(svgUrl, "g"); 
         newGroupEl.setAttribute("id", mandalaId);  
         this.mandalaEl.appendChild(newGroupEl);     
     }
 
-    mandalaCenterPoint(i, c, offset, angleStart = 0) {
+    // This private method calculates the center point of the mandala 
+    // based on the index of this mandala withing the composite (i),
+    // the count that will be at this level (c), 
+    // the offset from the center of the composite mandala (offset),
+    // and the angleStart. 
+    #mandalaCenterPoint(i, c, offset, angleStart = 0) {
         var r = offset;
         // var i = this.mandalaIds.indexOf(mandalaId);
         // var angle = (2 * Math.PI * i) / this.mandalaIds.length; // angle in radians

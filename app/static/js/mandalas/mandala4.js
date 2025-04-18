@@ -1,44 +1,59 @@
+import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 import { Mandala } from "/static/js/mandala.js";
-import { SpiralShape } from "/static/js/shapes/spiral.js";
-import { DropletShape } from "/static/js/shapes/droplet.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 
 const mandala = new Mandala("mandala4", 70, 95);
 
-var s = new SpiralShape({
-    offset: mandala.outerR + 29,
-    width: 15, 
-    howMany: 10,
-    angleStart: 0
-});
-mandala.addShape(s);
-
-s.y = mandala.centerY - mandala.outerR - 11;
-s.width = 24;
-s.howMany = 10;
-s.angleStart = 18;
-mandala.addShape(s);
-
-s.y = mandala.centerY - mandala.outerR - 1;
-s.width = 12;
-s.howMany = 15;
-s.angleStart = 17;
-mandala.addShape(s);
-
-s.y = mandala.centerY - mandala.innerR + .5;
-s.width = 15;
-s.howMany = 6;
-s.angleStart = 30;
-mandala.addShape(s);
+mandala.addCenteredCircle(65, 'black', 'black');
 
 // Create inner circle
-mandala.addCenteredCircle(mandala.innerR);
-mandala.addCenteredCircle(mandala.outerR);
+mandala.makeGradient("purple", "black", "m3Gradient");
+mandala.addCenteredCircle(mandala.outerR, 'none', 'url(#m3Gradient)');
 
-const dropletShape = new DropletShape({
-    x: mandala.centerX + 2,
-    offset: 39,
-    length: 21,
-    width: 10,
-    howMany: 10,
+function addRowOfCircles(yStartOffset, r, color, count) {
+    //Bigger circles
+    var dotShape = new DotShape({
+        offset: mandala.outerR + yStartOffset,
+        width: r,
+        color: color,
+        howMany: count
+    });
+    mandala.addShape(dotShape);
+    //smaller ones
+    var betweenDotShape = new BetweenDotsDotShape(dotShape);
+    mandala.addShape(betweenDotShape);    
+}
+
+
+var r = 2.5;
+const countOfCircles = 35;
+// green shapes
+addRowOfCircles(r - 3, r, "#37653A", countOfCircles);
+r = 3;
+// yellow shapes
+addRowOfCircles(1.5 * r, r, "#FDCC0D", countOfCircles);
+// blue shapes
+addRowOfCircles(3.5 * r, r, "#2E2B89", countOfCircles + 2);
+// bright green
+addRowOfCircles(5.5 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
+
+// #ced7d8 
+// #ff6b6b 
+// #118ab2 
+r = 4 //3.5
+// purple
+addRowOfCircles(7 * r, r, "#69359C", countOfCircles + 7);
+
+// #006B3C green
+// #69359C purple
+// #FDCC0D yellow
+//rgb(98, 180, 103) green
+//  69359C  purple
+
+//palmTrees
+var shape = new PalmTreeShape({
+    offset: 65,
+    howMany: 45
 });
-mandala.addShape(dropletShape);
+mandala.addShape(shape);

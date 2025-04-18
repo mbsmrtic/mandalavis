@@ -1,108 +1,97 @@
-import { Mandala } from "/static/js/mandala.js";
-import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
+import { DotShape } from "/static/js/shapes/dot.js";
+import { WaveShape } from "/static/js/shapes/wave.js";
 import { SpiralShape } from "/static/js/shapes/spiral.js";
-import { DropletShape } from "/static/js/shapes/droplet.js"
-import { CurlyBracket } from "/static/js/shapes/curlybracket.js"
-import { DotShape, BetweenDotsDotShape } from "/static/js/shapes/dot.js";
-import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
+import { Mandala } from "/static/js/mandala.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 
-let mandala = new Mandala("mandala8", 100, 120);
+let mandala = new Mandala("mandala8");
+mandala.innerR = 12;
 
-const outerColor = "white"; //"66B592";
-mandala.addCenteredCircle(95, "none", outerColor);
-mandala.addShape(new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - 95,
-    width: 60,
-    length: 16,
-    angleStart: 20,
-    howMany: 9,
-    toolTipText: "outer curly bracket"
-}, {fill: outerColor}))
-
-mandala.addCenteredCircle(82, "none", "lightblue");
-mandala.addShape(new DottedArcShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 80,
-    width: 55,
-    length: 20, // 15,
-    howMany: 9,
-    toolTipText: "outer blue dotted arc"
-}, 
-{ fill: 'lightblue'}
-));
-
-
-mandala.addShape(new PalmTreeShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 70,
-    width: 42,
-    length: 30, // 15,
-    howMany: 9,
-    toolTipText: "palm tree"
-}));
-
-mandala.addCenteredCircle(66, "none", "white");
-mandala.addShape(new DottedArcShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 64,
-    width: 42,
-    length: 20, // 15,
-    howMany: 9,
-    toolTipText: 'middle dotted arc',
-    angleStart: 20
-}, { fill: "white"}));
-
-mandala.addCenteredCircle(48, "none", "lightblue");
-mandala.addShape(new DottedArcShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 46,
-    width: 30,
-    length: 20, // 15,
-    howMany: 9,
-    toolTipText: "light blue dotted arc"
-}, { fill: 'lightblue'}));
-
-mandala.addCenteredCircle(32, "none", "white");
-mandala.addShape(new CurlyBracket({
-    x: mandala.centerX, 
-    y: mandala.centerY - 32,
-    width: 15,
-    length: 23, // 15,
-    howMany: 9,
-}));
-
-
-mandala.addShape(new DropletShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 27,
-    width: 20,
-    length: 25, // 15,
-    howMany: 9,
-    angleStart: 20,
-}));
-
-
-//Add an arc lined with circles
-
-var dot = new DotShape({
-    x: mandala.centerX, 
-    y: mandala.centerY - 60, //52,
-    width: 5,
-    howMany: 9,
-    angleStart: 20,    
+// outermost circle
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r:  62,
+    stroke: "black",
+    fill: "white"
 });
-var dotsBwn = new BetweenDotsDotShape(dot);
-mandala.addShape(dot);
-mandala.addShape(dotsBwn);
-
-
-mandala.addShape(new SpiralShape({
-    x: mandala.centerX,
-    y: mandala.centerY - 20,
-    howMany: 9,
+// Outer waves
+mandala.addShape(new WaveShape({
+    x: mandala.centerX, 
+    y: mandala.centerY - 43,
+    width: 26, 
+    howMany: 12,
+    toolTipText: 'a wave'
 }));
-mandala.addCenteredCircle(20);
+mandala.addShape(new DotShape({
+    x: mandala.centerX,
+    y: mandala.centerY - 53.5,
+    width: 2.5,
+    angleStart: 12,
+    howMany: 12,
+}));
+
+// circles
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r:  42,     //64,
+    stroke: "black",
+    fill: "white"
+});
+
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r:  40,     //64,
+    stroke: "black",
+    fill: "white"
+});
+
+mandala.addShape(new CurlyBracket({
+    x: mandala.centerX,
+    y: mandala.centerY - 26,
+    width: 10,
+    length: 14,
+    angleStart: 18,
+    howMany: 10,
+}, { fill: 'white'}));
+mandala.addShape(new DotShape({
+    x: mandala.centerX,
+    y: mandala.centerY - 34.75,
+    width: 1.25,
+    angleStart: 10,
+    howMany: 20,
+}));
+
+// circle around inner waves
+mandala.addCenteredCircle(23);
+mandala.addCenteredCircle(25);
+//outer petals
+mandala.addShape(new DropletShape({
+    x: mandala.centerX,
+    y:mandala.centerY - 37,
+    length: -19, width: 10,
+    howMany: 10,
+}));
+
+// inner waves
+mandala.addShape(new WaveShape({
+    x: mandala.centerX - 1, 
+    y: mandala.centerY - mandala.innerR,
+    width: 15, 
+    howMany: 6
+}));
 
 
+// Create inner circle
+mandala.addCenteredCircle(mandala.innerR, 'black', 'white');
+// flower shape in the center
+mandala.addShape(new DotShape({width: 2.5, x: mandala.centerX, y: mandala.centerY + 2.5}));
+mandala.addShape(new DropletShape({
+    x: mandala.centerX, y: mandala.centerY - 9, 
+    length: -13, width: 5,
+    howMany: 8
+}));
 

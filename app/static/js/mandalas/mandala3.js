@@ -1,59 +1,103 @@
-import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
+import { SwirlShape } from "/static/js/shapes/swirl.js";
 import { Mandala } from "/static/js/mandala.js";
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
+import { DropletShape } from "/static/js/shapes/droplet.js";
 import { DotShape } from "/static/js/shapes/dot.js";
-import { BetweenDotsDotShape } from "/static/js/shapes/dot.js";
+import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 
-const mandala = new Mandala("mandala3", 70, 95);
+const mandala = new Mandala("mandala3");
 
-mandala.addCenteredCircle(65, 'black', 'black');
+var curlyBracket = new CurlyBracket({
+    offset: mandala.outerR,
+    length: 30,
+    width: 20,
+    howMany: 8,
+    color: 'black'
+});
+mandala.addShape(curlyBracket);
+
+// Dots
+var dotShape = new DotShape({
+    x: curlyBracket.bracketStartX,
+    y: curlyBracket.curveOutY + 2.5,
+    howMany: 8,
+    width: 2.5,
+    color: 'black'
+});
+mandala.addShape(dotShape);
+
+dotShape = new DotShape({
+    x: curlyBracket.x,
+    y: curlyBracket.curveInY + 2.5,
+    howMany: 8,
+    width: 2.5,
+    color: 'black'
+});
+mandala.addShape(dotShape);
+
+dotShape = new DotShape({
+    x: curlyBracket.bracketEndX,
+    y: curlyBracket.curveOutY + 2.5,
+    howMany: 8,
+    width: 2.5,
+    color: 'black'
+});
+mandala.addShape(dotShape);
+
+// Droplets
+var dropletShape = new DropletShape({
+    offset: mandala.outerR,
+    length: 26,
+    width: 10,
+    angleStart: 22.5,
+    howMany: 8,
+    color: 'black'
+});
+mandala.addShape(dropletShape);
+
+const swirlY = mandala.centerY - mandala.innerR;
+var swirlShape = new SwirlShape({
+    offset: mandala.innerR,
+    color: 'black',
+    howMany: 8
+});
+mandala.addShape(swirlShape);
+mandala.addShape(new DotShape({
+    x: mandala.centerX + 2.5, //y: swirlY,
+    offset: mandala.innerR,
+    width: 2.5,
+    howMany: 8,
+    color: 'black'
+}));
+
+
+//circle 
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r: mandala.innerR + 7,
+    'stroke-width': .3,
+    stroke: "black"
+})
+
+var p = new PalmTreeShape({
+    offset: 54,
+    howMany: 8,
+    color: 'black'
+    }, {'stroke-width': 5}
+);
+mandala.addShape(p);
 
 // Create inner circle
-mandala.makeGradient("purple", "black", "m3Gradient");
-mandala.addCenteredCircle(mandala.outerR, 'none', 'url(#m3Gradient)');
-
-function addRowOfCircles(yStartOffset, r, color, count) {
-    //Bigger circles
-    var dotShape = new DotShape({
-        offset: mandala.outerR + yStartOffset,
-        width: r,
-        color: color,
-        howMany: count
-    });
-    mandala.addShape(dotShape);
-    //smaller ones
-    var betweenDotShape = new BetweenDotsDotShape(dotShape);
-    mandala.addShape(betweenDotShape);    
-}
+mandala.makeGradient("white", "black");
+mandala.addCenteredCircle(mandala.innerR, 'none', 'url(#myGradient)');
 
 
-var r = 2.5;
-const countOfCircles = 35;
-// green shapes
-addRowOfCircles(r - 3, r, "#37653A", countOfCircles);
-r = 3;
-// yellow shapes
-addRowOfCircles(1.5 * r, r, "#FDCC0D", countOfCircles);
-// blue shapes
-addRowOfCircles(3.5 * r, r, "#2E2B89", countOfCircles + 2);
-// bright green
-addRowOfCircles(5.5 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
-
-// #ced7d8 
-// #ff6b6b 
-// #118ab2 
-r = 4 //3.5
-// purple
-addRowOfCircles(7 * r, r, "#69359C", countOfCircles + 7);
-
-// #006B3C green
-// #69359C purple
-// #FDCC0D yellow
-//rgb(98, 180, 103) green
-//  69359C  purple
-
-//palmTrees
-var shape = new PalmTreeShape({
-    offset: 65,
-    howMany: 45
+// Outer circle
+mandala.addElement("circle", {
+    cx: mandala.centerX,
+    cy: mandala.centerY,
+    r: mandala.outerR,
+    'stroke-width': 2,
+    stroke: "black"
 });
-mandala.addShape(shape);

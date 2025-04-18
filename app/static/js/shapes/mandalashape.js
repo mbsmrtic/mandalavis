@@ -79,6 +79,11 @@ export class MandalaShape {
 
 }
 
+// A CompositeShape is a shape that is made up of other shapes. 
+// It has all the properties of a shape, but it contains multiple shapes. 
+// An example of this is a dotted arc. It has an arc and bunch of dots. 
+// But when it is selected, the whole thing gets selected, not it's individual
+// parts. 
 export class CompositeShape extends MandalaShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);

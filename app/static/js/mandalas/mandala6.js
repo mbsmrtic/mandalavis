@@ -1,94 +1,99 @@
 import { ArcShape } from "/static/js/shapes/arc.js";
-import { SShape } from "/static/js/shapes/s.js";
 import { DropletShape } from "/static/js/shapes/droplet.js";
 import { Mandala } from "/static/js/mandala.js";
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { DotShape } from "/static/js/shapes/dot.js";
-import { SpiralShape } from "/static/js/shapes/spiral.js";
 
-const mandala = new Mandala("mandala6", 70, 100); //, 115, 105);
+const mandala = new Mandala("mandala6", 70, 95);
 
-var colors = ['#3674B5', '#A1E3F9', '#D1F8EF', '#578FCA']
-
-for (var layer=5; layer >= 0; layer--) {
-    colors.forEach((color, i) => {
-        mandala.addShape(new CurlyBracket({
-            x: mandala.centerX ,
-            y: mandala.centerY - mandala.outerR - layer * 8,
-            width: 30,
-            length: 34 - i * 5,
-            howMany: 8,
-            angleStart: (layer % 2) == 0 ? 0 : 22.5,
-            toolTipText: 'Layer: ' + layer + ' Color: ' + color,
-        }, { fill: color, stroke: color}));
-    });     
+// layered CurlyBrackets
+for (var i = 0; i < 4; i++) {
+    mandala.addShape(new CurlyBracket({
+        offset: mandala.outerR + 16,
+        length: 26 - (i * 4),
+        width: 28,
+        howMany: 6,
+        toolTipText: 'Layer curly bracket ' + i
+    }, {'stroke-width': .7}));    
 }
 
+// layered CurlyBrackets
+for (var i = 0; i < 4; i++) {
+    mandala.addShape(new CurlyBracket({
+        offset: mandala.outerR - 2,
+        length: 35 - (i * 5),
+        width: 28,
+        angleStart: 30,
+        howMany: 6,
+    }, {'stroke-width': .7}));    
+}
+
+// dots over those Curly Brackets
 mandala.addShape(new DotShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR - 8.5,
-    width: 2.5,
-    howMany: 8,
-    color: 'black'
+    offset: mandala.outerR + 1,
+    width: 2,
+    angleStart: 10,
+    howMany: 18
 }));
 
-mandala.addShape(new DotShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR - 16.5,
-    width: 2.5,
-    howMany: 8,
-    angleStart: 22.5,
-    color: 'black'
-}));
+// Arcs 
+var w = 18;
+var l = 18;
+var xStart = mandala.centerX; //- w;
+var yStart = mandala.centerY - mandala.outerR - 26;
+mandala.addShape(new ArcShape({
+    x: xStart,
+    y: yStart,
+    width: w * 2,
+    length: l,
+    howMany: 6,
+    angleStart: 30
+}, {'stroke-width': .7}));
 
+// Dots inside the arcs
+xStart -= w;
+let currentX = xStart;
+let currentY = yStart;
+w = w * 4;
+for (let i=10; i < 180; i+=20) {
+    let angle = ((i * Math.PI) / 180);
+    currentY = yStart - .2 * w * Math.sin(angle);
+    currentX = xStart - .2 * w * Math.cos(angle) + (w/4);
 
-const howMany = 8;
-mandala.addCenteredCircle(mandala.outerR, '#A1E3F9', '#A1E3F9');
-var cb = new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.innerR - 1,
-    length: mandala.innerR + 8,
+    mandala.addShape(new DotShape({
+        x: currentX,
+        y: currentY + 1,
+        width: 1.25,
+        howMany: 6,
+        angleStart: 30
+        }));
+}
+
+mandala.addShape(new DropletShape({
+    // x: mandala.centerX, // + mandala.innerR,
+    // y: mandala.centerY - mandala.innerR,
+    offset: mandala.innerR,
+    length: mandala.outerR - mandala.innerR + 1,
     width: 10,
-    howMany: howMany,
-    toolTipText: 'A dark blue curly bracket',
-}, { fill: '#3674B5', stroke: '#3674B5'});
+    angleStart: 0,
+    howMany: 18
+}, { fill: "none", stroke: "#666", 'stroke-width': .5}));
 
-mandala.addShape(cb);
-
-mandala.addShape(new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.innerR + 2,
-    length: mandala.innerR + 5,
-    width: 10,
-    howMany: howMany,
-    toolTipText: 'A light blue curly bracket',
-}, { fill: '#A1E3F9', stroke: '#A1E3F9'}));
-mandala.addShape(new CurlyBracket({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.innerR + 2,
-    length: mandala.innerR + 1,
-    width: 10,
-    howMany: howMany,
-    toolTipText: 'A light green curly bracket',
-}, { fill: '#D1F8EF', stroke: '#D1F8EF'}));
-
+mandala.addShape(new DropletShape({
+    // x: mandala.centerX, 
+    // y: mandala.centerY - mandala.outerR - 4,
+    offset: mandala.outerR + 4,
+    width: 20,
+    length: 16,
+    howMany: 6
+}, { fill: "#666", stroke: "#666", 'stroke-width': .5}));
 mandala.addShape(new DotShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.outerR + 8,
-    width: 3.75,
-    color: "#3674B5",
-    howMany: howMany,
-    angleStart: 22.5,
-    color: 'black'
-}))
-mandala.addShape(new DotShape({
-    x: mandala.centerX,
-    y: mandala.centerY - mandala.innerR - 3,
-    width: 1.2,
-    howMany: 8,
-    color: 'black'
-}));
+    offset: mandala.outerR + 12,
+    width: 1.9,
+    color: "white",
+    howMany: 6
+}, { fill: "white", stroke: "#666", 'stroke-width': .5}));
 
-
-mandala.addCenteredCircle(mandala.innerR, '#3674B5', '#3674B5');
+mandala.addCenteredCircle(mandala.innerR);
+mandala.addCenteredCircle(mandala.outerR);
 
