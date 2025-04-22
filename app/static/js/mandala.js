@@ -80,6 +80,8 @@ export class Mandala {
         const mandalaId = element.getAttribute('mandalaid');
         let svgEl = document.querySelector('#' + mandalaId);
         svgEl.appendChild(clonedNode);
+        document.createElementNS(svgUrl, 'circle');
+
     }
 
     highlightGroup(g) {
@@ -264,7 +266,8 @@ export class CompositeMandala extends Mandala {
     // the offset from the center of the composite mandala (offset),
     // and the angleStart. 
     addMandala(i, c, offset, angleStart = 0) {
-        var newElementId = `${this.elementId}-${i}`;
+        //var newElementId = `${this.elementId}-${i}`;
+        var newElementId = `${this.elementId}`;
         this.#addMandalaElement(newElementId);
         var centerPoint = this.#mandalaCenterPoint(i, c, offset, angleStart);
         var mandala = new Mandala(newElementId, centerPoint.x, centerPoint.y);

@@ -6,7 +6,7 @@ import { CurlyBracket } from "/static/js/shapes/curlybracket.js"
 import { DotShape, BetweenDotsDotShape } from "/static/js/shapes/dot.js";
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 import { WaveShape } from "/static/js/shapes/wave.js";
-import { Snowflake } from "/static/js/shapes/snowflake.js";
+import { SnowflakeShape } from "/static/js/shapes/snowflake.js";
 
 function scaleFn() {
     let svg = document.getElementById('mandala13');
@@ -99,9 +99,9 @@ var cm = new CompositeMandala(mandalaId, 470, 480);
 var countInEachLayer = 6;
 for (var i=0; i < countInEachLayer; i++) {
     var newMandala = cm.addMandala(i, countInEachLayer, 250, .5);
-    var snowflake = new Snowflake({x: newMandala.x, y: newMandala.y});
-    snowflake.buildThisMandala(newMandala);
-    // buildThisMandala(newMandala);
+    // var snowflake = new SnowflakeShape({x: newMandala.x, y: newMandala.y});
+    // snowflake.buildThisMandala(newMandala);
+    buildThisMandala(newMandala);
 }
 
 for (var i=6; i < 12; i++) {

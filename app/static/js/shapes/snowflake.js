@@ -4,28 +4,19 @@ import { SpiralShape } from "/static/js/shapes/spiral.js";
 import { TiltedCurvyDroplet, CurvyDroplets, DropletShape, CurvyDroplet, PottedPlant } from "/static/js/shapes/droplet.js"
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js"
 import { DotShape, BetweenDotsDotShape } from "/static/js/shapes/dot.js";
-import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
-import { WaveShape } from "/static/js/shapes/wave.js";
 
-
-export class Snowflake extends MandalaShape {
-    constructor(
-        {x, y, length=200, width=200, howMany=1, angleStart=0, color="#666", toolTipText=null, offset=0},
-        svgElementAttributes={}
-    ){
-        super({x, y, length, width, howMany, angleStart, color, toolTipText, offset}, svgElementAttributes);
-    }
+export class SnowflakeShape extends MandalaShape {
     shapeElementTag() { return "image"; }
     shapeElementAttributes() {
-        //this.x and this.y specify the upper left corner
-        return ({
+        return({
             href: "/static/images/snowflake.png",
             width: this.width,
             height: this.length,
             x: this.x - this.width / 2, // + 10, //the 10 is an artifact of this specific image
             y: this.y - this.length / 2,
-        });
+        })
     }
+
     buildThisMandala(mandala) {
         mandala.addShape(new CurvyDroplets({
             offset: 72,

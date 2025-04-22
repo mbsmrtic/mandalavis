@@ -1,6 +1,30 @@
 import { Mandala } from "/static/js/mandala.js";
+import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js";
+import { TiltedCurvyDroplet, CurvyDroplets, DropletShape, CurvyDroplet, PottedPlant } from "/static/js/shapes/droplet.js"
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js"
+import { DotShape, BetweenDotsDotShape } from "/static/js/shapes/dot.js";
+import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
+import { WaveShape } from "/static/js/shapes/wave.js";
+import { SnowflakeShape } from "/static/js/shapes/snowflake.js";
 
 export class SnowflakeMandala extends Mandala {
+    drawToImage() {
+        //get the svg
+        var svgElement = document.getElementById(this.elementId);
+        const svgString = new XMLSerializer().serializeToString(svgElement);
+
+        const canvas = new OffscreenCanvas(300, 300);
+        const ctx = canvas.getContext('2d');
+        
+        const blob = new Blob([svgString], {type: "image/svg+xml"});
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        img.src = url;
+        // remove the svg from the dom
+        document.querySelectorAll(`[mandalaid="${this.elementId}"`).forEach(el => el.remove());
+        return url;
+    }
     addShapes() {
         this.addShape(new CurvyDroplets({
             offset: 72,
@@ -67,6 +91,6 @@ export class SnowflakeMandala extends Mandala {
             howMany: 10,
             toolTipText: 'tilted left',
         }));
-        this.addShape(new CurvyDroplets({offset: mandala.innerR, howMany: 10}));        
+        this.addShape(new CurvyDroplets({offset: this.innerR, howMany: 10}));        
     }
 }

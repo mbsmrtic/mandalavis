@@ -1,11 +1,15 @@
 <article id="article14">
-    <h2><a href="{{ url_for('render_post', post_id='14')}}"></a></h2>
-    <p><small><text></text></small></p>
+    <h2><a href="{{ url_for('render_post', post_id='14')}}">Images for performance</a></h2>
+    <p><small><text>Posted on April 22, 2025</text></small></p>
     <div class="tooltip"></div>
-    <svg id="mandala14" width="500" height="500" viewBox="0 00 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg id="mandala14" width="400" height="400" viewBox="0 00 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         </svg>
     <button id="zoom-in" class="zoom-button">Zoom In</button>
     <button id="zoom-out" class="zoom-button">Zoom Out</button>
-    <p>     </p>
+    <p>This mandala looks similar to the last one. But, to draw that one, the browser uses html that describes 3,720 elements. 
+        To draw this one, the browser uses html that describes 16 elements. The software now draws the mandala into an image, then
+        uses that image 16 times. This will help performance in the future when we want to represent a large amount of data. 
+        The software will be able to zoom in and out of mandalas that represent clusters of data. 
+    </p>
     <script src="/static/js/mandalas/mandala14.js" type="module" defer></script>
 </article>
