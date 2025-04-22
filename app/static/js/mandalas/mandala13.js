@@ -16,8 +16,8 @@ function scaleFn() {
       viewBox[3] /= factor;
       svg.setAttribute('viewBox', viewBox.join(' '));
     }
-    document.getElementById('zoom-in').onclick = () => zoom(1.1);
-    document.getElementById('zoom-out').onclick = () => zoom(1/1.1);
+    document.getElementById('zoom-in-13').onclick = () => zoom(1.1);
+    document.getElementById('zoom-out-13').onclick = () => zoom(1/1.1);
 }
 
 scaleFn();

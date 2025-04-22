@@ -31,8 +31,8 @@ function scaleFn() {
         viewBox.height = newHeight;
         setSvgViewBox(svg, viewBox);
     }
-    document.getElementById('zoom-in').onclick = () => zoom(1.1);
-    document.getElementById('zoom-out').onclick = () => zoom(1/1.1);
+    document.getElementById('zoom-in-14').onclick = () => zoom(1.1);
+    document.getElementById('zoom-out-14').onclick = () => zoom(1/1.1);
 }
 
 scaleFn();
