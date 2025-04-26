@@ -8,13 +8,30 @@ import { PalmTreeShape } from "/static/js/shapes/palmtree.js";
 import { WaveShape } from "/static/js/shapes/wave.js";
 import { SnowflakeShape } from "/static/js/shapes/snowflake.js";
 
+const svgUrl = "http://www.w3.org/2000/svg";
+
 export class SnowflakeMandala extends Mandala {
+    constructor(elementId) {
+        //Create it's own svg within the mandala's svg
+        var width = 200;
+        var height = 200; 
+        var newSvg = document.createElementNS(svgUrl, 'svg');
+        newSvg.setAttribute('id', 'sfmandala');
+        newSvg.setAttribute('width', width);
+        newSvg.setAttribute('height', height);
+        newSvg.setAttribute('fill', 'none');
+        newSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        newSvg.setAttribute('xmlns', svgUrl);
+        let svgEl = document.querySelector('#' + elementId);
+        svgEl.appendChild(newSvg);
+        super('sfmandala', 100, 100);
+    }
     drawToImage() {
         //get the svg
         var svgElement = document.getElementById(this.elementId);
         const svgString = new XMLSerializer().serializeToString(svgElement);
 
-        const canvas = new OffscreenCanvas(300, 300);
+        const canvas = new OffscreenCanvas(250, 250);
         const ctx = canvas.getContext('2d');
         
         const blob = new Blob([svgString], {type: "image/svg+xml"});
@@ -25,6 +42,7 @@ export class SnowflakeMandala extends Mandala {
         document.querySelectorAll(`[mandalaid="${this.elementId}"`).forEach(el => el.remove());
         return url;
     }
+
     addShapes() {
         this.addShape(new CurvyDroplets({
             offset: 72,

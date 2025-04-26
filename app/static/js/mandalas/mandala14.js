@@ -38,27 +38,27 @@ function scaleFn() {
 scaleFn();
 
 //We build the snowflake mandala and draw it to an image
-var sf = new SnowflakeMandala(mandalaId, 150, 150);
+var sf = new SnowflakeMandala(mandalaId, 200, 200);
 sf.addShapes();
 var imageUrl = sf.drawToImage();
 
-var mandala = new Mandala(mandalaId, 150, 150);
+var mandala = new Mandala(mandalaId, 200, 200);
 mandala.addShape(new ImageShape({
-        offset: 30,
-        width: 75,
-        length: 75,
-        howMany: 8,
-        toolTipText: 'inner image shape'
-    }, imageUrl));
-    mandala.addShape(new ImageShape({
         offset: 60,
         width: 85,
         length: 85,
-        howMany: 8,
+        howMany: 6,
+        toolTipText: 'inner image shape'
+    }, imageUrl));
+    mandala.addShape(new ImageShape({
+        offset: 120,
+        width: 85,
+        length: 85,
+        howMany: 6,
         angleStart: 30,
         toolTipText: 'outer image shape'
     }, imageUrl));
 
-mandala.addCenteredCircle(50);
+mandala.addCenteredCircle(60);
 
 

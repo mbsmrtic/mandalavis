@@ -68,7 +68,7 @@ export class Mandala {
         }
     }
 
-    highlight(element) {
+    highlight(element, addCircle=true) {
         // To highlight the element, we make a temporary copy 
         //    and append it to the DOM, putting it over all existing
         //    elements
@@ -80,13 +80,37 @@ export class Mandala {
         const mandalaId = element.getAttribute('mandalaid');
         let svgEl = document.querySelector('#' + mandalaId);
         svgEl.appendChild(clonedNode);
-        document.createElementNS(svgUrl, 'circle');
 
+        if (addCircle) { this.#circleElement(element);}
+    }
+
+    #circleElement(element) {
+        const bbox = element.getBBox();
+
+        // Calculate the center and radius for the circle
+        const cx = bbox.x + bbox.width / 2;
+        const cy = bbox.y + bbox.height / 2;
+        const r = Math.max(bbox.width, bbox.height) / 2 * 1.1; // 10% padding
+        // Create the circle
+        const circle = document.createElementNS(svgUrl, "circle");
+        circle.setAttribute("cx", cx);
+        circle.setAttribute("cy", cy);
+        circle.setAttribute("r", r);
+        circle.setAttribute("fill", "none");
+        circle.setAttribute("stroke", "black");
+        circle.setAttribute("stroke-width", 2);
+        circle.classList.add('tempMoveToFront');
+        if (element.hasAttribute("transform")) {
+            circle.setAttribute("transform", element.getAttribute("transform"));
+        }
+        // Append the circle to the same SVG as the element
+        element.ownerSVGElement.appendChild(circle);            
     }
 
     highlightGroup(g) {
         const elemsInGroup = g.querySelectorAll('*');
-        elemsInGroup.forEach(element => this.highlight(element));
+        elemsInGroup.forEach(element => this.highlight(element, false));
+        this.#circleElement(g);
     }
 
     selectShape(element) {
@@ -154,11 +178,12 @@ export class Mandala {
         }
         if (shape.toolTipText || groupElement) {
             newEl.addEventListener('mouseenter', (event) => {
+                clearHighlights();
                 this.selectShape(event.target);
             });
-            newEl.addEventListener('mouseout', () => {
-                clearHighlights();
-            });
+            // newEl.addEventListener('mouseout', () => {
+            //     clearHighlights();
+            // });
             newEl.addEventListener('touchstart', (event) => {
                 clearHighlights();
                 this.selectShape(event.target);
