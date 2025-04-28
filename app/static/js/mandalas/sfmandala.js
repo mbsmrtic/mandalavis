@@ -15,7 +15,7 @@ export class SnowflakeMandala extends Mandala {
         //Create it's own svg within the mandala's svg
         var width = 200;
         var height = 200; 
-        var newSvg = document.createElementNS(svgUrl, 'svg');
+        let newSvg = document.createElementNS(svgUrl, 'svg');
         newSvg.setAttribute('id', 'sfmandala');
         newSvg.setAttribute('width', width);
         newSvg.setAttribute('height', height);
@@ -25,6 +25,7 @@ export class SnowflakeMandala extends Mandala {
         let svgEl = document.querySelector('#' + elementId);
         svgEl.appendChild(newSvg);
         super('sfmandala', 100, 100);
+        this.newSvg = newSvg;
     }
     drawToImage() {
         //get the svg
@@ -39,7 +40,8 @@ export class SnowflakeMandala extends Mandala {
         const img = new Image();
         img.src = url;
         // remove the svg from the dom
-        document.querySelectorAll(`[mandalaid="${this.elementId}"`).forEach(el => el.remove());
+        this.newSvg.remove();
+        //document.querySelectorAll(`[mandalaid="${this.elementId}"`).forEach(el => el.remove());
         return url;
     }
 

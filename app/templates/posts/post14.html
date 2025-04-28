@@ -2,8 +2,12 @@
     <h2><a href="{{ url_for('render_post', post_id='14')}}">Images for performance</a></h2>
     <p><small><text>Posted on April 22, 2025</text></small></p>
     <div class="tooltip"></div>
-    <svg id="mandala14" width="400" height="400" viewBox="0 00 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        </svg>
+    <svg id="mandala14" width="400" height="400" 
+        viewBox="0 00 400 400" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g id="mandala14-main" transform="matrix(1 0 0 1 0 0)">
+        </g>
+    </svg>
     <button id="zoom-in-14" class="zoom-button">Zoom In</button>
     <button id="zoom-out-14" class="zoom-button">Zoom Out</button>
     <p>This mandala looks similar to the last one. But, to draw that one, the browser uses html that describes 3,720 elements. 
@@ -12,4 +16,5 @@
         The software will be able to zoom in and out of mandalas that represent clusters of data. 
     </p>
     <script src="/static/js/mandalas/mandala14.js" type="module" defer></script>
+    <script src="/static/js/svg-interactions.js" type="module" defer></script>
 </article>

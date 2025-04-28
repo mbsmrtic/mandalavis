@@ -1,0 +1,15 @@
+<article id="article{{ post_id }}">
+    <h2><a href="{{ url_for('render_post', post_id=post_id)}}">Post 15</a></h2>
+    <p><small><text></text></small></p>
+    <div class="tooltip"></div>
+    <svg id="mandala{{ post_id }}" width="400" height="400" viewBox="0 00 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- {% include 'grid.html' %}    -->
+        <g id="mandala14-main" transform="matrix(1 0 0 1 0 0)">
+        </g>
+        </svg>
+    <button id="zoom-in-{{ post_id }}" class="zoom-button">Zoom In</button>
+    <button id="zoom-out-{{ post_id }}" class="zoom-button">Zoom Out</button>
+    <p>
+    </p>
+    <script src="/static/js/mandalas/mandala{{ post_id }}.js" type="module" defer></script>
+</article>

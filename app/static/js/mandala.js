@@ -77,10 +77,7 @@ export class Mandala {
         clonedNode.setAttribute('stroke', 'black');
         clonedNode.setAttribute('stroke-width', 2);
         // move the element to the front (end of the svg)
-        const mandalaId = element.getAttribute('mandalaid');
-        let svgEl = document.querySelector('#' + mandalaId);
-        svgEl.appendChild(clonedNode);
-
+        this.mandalaEl.appendChild(clonedNode);
         if (addCircle) { this.#circleElement(element);}
     }
 
@@ -104,7 +101,7 @@ export class Mandala {
             circle.setAttribute("transform", element.getAttribute("transform"));
         }
         // Append the circle to the same SVG as the element
-        element.ownerSVGElement.appendChild(circle);            
+\        this.mandalaEl.appendChild(circle);          
     }
 
     highlightGroup(g) {
@@ -117,7 +114,7 @@ export class Mandala {
         // If this is a group element, show its tooltip and 
         //  select all the elements in the group
         const g = element.closest('g');
-        if (g) {
+        if (g && g.getAttribute('shape-type') == 'composite') {
             this.showToolTipText(g);
             this.highlightGroup(g);
         }
@@ -133,6 +130,7 @@ export class Mandala {
             const newGroupEl = document.createElementNS(svgUrl, "g");
             newGroupEl.textContent = compositeShape.toolTipText;
             newGroupEl.style.pointerEvents = 'all';
+            newGroupEl.setAttribute('shape-type', 'composite');
             //loop through shapes in compositeShape
             //add to svg within a <g> element
             let firstTime = compositeShape.shapes.length == 0;
@@ -181,9 +179,6 @@ export class Mandala {
                 clearHighlights();
                 this.selectShape(event.target);
             });
-            // newEl.addEventListener('mouseout', () => {
-            //     clearHighlights();
-            // });
             newEl.addEventListener('touchstart', (event) => {
                 clearHighlights();
                 this.selectShape(event.target);
@@ -207,7 +202,7 @@ export class Mandala {
                     event.preventDefault();
                 }
             })
-        }
+         }
         return newEl;
     }
 
