@@ -101,7 +101,7 @@ export class Mandala {
             circle.setAttribute("transform", element.getAttribute("transform"));
         }
         // Append the circle to the same SVG as the element
-\        this.mandalaEl.appendChild(circle);          
+        this.mandalaEl.appendChild(circle);          
     }
 
     highlightGroup(g) {
