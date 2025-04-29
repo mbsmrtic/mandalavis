@@ -3,13 +3,13 @@ import { Peapod } from "/static/js/shapes/peapod.js";
 import { initInteractions } from "/static/js/svg-interactions.js";
 import { DotShape } from "/static/js/shapes/dot.js";
 
-var mandalaNum = '15';
+const mandalaNum = '16';
 var mandalaId = "mandala" + mandalaNum;
-const mandalaElementId = mandalaId; // `${mandalaId}-main`;
+const mainElementId = mandalaId;      // `${mandalaId}-main`;
 
 initInteractions(mandalaNum);
 
-var mandala = new Mandala(mandalaElementId, 200, 200);
+var mandala = new Mandala(mainElementId, 200, 200);
 mandala.addShape(new Peapod({
     offset: 60,
     width: 85,

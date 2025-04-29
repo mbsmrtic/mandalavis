@@ -8,13 +8,13 @@ let isDragging = false;
 let viewBox = { x: 0, y: 0, width: 0, height: 0 };
 let ratio = 1;
 let canvas = {};
-let mainElementId;
+let mandalaElementId;
 
 export function initInteractions(mandalaNumber) {
     mandalaNum = mandalaNumber;
-    let svgId = 'mandala' + mandalaNumber;
+    let svgId = 'mandala' + mandalaNumber + 'svg';
     svg = document.getElementById(svgId); //querySelector(mandalaId);
-    mainElementId = svgId + '-main';
+    mandalaElementId = 'mandala' + mandalaNum;  // svgId + '-main';
     getViewBox(svg);
     updateRatio();
     // Event listeners
@@ -39,14 +39,14 @@ function updateRatio() {
 }
 
 function getTransform() {
-  const matrix = document.getElementById(mainElementId).getAttribute('transform');
+  const matrix = document.getElementById(mandalaElementId).getAttribute('transform');
   return matrix.replace(/^matrix\(/, '').replace(/\)$/, '').split(' ').map(parseFloat);
 }
 
 function startDrag(e) {
   isDragging = true;
   const currentTransform = getTransform();
-  const sctm = document.getElementById(mainElementId).getScreenCTM();
+  const sctm = document.getElementById(mandalaElementId).getScreenCTM();
   const mouseStart = transformFromViewportToElement(e.clientX, e.clientY, sctm, currentTransform);
 
   canvas = {
@@ -65,7 +65,7 @@ function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) 
 
   let screenTransform;
   if (sctm === null) {
-    screenTransform = document.getElementById(mainElementId).getScreenCTM();
+    screenTransform = document.getElementById(mandalaElementId).getScreenCTM();
   } else {
     screenTransform = sctm;
   }
@@ -92,7 +92,7 @@ function drag(e) {
   startMatrix[4] = startMatrix[4] - movement.x;
   startMatrix[5] = startMatrix[5] - movement.y;
 
-  document.getElementById(mainElementId).setAttribute(
+  document.getElementById(mandalaElementId).setAttribute(
     'transform', `matrix(${startMatrix.join(', ')})`);
 }
 

@@ -3,17 +3,18 @@ import { SnowflakeMandala } from "/static/js/mandalas/sfmandala.js";
 import { ImageShape } from "/static/js/shapes/imageshape.js";
 import { initInteractions } from "/static/js/svg-interactions.js";
 
-var mandalaId = "mandala14";
-const mainElementId = `${mandalaId}-main`;
+var mandalaNum = '14';
+var mandalaId = "mandala" + mandalaNum;
+const mandalaElementId = mandalaId;  // `${mandalaId}-main`;
 
-initInteractions(mandalaId);
+initInteractions(mandalaNum);
 
 //We build the snowflake mandala and draw it to an image
-var sf = new SnowflakeMandala(mainElementId, 200, 200);
+var sf = new SnowflakeMandala(mandalaElementId, 200, 200);
 sf.addShapes();
 var imageUrl = sf.drawToImage();
 
-var mandala = new Mandala(mainElementId, 200, 200);
+var mandala = new Mandala(mandalaElementId, 200, 200);
 mandala.addShape(new ImageShape({
         offset: 60,
         width: 85,
