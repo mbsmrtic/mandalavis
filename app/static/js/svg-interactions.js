@@ -112,6 +112,7 @@ function drag(e) {
 
   document.getElementById(mandalaElementId).setAttribute(
     'transform', `matrix(${startMatrix.join(', ')})`);
+  e.stopPropagation();
 }
 
 function endDrag() {

@@ -184,25 +184,25 @@ export class Mandala {
                 clearHighlights();
                 this.selectShape(event.target);
                 tooltipJustOpened = true;
-                event.stopPropagation();
-                event.preventDefault();
+                // event.stopPropagation();
+                // event.preventDefault();
             });    
-            newEl.addEventListener('touchmove', (event) => {
-                const touch = event.touches[0]; // Get the first touch point
-                const x = touch.clientX;
-                const y = touch.clientY;
-                const elementUnderTouch = document.elementFromPoint(x, y);
+            // newEl.addEventListener('touchmove', (event) => {
+            //     const touch = event.touches[0]; // Get the first touch point
+            //     const x = touch.clientX;
+            //     const y = touch.clientY;
+            //     const elementUnderTouch = document.elementFromPoint(x, y);
 
-                // If the new element is in the same mandala, we will handle it
-                var elementMandalaId = elementUnderTouch.getAttribute('mandalaid');
-                if (elementMandalaId && elementMandalaId == event.target.getAttribute('mandalaid')) {
-                    clearHighlights();
-                    this.selectShape(elementUnderTouch);
-                    tooltipJustOpened = true;    
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            })
+            //     // If the new element is in the same mandala, we will handle it
+            //     var elementMandalaId = elementUnderTouch.getAttribute('mandalaid');
+            //     if (elementMandalaId && elementMandalaId == event.target.getAttribute('mandalaid')) {
+            //         clearHighlights();
+            //         this.selectShape(elementUnderTouch);
+            //         tooltipJustOpened = true;    
+            //         event.stopPropagation();
+            //         event.preventDefault();
+            //     }
+            // })
          }
         return newEl;
     }
