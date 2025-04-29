@@ -61,6 +61,7 @@ export class Mandala {
 
     showToolTipText(element) {
         const article = element.closest('article');
+        if (! article) { return; }
         const tooltip = article.querySelector('.tooltip');
         if (tooltip && element.textContent.length < 100) {
             tooltip.textContent = element.textContent;
