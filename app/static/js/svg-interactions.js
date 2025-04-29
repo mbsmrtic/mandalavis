@@ -62,6 +62,8 @@ function startDrag(e) {
   window.addEventListener('touchmove', drag);
   window.addEventListener('mouseup', endDrag);
   window.addEventListener('touchend', endDrag);
+  e.stopPropagation();
+  e.preventDefault();
 }
 
 function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) {
