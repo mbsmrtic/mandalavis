@@ -3,13 +3,16 @@
 // Dragging 
 ////////////////////////////////////////////////////////////////////////
 let svg = null;
+let mandalaNum;
 let isDragging = false;
 let viewBox = { x: 0, y: 0, width: 0, height: 0 };
 let ratio = 1;
 let canvas = {};
 let mainElementId;
 
-export function initInteractions(svgId) {
+export function initInteractions(mandalaNumber) {
+    mandalaNum = mandalaNumber;
+    let svgId = 'mandala' + mandalaNumber;
     svg = document.getElementById(svgId); //querySelector(mandalaId);
     mainElementId = svgId + '-main';
     getViewBox(svg);
@@ -129,7 +132,7 @@ function scaleFn() {
         viewBox.height = newHeight;
         setSvgViewBox(svg, viewBox);
     }
-    document.getElementById('zoom-in-14').onclick = () => zoom(1.1);
-    document.getElementById('zoom-out-14').onclick = () => zoom(1/1.1);
+    document.getElementById('zoom-in-' + mandalaNum).onclick = () => zoom(1.1);
+    document.getElementById('zoom-out-' + mandalaNum).onclick = () => zoom(1/1.1);
 }
 
