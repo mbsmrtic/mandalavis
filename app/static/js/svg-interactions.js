@@ -19,6 +19,7 @@ export function initInteractions(mandalaNumber) {
     updateRatio();
     // Event listeners
     svg.addEventListener('mousedown', startDrag);
+    svg.addEventListener('touchstart', startDrag);
     window.addEventListener('resize', updateRatio);
     scaleFn();
 }
@@ -47,7 +48,8 @@ function startDrag(e) {
   isDragging = true;
   const currentTransform = getTransform();
   const sctm = document.getElementById(mandalaElementId).getScreenCTM();
-  const mouseStart = transformFromViewportToElement(e.clientX, e.clientY, sctm, currentTransform);
+  var clientPoint = getPoint(e);
+  const mouseStart = transformFromViewportToElement(clientPoint.x, clientPoint.y, sctm, currentTransform);
 
   canvas = {
     mouseStart,
@@ -57,7 +59,9 @@ function startDrag(e) {
   svg.style.cursor = 'grabbing';
 
   window.addEventListener('mousemove', drag);
+  window.addEventListener('touchmove', drag);
   window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
 }
 
 function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) {
@@ -80,10 +84,24 @@ function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) 
   return {x: transformedPoint.x, y: transformedPoint.y};
 }
 
+function getPoint(e) {
+  var clientX, clientY;
+  if (e.type === 'mousedown' || e.type === 'mousemove') {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  } else if (e.type === 'touchstart' || e.type === 'touchmove') {
+    var touch = e.touches[0];
+    clientX = touch.clientX;
+    clientY = touch.clientY;
+  }
+  return {x: clientX, y: clientY}
+}
+
 function drag(e) {
   if (!isDragging) return;
 
-  const client = transformFromViewportToElement(e.clientX, e.clientY, canvas.sctm, canvas.transform);
+  var clientPoint = getPoint(e);
+  const client = transformFromViewportToElement(clientPoint.x, clientPoint.y, canvas.sctm, canvas.transform);
   const movement = {
     x: canvas.mouseStart.x - client.x,
     y: canvas.mouseStart.y - client.y
@@ -102,7 +120,9 @@ function endDrag() {
   canvas = {};
 
   window.removeEventListener('mousemove', drag);
+  window.removeEventListener('touchmove', drag);
   window.removeEventListener('mouseup', endDrag);
+  window.removeEventListener('touchend', endDrag);
 }
 
 /// Zooming
