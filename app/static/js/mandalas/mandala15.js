@@ -14,7 +14,7 @@ const mandalaElementId = mandalaId; // `${mandalaId}-main`;
 
 initInteractions(mandalaNum);
 
-var mandala = new Mandala(mandalaElementId, 200, 200);
+var mandala = new Mandala(mandalaElementId, 300, 300);
 var cd = new CurvyDroplet({
     offset: 40,
     width: 60,
