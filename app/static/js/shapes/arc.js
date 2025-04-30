@@ -55,7 +55,7 @@ export class DottedArcShape extends CompositeShape {
                     x: currentX,
                     y: currentY,
                     width: dotSize
-                }))
+                }, this.svgElementAttributes))
             }    
         }
         return this.shapes;

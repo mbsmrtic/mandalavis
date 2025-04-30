@@ -7,8 +7,8 @@ export class Peapod extends MandalaShape {
         //     this.qCurveString()
         const pathD = "M20,60 Q100,10 180,60 Q100,110 20,60 Z";
         return ({
-            fill: "#7AC74F",
-            stroke: "#388E3C",
+            fill: "#666",  //"#7AC74F",
+            stroke: "#666", //"#388E3C",
             d: pathD
         });
     }

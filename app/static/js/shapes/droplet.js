@@ -78,14 +78,14 @@ export class CurvyDroplet extends MandalaShape {
     shapeElementAttributes() {
         //this.width = this.width * .9;
         const rx = this.width/2 - 1;
-        const pt1 = {x: this.x - rx + 1, y: this.y - this.length + rx};
+        const pt1 = {x: this.x - rx + 1, y: this.y - this.length + rx, name: 'pt1'};
         this.pt1 = pt1;
-        const pt2 = {x: this.x + rx - 1, y: this.y - this.length + rx};
+        const pt2 = {x: this.x + rx - 1, y: this.y - this.length + rx, name: 'pt2'};
         this.pt2 = pt2;
         // pt3 needs to be below (or on) the circle
-        const pt3 = {x: this.x, y: this.y - this.length + rx * 2};
+        const pt3 = {x: this.x, y: this.y - this.length + rx * 2.2, name: 'pt3'};
         this.pt3 = pt3;
-        const pt4 = {x: this.x, y: this.y};
+        const pt4 = {x: this.x, y: this.y, name: 'pt4'};
         this.pt4 = pt4;
         const pathD = this.moveToString(pt1.x, pt1.y) +
             this.arcString(rx, rx, 0, 1, 1, pt2.x, pt2.y) +
