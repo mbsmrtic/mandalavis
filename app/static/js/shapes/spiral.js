@@ -9,18 +9,18 @@ export class SpiralShape extends MandalaShape {
         const startY = this.y - (this.width / 2) + 1;
 
         //spiral
-        const turns = 2.14;
+        const turns = 2.16;
         const radiusStep = this.width / 240; //.05;
         var pathD ='';
         let currentX = 0;
         let currentY = 0;
-        for (let i = 0; i < turns * 360; i++) {
+        for (let i = 0; i < turns * 360; i+=9) {
             let angle = ((i * Math.PI) / 180);
             let r = i * radiusStep;
             currentY = startY + .2 * r * Math.sin(angle);
             currentX = startX + .2 * r * Math.cos(angle);
-            currentY = currentY.toFixed(4);
-            currentX = currentX.toFixed(4);
+            currentY = currentY.toFixed(2);
+            currentX = currentX.toFixed(2);
             pathD += (i === 0 ? "M" : " L") + currentX + ' ' + currentY;
         }
         return ({
