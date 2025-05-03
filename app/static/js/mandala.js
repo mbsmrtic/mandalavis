@@ -63,8 +63,10 @@ export class Mandala {
         const article = element.closest('article');
         if (! article) { return; }
         const tooltip = article.querySelector('.tooltip');
-        if (tooltip && element.textContent.length < 100) {
-            tooltip.textContent = element.textContent;
+        const textNode = element.childNodes[0];
+        const extractedText = (textNode.nodeValue ?? "").trim();
+    if (tooltip && extractedText && extractedText.length < 100) {
+            tooltip.textContent = extractedText; // element.textContent;
             tooltip.style.display = 'block';   
         }
     }
@@ -125,11 +127,32 @@ export class Mandala {
         }
     };
 
+    #getToolTipText(shape, iElementInCluster) {
+        if (typeof shape.toolTipText === 'string' || shape.toolTipText instanceof String) {
+            return shape.toolTipText;
+        } 
+        else if (shape.toolTipText && shape.toolTipText[iElementInCluster]) { 
+            return shape.toolTipText[iElementInCluster]['desc'];
+        };
+        return '';
+    }
+
     //We add composite shapes to the dom within a group (<g>) element.
     addCompositeShape(compositeShape) {
-        for (var angle=compositeShape.angleStart; angle < 360; angle += compositeShape.angleStep) {
+        var iElementInCluster = 0;
+        for (var angle=compositeShape.angleStart; angle < 359; angle += compositeShape.angleStep) {
             const newGroupEl = document.createElementNS(svgUrl, "g");
-            newGroupEl.textContent = compositeShape.toolTipText;
+            newGroupEl.textContent = this.#getToolTipText(compositeShape, iElementInCluster++);
+            // if (typeof compositeShape.toolTipText === 'string' || compositeShape.toolTipText instanceof String) {
+            //     newGroupEl.textContent = compositeShape.toolTipText;
+            // } 
+            // else {
+            //     if (compositeShape.toolTipText && compositeShape.toolTipText[iElementInCluster]) { 
+            //         newGroupEl.textContent = compositeShape.toolTipText[iElementInCluster]['desc'];
+            //     };
+            // }
+            // iElementInCluster++;
+            // newGroupEl.textContent = compositeShape.toolTipText;
             newGroupEl.style.pointerEvents = 'all';
             newGroupEl.setAttribute('shape-type', 'composite');
             //loop through shapes in compositeShape
@@ -150,7 +173,7 @@ export class Mandala {
         }
     }
 
-    createShapeElement(shape, angle, groupElement=null) {
+    createShapeElement(shape, angle, groupElement=null, iElementInCluster=0) {
         var elementTag = shape.shapeElementTag();
         var attributes = shape.shapeElementAttributes();
         for (var attrKey in shape.svgElementAttributes) {
@@ -172,9 +195,17 @@ export class Mandala {
         //     maybe we don't need one event listener for each shape
         //     we could just capture them in one place at the top
         //     and use event.target to access the relevant element
-        if (shape.toolTipText && !groupElement) {
-            newEl.textContent = shape.toolTipText;
-        }
+        newEl.textContent = this.#getToolTipText(shape, iElementInCluster);
+        // if (shape.toolTipText && !groupElement) {
+        //     if (typeof shape.toolTipText === 'string' || shape.toolTipText instanceof String) {
+        //         newEl.textContent = shape.toolTipText;
+        //     } 
+        //     else {
+        //         if (shape.toolTipText[iElementInCluster]) { 
+        //             newEl.textContent = shape.toolTipText[iElementInCluster]['desc'];
+        //         };
+        //     }
+        // }
         if (shape.toolTipText || groupElement) {
             newEl.addEventListener('mouseenter', (event) => {
                 clearHighlights();
@@ -216,8 +247,9 @@ export class Mandala {
         }
         else {
             // loop through the angles adding a copy of the shape at each angle
-            for (var angle=shape.angleStart; angle < 360; angle += shape.angleStep){
-                const newEl = this.createShapeElement(shape, angle, groupElement);
+            var iElementInCluster = 0;
+            for (var angle=shape.angleStart; angle < 359.5; angle += shape.angleStep){
+                const newEl = this.createShapeElement(shape, angle, groupElement, iElementInCluster++);
 
                 // add the new element to the DOM
                 if (groupElement) {

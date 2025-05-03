@@ -14,106 +14,18 @@ let mandala = new Mandala("testMandala", 200, 200);
 
 mandala.addShape(new CurlyBracket({x: 70, width: 10, length:10}));
 
-function dot(shapeArgs) {
-    shapeArgs['width'] = shapeArgs['width'] / 2;
-    return new DotShape(shapeArgs);
-}
-
-function dottedArc(shapeArgs) {
-    // r = 30;
-    // shapeArgs['width'] = 30;
-    // const circumference = 2 * Math.PI * r;
-    // var c =  Math.floor(circumference / width);
-    //shapeArgs['howMany'] = 10;
-    return new DottedArcShape(shapeArgs);
-}
-
-function droplet(shapeArgs) {
-    //shapeArgs['length'] = 15;
-    return new DropletShape(shapeArgs);
-} 
-
-function curlybracket(shapeArgs) {
-    return new CurlyBracket(shapeArgs);
-}
-function spiral(shapeArgs) {
-    return new SpiralShape(shapeArgs);
-}
-function betweenDotsDot(shapeArgs) {
-    var dotShape = dot(shapeArgs);
-    mandala.addShape(dotShape);
-    return new BetweenDotsDotShape(dotShape);
-}
-function wave(shapeArgs) {
-    shapeArgs['width'] = shapeArgs['width'] + 3;
-    return (new WaveShape(shapeArgs));
-}
-function arc(shapeArgs) {
-    return (new ArcShape(shapeArgs));
-}
-function palmtree(shapeArgs) {
-    return (new PalmTreeShape(shapeArgs));
-}
-
-function s(shapeArgs) {
-    return (new SShape(shapeArgs));
-}
-
-function scurve(shapeArgs) {
-    return (new SCurve(shapeArgs));
-}
-
-function swirl(shapeArgs) {
-    return (new SwirlShape(shapeArgs));
-}
-
-function pottedPlant(shapeArgs) {
-    return (new PottedPlant(shapeArgs));
-}
-
-function curvyDroplet(shapeArgs) {
-    shapeArgs['width'] *= .7;
-    shapeArgs['length'] *= .8;
-    return (new CurvyDroplet(shapeArgs));
-}
-
-function curvyDroplets(shapeArgs) {
-
-    return (new CurvyDroplets(shapeArgs));
-}
-
-function tiltedCurvyDroplet(shapeArgs) {
-    return (new TiltedCurvyDroplet(shapeArgs));
-}
-
-let makeShapFns = [
-    droplet, tiltedCurvyDroplet, curvyDroplet, curvyDroplets, pottedPlant, dottedArc, curlybracket, spiral, dot, betweenDotsDot, wave, arc, palmtree, s, scurve, 
-];
-
-function howMany(r, width) {
-    const circumference = 2 * Math.PI * r;
-    var c =  Math.ceil(circumference / width);
-    if (c < 5) { c+=1; }
-    console.log("howMany: " + c);
-    return c;
-}
-
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
 //outer circle
 //mandala.addCenteredCircle(159, '#666', 'white');
 
 //loop through getting random sizes
-let sizes = [];
-var y = 18;
-var randomWidth;
-for (let i = 0; i < 3; i++) {
-    randomWidth = getRandomNumber(15, 40);      //10, 18);
-    sizes.push(randomWidth);
-    y += randomWidth;
-}
+// let sizes = [];
+// var y = 18;
+// var randomWidth;
+// for (let i = 0; i < 3; i++) {
+//     randomWidth = getRandomNumber(15, 40);      //10, 18);
+//     sizes.push(randomWidth);
+//     y += randomWidth;
+// }
 // y -= randomWidth
 
 // y = 18;
@@ -138,26 +50,33 @@ let shapeArgs = {
     // toolTipText: 'll'
     toolTipText: 'w: 15 l: 20'
 }
-mandala.addShape(new CurvyDroplet(shapeArgs));
-shapeArgs['y'] = 200 - 60;
-mandala.addShape(new CurvyDroplets(shapeArgs));
-shapeArgs['y'] = 200 - 40;
-var tcd = new TiltedCurvyDroplet(shapeArgs);
-mandala.addShape(tcd);
-mandala.showControlPoint(tcd.pt1);
-mandala.showControlPoint(tcd.pt2);
-mandala.showControlPoint(tcd.pt3);
-mandala.showControlPoint(tcd.pt4);
-shapeArgs['y'] = 200;
-shapeArgs['width'] = 22;
-shapeArgs['length'] = 44;
-shapeArgs.toolTipText = "w: 22 l: 44";
-var tcdTall = new TiltedCurvyDroplet(shapeArgs, {stroke: 'black'})
-mandala.addShape(tcdTall);
-mandala.showControlPoint(tcdTall.pt1);
-mandala.showControlPoint(tcdTall.pt2);
-mandala.showControlPoint(tcdTall.pt3);
-mandala.showControlPoint(tcdTall.pt4);
+// mandala.addShape(new CurvyDroplet(shapeArgs));
+// shapeArgs['y'] = 200 - 60;
+// mandala.addShape(new CurvyDroplets(shapeArgs));
+// shapeArgs['y'] = 200 - 40;
+// var tcd = new TiltedCurvyDroplet(shapeArgs);
+// mandala.addShape(tcd);
+// mandala.showControlPoint(tcd.pt1);
+// mandala.showControlPoint(tcd.pt2);
+// mandala.showControlPoint(tcd.pt3);
+// mandala.showControlPoint(tcd.pt4);
+// shapeArgs['y'] = 200;
+// shapeArgs['width'] = 22;
+// shapeArgs['length'] = 44;
+// shapeArgs.toolTipText = "w: 22 l: 44";
+// var tcdTall = new TiltedCurvyDroplet(shapeArgs, {stroke: 'black'})
+// mandala.addShape(tcdTall);
+// mandala.showControlPoint(tcdTall.pt1);
+// mandala.showControlPoint(tcdTall.pt2);
+// mandala.showControlPoint(tcdTall.pt3);
+// mandala.showControlPoint(tcdTall.pt4);
+
+
+var spiral = new SpiralShape({ x: 100, y: 180, width: 80 });
+mandala.addShape(spiral);
+for (let i = 0; i < spiral.controlPoints.length; i++) {
+    mandala.showControlPoint(spiral.controlPoints[i]);
+}
 
 
 //We start at the outer loop because we add a white circle at each layer

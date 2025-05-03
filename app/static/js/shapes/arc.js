@@ -44,6 +44,8 @@ export class DottedArcShape extends CompositeShape {
             const ry = this.length * 4;
             var startX = this.x;
             var startY = this.y;
+            var dotAttributes = {...this.svgElementAttributes};
+            dotAttributes['fill'] = '#333';
             for (let i = 0; i <= 180; i+= 12) {
                 let angle = ((i * Math.PI) / 180);
                 //let r = i * radiusStep;
@@ -55,7 +57,7 @@ export class DottedArcShape extends CompositeShape {
                     x: currentX,
                     y: currentY,
                     width: dotSize
-                }, this.svgElementAttributes))
+                }, dotAttributes))
             }    
         }
         return this.shapes;

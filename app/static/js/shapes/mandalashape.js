@@ -19,7 +19,6 @@ export class MandalaShape {
         this.width = width;
         this.angleStart = angleStart;
         this.angleStep = 360 / howMany;
-        this.toolTipText = null;
         this._howMany = howMany;
         this.color = color;
         this.length = length;

@@ -13,12 +13,12 @@ mandala.addCenteredCircle(95, "none", outerColor);
 mandala.addShape(new CurlyBracket({
     x: mandala.centerX,
     y: mandala.centerY - 95,
-    width: 60,
-    length: 16,
+    width: 30,
+    length: 35,
     angleStart: 20,
     howMany: 9,
     toolTipText: "outer curly bracket"
-}, {fill: outerColor}))
+}, {fill: outerColor, stroke: '#111', 'stroke-width': 1}))
 
 mandala.addCenteredCircle(82, "none", "lightblue");
 mandala.addShape(new DottedArcShape({
@@ -70,8 +70,7 @@ mandala.addShape(new CurlyBracket({
     width: 15,
     length: 23, // 15,
     howMany: 9,
-}));
-
+}, {fill: outerColor, stroke: '#111', 'stroke-width': 1}));
 
 mandala.addShape(new DropletShape({
     x: mandala.centerX, 

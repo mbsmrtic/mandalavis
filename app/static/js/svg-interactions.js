@@ -2,51 +2,14 @@
 ////////////////////////////////////////////////////////////////////////
 // Dragging 
 ////////////////////////////////////////////////////////////////////////
-let svg = null;
-let mandalaNum;
 let isDragging = false;
-let viewBox = { x: 0, y: 0, width: 0, height: 0 };
-let ratio = 1;
 let canvas = {};
-let mandalaElementId;
+let mousemovehandler;
+let mouseuphandler;
 
-export function initInteractions(mandalaNumber) {
-    mandalaNum = mandalaNumber;
-    let svgId = 'mandala' + mandalaNumber + 'svg';
-    svg = document.getElementById(svgId); //querySelector(mandalaId);
-    mandalaElementId = 'mandala' + mandalaNum;  // svgId + '-main';
-    getViewBox(svg);
-    updateRatio();
-    // Event listeners
-    svg.addEventListener('mousedown', startDrag);
-    svg.addEventListener('touchstart', startDrag);
-    window.addEventListener('resize', updateRatio);
-    scaleFn();
-}
-
-// Initialize viewBox from SVG attribute
-function getViewBox(svg) {
-  const vb = svg.getAttribute('viewBox').split(' ').map(Number);
-  if (vb.length === 4) {
-    [viewBox.x, viewBox.y, viewBox.width, viewBox.height] = vb;
-  }  
-}
-
-// Calculate initial ratio
-function updateRatio() {
-  console.log('updateratio');
-  const rect = svg.getBoundingClientRect();
-  ratio = viewBox.width / rect.width;
-}
-
-function getTransform() {
-  const matrix = document.getElementById(mandalaElementId).getAttribute('transform');
-  return matrix.replace(/^matrix\(/, '').replace(/\)$/, '').split(' ').map(parseFloat);
-}
-
-function startDrag(e) {
+function startDrag(e, mandalaElementId) {
   isDragging = true;
-  const currentTransform = getTransform();
+  const currentTransform = getTransform(mandalaElementId);
   const sctm = document.getElementById(mandalaElementId).getScreenCTM();
   var clientPoint = getPoint(e);
   const mouseStart = transformFromViewportToElement(clientPoint.x, clientPoint.y, sctm, currentTransform);
@@ -56,17 +19,58 @@ function startDrag(e) {
     transform: currentTransform,
     sctm
   }
-  svg.style.cursor = 'grabbing';
 
-  window.addEventListener('mousemove', drag);
-  window.addEventListener('touchmove', drag);
-  window.addEventListener('mouseup', endDrag);
-  window.addEventListener('touchend', endDrag);
+  mousemovehandler = (e) => drag(e, mandalaElementId);
+  window.addEventListener('mousemove', mousemovehandler);
+  window.addEventListener('touchmove', mousemovehandler);
+  mouseuphandler = (e) => {
+    let svg = document.getElementById(mandalaElementId + 'svg');
+    svg.style.cursor = 'grab';
+    endDrag();
+  };
+  window.addEventListener('mouseup', mouseuphandler);
+  window.addEventListener('touchend', mouseuphandler);
   e.stopPropagation();
   e.preventDefault();
 }
 
-function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) {
+function getTransform(mandalaElementId) {
+  const matrix = document.getElementById(mandalaElementId).getAttribute('transform');
+  return matrix.replace(/^matrix\(/, '').replace(/\)$/, '').split(' ').map(parseFloat);
+}
+
+function getPoint(e) {
+  var clientX, clientY;
+  if (e.type === 'mousedown' || e.type === 'mousemove') {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  } else if (e.type === 'touchstart' || e.type === 'touchmove') {
+    var touch = e.touches[0];
+    clientX = touch.clientX;
+    clientY = touch.clientY;
+  }
+  return {x: clientX, y: clientY}
+}
+
+function drag(e, mandalaElementId) {
+  if (!isDragging) return;
+
+  var clientPoint = getPoint(e);
+  const client = transformFromViewportToElement(clientPoint.x, clientPoint.y, canvas.sctm, canvas.transform, mandalaElementId);
+  const movement = {
+    x: canvas.mouseStart.x - client.x,
+    y: canvas.mouseStart.y - client.y
+  };
+  const startMatrix = [...canvas.transform];
+  startMatrix[4] = startMatrix[4] - movement.x;
+  startMatrix[5] = startMatrix[5] - movement.y;
+
+  document.getElementById(mandalaElementId).setAttribute(
+    'transform', `matrix(${startMatrix.join(', ')})`);
+  e.stopPropagation();
+}
+
+function transformFromViewportToElement(x, y, sctm=null, elementTransform=null, mandalaElementId) {
   const p = new DOMPoint(x, y);
 
   let screenTransform;
@@ -86,76 +90,99 @@ function transformFromViewportToElement(x, y, sctm=null, elementTransform=null) 
   return {x: transformedPoint.x, y: transformedPoint.y};
 }
 
-function getPoint(e) {
-  var clientX, clientY;
-  if (e.type === 'mousedown' || e.type === 'mousemove') {
-    clientX = e.clientX;
-    clientY = e.clientY;
-  } else if (e.type === 'touchstart' || e.type === 'touchmove') {
-    var touch = e.touches[0];
-    clientX = touch.clientX;
-    clientY = touch.clientY;
-  }
-  return {x: clientX, y: clientY}
-}
-
-function drag(e) {
-  if (!isDragging) return;
-
-  var clientPoint = getPoint(e);
-  const client = transformFromViewportToElement(clientPoint.x, clientPoint.y, canvas.sctm, canvas.transform);
-  const movement = {
-    x: canvas.mouseStart.x - client.x,
-    y: canvas.mouseStart.y - client.y
-  };
-  const startMatrix = [...canvas.transform];
-  startMatrix[4] = startMatrix[4] - movement.x;
-  startMatrix[5] = startMatrix[5] - movement.y;
-
-  document.getElementById(mandalaElementId).setAttribute(
-    'transform', `matrix(${startMatrix.join(', ')})`);
-  e.stopPropagation();
-}
 
 function endDrag() {
   isDragging = false;
-  svg.style.cursor = 'grab';
   canvas = {};
 
-  window.removeEventListener('mousemove', drag);
-  window.removeEventListener('touchmove', drag);
-  window.removeEventListener('mouseup', endDrag);
-  window.removeEventListener('touchend', endDrag);
+  window.removeEventListener('mousemove', mousemovehandler);
+  window.removeEventListener('touchmove', mousemovehandler);
+  window.removeEventListener('mouseup', mouseuphandler);
+  window.removeEventListener('touchend', mouseuphandler);
 }
 
-/// Zooming
 function setSvgViewBox(svg, viewBox) {
-    if (
-      svg instanceof SVGElement &&
-      viewBox &&
-      ['x', 'y', 'width', 'height'].every(key => typeof viewBox[key] === 'number')
-    ) {
-      svg.setAttribute('viewBox', [viewBox.x, viewBox.y, viewBox.width, viewBox.height].join(' '));
-    } else {
-      console.error('Invalid arguments for setSvgViewBox');
+  if (
+    svg instanceof SVGElement &&
+    viewBox &&
+    ['x', 'y', 'width', 'height'].every(key => typeof viewBox[key] === 'number')
+  ) {
+    svg.setAttribute('viewBox', [viewBox.x, viewBox.y, viewBox.width, viewBox.height].join(' '));
+  } else {
+    console.error('Invalid arguments for setSvgViewBox');
+  }
+}
+
+
+export class MandalaInteractions {
+  constructor(mandalaNum) {
+    this.mandalaNum = mandalaNum;
+    this.svg = document.getElementById('mandala' + mandalaNum + 'svg');
+    this.isDragging = false;
+    this.viewBox = { x: 0, y: 0, width: 0, height: 0 };
+    this.ratio = 1;
+    this.canvas = {};
+    this.mandalaElementId = 'mandala' + mandalaNum;
+  // }
+
+  // function initInteractions(mandalaNumber) {
+      // mandalaNum = mandalaNumber;
+      // let svgId = 'mandala' + mandalaNumber + 'svg';
+      // mandalaElementId = 'mandala' + mandalaNum;  // svgId + '-main';
+      this.getViewBox(this.svg);
+      this.updateRatio();
+      // Event listeners
+      let mei = this.mandalaElementId;
+      this.svg.addEventListener('mousedown', function(e) {
+        e.currentTarget.style.cursor = 'grabbing';
+        startDrag(e, mei);
+      });
+      this.svg.addEventListener('touchstart', function(e) {
+        e.currentTarget.style.cursor = 'grabbing';
+        startDrag(e, mei);
+      });
+      window.addEventListener('resize', this.updateRatio);
+      this.scaleFn();
+  }
+
+  // Initialize viewBox from SVG attribute
+  getViewBox(svg) {
+    const vb = svg.getAttribute('viewBox').split(' ').map(Number);
+    if (vb.length === 4) {
+      [this.viewBox.x, this.viewBox.y, this.viewBox.width, this.viewBox.height] = vb;
+    }  
+  }
+
+  // Calculate initial ratio
+  updateRatio() {
+    console.log('updateratio');
+    if (this.svg) {
+      const rect = this.svg.getBoundingClientRect();
+      this.ratio = this.viewBox.width / rect.width;  
     }
   }
-  
-function scaleFn() {
-    let viewBox = [0, 0, 1000, 1000]; // [x, y, width, height]
-    viewBox = svg.viewBox.baseVal;
-    function zoom(factor) {
-        var newWidth = viewBox.width / factor;
-        var widthDiff = viewBox.width - newWidth;
-        viewBox.x += widthDiff/2; //x
-        viewBox.width = newWidth;
-        var newHeight = viewBox.height / factor;
-        var heightDiff = viewBox.height - newHeight;
-        viewBox.y += heightDiff/2; //y
-        viewBox.height = newHeight;
-        setSvgViewBox(svg, viewBox);
-    }
-    document.getElementById('zoom-in-' + mandalaNum).onclick = () => zoom(1.1);
-    document.getElementById('zoom-out-' + mandalaNum).onclick = () => zoom(1/1.1);
-}
 
+
+  /// Zooming
+
+    
+  scaleFn() {
+      let viewBox = [0, 0, 1000, 1000]; // [x, y, width, height]
+      viewBox = this.svg.viewBox.baseVal;
+      let svg = this.svg;
+      function zoom(factor) {
+          var newWidth = viewBox.width / factor;
+          var widthDiff = viewBox.width - newWidth;
+          viewBox.x += widthDiff/2; //x
+          viewBox.width = newWidth;
+          var newHeight = viewBox.height / factor;
+          var heightDiff = viewBox.height - newHeight;
+          viewBox.y += heightDiff/2; //y
+          viewBox.height = newHeight;
+          setSvgViewBox(svg, viewBox);
+      }
+      document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => zoom(1.1);
+      document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => zoom(1/1.1);
+  }
+
+}

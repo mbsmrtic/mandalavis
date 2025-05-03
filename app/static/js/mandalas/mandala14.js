@@ -1,13 +1,12 @@
 import { Mandala } from "/static/js/mandala.js";
 import { SnowflakeMandala } from "/static/js/mandalas/sfmandala.js";
 import { ImageShape } from "/static/js/shapes/imageshape.js";
-import { initInteractions } from "/static/js/svg-interactions.js";
+import { MandalaInteractions } from "/static/js/svg-interactions.js";
 
 var mandalaNum = '14';
 var mandalaId = "mandala" + mandalaNum;
 const mandalaElementId = mandalaId;  // `${mandalaId}-main`;
-
-initInteractions(mandalaNum);
+var interactions = new MandalaInteractions(mandalaNum);
 
 //We build the snowflake mandala and draw it to an image
 var sf = new SnowflakeMandala(mandalaElementId, 200, 200);
