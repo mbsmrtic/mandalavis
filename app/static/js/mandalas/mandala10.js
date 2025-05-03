@@ -70,16 +70,16 @@ mandala.addShape(new CurlyBracket({
     width: 15,
     length: 23, // 15,
     howMany: 9,
-}, {fill: outerColor, stroke: '#111', 'stroke-width': 1}));
+}, {fill: outerColor, stroke: '#666', 'stroke-width': 1}));
 
 mandala.addShape(new DropletShape({
     x: mandala.centerX, 
-    y: mandala.centerY - 27,
+    y: mandala.centerY - 30,
     width: 20,
     length: 25, // 15,
     howMany: 9,
     angleStart: 20,
-}));
+}, {fill: '#666', stroke: '#666', 'stroke-width': 1}));
 
 
 //Add an arc lined with circles
@@ -100,6 +100,7 @@ mandala.addShape(new SpiralShape({
     x: mandala.centerX,
     y: mandala.centerY - 20,
     howMany: 9,
+    angleStart: 38,
 }));
 mandala.addCenteredCircle(20);
 
