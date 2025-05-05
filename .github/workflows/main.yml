@@ -22,4 +22,5 @@ jobs:
             cp -r images/* /var/www/mandalavis/images
             cp -r static /var/www/mandalavis
             cp -r templates /var/www/mandalavis
+            cp -r src /var/www/mandalavis
             
