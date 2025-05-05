@@ -1,35 +1,45 @@
 import { Mandala } from "/static/js/mandala.js";
 import { Peapod } from "/static/js/shapes/peapod.js";
-// import { initInteractions } from "/static/js/svg-interactions.js";
+import { MandalaInteractions } from "/static/js/svg-interactions.js";
 import { DotShape } from "/static/js/shapes/dot.js";
-import { SpiralShape } from "/static/js/shapes/spiral.js";
+import { CurvyDroplet, CurvyDroplets } from "/static/js/shapes/droplet.js";
+import { DottedArcShape } from "/static/js/shapes/arc.js";
+import { SpiralShape } from "/static/js/shapes/spiral.js"
+import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 
-const mandalaNum = '16';
+var mandalaNum = '16';
 var mandalaId = "mandala" + mandalaNum;
-const mainElementId = mandalaId;      // `${mandalaId}-main`;
+const mandalaElementId = mandalaId; 
+var mandala = new Mandala(mandalaElementId, 300, 300);
+var interactions = new MandalaInteractions(mandalaNum);
 
-// initInteractions(mandalaNum);
+const dataElement = document.getElementById('mandala-data-' + mandalaNum);
+const str = dataElement.dataset.mandala;
+var myData = JSON.parse(str);
+myData = myData["clusters"];
 
-var mandala = new Mandala(mainElementId, 100, 100);
-// mandala.addShape(new Peapod({
-//     offset: 60,
-//     width: 85,
-//     length: 85,
-//     howMany: 1,
-//     toolTipText: 'peapod'
-// }));
+const shapeConstructors = {
+    DotShape: (shapeArgs, svgAttrs) => new DotShape(shapeArgs, svgAttrs),
+    SpiralShape: (shapeArgs, svgAttrs) => new SpiralShape(shapeArgs, svgAttrs),
+    DottedArcShape: (shapeArgs, svgAttrs) => new DottedArcShape(shapeArgs, svgAttrs),
+    CurvyDroplets: (shapeArgs, svgAttrs) => new CurvyDroplets(shapeArgs, svgAttrs),
+    CurvyDroplet: (shapeArgs, svgAttrs) => new CurvyDroplet(shapeArgs, svgAttrs),
+    CurlyBracket: (shapeArgs, svgAttrs) => new CurlyBracket(shapeArgs, svgAttrs),
+    default: () => { throw new Error('Unknown shape type'); }
+}
 
-// mandala.addDot(20, 60);
-// mandala.addDot(100, 10);
-// mandala.addDot(180, 60);
-// mandala.addDot(100, 110);
+if (myData && myData.length > 0){
+    myData.forEach(cluster => {
+        var newShape = (shapeConstructors[cluster.shape] || shapeConstructors.default)({
+            offset: cluster.offset,
+            width: cluster.width,
+            length: cluster.length,
+            howMany: cluster.data.length,
+            angleStart: (cluster['angleStart'] || 0),
+            toolTipText: cluster.data,
+        }, (cluster['svgAttrs'] || {}));
+        mandala.addShape(newShape);
+    });    
+}
 
-// mandala.addShape(new DotShape({
-//     offset: 90,
-//     width: 22,
-//     length: 22,
-//     howMany: 1,
-// }));
-
-var spiral = new SpiralShape({x: 100, y: 100, width: 100});
-mandala.addShape(spiral);
+mandala.addCenteredCircle(40); 

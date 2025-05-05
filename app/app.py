@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
 import os
+from app.src.mandaladata import getMandalaData
 
 app = Flask(__name__)
 
@@ -20,7 +21,13 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    return render_template(f'post.html', post_id=post_id)
+    mydata = getMandalaData(post_id)
+    return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
+
+@app.route('/post/py/<int:post_id>')
+def render_pypost(post_id):
+    mydata = getMandalaData(post_id)
+    return render_template(f'posts/pypost.html', post_id=post_id, mandalaData=mydata)
 
 @app.route('/testmandala')
 def render_testMandala():
