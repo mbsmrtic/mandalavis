@@ -21,7 +21,8 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    mydata = getMandalaData(post_id)
+    # mydata = getMandalaData(post_id)
+    mydata = {}
     return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
 
 @app.route('/post/py/<int:post_id>')
