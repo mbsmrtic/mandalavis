@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
 import os
-from app.src.mandaladata import getMandalaData
+# from app.src.mandaladata import getMandalaData
 
 app = Flask(__name__)
 
