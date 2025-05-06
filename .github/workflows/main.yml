@@ -17,10 +17,10 @@ jobs:
           script: |
             cd /home/mbsmrtic/repos/mandalavis
             git pull origin main
-            cd app
             cp *.* /var/www/mandalavis
-            cp -r images/* /var/www/mandalavis/images
-            cp -r static /var/www/mandalavis
-            cp -r templates /var/www/mandalavis
+            cd app
+            cp *.* /var/www/mandalavis/app
+            cp -r static /var/www/mandalavis/app
+            cp -r templates /var/www/mandalavis/app
             cp -r src /var/www/mandalavis/app
             

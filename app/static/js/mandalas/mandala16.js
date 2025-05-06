@@ -15,7 +15,8 @@ var interactions = new MandalaInteractions(mandalaNum);
 
 const dataElement = document.getElementById('mandala-data-' + mandalaNum);
 const str = dataElement.dataset.mandala;
-var myData = JSON.parse(str);
+const validJson = str.replace(/'/g, '"');
+var myData = JSON.parse(validJson);
 myData = myData["clusters"];
 
 const shapeConstructors = {
