@@ -23,6 +23,7 @@ export class MandalaShape {
         this.color = color;
         this.length = length;
         this.toolTipText = toolTipText;
+        this.controlPoints = [];
         this.svgElementAttributes = svgElementAttributes;
     }
 

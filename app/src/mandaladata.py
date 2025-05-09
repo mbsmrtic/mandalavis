@@ -1,5 +1,272 @@
+from pydantic import BaseModel
+from enum import Enum
+from typing import Optional, List
+
+class ShapeType(str, Enum):
+    ARC = "ArcShape"
+    DOTTED_ARC = "DottedArcShape"
+    DOT = "DotShape"
+    SPIRAL = "SpiralShape"
+    CURVY_DROPLETS = "CurvyDroplets"
+    CURVY_DROPLET = "CurvyDroplet"
+    CURLY_BRACKET = "CurlyBracket"
+    DROPLET = "DropletShape"
+    TILTED_CURVY_DROPLET = "TiltedCurvyDroplet"
+
+class DataItem(BaseModel):
+    desc: str
+
+class Cluster(BaseModel):
+    clustername: str
+    shape: ShapeType
+    offset: int
+    width: int
+    length: int
+    angleStart: Optional[float] = None
+    svgAttrs: Optional[dict] = None
+    data: List[DataItem]
+
+class MyData(BaseModel):
+    clusters: List[Cluster]
+
 def getMandalaData(post_id):
-    if (post_id == 16):
+    if (post_id == 17):
+        clusters = [] # List[Cluster]
+        cluster = Cluster(
+            clustername="cluster 9",
+            shape=ShapeType.ARC.value,
+            offset=125,
+            width=101,
+            length=30,
+            # angleStart=22.5,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 9") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 8",
+            shape=ShapeType.ARC.value,
+            offset=125,
+            width=101,
+            length=30,
+            # angleStart=22.5,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 8") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 7",
+            shape=ShapeType.DROPLET.value,
+            offset=135,
+            width=35,
+            length=-66,
+            angleStart=22.5,
+            svgAttrs={"stroke": "#888", "stroke-width": 1},
+            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 7") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 6",
+            shape=ShapeType.ARC.value,
+            offset=91,
+            width=28,
+            length=11,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 6") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 5",
+            shape=ShapeType.ARC.value,
+            offset=95,
+            width=30,
+            length=-14,
+            angleStart=22.5,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 5") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 4",
+            shape=ShapeType.DOTTED_ARC.value,
+            offset=93,
+            width=45,
+            length=15,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 4") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 3",
+            shape=ShapeType.DOTTED_ARC.value,
+            offset=90,
+            width=44,
+            length=-15,
+            angleStart=22.5,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 3") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 2",
+            shape=ShapeType.SPIRAL.value,
+            offset=58,
+            width=23,
+            length=30,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 2") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 0",
+            shape=ShapeType.CURVY_DROPLETS.value,
+            offset=30,
+            width=20,
+            length=37,
+            angleStart=22.5,
+            svgAttrs={"stroke": "white", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 0") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        cluster = Cluster(
+            clustername="cluster 1",
+            shape=ShapeType.CURLY_BRACKET.value,
+            offset=28,
+            width=23,
+            length=30,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"arc {i}th item in cluster 1") for i in range(1, 9)]
+        )
+        clusters.append(cluster)
+        mydata = MyData(clusters=clusters)
+        return mydata.model_dump_json()
+
+
+def oldGetMandalaData(post_id):
+    if (post_id == 17):
+        mydata = { "clusters": [
+            {"clustername": "cluster 6",
+                "shape": "ArcShape",
+                "offset": 91,
+                "width": 28,
+                "length": 11,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "arc first data item in cluster  6"},
+                    { "desc": "arc second data item in cluster 6"},
+                    { "desc": "arc third data item in cluster  6"},
+                    { "desc": "arc fourth data item in cluster 6"},
+                    { "desc": "arc fifth data item in cluster  6"},
+                    { "desc": "arc sixth data item in cluster  6"},
+                    { "desc": "arc seventh data item in cluste 6"},
+                    { "desc": "arc eighth data item in cluster 6"},
+                ]
+            },
+            {"clustername": "cluster 5",
+                "shape": "ArcShape",
+                "offset": 95,
+                "width": 30,
+                "length": -14,
+                "angleStart": 22.5,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "arc first data item in cluster  5"},
+                    { "desc": "arc second data item in cluster 5"},
+                    { "desc": "arc third data item in cluster  5"},
+                    { "desc": "arc fourth data item in cluster 5"},
+                    { "desc": "arc fifth data item in cluster  5"},
+                    { "desc": "arc sixth data item in cluster  5"},
+                    { "desc": "arc seventh data item in cluste 5"},
+                    { "desc": "arc eighth data item in cluster 5"},
+                ]
+            },
+            {"clustername": "cluster 4",
+                "shape": "DottedArcShape",
+                "offset": 93,
+                "width": 45,
+                "length": 15,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "dotted arc first data item in cluster  4"},
+                    { "desc": "dotted arc second data item in cluster 4"},
+                    { "desc": "dotted arc third data item in cluster  4"},
+                    { "desc": "dotted arc fourth data item in cluster 4"},
+                    { "desc": "dotted arc fifth data item in cluster  4"},
+                    { "desc": "dotted arc sixth data item in cluster  4"},
+                    { "desc": "dotted arc seventh data item in cluste 4"},
+                    { "desc": "dotted arc eighth data item in cluster 4"},
+                ]
+            },
+            {"clustername": "cluster 3",
+                "shape": "DottedArcShape",
+                "offset": 90,
+                "width": 44,
+                "length": -15,
+                "angleStart": 22.5,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "dotted arc first data item in cluster  3"},
+                    { "desc": "dotted arc second data item in cluster 3"},
+                    { "desc": "dotted arc third data item in cluster  3"},
+                    { "desc": "dotted arc fourth data item in cluster 3"},
+                    { "desc": "dotted arc fifth data item in cluster  3"},
+                    { "desc": "dotted arc sixth data item in cluster  3"},
+                    { "desc": "dotted arc seventh data item in cluste 3"},
+                    { "desc": "dotted arc eighth data item in cluster 3"},
+                ]
+            },
+            {"clustername": "cluster 2",
+                "shape": "SpiralShape",
+                "offset": 58,
+                "width": 23,
+                "length": 30,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "spiral first data item in cluster  2"},
+                    { "desc": "spiral second data item in cluster 2"},
+                    { "desc": "spiral third data item in cluster  2"},
+                    { "desc": "spiral fourth data item in cluster 2"},
+                    { "desc": "spiral fifth data item in cluster  2"},
+                    { "desc": "spiral sixth data item in cluster  2"},
+                    { "desc": "spiral seventh data item in cluste 2"},
+                    { "desc": "spiral eighth data item in cluster 2"},
+                ]
+            },
+            {"clustername": "cluster 0",
+                "shape": "CurvyDroplets",
+                "offset": 30,
+                "width": 20,
+                "length": 37,
+                "angleStart": 22.5,
+                "data": [
+                    { "desc": "curvy droplets first data item in cluster 0" },
+                    { "desc": "curvy droplets second data item in cluster 0" },
+                    { "desc": "curvy droplets third data item in cluster 0" },
+                    { "desc": "curvy droplets fourth data item in cluster 0" },
+                    { "desc": "curvy droplets fifth data item in cluster 0" },
+                    { "desc": "curvy droplets sixth data item in cluster 0" },
+                    { "desc": "curvy droplets seventh data item in cluster 0" },
+                    { "desc": "curvy droplets eighth data item in cluster 0" }
+                ]
+            },
+            {"clustername": "cluster 1",
+                "shape": "CurlyBracket",
+                "offset": 28,
+                "width": 23,
+                "length": 30,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "curly bracket first data item in cluster  1"},
+                    { "desc": "curly bracket second data item in cluster 1"},
+                    { "desc": "curly bracket third data item in cluster  1"},
+                    { "desc": "curly bracket fourth data item in cluster 1"},
+                    { "desc": "curly bracket fifth data item in cluster  1"},
+                    { "desc": "curly bracket sixth data item in cluster  1"},
+                    { "desc": "curly bracket seventh data item in cluste 1"},
+                    { "desc": "curly bracket eighth data item in cluster 1"},
+                ]
+        }]}
+    elif (post_id == 16):
         mydata = { "clusters": [{   "clustername": "cluster 0", 
                 "shape": "CurlyBracket",
                 "offset": 240.5,
