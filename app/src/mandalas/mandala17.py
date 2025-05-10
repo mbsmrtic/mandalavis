@@ -1,7 +1,13 @@
-from src.mandalas.mandaladata import MandalaData, Cluster, ShapeType, DataItem
+from app.src.mandalas.mandaladata import MandalaData, Cluster, ShapeType, DataItem
 
 class MandalaData17(MandalaData):
-    def getMandalaData():
+    def __init__(self):
+        super().__init__()
+        # self.title = "Mandala 17"
+        # self.description = "This is a test mandala with 10 clusters and 8 items in each cluster. The clusters are arranged in a circular pattern with different shapes and colors."
+        # self.clusters = []
+
+    def getMandalaData(self):
         cluster = Cluster(
             clustername="cluster 9",
             shape=ShapeType.ARC.value,
@@ -12,7 +18,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"tilted curvy {i}th item in cluster 9") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 8",
             shape=ShapeType.ARC.value,
@@ -23,7 +29,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"tilted curvy {i}th item in cluster 8") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 7",
             shape=ShapeType.DROPLET.value,
@@ -34,7 +40,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#888", "stroke-width": 1},
             data=[DataItem(desc=f"tilted curvy {i}th item in cluster 7") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 6",
             shape=ShapeType.ARC.value,
@@ -44,7 +50,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 6") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 5",
             shape=ShapeType.ARC.value,
@@ -55,7 +61,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 5") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 4",
             shape=ShapeType.DOTTED_ARC.value,
@@ -65,7 +71,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 4") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 3",
             shape=ShapeType.DOTTED_ARC.value,
@@ -76,7 +82,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 3") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 2",
             shape=ShapeType.SPIRAL.value,
@@ -86,7 +92,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 2") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 0",
             shape=ShapeType.CURVY_DROPLETS.value,
@@ -97,7 +103,7 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "white", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 0") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 1",
             shape=ShapeType.CURLY_BRACKET.value,
@@ -107,6 +113,6 @@ class MandalaData17(MandalaData):
             svgAttrs={"stroke": "#666", "stroke-width": 1},
             data=[DataItem(desc=f"arc {i}th item in cluster 1") for i in range(1, 9)]
         )
-        self.addCluster(cluster)
+        self.add_cluster(cluster)
         # mydata = MandalaData(clusters=clusters)
         return self.model_dump_json()

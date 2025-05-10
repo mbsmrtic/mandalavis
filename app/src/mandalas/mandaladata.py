@@ -41,12 +41,13 @@ class Cluster(BaseModel):
     data: List[DataItem]
 
 class MandalaData(BaseModel):
+    clusters: List[Cluster] = []
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, **data):
+        super().__init__(**data)
         self.clusters = []
 
-    def add_cluster(cluster):
+    def add_cluster(self, cluster: Cluster):
         self.clusters.append(cluster)
 
     @abstractmethod
@@ -56,7 +57,7 @@ class MandalaData(BaseModel):
 
 
 
-def getMandalaData(post_id):
+def oldGetMandalaData(post_id):
     if (post_id == 17):
         mydata = { "clusters": [
             {"clustername": "cluster 6",

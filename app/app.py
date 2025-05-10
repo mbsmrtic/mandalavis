@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
 import os
-from app.src.mandalas.mandaladata import getMandalaData
+from app.src.mandalas.mandala17 import MandalaData17
 
 app = Flask(__name__)
 
@@ -21,7 +21,9 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    mydata = getMandalaData(post_id)
+    if (post_id == 17):
+        mydata = MandalaData17().getMandalaData()
+    # mydata = getMandalaData(post_id)
     # mydata = {}
     return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
 
