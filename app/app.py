@@ -22,7 +22,10 @@ def header():
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
     if (post_id == 17):
-        mydata = MandalaData17().getMandalaData()
+        mandala = MandalaData17()
+        mydata = mandala.getMandalaData()
+    else:
+        mydata = {}
     # mydata = getMandalaData(post_id)
     # mydata = {}
     return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
