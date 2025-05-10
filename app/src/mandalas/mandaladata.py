@@ -1,0 +1,391 @@
+from pydantic import BaseModel
+from enum import Enum
+from typing import Optional, List
+from abc import ABC, abstractmethod
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..')))
+
+
+class ShapeType(str, Enum):
+    ARC = "ArcShape"
+    BETWEEN_DOTS_DOT = "BetweenDotsDotShape"
+    CURVY_DROPLETS = "CurvyDroplets"
+    CURVY_DROPLET = "CurvyDroplet"
+    CURLY_BRACKET = "CurlyBracket"
+    DOTTED_ARC = "DottedArcShape"
+    DOT = "DotShape"
+    DROPLET = "DropletShape"
+    IMAGE = "ImageShape"
+    SPIRAL = "SpiralShape"
+    TILTED_CURVY_DROPLET = "TiltedCurvyDroplet"
+    TILTED_DROPLET = "TiltedDropletShape"
+    PALM_TREE = "PalmTreeShape"
+    POTTED_PLANT = "PottedPlant"
+    S = "SShape"
+    S_CURVE = "SCurve"
+    WAVE = "WaveShape"
+
+
+class DataItem(BaseModel):
+    desc: str
+
+class Cluster(BaseModel):
+    clustername: str
+    shape: ShapeType
+    offset: int
+    width: int
+    length: int
+    angleStart: Optional[float] = None
+    svgAttrs: Optional[dict] = None
+    data: List[DataItem]
+
+class MandalaData(BaseModel):
+
+    def __init__(self):
+        super().__init__()
+        self.clusters = []
+
+    def add_cluster(cluster):
+        self.clusters.append(cluster)
+
+    @abstractmethod
+    def getMandalaData():
+        pass
+
+
+
+
+def getMandalaData(post_id):
+    if (post_id == 17):
+        mydata = { "clusters": [
+            {"clustername": "cluster 6",
+                "shape": "ArcShape",
+                "offset": 91,
+                "width": 28,
+                "length": 11,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "arc first data item in cluster  6"},
+                    { "desc": "arc second data item in cluster 6"},
+                    { "desc": "arc third data item in cluster  6"},
+                    { "desc": "arc fourth data item in cluster 6"},
+                    { "desc": "arc fifth data item in cluster  6"},
+                    { "desc": "arc sixth data item in cluster  6"},
+                    { "desc": "arc seventh data item in cluste 6"},
+                    { "desc": "arc eighth data item in cluster 6"},
+                ]
+            },
+            {"clustername": "cluster 5",
+                "shape": "ArcShape",
+                "offset": 95,
+                "width": 30,
+                "length": -14,
+                "angleStart": 22.5,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "arc first data item in cluster  5"},
+                    { "desc": "arc second data item in cluster 5"},
+                    { "desc": "arc third data item in cluster  5"},
+                    { "desc": "arc fourth data item in cluster 5"},
+                    { "desc": "arc fifth data item in cluster  5"},
+                    { "desc": "arc sixth data item in cluster  5"},
+                    { "desc": "arc seventh data item in cluste 5"},
+                    { "desc": "arc eighth data item in cluster 5"},
+                ]
+            },
+            {"clustername": "cluster 4",
+                "shape": "DottedArcShape",
+                "offset": 93,
+                "width": 45,
+                "length": 15,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "dotted arc first data item in cluster  4"},
+                    { "desc": "dotted arc second data item in cluster 4"},
+                    { "desc": "dotted arc third data item in cluster  4"},
+                    { "desc": "dotted arc fourth data item in cluster 4"},
+                    { "desc": "dotted arc fifth data item in cluster  4"},
+                    { "desc": "dotted arc sixth data item in cluster  4"},
+                    { "desc": "dotted arc seventh data item in cluste 4"},
+                    { "desc": "dotted arc eighth data item in cluster 4"},
+                ]
+            },
+            {"clustername": "cluster 3",
+                "shape": "DottedArcShape",
+                "offset": 90,
+                "width": 44,
+                "length": -15,
+                "angleStart": 22.5,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "dotted arc first data item in cluster  3"},
+                    { "desc": "dotted arc second data item in cluster 3"},
+                    { "desc": "dotted arc third data item in cluster  3"},
+                    { "desc": "dotted arc fourth data item in cluster 3"},
+                    { "desc": "dotted arc fifth data item in cluster  3"},
+                    { "desc": "dotted arc sixth data item in cluster  3"},
+                    { "desc": "dotted arc seventh data item in cluste 3"},
+                    { "desc": "dotted arc eighth data item in cluster 3"},
+                ]
+            },
+            {"clustername": "cluster 2",
+                "shape": "SpiralShape",
+                "offset": 58,
+                "width": 23,
+                "length": 30,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "spiral first data item in cluster  2"},
+                    { "desc": "spiral second data item in cluster 2"},
+                    { "desc": "spiral third data item in cluster  2"},
+                    { "desc": "spiral fourth data item in cluster 2"},
+                    { "desc": "spiral fifth data item in cluster  2"},
+                    { "desc": "spiral sixth data item in cluster  2"},
+                    { "desc": "spiral seventh data item in cluste 2"},
+                    { "desc": "spiral eighth data item in cluster 2"},
+                ]
+            },
+            {"clustername": "cluster 0",
+                "shape": "CurvyDroplets",
+                "offset": 30,
+                "width": 20,
+                "length": 37,
+                "angleStart": 22.5,
+                "data": [
+                    { "desc": "curvy droplets first data item in cluster 0" },
+                    { "desc": "curvy droplets second data item in cluster 0" },
+                    { "desc": "curvy droplets third data item in cluster 0" },
+                    { "desc": "curvy droplets fourth data item in cluster 0" },
+                    { "desc": "curvy droplets fifth data item in cluster 0" },
+                    { "desc": "curvy droplets sixth data item in cluster 0" },
+                    { "desc": "curvy droplets seventh data item in cluster 0" },
+                    { "desc": "curvy droplets eighth data item in cluster 0" }
+                ]
+            },
+            {"clustername": "cluster 1",
+                "shape": "CurlyBracket",
+                "offset": 28,
+                "width": 23,
+                "length": 30,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 1},
+                "data": [
+                    { "desc": "curly bracket first data item in cluster  1"},
+                    { "desc": "curly bracket second data item in cluster 1"},
+                    { "desc": "curly bracket third data item in cluster  1"},
+                    { "desc": "curly bracket fourth data item in cluster 1"},
+                    { "desc": "curly bracket fifth data item in cluster  1"},
+                    { "desc": "curly bracket sixth data item in cluster  1"},
+                    { "desc": "curly bracket seventh data item in cluste 1"},
+                    { "desc": "curly bracket eighth data item in cluster 1"},
+                ]
+        }]}
+    elif (post_id == 16):
+        mydata = { "clusters": [{   "clustername": "cluster 0", 
+                "shape": "CurlyBracket",
+                "offset": 240.5,
+                "width": 60,
+                "length": 60,
+                "angleStart": 23,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 2},
+                "data": [
+                    { "desc": "curly bracket first data item in cluster 0" },
+                    { "desc": "curly bracket second data item in cluster 0" },
+                    { "desc": "curly bracket third data item in cluster 0" },
+                    { "desc": "curly bracket fourth data item in cluster 0" },
+                    { "desc": "curly bracket fifth data item in cluster 0" },
+                    { "desc": "curly bracket sixth data item in cluster 0" },
+                    { "desc": "curly bracket seventh data item in cluster 0" },
+                    { "desc": "curly bracket eighth data item in cluster 0" },
+                    { "desc": "curly bracket ninth data item in cluster 0" },
+                    { "desc": "curly bracket tenth data item in cluster 0" },
+                    { "desc": "curly bracket eleventh data item in cluster 0" },
+                    { "desc": "curly bracket twelfth data item in cluster 0" },
+                    { "desc": "curly bracket thirteenth data item in cluster 0" },
+                    { "desc": "curly bracket fourteenth data item in cluster 0" },
+                    { "desc": "curly bracket fifteenth data item in cluster 0" }
+                ]
+            },
+            {   "clustername": "cluster 7", #dots
+                "shape": "DotShape",
+                "offset": 253,
+                "width": 10,
+                "length": 10,
+                "angleStart": 11,
+                "data": [
+                    { "desc": "dot first data item in cluster 7" },
+                    { "desc": "dot second data item in cluster 7" },
+                    { "desc": "dot third data item in cluster 7" },
+                    { "desc": "dot fourth data item in cluster 7" },
+                    { "desc": "dot fifth data item in cluster 7" },
+                    { "desc": "dot sixth data item in cluster 7" },
+                    { "desc": "dot seventh data item in cluster 7" },
+                    { "desc": "dot eighth data item in cluster 7" },
+                    { "desc": "dot ninth data item in cluster 7" },
+                    { "desc": "dot tenth data item in cluster 7" },
+                    { "desc": "dot eleventh data item in cluster 7" },
+                    { "desc": "dot twelfth data item in cluster 7" },
+                    { "desc": "dot thirteenth data item in cluster 7" },
+                    { "desc": "dot fourteenth data item in cluster 7" },
+                    { "desc": "dot fifteenth data item in cluster 7" },
+                    { "desc": "dot sixteenth data item in cluster 7" },
+                    { "desc": "dot seventeenth data item in cluster 7" },
+                    { "desc": "dot eightteenth data item in cluster 7" },
+                    { "desc": "dot nineteenth data item in cluster 7" },
+                    { "desc": "dot twentieth data item in cluster 7" },
+                    { "desc": "dot twentyfirst data item in cluster 7" },
+                    { "desc": "dot twentysecond data item in cluster 7" },
+                    { "desc": "dot twentythird data item in cluster 7" },
+                    { "desc": "dot twentyfourth data item in cluster 7" },
+                    { "desc": "dot twentyfifth data item in cluster 7" },
+                    { "desc": "dot twentysixth data item in cluster 7" },
+                    { "desc": "dot twentyseventh data item in cluster 7" },
+                    { "desc": "dot twentyeighth data item in cluster 7" },
+                    { "desc": "dot twentyninth data item in cluster 7" },
+                    { "desc": "dot thirtyeth data item in cluster 7" }
+                ]
+            },
+            {   "clustername": "cluster 1", #dots
+                "shape": "DotShape",
+                "offset": 210,
+                "width": 20,
+                "length": 20,
+                "angleStart": 23,
+                "data": [
+                    { "desc": "dot first data item in cluster 1" },
+                    { "desc": "dot second data item in cluster 1" },
+                    { "desc": "dot third data item in cluster 1" },
+                    { "desc": "dot fourth data item in cluster 1" },
+                    { "desc": "dot fifth data item in cluster 1" },
+                    { "desc": "dot sixth data item in cluster 1" },
+                    { "desc": "dot seventh data item in cluster 1" },
+                    { "desc": "dot eighth data item in cluster 1" },
+                    { "desc": "dot ninth data item in cluster 1" },
+                    { "desc": "dot tenth data item in cluster 1" },
+                    { "desc": "dot eleventh data item in cluster 1" },
+                    { "desc": "dot twelfth data item in cluster 1" },
+                    { "desc": "dot thirteenth data item in cluster 1" },
+                    { "desc": "dot fourteenth data item in cluster 1" },
+                    { "desc": "dot fifteenth data item in cluster 1" }
+                ]
+            },
+            { "clustername": "cluster 2 ",  #spiral
+                "shape": "SpiralShape",
+                "offset": 200,
+                "width": 50,
+                "length": 50,
+                "angleStart": 10,
+                "svgAttrs": { "stroke": "#666", "stroke-width": 2, "fill": "white"},
+                "data": [
+                    { "desc": "spiral first data item in cluster 2" },
+                    { "desc": "spiral second data item in cluster 2" },
+                    { "desc": "spiral third data item in cluster 2" },
+                    { "desc": "spiral fourth data item in cluster 2" },
+                    { "desc": "spiral fifth data item in cluster 2" },
+                    { "desc": "spiral sixth data item in cluster 2" },
+                    { "desc": "spiral seventh data item in cluster 2" },
+                    { "desc": "spiral eighth data item in cluster 2" },
+                    { "desc": "spiral ninth data item in cluster 2" },
+                    { "desc": "spiral tenth data item in cluster 2" },
+                    { "desc": "spiral eleventh data item in cluster 2" },
+                    { "desc": "spiral twelfth data item in cluster 2" },
+                    { "desc": "spiral thirteenth data item in cluster 2" },
+                    { "desc": "spiral fourteenth data item in cluster 2" },
+                    { "desc": "spiral fifteenth data item in cluster 2" }
+                ]
+            }, {"clustername": "cluster 3",  #dotted arc
+                "shape": "DottedArcShape",
+                "offset": 175,
+                "width": 75,
+                "length": 35,
+                "svgAttrs": {"stroke": "#666", "stroke-width": 2},
+                "stroke-width": 2,
+                "data": [
+                    { "desc": "dotted arc first data item in cluster 3" },
+                    { "desc": "dotted arc second data item in cluster 3" },
+                    { "desc": "dotted arc third data item in cluster 3" },
+                    { "desc": "dotted arc fourth data item in cluster 3" },
+                    { "desc": "dotted arc fifth data item in cluster 3" },
+                    { "desc": "dotted arc sixth data item in cluster 3" },
+                    { "desc": "dotted arc seventh data item in cluster 3" },
+                    { "desc": "dotted arc eighth data item in cluster 3" },
+                    { "desc": "dotted arc ninth data item in cluster 3" },
+                    { "desc": "dotted arc tenth data item in cluster 3" },
+                    { "desc": "dotted arc eleventh data item in cluster 3" },
+                    { "desc": "dotted arc twelfth data item in cluster 3" },
+                    { "desc": "dotted arc thirteenth data item in cluster 3" },
+                    { "desc": "dotted arc fourteenth data item in cluster 3" },
+                    { "desc": "dotted arc fifteenth data item in cluster 3" }
+                ]
+            }, {"clustername": "cluster 4",  #curvy droplets
+                "shape": "CurvyDroplets",
+                "offset": 105,
+                "width": 80,
+                "length": 80,
+                "data": [
+                    { "desc": "curvy droplets first data item in cluster 4" },
+                    { "desc": "curvy droplets second data item in cluster 4" },
+                    { "desc": "curvy droplets third data item in cluster 4" },
+                    { "desc": "curvy droplets fourth data item in cluster 4" },
+                    { "desc": "curvy droplets fifth data item in cluster 4" },
+                    { "desc": "curvy droplets sixth data item in cluster 4" },
+                    { "desc": "curvy droplets seventh data item in cluster 4" },
+                    { "desc": "curvy droplets eighth data item in cluster 4" },
+                    { "desc": "curvy droplets ninth data item in cluster 4" },
+                    { "desc": "curvy droplets tenth data item in cluster 4" },
+                    { "desc": "curvy droplets eleventh data item in cluster 4" },
+                    { "desc": "curvy droplets twelfth data item in cluster 4" },
+                    { "desc": "curvy droplets thirteenth data item in cluster 4" },
+                    { "desc": "curvy droplets fourteenth data item in cluster 4" },
+                    { "desc": "curvy droplets fifteenth data item in cluster 4" }
+                ]
+            }, {"clustername": "cluster 5",  #curvy droplet
+                "shape": "CurvyDroplet",
+                "offset": 65,
+                "width": 60,
+                "length": 60,
+                "angleStart": 12,
+                "data": [
+                    { "desc": "curvy droplet first data item in cluster 5" },
+                    { "desc": "curvy droplet second data item in cluster 5" },
+                    { "desc": "curvy droplet third data item in cluster 5" },
+                    { "desc": "curvy droplet fourth data item in cluster 5" },
+                    { "desc": "curvy droplet fifth data item in cluster 5" },
+                    { "desc": "curvy droplet sixth data item in cluster 5" },
+                    { "desc": "curvy droplet seventh data item in cluster 5" },
+                    { "desc": "curvy droplet eighth data item in cluster 5" },
+                    { "desc": "curvy droplet ninth data item in cluster 5" },
+                    { "desc": "curvy droplet tenth data item in cluster 5" },
+                    { "desc": "curvy droplet eleventh data item in cluster 5" },
+                    { "desc": "curvy droplet twelfth data item in cluster 5" },
+                    { "desc": "curvy droplet thirteenth data item in cluster 5" },
+                    { "desc": "curvy droplet fourteenth data item in cluster 5" },
+                    { "desc": "curvy droplet fifteenth data item in cluster 5" }
+                ]
+            }, {"clustername": "cluster 6",  #curvy droplet
+                "shape": "CurvyDroplet",
+                "offset": 40,
+                "width": 60,
+                "length": 60,
+                "data": [
+                    { "desc": "curvy droplet first data item in cluster 6" },
+                    { "desc": "curvy droplet second data item in cluster 6" },
+                    { "desc": "curvy droplet third data item in cluster 6" },
+                    { "desc": "curvy droplet fourth data item in cluster 6" },
+                    { "desc": "curvy droplet fifth data item in cluster 6" },
+                    { "desc": "curvy droplet sixth data item in cluster 6" },
+                    { "desc": "curvy droplet seventh data item in cluster 6" },
+                    { "desc": "curvy droplet eighth data item in cluster 6" },
+                    { "desc": "curvy droplet ninth data item in cluster 6" },
+                    { "desc": "curvy droplet tenth data item in cluster 6" },
+                    { "desc": "curvy droplet eleventh data item in cluster 6" },
+                    { "desc": "curvy droplet twelfth data item in cluster 6" },
+                    { "desc": "curvy droplet thirteenth data item in cluster 6" },
+                    { "desc": "curvy droplet fourteenth data item in cluster 6" },
+                    { "desc": "curvy droplet fifteenth data item in cluster 6" }
+                ]
+            },
+        ]}
+    else:
+        mydata = {"clusters": []}
+    return mydata
