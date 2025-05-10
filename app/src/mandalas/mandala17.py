@@ -9,26 +9,66 @@ class MandalaData17(MandalaData):
 
     def getMandalaData(self):
         cluster = Cluster(
-            clustername="cluster 9",
-            shape=ShapeType.ARC.value,
-            offset=125,
-            width=101,
-            length=30,
-            # angleStart=22.5,
+            clustername="cluster 11",
+            shape=ShapeType.CURLY_BRACKET.value,
+            offset=95,
+            width=45,
+            length=70,
             svgAttrs={"stroke": "#666", "stroke-width": 1},
-            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 9") for i in range(1, 9)]
+            data=[DataItem(desc=f"curly bracket {i}th item in cluster 10") for i in range(1, 9)]
         )
         self.add_cluster(cluster)
         cluster = Cluster(
-            clustername="cluster 8",
-            shape=ShapeType.ARC.value,
-            offset=125,
+            clustername="cluster 10",
+            shape=ShapeType.DOT.value,
+            offset=115,
+            width=10,
+            length=10,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"dot {i}th item in cluster 10") for i in range(1, 9)]
+        )
+        self.add_cluster(cluster)
+        cluster = Cluster(
+            clustername="cluster 11",
+            shape=ShapeType.DOT.value,
+            offset=99,
+            width=8,
+            length=8,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"dot {i}th item in cluster 11") for i in range(1, 9)]
+        )
+        self.add_cluster(cluster)
+        cluster = Cluster(
+            clustername="cluster 12",
+            shape=ShapeType.DOT.value,
+            offset=85,
+            width=6,
+            length=6,
+            svgAttrs={"stroke": "#666", "stroke-width": 1},
+            data=[DataItem(desc=f"dot {i}th item in cluster 11") for i in range(1, 9)]
+        )
+        self.add_cluster(cluster)
+        cluster = Cluster(
+            clustername="cluster 9",
+            shape=ShapeType.DOTTED_ARC.value,
+            offset=128,
             width=101,
             length=30,
             # angleStart=22.5,
             svgAttrs={"stroke": "#666", "stroke-width": 1},
-            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 8") for i in range(1, 9)]
+            data=[DataItem(desc=f"arc {i}th item in cluster 9") for i in range(1, 9)]
         )
+        # self.add_cluster(cluster)
+        # cluster = Cluster(
+        #     clustername="cluster 8",
+        #     shape=ShapeType.ARC.value,
+        #     offset=125,
+        #     width=101,
+        #     length=30,
+        #     # angleStart=22.5,
+        #     svgAttrs={"stroke": "#666", "stroke-width": 1},
+        #     data=[DataItem(desc=f"arc {i}th item in cluster 8") for i in range(1, 9)]
+        # )
         self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 7",
@@ -38,7 +78,7 @@ class MandalaData17(MandalaData):
             length=-66,
             angleStart=22.5,
             svgAttrs={"stroke": "#888", "stroke-width": 1},
-            data=[DataItem(desc=f"tilted curvy {i}th item in cluster 7") for i in range(1, 9)]
+            data=[DataItem(desc=f"droplet {i}th item in cluster 7") for i in range(1, 9)]
         )
         self.add_cluster(cluster)
         cluster = Cluster(
