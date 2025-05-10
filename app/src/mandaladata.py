@@ -4,14 +4,23 @@ from typing import Optional, List
 
 class ShapeType(str, Enum):
     ARC = "ArcShape"
-    DOTTED_ARC = "DottedArcShape"
-    DOT = "DotShape"
-    SPIRAL = "SpiralShape"
+    BETWEEN_DOTS_DOT = "BetweenDotsDotShape"
     CURVY_DROPLETS = "CurvyDroplets"
     CURVY_DROPLET = "CurvyDroplet"
     CURLY_BRACKET = "CurlyBracket"
+    DOTTED_ARC = "DottedArcShape"
+    DOT = "DotShape"
     DROPLET = "DropletShape"
+    IMAGE = "ImageShape"
+    SPIRAL = "SpiralShape"
     TILTED_CURVY_DROPLET = "TiltedCurvyDroplet"
+    TILTED_DROPLET = "TiltedDropletShape"
+    PALM_TREE = "PalmTreeShape"
+    POTTED_PLANT = "PottedPlant"
+    S = "SShape"
+    S_CURVE = "SCurve"
+    WAVE = "WaveShape"
+
 
 class DataItem(BaseModel):
     desc: str

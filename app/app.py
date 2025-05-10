@@ -23,7 +23,7 @@ def header():
 def render_post(post_id):
     # mydata = getMandalaData(post_id)
     # mydata = {}
-    return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
+    return render_template(f'post.html', post_id=post_id) #, mandalaData=mydata)
 
 @app.route('/testmandala')
 def render_testMandala():
