@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
 import os
-from app.src.mandalas.mandala17 import MandalaData17
+from app.src.mandalas.mandala16 import MandalaData16
 
 app = Flask(__name__)
 
@@ -13,7 +13,9 @@ def favicon():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    mandala = MandalaData16()
+    mydata = mandala.getMandalaData()
+    return render_template('index.html', mandalaData=mydata)
 
 @app.route('/pages/header.html')
 def header():
@@ -21,8 +23,8 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    if (post_id == 17):
-        mandala = MandalaData17()
+    if (post_id == 16):
+        mandala = MandalaData16()
         mydata = mandala.getMandalaData()
     else:
         mydata = {}

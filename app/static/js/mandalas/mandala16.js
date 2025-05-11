@@ -2,8 +2,8 @@ import { Mandala } from "/static/js/mandala.js";
 import { Peapod } from "/static/js/shapes/peapod.js";
 import { MandalaInteractions } from "/static/js/svg-interactions.js";
 import { DotShape } from "/static/js/shapes/dot.js";
-import { CurvyDroplet, CurvyDroplets } from "/static/js/shapes/droplet.js";
-import { DottedArcShape } from "/static/js/shapes/arc.js";
+import { CurvyDroplet, CurvyDroplets, DropletShape, TiltedCurvyDroplet } from "/static/js/shapes/droplet.js";
+import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
 import { SpiralShape } from "/static/js/shapes/spiral.js"
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 
@@ -20,12 +20,15 @@ var myData = JSON.parse(validJson);
 myData = myData["clusters"];
 
 const shapeConstructors = {
+    ArcShape: (shapeArgs, svgAttrs) => new ArcShape(shapeArgs, svgAttrs),
     DotShape: (shapeArgs, svgAttrs) => new DotShape(shapeArgs, svgAttrs),
     SpiralShape: (shapeArgs, svgAttrs) => new SpiralShape(shapeArgs, svgAttrs),
     DottedArcShape: (shapeArgs, svgAttrs) => new DottedArcShape(shapeArgs, svgAttrs),
     CurvyDroplets: (shapeArgs, svgAttrs) => new CurvyDroplets(shapeArgs, svgAttrs),
     CurvyDroplet: (shapeArgs, svgAttrs) => new CurvyDroplet(shapeArgs, svgAttrs),
     CurlyBracket: (shapeArgs, svgAttrs) => new CurlyBracket(shapeArgs, svgAttrs),
+    DropletShape:  (shapeArgs, svgAttrs) => new DropletShape(shapeArgs, svgAttrs),
+    TiltedCurvyDroplet: (shapeArgs, svgAttrs) => new TiltedCurvyDroplet(shapeArgs, svgAttrs),
     default: () => { throw new Error('Unknown shape type'); }
 }
 
@@ -43,4 +46,4 @@ if (myData && myData.length > 0){
     });    
 }
 
-mandala.addCenteredCircle(40); 
+mandala.addCenteredCircle(30, '#666', 'white'); 
