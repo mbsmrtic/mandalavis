@@ -28,16 +28,16 @@ class MandalaData17(MandalaData):
             data=[DataItem(desc=f"dot {i}th item in cluster 10") for i in range(1, 9)]
         )
         self.add_cluster(cluster)
-        cluster = Cluster(
-            clustername="cluster 11",
-            shape=ShapeType.DOT.value,
-            offset=99,
-            width=8,
-            length=8,
-            svgAttrs={"stroke": "#666", "stroke-width": 1},
-            data=[DataItem(desc=f"dot {i}th item in cluster 11") for i in range(1, 9)]
-        )
-        self.add_cluster(cluster)
+        # cluster = Cluster(
+        #     clustername="cluster 11",
+        #     shape=ShapeType.DOT.value,
+        #     offset=99,
+        #     width=8,
+        #     length=8,
+        #     svgAttrs={"stroke": "#666", "stroke-width": 1},
+        #     data=[DataItem(desc=f"dot {i}th item in cluster 11") for i in range(1, 9)]
+        # )
+        # self.add_cluster(cluster)
         cluster = Cluster(
             clustername="cluster 12",
             shape=ShapeType.DOT.value,
