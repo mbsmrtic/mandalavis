@@ -65,7 +65,7 @@ export class Mandala {
         const tooltip = article.querySelector('.tooltip');
         const textNode = element.childNodes[0];
         const extractedText = (textNode.nodeValue ?? "").trim();
-    if (tooltip && extractedText && extractedText.length < 100) {
+        if (tooltip && extractedText && extractedText.length < 100) {
             tooltip.textContent = extractedText; // element.textContent;
             tooltip.style.display = 'block';   
         }
@@ -84,6 +84,9 @@ export class Mandala {
         if (addCircle) { this.#circleElement(element);}
     }
 
+    // This private method creates a circle around the element
+    //  and appends it to the mandalaEl
+    //  It is used to highlight the element when it is selected
     #circleElement(element) {
         const bbox = element.getBBox();
 

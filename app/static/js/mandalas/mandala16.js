@@ -13,7 +13,7 @@ const mandalaElementId = mandalaId;
 var mandala = new Mandala(mandalaElementId, 300, 300);
 var interactions = new MandalaInteractions(mandalaNum);
 
-const dataElement = document.getElementById('mandala-data-' + mandalaNum);
+const dataElement = document.getElementById('mandala-' + mandalaNum + '-data');
 const str = dataElement.dataset.mandala;
 const validJson = str.replace(/'/g, '"');
 var myData = JSON.parse(validJson);
