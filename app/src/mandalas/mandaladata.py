@@ -76,11 +76,11 @@ class MandalaData(BaseModel):
         self.clusters.append(cluster)
 
     def create_mandala_data(self, postid):
-        module_name = f"app.src.mandalas.mandala{postid}"
-        file_path = f"app/src/mandalas/mandala{postid}.py"
-        spec = importlib.util.spec_from_file_location(module_name, file_path)
-        module = importlib.util.module_from_spec(spec)
         try:
+            module_name = f"app.src.mandalas.mandala{postid}"
+            file_path = os.path.abspath(f"app/src/mandalas/mandala{postid}.py")
+            spec = importlib.util.spec_from_file_location(module_name, file_path)
+            module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
         except ModuleNotFoundError as e:
             print(f"Module not found: {e}")
