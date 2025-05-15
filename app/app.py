@@ -2,8 +2,6 @@ from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
 import os
-from app.src.mandalas.mandala16 import MandalaData16
-from app.src.mandalas.mandala17 import MandalaData17
 from app.src.mandalas.mandaladata import MandalaData
 
 app = Flask(__name__)
