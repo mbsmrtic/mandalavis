@@ -26,8 +26,8 @@ mandala.addShape(new WaveShape({
 }));
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - 53.5,
-    width: 2.5,
+    y: mandala.centerY - 54,
+    width: 4,// 2.5,
     angleStart: 12,
     howMany: 12,
 }));
@@ -59,8 +59,8 @@ mandala.addShape(new CurlyBracket({
 }, { fill: 'white'}));
 mandala.addShape(new DotShape({
     x: mandala.centerX,
-    y: mandala.centerY - 34.75,
-    width: 1.25,
+    y: mandala.centerY - 35,
+    width: 2, // 1.25,
     angleStart: 10,
     howMany: 20,
 }));
@@ -88,7 +88,7 @@ mandala.addShape(new WaveShape({
 // Create inner circle
 mandala.addCenteredCircle(mandala.innerR, 'black', 'white');
 // flower shape in the center
-mandala.addShape(new DotShape({width: 2.5, x: mandala.centerX, y: mandala.centerY + 2.5}));
+mandala.addShape(new DotShape({width: 4, x: mandala.centerX, y: mandala.centerY + 2}));
 mandala.addShape(new DropletShape({
     x: mandala.centerX, y: mandala.centerY - 9, 
     length: -13, width: 5,

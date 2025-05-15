@@ -36,7 +36,7 @@ export class DottedArcShape extends CompositeShape {
         // If we haven't yet added the shapes, do it now
         if (this.shapes.length == 0) {
             this.addShape(new ArcShape(this.shapeArgs, this.svgElementAttributes));
-            const dotSize = 1;
+            const dotSize = 1.6;
             this.y += dotSize;
             // make dots 
             const turns = 1;

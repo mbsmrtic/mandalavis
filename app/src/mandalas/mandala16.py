@@ -16,9 +16,9 @@ def createData():
     cluster = Cluster(
         clustername="cluster 10",
         shape=ShapeType.DOT.value,
-        offset=115,
-        width=10,
-        length=10,
+        offset=117,
+        width=16,
+        length=16,
         svgAttrs={"stroke": "#666", "stroke-width": 1},
         data=[DataItem(desc=f"dot {i}th item in cluster 10") for i in range(1, 9)]
     )
@@ -27,9 +27,9 @@ def createData():
     cluster = Cluster(
         clustername="cluster 12",
         shape=ShapeType.DOT.value,
-        offset=85,
-        width=6,
-        length=6,
+        offset=87,
+        width=9,
+        length=9,
         svgAttrs={"stroke": "#666", "stroke-width": 1},
         data=[DataItem(desc=f"dot {i}th item in cluster 12") for i in range(1, 9)]
     )

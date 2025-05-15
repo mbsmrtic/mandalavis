@@ -15,7 +15,7 @@ function addRowOfCircles(yStartOffset, r, color, count) {
     //Bigger circles
     var dotShape = new DotShape({
         offset: mandala.outerR + yStartOffset,
-        width: r,
+        width: r*2,
         color: color,
         howMany: count
     });
@@ -26,24 +26,24 @@ function addRowOfCircles(yStartOffset, r, color, count) {
 }
 
 
-var r = 2.5;
+var r = 2;
 const countOfCircles = 35;
 // green shapes
-addRowOfCircles(r - 3, r, "#37653A", countOfCircles);
-r = 3;
+addRowOfCircles(r - 2, r, "#37653A", countOfCircles);
+r = 2.4;
 // yellow shapes
-addRowOfCircles(1.5 * r, r, "#FDCC0D", countOfCircles);
+addRowOfCircles(2 * r, r, "#FDCC0D", countOfCircles);
 // blue shapes
-addRowOfCircles(3.5 * r, r, "#2E2B89", countOfCircles + 2);
+addRowOfCircles(4.5 * r, r, "#2E2B89", countOfCircles + 2);
 // bright green
-addRowOfCircles(5.5 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
+addRowOfCircles(7 * r, r, "rgb(98, 180, 103", countOfCircles - 5);
 
 // #ced7d8 
 // #ff6b6b 
 // #118ab2 
-r = 4 //3.5
+r = 3.2
 // purple
-addRowOfCircles(7 * r, r, "#69359C", countOfCircles + 7);
+addRowOfCircles(9 * r, r, "#69359C", countOfCircles + 7);
 
 // #006B3C green
 // #69359C purple

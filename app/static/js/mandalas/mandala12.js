@@ -22,8 +22,8 @@ mandala.addShape(new CurlyBracket({
 }));
 mandala.addShape(new DotShape({ 
     x: mandala.centerX, 
-    y: mandala.centerY - 95, 
-    width: 4,
+    y: mandala.centerY - 96, 
+    width: 6.5,
     howMany: howMany
 }));
 

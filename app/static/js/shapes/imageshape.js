@@ -3,7 +3,7 @@ import { MandalaShape } from "./mandalashape.js";
 export class ImageShape extends MandalaShape {
     constructor(shapeArgs, imageUrl){
         super(shapeArgs, {});
-        this.imageUrl = imageUrl;
+        this.imageUrl = imageUrl ?? '/favicon.ico'
     }
     shapeElementTag() { return "image"; }
     shapeElementAttributes() {

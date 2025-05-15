@@ -34,7 +34,7 @@ function buildThisMandala(mandala) {
     mandala.addShape(new DotShape({
         offset: 68,
         angleStart: 6,
-        width: 3,
+        width: 5,
         howMany: 30,
         color: '#999'
     }));

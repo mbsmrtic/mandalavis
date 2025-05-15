@@ -9,6 +9,8 @@ export class WaveShape extends MandalaShape {
         let r = i * radiusStep;
         let y = this.startY + .2 * r * Math.sin(angle);
         let x = this.startX + .2 * r * Math.cos(angle);
+        y = y.toFixed(4);
+        x = x.toFixed(4);
         return { x, y };
     }
     shapeElementTag() { return "path"; }
@@ -40,8 +42,8 @@ export class WaveShape extends MandalaShape {
             pathD += " L " + point.x + ' ' + point.y + ' ';
         }
 
-        currentX = point.x;
-        currentY = point.y;
+        currentX = parseFloat(point.x);
+        currentY = parseFloat(point.y);
         pathD += this.curveToString(
             currentX + (.15 * width), currentY + (.1 * width), 
             currentX + (.3 * width), currentY + (.35 * width), 

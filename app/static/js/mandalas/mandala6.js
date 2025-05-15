@@ -30,8 +30,8 @@ for (var i = 0; i < 4; i++) {
 
 // dots over those Curly Brackets
 mandala.addShape(new DotShape({
-    offset: mandala.outerR + 1,
-    width: 2,
+    offset: mandala.outerR + 1.5,
+    width: 3,
     angleStart: 10,
     howMany: 18
 }));
@@ -63,7 +63,7 @@ for (let i=10; i < 180; i+=20) {
     mandala.addShape(new DotShape({
         x: currentX,
         y: currentY + 1,
-        width: 1.25,
+        width: 2,
         howMany: 6,
         angleStart: 30
         }));
@@ -89,7 +89,7 @@ mandala.addShape(new DropletShape({
 }, { fill: "#666", stroke: "#666", 'stroke-width': .5}));
 mandala.addShape(new DotShape({
     offset: mandala.outerR + 12,
-    width: 1.9,
+    width: 3,
     color: "white",
     howMany: 6
 }, { fill: "white", stroke: "#666", 'stroke-width': .5}));

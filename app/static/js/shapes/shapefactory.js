@@ -16,7 +16,7 @@ import { WaveShape } from "/static/js/shapes/wave.js"
 // Each shape class extends MandalaShape.
 // Because we create our mandalas from the data created in python on the server,
 // this object should contain the same shapes that are in /app/src/mandalas/mandaladata.py ShapeType.
-const shapeClasses = {
+export const shapeClasses = {
     ArcShape,
     BetweenDotsDotShape,
     CurlyBracket,

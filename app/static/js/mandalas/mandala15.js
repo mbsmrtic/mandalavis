@@ -42,9 +42,9 @@ var myData =
         },
         {   "clustername": "cluster 7", //dots
             "shape": "DotShape",
-            "offset": 253,
-            width: 10,
-            length: 10,
+            "offset": 255,
+            width: 16,
+            length: 16,
             angleStart: 11,
             "data": [
                 { "desc": "dot first data item in cluster 7" },
@@ -81,9 +81,9 @@ var myData =
         },
         {   "clustername": "cluster 1", //dots
             "shape": "DotShape",
-            "offset": 210,
-            width: 20,
-            length: 20,
+            "offset": 214,
+            width: 32,
+            length: 32,
             angleStart: 23,
             "data": [
                 { "desc": "dot first data item in cluster 1" },

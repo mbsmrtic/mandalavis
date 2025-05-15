@@ -47,8 +47,8 @@ export class PottedPlant extends CompositeShape {
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, true)); //tiltLeft
             this.addShape(new TiltedDropletShape(this.shapeArgs, this.svgElementAttributes, false));//tiltRight
             var dotArgs = this.shapeArgs;
-            dotArgs['width'] = this.shapeArgs['width'] * .3;
-            dotArgs['y'] += dotArgs['width'];
+            dotArgs['width'] = this.shapeArgs['width'] * .5, //.3;
+            dotArgs['y'] += dotArgs['width']/2;
             dotArgs['color'] = '#666';
             this.addShape(new DotShape(dotArgs, this.svgElementAttributes));
         }
