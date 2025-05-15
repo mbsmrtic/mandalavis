@@ -78,7 +78,8 @@ class MandalaData(BaseModel):
     def create_mandala_data(self, postid):
         try:
             module_name = f"app.src.mandalas.mandala{postid}"
-            file_path = os.path.abspath(f"app/src/mandalas/mandala{postid}.py")
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            file_path = os.path.join(base_dir, f'mandala{postid}.py')
             spec = importlib.util.spec_from_file_location(module_name, file_path)
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
