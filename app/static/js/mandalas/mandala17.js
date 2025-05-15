@@ -1,40 +1,21 @@
-import { Mandala } from "/static/js/mandala.js";
-import { Peapod } from "/static/js/shapes/peapod.js";
+//Goals for this mandala:  
+//   use new shape factory
+//   use a fake citation network - on highlight - show papers that cite the highlighted paper
+
+import { Mandala } from "/static/js/mandala.js"
 import { MandalaInteractions } from "/static/js/svg-interactions.js";
-import { DotShape } from "/static/js/shapes/dot.js";
-import { CurvyDroplet, CurvyDroplets, DropletShape, TiltedCurvyDroplet } from "/static/js/shapes/droplet.js";
-import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
-import { SpiralShape } from "/static/js/shapes/spiral.js"
-import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
+import { createShape } from "/static/js/shapes/shapefactory.js";
 
 var mandalaNum = '17';
-var mandalaId = "mandala" + mandalaNum;
-const mandalaElementId = mandalaId; 
+const mandalaElementId = "mandala" + mandalaNum; 
 var mandala = new Mandala(mandalaElementId, 300, 300);
 var interactions = new MandalaInteractions(mandalaNum);
 
-const dataElement = document.getElementById('mandala-data-' + mandalaNum);
-const str = dataElement.dataset.mandala;
-const validJson = str.replace(/'/g, '"');
-var myData = JSON.parse(validJson);
-myData = myData["clusters"];
-
-const shapeConstructors = {
-    ArcShape: (shapeArgs, svgAttrs) => new ArcShape(shapeArgs, svgAttrs),
-    DotShape: (shapeArgs, svgAttrs) => new DotShape(shapeArgs, svgAttrs),
-    SpiralShape: (shapeArgs, svgAttrs) => new SpiralShape(shapeArgs, svgAttrs),
-    DottedArcShape: (shapeArgs, svgAttrs) => new DottedArcShape(shapeArgs, svgAttrs),
-    CurvyDroplets: (shapeArgs, svgAttrs) => new CurvyDroplets(shapeArgs, svgAttrs),
-    CurvyDroplet: (shapeArgs, svgAttrs) => new CurvyDroplet(shapeArgs, svgAttrs),
-    CurlyBracket: (shapeArgs, svgAttrs) => new CurlyBracket(shapeArgs, svgAttrs),
-    DropletShape:  (shapeArgs, svgAttrs) => new DropletShape(shapeArgs, svgAttrs),
-    TiltedCurvyDroplet: (shapeArgs, svgAttrs) => new TiltedCurvyDroplet(shapeArgs, svgAttrs),
-    default: () => { throw new Error('Unknown shape type'); }
-}
+const myData = mandala.mandalaData();
 
 if (myData && myData.length > 0){
     myData.forEach(cluster => {
-        var newShape = (shapeConstructors[cluster.shape] || shapeConstructors.default)({
+        var newShape = createShape(cluster.shape, {
             offset: cluster.offset,
             width: cluster.width,
             length: cluster.length,
@@ -45,14 +26,3 @@ if (myData && myData.length > 0){
         mandala.addShape(newShape);
     });    
 }
-
-// let peapod = new Peapod({offset: 30, width:80, length:80, howMany: 1});
-// mandala.addShape(peapod);
-// peapod.controlPoints.forEach((pt) => {
-//     mandala.showControlPoint(pt);
-// });
-// for (let i = 0; i < peapod.controlPoints.length; i++) {
-//     mandala.showControlPoint(peapod.controlPoints[i]);
-// }
-
-mandala.addCenteredCircle(30, '#666', 'white'); 

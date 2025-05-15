@@ -5,7 +5,7 @@
 <body>
     <div class="container">
         <div class="content">
-            {% for post_id in range(14, 17)| reverse %}
+            {% for post_id in range(14, 18)| reverse %}
                 {% include 'posts/post' ~ post_id ~ '.html' %}
             {% endfor %}
         </div>

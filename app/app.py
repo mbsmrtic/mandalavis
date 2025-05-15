@@ -3,6 +3,8 @@ from flask import render_template
 from flask import url_for, send_from_directory
 import os
 from app.src.mandalas.mandala16 import MandalaData16
+from app.src.mandalas.mandala17 import MandalaData17
+from app.src.mandalas.mandaladata import MandalaData
 
 app = Flask(__name__)
 
@@ -13,9 +15,12 @@ def favicon():
 
 @app.route('/')
 def index():
-    mandala = MandalaData16()
-    mydata = mandala.getMandalaData()
-    return render_template('index.html', mandalaData=mydata)
+    template_data = {}
+    mandala16 = MandalaData()
+    template_data[16] = mandala16.create_mandala_data(16)
+    mandala17 = MandalaData()
+    template_data[17] = mandala17.create_mandala_data(17)
+    return render_template('index.html', mandalaData=template_data)
 
 @app.route('/pages/header.html')
 def header():
@@ -23,14 +28,10 @@ def header():
 
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
-    if (post_id == 16):
-        mandala = MandalaData16()
-        mydata = mandala.getMandalaData()
-    else:
-        mydata = {}
-    # mydata = getMandalaData(post_id)
-    # mydata = {}
-    return render_template(f'post.html', post_id=post_id, mandalaData=mydata)
+    template_data = {}
+    mandala_data = MandalaData()
+    template_data[post_id] = mandala_data.create_mandala_data(post_id)
+    return render_template(f'post.html', post_id=post_id, mandalaData=template_data)
 
 @app.route('/testmandala')
 def render_testMandala():
