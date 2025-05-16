@@ -37,7 +37,7 @@ export class Mandala {
         }
     }
 
-    mandalaData() {
+    getMandalaDataFromDOM() {
         const dataElement = document.getElementById(this.elementId + '-data');
         if (! dataElement) {
             throw new Error("Mandala data element not found: " + this.elementId + '-data');

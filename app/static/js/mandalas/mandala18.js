@@ -11,7 +11,7 @@ const mandalaElementId = "mandala" + mandalaNum;
 var mandala = new Mandala(mandalaElementId, 100, 100);
 var interactions = new MandalaInteractions(mandalaNum);
 
-const myData = mandala.mandalaData();
+const myData = mandala.getMandalaDataFromDOM();
 
 if (myData && myData.length > 0){
     myData.forEach(cluster => {
