@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a href="{{ url_for('render_post', post_id=post_id-1)}}" class="prev-post">Previous</a>
+    <a href="{{ url_for('render_post', post_id=post_id+1)}}" class="next-post">Next</a>
+
     {% include 'posts/post' ~ post_id ~ '.html' %}
 {% endblock %}

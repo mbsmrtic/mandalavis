@@ -78,3 +78,35 @@ article {
     transition-duration: 0.4s; /* Smooth hover effect */
     cursor: pointer;
 }
+.next-post {
+    background-color: #043D66; /* Blue */
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px; /* Rounded corners */
+    transition-duration: 0.4s; /* Smooth hover effect */
+    cursor: pointer;
+    position: absolute; /* Positioning the button */
+    right: 20px; /* Distance from the right edge */
+    /*bottom: 20px;  Optional: Distance from the bottom edge */
+}
+.prev-post {
+    background-color: #043D66; /* Blue */
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px; /* Rounded corners */
+    transition-duration: 0.4s; /* Smooth hover effect */
+    cursor: pointer;
+    position: absolute; /* Positioning the button */
+    right: 123px; /* Distance from the right edge */
+    /*bottom: 20px;  Optional: Distance from the bottom edge */
+}
