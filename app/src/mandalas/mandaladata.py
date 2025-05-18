@@ -7,6 +7,8 @@ from pydantic import BaseModel
 from enum import Enum
 from typing import Optional, List
 from abc import ABC, abstractmethod
+from flask import current_app, url_for
+from jinja2.exceptions import TemplateNotFound
 import sys
 import os
 import importlib.util
@@ -75,6 +77,37 @@ class MandalaData(BaseModel):
     def add_cluster(self, cluster: Cluster):
         self.clusters.append(cluster)
 
+    # These methods are used to get the next and previous urls for the mandala data.
+    # They are called in app.py
+    def get_prev_url(self, postid):
+        ret_url = None
+        try:
+            template_file_name = f'posts/post{postid - 1}.html'
+            # We use the jinja2 template engine to check if the
+            # template exists. 
+            current_app.jinja_env.get_template(template_file_name)
+            # The template exists
+            ret_url = url_for('render_post', post_id=postid - 1)
+            print(f'{template_file_name} found')
+        except TemplateNotFound:
+            # The template does not exist
+            print(f'{template_file_name} not found')
+        return ret_url
+    
+    def get_next_url(self, postid):
+        ret_url = None
+        try:
+            template_file_name = f'posts/post{postid + 1}.html'
+            template = current_app.jinja_env.get_template(template_file_name)
+            # The template exists
+            ret_url = url_for('render_post', post_id=postid + 1)
+            print(f'{template_file_name} found')
+        except TemplateNotFound:
+            # The template does not exist
+            print(f'{template_file_name} not found')
+        return ret_url
+
+
     def create_mandala_data(self, postid):
         try:
             module_name = f"app.src.mandalas.mandala{postid}"
@@ -90,8 +123,7 @@ class MandalaData(BaseModel):
         except Exception as e:
             print(f"Other error: {e}")
         else:
-            createData = module.createData
-            self.clusters = createData()
+            self.clusters = module.createData()
         return self.model_dump_json()
 
     # This method should be implemented by subclasses (mandalas) to provide specific mandala data

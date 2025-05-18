@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import url_for, send_from_directory
+from jinja2 import TemplateNotFound 
 import os
 from app.src.mandalas.mandaladata import MandalaData
 
@@ -29,6 +30,8 @@ def render_post(post_id):
     template_data = {}
     mandala_data = MandalaData()
     template_data[post_id] = mandala_data.create_mandala_data(post_id)
+    template_data['prev_url'] = mandala_data.get_prev_url(post_id)
+    template_data['next_url'] = mandala_data.get_next_url(post_id)
     return render_template(f'post.html', post_id=post_id, mandalaData=template_data)
 
 @app.route('/testmandala')

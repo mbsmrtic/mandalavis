@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="{{ url_for('render_post', post_id=post_id-1)}}" class="prev-post">Previous</a>
-    <a href="{{ url_for('render_post', post_id=post_id+1)}}" class="next-post">Next</a>
-
+    {% with prev_url=mandalaData.get('prev_url') %}
+        {% if prev_url %}
+            <a href="{{ prev_url }}" class="prev-post">Previous</a>
+        {% endif %}
+    {% endwith %}
+    {% with next_url = mandalaData.get('next_url') %}
+        {% if next_url %}
+            <a href="{{ next_url }}" class="next-post">Next</a>
+        {% endif %}
+    {% endwith %}
     {% include 'posts/post' ~ post_id ~ '.html' %}
 {% endblock %}
