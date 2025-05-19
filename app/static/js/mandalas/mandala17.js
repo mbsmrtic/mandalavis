@@ -15,6 +15,7 @@ const myData = mandala.getMandalaDataFromDOM();
 
 if (myData && myData.length > 0){
     myData.forEach(cluster => {
+        var svgAttrs = cluster['svgAttrs'] || null;
         var newShape = createShape(cluster.shape, {
             offset: cluster.offset,
             width: cluster.width,
@@ -22,7 +23,7 @@ if (myData && myData.length > 0){
             howMany: cluster.data.length,
             angleStart: (cluster['angleStart'] || 0),
             toolTipText: cluster.data,
-        }, (cluster['svgAttrs'] || {}));
+        }, svgAttrs);
         mandala.addShape(newShape);
     });    
 }
