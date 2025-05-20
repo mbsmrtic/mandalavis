@@ -3,17 +3,30 @@
 # The code is designed to be used in a web application, specifically for creating and managing mandalas.
 # from app.src.mandalas.mandaladata import MandalaData, Cluster, ShapeType, DataItem
 # The pydantic library is used for data validation and settings management using Python type annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from enum import Enum
 from typing import Optional, List
 from abc import ABC, abstractmethod
 from flask import current_app, url_for
 from jinja2.exceptions import TemplateNotFound
-import sys
-import os
-import importlib.util
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..')))
+import functools
 
+# This method is used to get the next and previous urls for a post.
+# It is called in app.py
+def get_url_for_post(post_id):
+   ret_url = None
+   try:
+       template_file_name = f'posts/post{post_id}.html'
+       # We use the jinja2 template engine to check if the
+       # template exists. 
+       current_app.jinja_env.get_template(template_file_name)
+       # The template exists
+       ret_url = url_for('render_post', post_id=post_id)
+       print(f'{template_file_name} found')
+   except TemplateNotFound:
+       # The template does not exist
+       print(f'{template_file_name} not found')
+   return ret_url
 
 # The ShapeType enum defines the different shapes that can be used in the clusters.
 # The values here (e.g. "ArcShape") must match the shape class names defined in 
@@ -60,73 +73,78 @@ class Cluster(BaseModel):
     svgAttrs: Optional[dict] = None
     data: List[DataItem]
 
-# The MandalaData class is the base class. It should be subclassed for specific mandalas.
+# The MandalaData class contains the data sent to javascript for drawing the mandala. 
+# It should be instantiated and filled in for specific mandalas.
 # It uses Pydantic for data validation and serialization.
 # The class contains a list of clusters, each represented by the Cluster class.
 # Inheriting from pydantic's BaseModel allows us to use model_dump_json to write this
 # object to json. 
 class MandalaData(BaseModel):
-    clusters: List[Cluster] = []
+    clusters: List[Cluster] = Field(default_factory=list)
 
-    # The __init__ method initializes the clusters list.
-    def __init__(self, **data):
-        super().__init__(**data)
-        self.clusters = []
+    # # The __init__ method initializes the clusters list.
+    # def __init__(self, **data):
+    #     super().__init__(**data)
+    #     self.clusters = []
 
-    # The add_cluster method allows adding clusters to the mandala data.
-    def add_cluster(self, cluster: Cluster):
-        self.clusters.append(cluster)
+    # # The add_cluster method allows adding clusters to the mandala data.
+    # def add_cluster(self, cluster: Cluster):
+    #     self.clusters.append(cluster)
 
-    # These methods are used to get the next and previous urls for the mandala data.
-    # They are called in app.py
-    def get_prev_url(self, postid):
-        ret_url = None
-        try:
-            template_file_name = f'posts/post{postid - 1}.html'
-            # We use the jinja2 template engine to check if the
-            # template exists. 
-            current_app.jinja_env.get_template(template_file_name)
-            # The template exists
-            ret_url = url_for('render_post', post_id=postid - 1)
-            print(f'{template_file_name} found')
-        except TemplateNotFound:
-            # The template does not exist
-            print(f'{template_file_name} not found')
-        return ret_url
-    
-    def get_next_url(self, postid):
-        ret_url = None
-        try:
-            template_file_name = f'posts/post{postid + 1}.html'
-            template = current_app.jinja_env.get_template(template_file_name)
-            # The template exists
-            ret_url = url_for('render_post', post_id=postid + 1)
-            print(f'{template_file_name} found')
-        except TemplateNotFound:
-            # The template does not exist
-            print(f'{template_file_name} not found')
-        return ret_url
+    # @abstractmethod
+    # def createClusterData(self):
+    #     pass
 
+    # def createJsonData(self):
+    #     self.clusters = self.createClusterData()
+    #     return self.model_dump_json()
 
-    def create_mandala_data(self, postid):
-        try:
-            module_name = f"app.src.mandalas.mandala{postid}"
-            base_dir = os.path.dirname(os.path.abspath(__file__))
-            file_path = os.path.join(base_dir, f'mandala{postid}.py')
-            spec = importlib.util.spec_from_file_location(module_name, file_path)
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-        except ModuleNotFoundError as e:
-            print(f"Module not found: {e}")
-        except ImportError as e:
-            print(f"Import error: {e}")
-        except Exception as e:
-            print(f"Other error: {e}")
-        else:
-            self.clusters = module.createData()
-        return self.model_dump_json()
+    # def create_mandala_data(self, postid):
+    #     try:
+    #         module_name = f"app.src.mandalas.mandala{postid}"
+    #         # Documentation for abspath:
+    #         #   https://docs.python.org/3/library/os.path.html#os.path.abspath 
+    #         base_dir = os.path.dirname(os.path.abspath(__file__))
+    #         file_path = os.path.join(base_dir, f'mandala{postid}.py')
+    #         spec = importlib.util.spec_from_file_location(module_name, file_path)
+    #         module = importlib.util.module_from_spec(spec)
+    #         spec.loader.exec_module(module)
+    #     except ModuleNotFoundError as e:
+    #         print(f"Module not found: {e}")
+    #     except ImportError as e:
+    #         print(f"Import error: {e}")
+    #     except Exception as e:
+    #         print(f"Other error: {e}")
+    #     else:
+    #         # If the module was loaded successfully, we can call the createData functions
+    #         post_class = getattr(module, f"Mandala{postid}")
+    #         post_instance = post_class()
+    #         self.clusters = post_instance.createClusterData()
+    #     return self.model_dump_json()
 
     # This method should be implemented by subclasses (mandalas) to provide specific mandala data
     # @abstractmethod
     # def createMandalaData():
     #     pass
+
+# Abstract class to encapsulate all the data we need for a post (aka an article on Mandalavis.com).
+# Inheritors (e.g. mandala17.py MandalaPost17) will contain all the data for that post.
+class MandalaPost(ABC):
+    @property
+    def title(self):
+        return "Default title"
+
+    @property    
+    def posted_date_str(self):
+        return ""
+    
+    @property
+    def post_text_html(self):
+        return ""
+
+    # We make this a cached_property so that it gets built the first time it's called, but
+    # not after that.  This allows to run the calculation in the 'view' - app.py instead of 
+    # in the template, for example.     
+    @functools.cached_property
+    def mandala_data_json_str(self):
+        raise NotImplementedError("Subclasses must implement the 'mandala_data_json_str' property.")

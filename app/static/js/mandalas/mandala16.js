@@ -13,11 +13,13 @@ const mandalaElementId = mandalaId;
 var mandala = new Mandala(mandalaElementId, 300, 300);
 var interactions = new MandalaInteractions(mandalaNum);
 
-const dataElement = document.getElementById('mandala-' + mandalaNum + '-data');
-const str = dataElement.dataset.mandala;
-const validJson = str.replace(/'/g, '"');
-var myData = JSON.parse(validJson);
-myData = myData["clusters"];
+const myData = mandala.getMandalaDataFromDOM();
+
+// const dataElement = document.getElementById('mandala-' + mandalaNum + '-data');
+// const str = dataElement.dataset.mandala;
+// const validJson = str.replace(/'/g, '"');
+// var myData = JSON.parse(validJson);
+// myData = myData["clusters"];
 
 const shapeConstructors = {
     ArcShape: (shapeArgs, svgAttrs) => new ArcShape(shapeArgs, svgAttrs),

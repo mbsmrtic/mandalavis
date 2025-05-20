@@ -5,9 +5,30 @@
 <body>
     <div class="container">
         <div class="content">
-            {% for post_id in range(14, 17)| reverse %}
+            {# Note: Each of the posts we include here will need access to mandalaData e.g. see post17.html
+                So when a post is added here, be sure that we are creating it's mandalaData in 
+                the route in app.py app.route(/)  
+                Here we are including post14, post15, and post16 #}
+            
+            {% with omit_header=true %}
+                {% with post_id=17 %}
+                    {% include 'postv2.html' %}
+                {% endwith %}
+                {% with post_id=16 %}
+                    {% include 'postv2.html' %}
+                {% endwith %}
+            {% endwith %}
+            
+            {% with post_id=15 %}
+                {% include 'posts/post15.html' %}
+            {% endwith %}
+            {% with post_id=14 %}
+                {% include 'posts/post14.html' %}
+            {% endwith %}
+
+            {# % for post_id in range(14, 17)| reverse %}
                 {% include 'posts/post' ~ post_id ~ '.html' %}
-            {% endfor %}
+            {% endfor % #}
         </div>
 
         {% include 'sidebar.html' %}

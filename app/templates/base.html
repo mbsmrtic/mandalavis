@@ -1,5 +1,7 @@
 <html>
-    {% include 'header.html' %}
+    {% if not omit_header %}
+        {% include 'header.html' %}
+    {% endif %}
 
     <body>
         <div class="container">
@@ -9,8 +11,10 @@
         </div>  <!-- container-->
         <script src="https://d3js.org/d3.v7.min.js"></script>
     </body>
-    <footer>
-        &copy; 2025 MandalaVis.com. All rights reserved.
-    </footer>
-
+    {% if not omit_header %}
+        <footer>
+            &copy; 2025 MandalaVis.com. All rights reserved.
+        </footer>
+    {% endif %}
+    
 </html>
