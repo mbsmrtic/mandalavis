@@ -19,6 +19,12 @@
     </p>
     <h3>Recent posts</h3>
     <ul>
+        {% for post_num in sidebar_data %}
+            <li>
+                <a href="/post/{{post_num}}">{{ sidebar_data.get(post_num)[0] }}</a> </br>
+                <span class="meta">{{ sidebar_data.get(post_num)[1] }}</span>
+            </li>
+        {% endfor %}
         <li>
             <a href="/post/15">Interesting white space, interactivity and data driven(ness)</a>
             </br>

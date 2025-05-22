@@ -3,7 +3,7 @@ from flask import render_template
 from flask import url_for, send_from_directory
 from jinja2 import TemplateNotFound 
 import os
-from app.src.mandalas.postfactory import mandala_post_factory 
+from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data
 from app.src.mandalas.postroute import get_url_for_post
 
 app = Flask(__name__)
@@ -18,7 +18,8 @@ def index():
     template_data = {}
     template_data[16] = mandala_post_factory(16)
     template_data[17] = mandala_post_factory(17)
-    return render_template('index.html', mandalaData=template_data)
+    sidebar_template_data = sidebar_data()
+    return render_template('index.html', mandalaData=template_data, sidebar_data=sidebar_template_data)
 
 @app.route('/pages/header.html')
 def header():

@@ -27,7 +27,9 @@
             {% endwith %}
         </div>
 
-        {% include 'sidebar.html' %}
+        {% with sidebar_data=sidebar_data %}
+            {% include 'sidebar.html' %}
+        {% endwith %}
     </div>
 
     <footer>
