@@ -25,10 +25,6 @@
             {% with post_id=14 %}
                 {% include 'posts/post14.html' %}
             {% endwith %}
-
-            {# % for post_id in range(14, 17)| reverse %}
-                {% include 'posts/post' ~ post_id ~ '.html' %}
-            {% endfor % #}
         </div>
 
         {% include 'sidebar.html' %}

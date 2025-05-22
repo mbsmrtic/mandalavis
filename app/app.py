@@ -3,8 +3,8 @@ from flask import render_template
 from flask import url_for, send_from_directory
 from jinja2 import TemplateNotFound 
 import os
-from app.src.mandalas.mandaladata import MandalaData, get_url_for_post
 from app.src.mandalas.postfactory import mandala_post_factory 
+from app.src.mandalas.postroute import get_url_for_post
 
 app = Flask(__name__)
 
@@ -27,7 +27,6 @@ def header():
 @app.route('/post/<int:post_id>')
 def render_post(post_id):
     template_data = {}
-    #foo = mandala_post.mandala_data_json_str  # does this prevent it being called in the template? No 
     template_data['prev_url'] = get_url_for_post(post_id - 1)
     template_data['next_url'] = get_url_for_post(post_id + 1)
     if (post_id >= 16):

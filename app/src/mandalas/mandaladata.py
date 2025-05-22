@@ -7,26 +7,7 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from typing import Optional, List
 from abc import ABC, abstractmethod
-from flask import current_app, url_for
-from jinja2.exceptions import TemplateNotFound
 import functools
-
-# This method is used to get the next and previous urls for a post.
-# It is called in app.py
-def get_url_for_post(post_id):
-   ret_url = None
-   try:
-       template_file_name = f'posts/post{post_id}.html'
-       # We use the jinja2 template engine to check if the
-       # template exists. 
-       current_app.jinja_env.get_template(template_file_name)
-       # The template exists
-       ret_url = url_for('render_post', post_id=post_id)
-       print(f'{template_file_name} found')
-   except TemplateNotFound:
-       # The template does not exist
-       print(f'{template_file_name} not found')
-   return ret_url
 
 # The ShapeType enum defines the different shapes that can be used in the clusters.
 # The values here (e.g. "ArcShape") must match the shape class names defined in 
@@ -99,28 +80,6 @@ class MandalaData(BaseModel):
     #     self.clusters = self.createClusterData()
     #     return self.model_dump_json()
 
-    # def create_mandala_data(self, postid):
-    #     try:
-    #         module_name = f"app.src.mandalas.mandala{postid}"
-    #         # Documentation for abspath:
-    #         #   https://docs.python.org/3/library/os.path.html#os.path.abspath 
-    #         base_dir = os.path.dirname(os.path.abspath(__file__))
-    #         file_path = os.path.join(base_dir, f'mandala{postid}.py')
-    #         spec = importlib.util.spec_from_file_location(module_name, file_path)
-    #         module = importlib.util.module_from_spec(spec)
-    #         spec.loader.exec_module(module)
-    #     except ModuleNotFoundError as e:
-    #         print(f"Module not found: {e}")
-    #     except ImportError as e:
-    #         print(f"Import error: {e}")
-    #     except Exception as e:
-    #         print(f"Other error: {e}")
-    #     else:
-    #         # If the module was loaded successfully, we can call the createData functions
-    #         post_class = getattr(module, f"Mandala{postid}")
-    #         post_instance = post_class()
-    #         self.clusters = post_instance.createClusterData()
-    #     return self.model_dump_json()
 
     # This method should be implemented by subclasses (mandalas) to provide specific mandala data
     # @abstractmethod
