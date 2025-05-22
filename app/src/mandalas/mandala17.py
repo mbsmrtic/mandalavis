@@ -22,7 +22,7 @@ class MandalaPost17(MandalaPost):
     def mandala_data_json_str(self):
         mandala_data = MandalaData()
         mandala_data.clusters = []
-        clusterName = "2013"
+        clusterName = "2025"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.CURLY_BRACKET.value,
@@ -34,7 +34,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 17)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2013"
+        clusterName = "2024"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.POTTED_PLANT.value,
@@ -46,7 +46,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 17)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2014"
+        clusterName = "2023"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DROPLET.value,
@@ -58,7 +58,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 9)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2015"
+        clusterName = "2022"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DROPLET.value,
@@ -71,7 +71,7 @@ class MandalaPost17(MandalaPost):
         )
         mandala_data.clusters.append(cluster)
 
-        clusterName = "2014"
+        clusterName = "2021"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DOT.value,
@@ -83,7 +83,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 27)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2013"
+        clusterName = "2020"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DOT.value,
@@ -95,7 +95,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 23)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2012"
+        clusterName = "2019"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DOT.value,
@@ -107,7 +107,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 18)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2011"
+        clusterName = "2018"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DOT.value,
@@ -119,7 +119,7 @@ class MandalaPost17(MandalaPost):
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 13)]
         )
         mandala_data.clusters.append(cluster)
-        clusterName = "2010"
+        clusterName = "2017"
         cluster = Cluster(
             clustername=clusterName,
             shape=ShapeType.DOT.value,
