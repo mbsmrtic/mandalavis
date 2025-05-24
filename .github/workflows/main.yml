@@ -20,7 +20,13 @@ jobs:
             cp *.* /var/www/mandalavis
             cd app
             cp *.* /var/www/mandalavis/app
+
+            rm -rf /var/www/mandalavis/app/static/*
             cp -r static /var/www/mandalavis/app
+
+            rm -rf /var/www/mandalavis/app/templates/*
             cp -r templates /var/www/mandalavis/app
+
+            rm -rf /var/www/mandalavis/app/src/*
             cp -r src /var/www/mandalavis/app
             

@@ -22,6 +22,7 @@ class ShapeType(str, Enum):
     DOT = "DotShape"
     DROPLET = "DropletShape"
     IMAGE = "ImageShape"
+    NORDIC = "NordicShape"
     SPIRAL = "SpiralShape"
     TILTED_CURVY_DROPLET = "TiltedCurvyDroplet"
     TILTED_DROPLET = "TiltedDropletShape"
@@ -47,7 +48,7 @@ class DataItem(BaseModel):
 class Cluster(BaseModel):
     clustername: str
     shape: ShapeType
-    offset: int
+    offset: float
     width: int
     length: int
     angleStart: Optional[float] = None

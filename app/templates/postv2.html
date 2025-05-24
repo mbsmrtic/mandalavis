@@ -12,7 +12,7 @@
         {% endif %}
     {% endwith %}
     {% with mandala_data=mandalaData.get(post_id) %}
-        <article id="article{{ post_id }}">
+        <article id="article{{ post_id }}" post_id="{{ post_id }}">
             <h2><a href="{{ url_for('render_post', post_id=post_id)}}">{{ mandala_data.title }}</a></h2>
             <p><small><text>Posted on {{ mandala_data.posted_date_str }}</text></small></p>
             <div class="tooltip"></div>
@@ -29,8 +29,8 @@
             <div></div>
             <p> {{ mandala_data.post_text_html }}
             </p>
-            <div id="mandala{{ post_id }}-data" data-mandala='{{ mandalaData[post_id].mandala_data_json_str }}'></div>
-            <script src="/static/js/mandalas/mandala{{ post_id }}.js" type="module" defer></script>
+            <div id="mandala{{ post_id }}-data" data-mandala='{{ mandala_data.mandala_data_json_str }}'></div>
         </article>
     {% endwith %}
+    <script src="/static/js/mandalav2.js" type="module" defer></script>
 {% endblock %}

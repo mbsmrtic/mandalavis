@@ -21,13 +21,13 @@ class MandalaPost18(MandalaPost):
         clusterName = "2025"
         cluster = Cluster(
             clustername=clusterName,
-            shape=ShapeType.SEAGULL.value,
-            offset=20,
+            shape=ShapeType.NORDIC.value,
+            offset=50,
             width=20,
             length=20,
             # angleStart=22.5,
-            svgAttrs={"stroke": "#888", "stroke-width": 1},
-            data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 2)]
+            svgAttrs={"stroke": "#888", "stroke-width": 5},
+            data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 10)]
         )
         mandala_data.clusters.append(cluster)
         clusterName = "2024"

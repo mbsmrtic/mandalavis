@@ -1,4 +1,4 @@
-import { CompositeShape, MandalaShape } from "./shapes/mandalashape.js";
+import { CompositeShape } from "./shapes/mandalashape.js";
 
 const svgUrl = "http://www.w3.org/2000/svg";
 let tooltipJustOpened = false;
@@ -158,16 +158,6 @@ export class Mandala {
         for (var angle=compositeShape.angleStart; angle < 359; angle += compositeShape.angleStep) {
             const newGroupEl = document.createElementNS(svgUrl, "g");
             newGroupEl.textContent = this.#getToolTipText(compositeShape, iElementInCluster++);
-            // if (typeof compositeShape.toolTipText === 'string' || compositeShape.toolTipText instanceof String) {
-            //     newGroupEl.textContent = compositeShape.toolTipText;
-            // } 
-            // else {
-            //     if (compositeShape.toolTipText && compositeShape.toolTipText[iElementInCluster]) { 
-            //         newGroupEl.textContent = compositeShape.toolTipText[iElementInCluster]['desc'];
-            //     };
-            // }
-            // iElementInCluster++;
-            // newGroupEl.textContent = compositeShape.toolTipText;
             newGroupEl.style.pointerEvents = 'all';
             newGroupEl.setAttribute('shape-type', 'composite');
             //loop through shapes in compositeShape
@@ -183,7 +173,6 @@ export class Mandala {
                 const newEl = this.createShapeElement(shape, angle, newGroupEl);
                 newGroupEl.appendChild(newEl);
             });
-            // shapes.forEach((shape) => this.addShape(shape, newGroupEl));
             this.mandalaEl.appendChild(newGroupEl);    
         }
     }
@@ -211,16 +200,6 @@ export class Mandala {
         //     we could just capture them in one place at the top
         //     and use event.target to access the relevant element
         newEl.textContent = this.#getToolTipText(shape, iElementInCluster);
-        // if (shape.toolTipText && !groupElement) {
-        //     if (typeof shape.toolTipText === 'string' || shape.toolTipText instanceof String) {
-        //         newEl.textContent = shape.toolTipText;
-        //     } 
-        //     else {
-        //         if (shape.toolTipText[iElementInCluster]) { 
-        //             newEl.textContent = shape.toolTipText[iElementInCluster]['desc'];
-        //         };
-        //     }
-        // }
         if (shape.toolTipText || groupElement) {
             newEl.addEventListener('mouseenter', (event) => {
                 clearHighlights();
@@ -230,25 +209,7 @@ export class Mandala {
                 clearHighlights();
                 this.selectShape(event.target);
                 tooltipJustOpened = true;
-                // event.stopPropagation();
-                // event.preventDefault();
             });    
-            // newEl.addEventListener('touchmove', (event) => {
-            //     const touch = event.touches[0]; // Get the first touch point
-            //     const x = touch.clientX;
-            //     const y = touch.clientY;
-            //     const elementUnderTouch = document.elementFromPoint(x, y);
-
-            //     // If the new element is in the same mandala, we will handle it
-            //     var elementMandalaId = elementUnderTouch.getAttribute('mandalaid');
-            //     if (elementMandalaId && elementMandalaId == event.target.getAttribute('mandalaid')) {
-            //         clearHighlights();
-            //         this.selectShape(elementUnderTouch);
-            //         tooltipJustOpened = true;    
-            //         event.stopPropagation();
-            //         event.preventDefault();
-            //     }
-            // })
          }
         return newEl;
     }

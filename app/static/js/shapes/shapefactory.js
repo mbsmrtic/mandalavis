@@ -10,6 +10,7 @@ import { SShape } from "/static/js/shapes/s.js";
 import { SCurve } from "/static/js/shapes/scurve.js"
 import { WaveShape } from "/static/js/shapes/wave.js"
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js"
+import { NordicShape } from "/static/js/shapes/nordic.js";
 
 // shapeClasses is an object that maps shape types to their respective classes
 // This allows for easy instantiation of different shapes based on their type
@@ -27,6 +28,7 @@ export const shapeClasses = {
     DotShape,
     DropletShape,
     ImageShape,
+    NordicShape,
     SpiralShape,
     TiltedCurvyDroplet,
     TiltedDropletShape,

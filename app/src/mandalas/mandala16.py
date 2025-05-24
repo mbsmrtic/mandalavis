@@ -157,4 +157,15 @@ class MandalaPost16(MandalaPost):
         )
         mandala_data.clusters.append(cluster)
 
+        cluster = Cluster(
+            clustername="center",
+            shape=ShapeType.DOT.value,
+            offset=-30,
+            width=60,
+            length=60,
+            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "white"},
+            data=[DataItem(desc=f"dot {i}th item in center cluster") for i in range(1, 2)]
+        )
+        mandala_data.clusters.append(cluster)
+
         return mandala_data.model_dump_json()

@@ -5,23 +5,17 @@
 <body>
     <div class="container">
         <div class="content">
-            {# Note: Each of the posts we include here will need access to mandalaData e.g. see post17.html
+            {# Note: Each of the posts we include here will need access to mandalaData
                 So when a post is added here, be sure that we are creating it's mandalaData in 
                 the route in app.py app.route(/)  
-                Here we are including post14, post15, and post16 #}
+                Here we are including post14 and whatever posts are in mandalaData from app.py #}
             
             {% with omit_header=true %}
-                {% with post_id=17 %}
+                {% for post_id in mandalaData %}
                     {% include 'postv2.html' %}
-                {% endwith %}
-                {% with post_id=16 %}
-                    {% include 'postv2.html' %}
-                {% endwith %}
+                {% endfor %}
             {% endwith %}
             
-            {% with post_id=15 %}
-                {% include 'posts/post15.html' %}
-            {% endwith %}
             {% with post_id=14 %}
                 {% include 'posts/post14.html' %}
             {% endwith %}
