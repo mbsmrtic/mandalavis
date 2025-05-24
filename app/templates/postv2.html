@@ -27,7 +27,7 @@
             <button id="zoom-in-{{ post_id }}" class="zoom-button">Zoom In</button>
             <button id="zoom-out-{{ post_id }}" class="zoom-button">Zoom Out</button>
             <div></div>
-            <p> {{ mandala_data.post_text_html }}
+            <p> {{ mandala_data.post_text_html|safe }}
             </p>
             <div id="mandala{{ post_id }}-data" data-mandala='{{ mandala_data.mandala_data_json_str }}'></div>
         </article>
