@@ -17,7 +17,7 @@ mandala_posts = {
     15: MandalaPost15,
     16: MandalaPost16,
     17: MandalaPost17,
-    # 18: MandalaPost18,
+    18: MandalaPost18,
 }
 
 # This function instantiates the mandala post object
