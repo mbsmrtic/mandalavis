@@ -3,7 +3,7 @@ from flask import render_template
 from flask import url_for, send_from_directory
 from jinja2 import TemplateNotFound 
 import os
-from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data
+from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data, mandala_posts
 from app.src.mandalas.postroute import get_url_for_post
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def render_post(post_id):
     template_data = {}
     template_data['prev_url'] = get_url_for_post(post_id - 1)
     template_data['next_url'] = get_url_for_post(post_id + 1)
-    if (post_id >= 15 or post_id == 13):
+    if (post_id in mandala_posts):
         template_data[post_id] = mandala_post_factory(post_id)   #.mandala_data_json_str()
         template_filename = 'postv2.html' 
     else:

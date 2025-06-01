@@ -12,23 +12,23 @@ class MandalaPost15(MandalaPost):
 
     @property
     def post_text_html(self):
-        return "<h3>Making mandalas that I like</h3> " \
-            "For this mandala I played around a little with the white space. In the center " \
-            "the white space makes a flower, or sun shape, and around the curved droplets " \
-            "some white leaf or petal shapes emerge. " \
-            "<h3>Moving towards mandala inspired data visualizations</h3> " \
-            " The interactions are working pretty well now. Using the zoom buttons you can zoom in " \
-            "much further than the browser alone will let you. And, introducing dragging! " \
-            "You can now move the image around by grabbing and dragging it. </br> " \
-            "Finally, this is the first of my mandalas that is data driven. " \
-            "The mandala is generated from a JSON data structure instead of being defined with lines " \
-            "of software. " \
-            " Notice that " \
-            "every shape now has it's own description. Those descriptions are in the data, not written " \
-            "in lines of software. " \
-            "The data structure for this mandala is defined in javascript, on the client side. " \
-            "So the next step is to send the json data structure from the server, created in python " \
-            "and representative of a dataset. "
+        return """<h3>Making mandalas that I like</h3> 
+            For this mandala I played around a little with the white space. In the center 
+            the white space makes a flower, or sun shape, and around the curved droplets 
+            some white leaf or petal shapes emerge. 
+            <h3>Moving towards mandala inspired data visualizations</h3> 
+            The interactions are working pretty well now. Using the zoom buttons you can zoom in 
+            much further than the browser alone will let you. And, introducing dragging! 
+            You can now move the image around by grabbing and dragging it. </br> 
+            Finally, this is the first of my mandalas that is data driven. 
+            The mandala is generated from a JSON data structure instead of being defined with lines 
+            of software. 
+            Notice that 
+            every shape now has its own description. Those descriptions are in the data, not written 
+            in lines of software. 
+            The data structure for this mandala is defined in javascript, on the client side. 
+            So the next step is to send the json data structure from the server, created in python 
+            and representative of a dataset. """
     
     @functools.cached_property
     def mandala_data_json_str(self):

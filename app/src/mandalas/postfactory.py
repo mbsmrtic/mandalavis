@@ -3,6 +3,7 @@ from app.src.mandalas.mandala16 import MandalaPost16
 from app.src.mandalas.mandala18 import MandalaPost18
 from app.src.mandalas.mandala15 import MandalaPost15
 from app.src.mandalas.mandala13 import MandalaPost13
+from app.src.mandalas.mandala12 import MandalaPost12
 
 # I'm using the mandala_posts data structure to explicitly create
 #  the instances instead of dymamically creating them because 
@@ -11,6 +12,7 @@ from app.src.mandalas.mandala13 import MandalaPost13
 #  may decide to create it dynamically. But for now, we will go with the more
 #  readable solution. (See comments at the bottom of this file for dynamic solution)
 mandala_posts = {
+    12: MandalaPost12,
     13: MandalaPost13,
     15: MandalaPost15,
     16: MandalaPost16,

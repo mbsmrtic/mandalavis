@@ -49,7 +49,7 @@ class Cluster(BaseModel):
     clustername: str
     shape: ShapeType
     offset: float
-    width: int
+    width: float
     length: Optional[int] = None
     tiltLeft: Optional[bool] = True
     angleStart: Optional[float] = None
@@ -69,6 +69,20 @@ class MandalaData(BaseModel):
     angleStart: Optional[float] = 0
     i: Optional[int] = None
     c: Optional[int] = None
+    view_box: Optional[str] = None
+
+    def add_center_circle(self, radius: int = 15):
+        """Adds a center circle cluster to the mandala data."""
+        center_cluster = Cluster(
+            clustername="center cluster",
+            shape=ShapeType.DOT,
+            offset=(radius * -1), 
+            width=radius * 2,
+            length=radius * 2,
+            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "white"},
+            data=[DataItem(desc="Center circle")]
+        )
+        self.clusters.append(center_cluster)
 
 class CompositeMandalaData(BaseModel):
     mandalas: List[MandalaData] = Field(default_factory=list)

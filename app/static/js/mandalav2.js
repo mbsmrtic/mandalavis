@@ -19,11 +19,14 @@ articles.forEach(article => {
     if (myData){
         if ('view_box' in myData) {
             let viewboxDict = interactions.getViewBox(interactions.svg);
-            let newViewBoxArray = myData['view_box'].split(' ').map(Number);
-            if (newViewBoxArray.length === 4) {
-                [viewboxDict.x, viewboxDict.y, viewboxDict.width, viewboxDict.height] = newViewBoxArray;
+            let vb = myData['view_box'];
+            if (vb) {
+                let newViewBoxArray = vb.split(' ').map(Number);
+                if (newViewBoxArray.length === 4) {
+                    [viewboxDict.x, viewboxDict.y, viewboxDict.width, viewboxDict.height] = newViewBoxArray;
+                }
+                setSvgViewBox(interactions.svg, viewboxDict);
             }
-            setSvgViewBox(interactions.svg, viewboxDict);
         }
         if ('mandalas' in myData) {
             var dataForMandalas = myData['mandalas']
