@@ -50,7 +50,8 @@ class Cluster(BaseModel):
     shape: ShapeType
     offset: float
     width: int
-    length: int
+    length: Optional[int] = None
+    tiltLeft: Optional[bool] = True
     angleStart: Optional[float] = None
     svgAttrs: Optional[dict] = None
     data: List[DataItem]
@@ -63,29 +64,15 @@ class Cluster(BaseModel):
 # object to json. 
 class MandalaData(BaseModel):
     clusters: List[Cluster] = Field(default_factory=list)
+    desc: Optional[str] = None
+    offset: Optional[float] = 0
+    angleStart: Optional[float] = 0
+    i: Optional[int] = None
+    c: Optional[int] = None
 
-    # # The __init__ method initializes the clusters list.
-    # def __init__(self, **data):
-    #     super().__init__(**data)
-    #     self.clusters = []
-
-    # # The add_cluster method allows adding clusters to the mandala data.
-    # def add_cluster(self, cluster: Cluster):
-    #     self.clusters.append(cluster)
-
-    # @abstractmethod
-    # def createClusterData(self):
-    #     pass
-
-    # def createJsonData(self):
-    #     self.clusters = self.createClusterData()
-    #     return self.model_dump_json()
-
-
-    # This method should be implemented by subclasses (mandalas) to provide specific mandala data
-    # @abstractmethod
-    # def createMandalaData():
-    #     pass
+class CompositeMandalaData(BaseModel):
+    mandalas: List[MandalaData] = Field(default_factory=list)
+    view_box: Optional[str] = None
 
 # Abstract class to encapsulate all the data we need for a post (aka an article on Mandalavis.com).
 # Inheritors (e.g. mandala17.py MandalaPost17) will contain all the data for that post.

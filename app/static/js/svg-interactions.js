@@ -101,7 +101,7 @@ function endDrag() {
   window.removeEventListener('touchend', mouseuphandler);
 }
 
-function setSvgViewBox(svg, viewBox) {
+export function setSvgViewBox(svg, viewBox) {
   if (
     svg instanceof SVGElement &&
     viewBox &&
@@ -151,6 +151,7 @@ export class MandalaInteractions {
     if (vb.length === 4) {
       [this.viewBox.x, this.viewBox.y, this.viewBox.width, this.viewBox.height] = vb;
     }  
+    return this.viewBox;
   }
 
   // Calculate initial ratio

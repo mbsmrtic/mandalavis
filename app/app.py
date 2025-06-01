@@ -32,7 +32,7 @@ def render_post(post_id):
     template_data = {}
     template_data['prev_url'] = get_url_for_post(post_id - 1)
     template_data['next_url'] = get_url_for_post(post_id + 1)
-    if (post_id >= 15):
+    if (post_id >= 15 or post_id == 13):
         template_data[post_id] = mandala_post_factory(post_id)   #.mandala_data_json_str()
         template_filename = 'postv2.html' 
     else:

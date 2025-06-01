@@ -37,18 +37,6 @@ export class Mandala {
         }
     }
 
-    getMandalaDataFromDOM() {
-        const dataElement = document.getElementById(this.elementId + '-data');
-        if (! dataElement) {
-            throw new Error("Mandala data element not found: " + this.elementId + '-data');
-        }
-        const strData = dataElement.dataset.mandala;
-        const validJson = strData.replace(/'/g, '"');
-        var myData = JSON.parse(validJson);
-        myData = myData["clusters"];
-        return myData;
-    }
-
     makeGradient(centerColor='white', outerColor='black', name="myGradient") {
         const defs = document.createElementNS(svgUrl, "defs");  
         this.mandalaEl.appendChild(defs);  
@@ -290,8 +278,8 @@ export class CompositeMandala extends Mandala {
 
     //In order to calculate the posiiton of this new mandala, 
     // we need to know
-    // the index of this mandala withing the composite (i),
-    // the count that will be at this level (c), 
+    // the index of this mandala within the composite (i),
+    // the count of mandalas that will be at this level (c), 
     // the offset from the center of the composite mandala (offset),
     // and the angleStart. 
     addMandala(i, c, offset, angleStart = 0) {
