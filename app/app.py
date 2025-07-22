@@ -1,6 +1,9 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, request, redirect
 from flask import url_for, send_from_directory
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+
 from jinja2 import TemplateNotFound 
 import os
 from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data, mandala_posts
@@ -54,6 +57,10 @@ def render_test(template_name):
        os.abort(404, description="Test template not found")
     
     return render_template(template_path)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mbsmrtic:mvpw@localhost/mvdb'
+db = SQLAlchemy(app)
+
 
 with app.test_request_context():
     print(url_for('index'))

@@ -95,8 +95,8 @@ class MandalaPost18(MandalaPost):
         clusterName = "2025"
         cluster = Cluster(
             clustername=clusterName,
-            shape=ShapeType.DOT.value,
-            offset=30,
+            shape=ShapeType.SPIRAL.value,
+            offset=32,
             width=5,
             length=5,
             # angleStart=22.5,
