@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import render_template, request, redirect
 from flask import url_for, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
+# from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy.sql import func
 
 from jinja2 import TemplateNotFound 
 import os
@@ -58,8 +58,8 @@ def render_test(template_name):
     
     return render_template(template_path)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mbsmrtic:mvpw@localhost/mvdb'
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mbsmrtic:mvpw@localhost/mvdb'
+# db = SQLAlchemy(app)
 
 
 with app.test_request_context():
