@@ -30,3 +30,5 @@ jobs:
             rm -rf /var/www/mandalavis/app/src/*
             cp -r src /var/www/mandalavis/app
             
+            rm -rf /var/www/mandalavis/app/models/*
+            cp -r models /var/www/mandalavis/app
