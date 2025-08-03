@@ -1,13 +1,17 @@
 from flask import Flask
 from flask import render_template, request, redirect
 from flask import url_for, send_from_directory
-# from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy.sql import func
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
 
 from jinja2 import TemplateNotFound 
 import os
 from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data, mandala_posts
 from app.src.mandalas.postroute import get_url_for_post
+
+# This runs all imports in models/__init__.py
+#  only these models will be included in the create_all and drop_all below
+from app.models.db import db
 
 app = Flask(__name__)
 
@@ -58,8 +62,12 @@ def render_test(template_name):
     
     return render_template(template_path)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mbsmrtic:mvpw@localhost/mvdb'
-# db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mbsmrtic:mvpw@localhost:5432/mvdb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+with app.app_context():
+    db.drop_all()       ### Use this carefully - it deletes all tables and all data!!! 
+    db.create_all()     # This creates tables for all models that are included in this context (aka in models/__init__.py)
 
 
 with app.test_request_context():
