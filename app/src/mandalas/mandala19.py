@@ -46,6 +46,7 @@ class MandalaPost19(MandalaPost):
         cluster = MandalaCluster(
             mandalaId=19,
             name=clusterName,
+            shape=ShapeType.SPIRAL.value,
             offset=92,
             width=30,
             length=30,
@@ -57,6 +58,7 @@ class MandalaPost19(MandalaPost):
         cluster = MandalaCluster(
             mandalaId=19,
             name=clusterName,
+            shape=ShapeType.SPIRAL.value,
             offset=92,
             width=30,
             length=30,
@@ -68,6 +70,7 @@ class MandalaPost19(MandalaPost):
         cluster = MandalaCluster(
             mandalaId=19,
             name=clusterName,
+            shape=ShapeType.DOT.value,
             offset=104,
             width=10,
             length=10,
@@ -79,6 +82,7 @@ class MandalaPost19(MandalaPost):
         cluster = MandalaCluster(
             mandalaId=19,
             name=clusterName,
+            shape=ShapeType.DOT.value,
             offset=104,
             width=10,
             length=10,
@@ -89,6 +93,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2021",
+            shape=ShapeType.DOT.value,
             offset=120,
             width=8,
             length=8,
@@ -98,6 +103,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2020",
+            shape=ShapeType.POTTED_PLANT.value,
             offset=75,
             width=20,
             length=40,
@@ -107,6 +113,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2019",
+            shape=ShapeType.SPIRAL.value,
             offset=32,
             width=5,
             length=5
@@ -115,6 +122,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2018",
+            shape=ShapeType.CURVY_DROPLETS.value,
             offset=35,
             width=20,
             length=20
@@ -123,6 +131,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2017",
+            shape=ShapeType.ARC.value,
             offset=35,
             width=20,
             length=30
@@ -131,6 +140,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2016",
+            shape=ShapeType.DROPLET.value,
             offset=42,
             width=35,
             length=40,
@@ -140,6 +150,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2015",
+            shape=ShapeType.ARC.value,
             offset=62,
             width=35,
             length=25,
@@ -149,6 +160,7 @@ class MandalaPost19(MandalaPost):
         db.session.add(MandalaCluster(
             mandalaId=19,
             name="2014",
+            shape=ShapeType.CURLY_BRACKET.value,
             offset=58,
             width=42,
             length=49,
@@ -167,7 +179,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.SPIRAL.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -179,7 +191,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.SPIRAL.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -194,7 +206,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.DOT.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -207,7 +219,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.DOT.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -219,7 +231,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.DOT.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -232,7 +244,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.POTTED_PLANT.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -245,11 +257,11 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         cluster = Cluster(
             clustername=clusterName,
-            shape=ShapeType.SPIRAL.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
-            # angleStart=22.5,
+            angleStart=mc.angleStart,
             svgAttrs={"stroke": "#888", "stroke-width": 1, "fill": "white"},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 34)]
         )
@@ -259,7 +271,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         cluster = Cluster(
             clustername=clusterName,
-            shape=ShapeType.CURVY_DROPLETS.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -273,7 +285,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.ARC.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -286,7 +298,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.DROPLET.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -299,7 +311,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.ARC.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
@@ -312,7 +324,7 @@ class MandalaPost19(MandalaPost):
         mc = self.__getClusterFromDb(clusterName)
         mandala_data.clusters.append(Cluster(
             clustername=clusterName,
-            shape=ShapeType.CURLY_BRACKET.value,
+            shape=mc.shape,
             offset=mc.offset,
             width=mc.width,
             length=mc.length,
