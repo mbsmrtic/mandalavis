@@ -1,6 +1,7 @@
 from app.src.mandalas.mandala17 import MandalaPost17
 from app.src.mandalas.mandala16 import MandalaPost16
 from app.src.mandalas.mandala18 import MandalaPost18
+from app.src.mandalas.mandala19 import MandalaPost19
 from app.src.mandalas.mandala15 import MandalaPost15
 from app.src.mandalas.mandala13 import MandalaPost13
 from app.src.mandalas.mandala12 import MandalaPost12
@@ -18,6 +19,7 @@ mandala_posts = {
     16: MandalaPost16,
     17: MandalaPost17,
     18: MandalaPost18,
+    19: MandalaPost19,
 }
 
 # This function instantiates the mandala post object
