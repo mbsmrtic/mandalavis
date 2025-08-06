@@ -13,5 +13,8 @@ class MandalaCluster(Base):
     offset: Mapped[int]
     width: Mapped[int]
     length: Mapped[int]
+    stroke: Mapped[str] = mapped_column(nullable=True)
+    strokeWidth: Mapped[int] = mapped_column(nullable=True)
+    fill: Mapped[str] = mapped_column(nullable=True)
     angleStart: Mapped[int] = mapped_column(nullable=True)
 

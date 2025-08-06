@@ -50,6 +50,9 @@ class MandalaPost19(MandalaPost):
             offset=92,
             width=30,
             length=30,
+            stroke="#888",
+            strokeWidth=2,
+            fill="none",
             angleStart=5
             )
         db.session.add(cluster)
@@ -62,6 +65,9 @@ class MandalaPost19(MandalaPost):
             offset=92,
             width=30,
             length=30,
+            stroke="#888",
+            strokeWidth=2,
+            fill="none",
             angleStart=25
             )
         db.session.add(cluster)
@@ -74,6 +80,7 @@ class MandalaPost19(MandalaPost):
             offset=104,
             width=10,
             length=10,
+            fill="#888",
             angleStart=38
         )
         db.session.add(cluster)
@@ -86,6 +93,7 @@ class MandalaPost19(MandalaPost):
             offset=104,
             width=10,
             length=10,
+            fill="#888",
             angleStart=52,
         )
         db.session.add(cluster)
@@ -97,6 +105,7 @@ class MandalaPost19(MandalaPost):
             offset=120,
             width=8,
             length=8,
+            fill="black",
             angleStart=15
         ))
 
@@ -107,6 +116,7 @@ class MandalaPost19(MandalaPost):
             offset=75,
             width=20,
             length=40,
+            fill="#888",
             angleStart=45
         ))
 
@@ -116,7 +126,10 @@ class MandalaPost19(MandalaPost):
             shape=ShapeType.SPIRAL.value,
             offset=32,
             width=5,
-            length=5
+            length=5,
+            stroke="#888",
+            strokeWidth=1,
+            fill="white"
         ))
 
         db.session.add(MandalaCluster(
@@ -134,7 +147,9 @@ class MandalaPost19(MandalaPost):
             shape=ShapeType.ARC.value,
             offset=35,
             width=20,
-            length=30
+            length=30,
+            stroke="#888",
+            strokeWidth=2
         ))
 
         db.session.add(MandalaCluster(
@@ -144,6 +159,7 @@ class MandalaPost19(MandalaPost):
             offset=42,
             width=35,
             length=40,
+            fill="#888",
             angleStart=15
         ))
 
@@ -154,6 +170,8 @@ class MandalaPost19(MandalaPost):
             offset=62,
             width=35,
             length=25,
+            stroke="#888",
+            strokeWidth=2,
             angleStart=15
         ))
 
@@ -164,6 +182,9 @@ class MandalaPost19(MandalaPost):
             offset=58,
             width=42,
             length=49,
+            stroke="#888",
+            strokeWidth=2,
+            fill="none",
             angleStart=15
         ))
 
@@ -173,7 +194,7 @@ class MandalaPost19(MandalaPost):
         stmt = select(MandalaCluster).where(MandalaCluster.mandalaId == 19, MandalaCluster.name == clusterName)
         mc = db.session.execute(stmt).scalars().first()
         return mc        
-
+    
     def __getDataFromDb(self, mandala_data):
         clusterName = "2025"
         mc = self.__getClusterFromDb(clusterName)
@@ -184,7 +205,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={"stroke": "#888", "stroke-width": 2, "fill": "none"},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth, "fill": mc.fill},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
         clusterName = "2024"
@@ -197,7 +218,7 @@ class MandalaPost19(MandalaPost):
             length=mc.length,
             angleStart=mc.angleStart,
             tiltLeft=False,
-            svgAttrs={"stroke": "#888", "stroke-width": 2, "fill": "none"},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth, "fill": mc.fill},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
         # mandala_data.add_center_circle(106)
@@ -211,7 +232,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={'fill': '#888'},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
+            svgAttrs={'fill': mc.fill},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
@@ -224,7 +245,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={'fill': '#888'},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
+            svgAttrs={'fill': mc.fill},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
         clusterName = "2021"
@@ -236,7 +257,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={'fill': 'black'},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
+            svgAttrs={'fill': mc.fill},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
@@ -249,7 +270,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={'fill': '#888'},  # "stroke": "#888", "stroke-width": 2, "fill": "#333"},
+            svgAttrs={'fill': mc.fill}, 
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
@@ -262,7 +283,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={"stroke": "#888", "stroke-width": 1, "fill": "white"},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth, "fill": mc.fill},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 34)]
         )
         mandala_data.clusters.append(cluster)
@@ -290,7 +311,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             # angleStart=22.5,
-            svgAttrs={"stroke": "#888", "stroke-width": 2},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 13)]
         ))
 
@@ -303,7 +324,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={"fill": "#888"},
+            svgAttrs={"fill": mc.fill},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
@@ -316,7 +337,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={"stroke": "#888", "stroke-width": 2},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
@@ -329,7 +350,7 @@ class MandalaPost19(MandalaPost):
             width=mc.width,
             length=mc.length,
             angleStart=mc.angleStart,
-            svgAttrs={"stroke": "#888", "stroke-width": 2, "fill": "none"},
+            svgAttrs={"stroke": mc.stroke, "stroke-width": mc.strokeWidth, "fill": mc.fill},
             data=[DataItem(desc=f" {i}th item in {clusterName}") for i in range(1, 7)]
         ))
 
