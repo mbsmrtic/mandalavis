@@ -8,6 +8,10 @@ from app.models.mandala_cluster_item import MandalaClusterItem
 from sqlalchemy import select, exists
 
 class MandalaPost19(MandalaPost):
+    @property 
+    def mandala_num(self):
+        return 19
+
     @property
     def title(self):
         return "Saguaro"
@@ -19,6 +23,7 @@ class MandalaPost19(MandalaPost):
     @property
     def post_text_html(self):
         return " "
+    
 
     @functools.cached_property
     def mandala_data_json_str(self):
@@ -250,11 +255,6 @@ class MandalaPost19(MandalaPost):
 
         db.session.commit()
 
-    def __getClusterFromDb(self, clusterName):
-        stmt = select(MandalaCluster).where(MandalaCluster.mandalaId == 19, MandalaCluster.name == clusterName)
-        mc = db.session.execute(stmt).scalars().first()
-        return mc        
-    
     def __getDataFromDb(self, mandala_data):
         # get array of item descriptions from database
         def getDataItemsForCluster(mc: MandalaCluster):
@@ -265,56 +265,12 @@ class MandalaPost19(MandalaPost):
             )
             mandalaitems = db.session.execute(stmt).scalars().all()
             items = [DataItem(desc = mi.desc) for mi in mandalaitems]
-            return items        
+            return items  
 
-        mc = self.__getClusterFromDb("2025")
-        dataitems = getDataItemsForCluster(mc)
-        cluster = mc.to_mandaladata_cluster(dataitems)
-        mandala_data.clusters.append(cluster)
+        stmt = select(MandalaCluster).where(MandalaCluster.mandalaId == self.mandala_num)
+        mcs = db.session.execute(stmt).scalars()
+        for mc in mcs:
+            dataitems = getDataItemsForCluster(mc)
+            cluster = mc.to_mandaladata_cluster(dataitems)
+            mandala_data.clusters.append(cluster)
 
-        mc = self.__getClusterFromDb("2024")
-        dataitems = getDataItemsForCluster(mc)
-        cluster = mc.to_mandaladata_cluster(dataitems)
-        mandala_data.clusters.append(cluster)
-
-        mc = self.__getClusterFromDb("2023")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2022")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2021")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2020")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2019")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2017")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2018")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2016")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2015")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-        mc = self.__getClusterFromDb("2014")
-        dataitems = getDataItemsForCluster(mc)
-        mandala_data.clusters.append(mc.to_mandaladata_cluster(dataitems))
-
-    
