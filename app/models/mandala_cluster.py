@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from app.models.db import Base
-from app.src.mandalas.mandaladata import ShapeType
+from app.src.mandalas.mandaladata import ShapeType, Cluster
 from sqlalchemy import Integer, String, Enum
+from sqlalchemy.inspection import inspect
 
 class MandalaCluster(Base):
     __tablename__ = 'mandala_clusters'
@@ -18,3 +19,15 @@ class MandalaCluster(Base):
     fill: Mapped[str] = mapped_column(nullable=True)
     angleStart: Mapped[int] = mapped_column(nullable=True)
 
+    def to_mandaladata_cluster(self, items):
+        cluster = Cluster(
+            clustername=self.name,
+            shape=self.shape,
+            offset=self.offset,
+            width=self.width,
+            length=self.length,
+            angleStart=self.angleStart,
+            svgAttrs={"stroke": self.stroke, "stroke-width": self.strokeWidth, "fill": self.fill},
+            data=items
+        )
+        return cluster

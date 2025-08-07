@@ -3,7 +3,7 @@
 # The code is designed to be used in a web application, specifically for creating and managing mandalas.
 # from app.src.mandalas.mandaladata import MandalaData, Cluster, ShapeType, DataItem
 # The pydantic library is used for data validation and settings management using Python type annotations
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from enum import Enum
 from typing import Optional, List
 from abc import ABC, abstractmethod
@@ -46,6 +46,8 @@ class DataItem(BaseModel):
 # books could be represented by spirals and all the science books by dots. So History is one
 # book cluster and Science is another book cluster.
 class Cluster(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     clustername: str
     shape: ShapeType
     offset: float
