@@ -93,6 +93,10 @@ class CompositeMandalaData(BaseModel):
 # Abstract class to encapsulate all the data we need for a post (aka an article on Mandalavis.com).
 # Inheritors (e.g. mandala17.py MandalaPost17) will contain all the data for that post.
 class MandalaPost(ABC):
+    @property 
+    def mandala_num(self):
+        return 0
+    
     @property
     def title(self):
         return "Default title"

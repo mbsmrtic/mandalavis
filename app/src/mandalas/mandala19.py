@@ -30,7 +30,7 @@ class MandalaPost19(MandalaPost):
 
         # if we haven't yet added the data describing this mandala to the database,
         #   then add it now
-        stmt = select(exists().where(MandalaCluster.mandalaId == 19))
+        stmt = select(exists().where(MandalaCluster.mandalaId == self.mandala_num))
         exists_ = db.session.execute(stmt).scalar()
         if not exists_:
             self.__addDataToDb()
@@ -76,7 +76,7 @@ class MandalaPost19(MandalaPost):
 
         clusterName = "2025"
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name=clusterName,
             shape=ShapeType.SPIRAL.value,
             offset=92,
@@ -85,7 +85,8 @@ class MandalaPost19(MandalaPost):
             stroke="#888",
             strokeWidth=2,
             fill="none",
-            angleStart=5
+            angleStart=5,
+            tiltLeft=True
             )
         db.session.add(cluster)
         db.session.commit()
@@ -93,7 +94,7 @@ class MandalaPost19(MandalaPost):
 
         clusterName = "2024"
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name=clusterName,
             shape=ShapeType.SPIRAL.value,
             offset=92,
@@ -102,7 +103,8 @@ class MandalaPost19(MandalaPost):
             stroke="#888",
             strokeWidth=2,
             fill="none",
-            angleStart=25
+            angleStart=25,
+            tiltLeft=False
             )
         db.session.add(cluster)
         db.session.commit()
@@ -110,7 +112,7 @@ class MandalaPost19(MandalaPost):
 
         clusterName = "2023"
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name=clusterName,
             shape=ShapeType.DOT.value,
             offset=104,
@@ -125,7 +127,7 @@ class MandalaPost19(MandalaPost):
 
         clusterName = "2022"
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name=clusterName,
             shape=ShapeType.DOT.value,
             offset=104,
@@ -139,7 +141,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2021",
             shape=ShapeType.DOT.value,
             offset=120,
@@ -153,7 +155,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2020",
             shape=ShapeType.POTTED_PLANT.value,
             offset=75,
@@ -167,7 +169,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2019",
             shape=ShapeType.SPIRAL.value,
             offset=32,
@@ -182,7 +184,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 34)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2018",
             shape=ShapeType.CURVY_DROPLETS.value,
             offset=35,
@@ -195,7 +197,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2017",
             shape=ShapeType.ARC.value,
             offset=35,
@@ -209,7 +211,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2016",
             shape=ShapeType.DROPLET.value,
             offset=42,
@@ -223,7 +225,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2015",
             shape=ShapeType.ARC.value,
             offset=62,
@@ -238,7 +240,7 @@ class MandalaPost19(MandalaPost):
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
-            mandalaId=19,
+            mandalaId=self.mandala_num,
             name="2014",
             shape=ShapeType.CURLY_BRACKET.value,
             offset=58,
