@@ -33,6 +33,7 @@ nav a {
     background: #f4f4f4;
     padding: 15px;
 }
+
 .tooltip {
     display: none;
     position: absolute;
@@ -46,7 +47,47 @@ nav a {
     position: relative;
     display: inline-block;
 }
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-areas: "controlpanel svg";
+}
+
+/* Control panel area under tooltip */
+.controlpanel {
+    grid-area: controlpanel;
+    margin-top: 50px;           /* space below tooltip */
+    margin-bottom: 40px;
+    padding: 10px;
+    background: #f9f9f9;        /* light background to separate from page */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+
+/* Each dropdown group */
+.controlpanel .field {
+    margin-bottom: 10px;
+}
+
+.controlpanel label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.controlpanel select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
 svg {  
+    grid-area: svg;
     display: block; /* Required for margin auto */  
     margin: 0 auto; /* Horizontal centering */  
 }  

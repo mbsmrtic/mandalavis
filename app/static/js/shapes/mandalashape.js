@@ -41,6 +41,11 @@ export class MandalaShape {
         return this._howMany;
     }
 
+    // This is here because some shapes are not (yet?) functional enough to be selected in the control panel.
+    includeInControlPanel() {
+        return true; // By default, all shapes are included in the control panel.
+    }
+
     shapeElementAttributes() {
         return this.svgElementAttributes;
     }

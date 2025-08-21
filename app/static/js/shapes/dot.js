@@ -27,6 +27,9 @@ export class BetweenDotsDotShape extends MandalaShape {
         };        
         super(shapeArgs, biggerDot.svgElementAttributes);
     }
+    includeInControlPanel() {
+        return false; // This shape needs some work to be functional for selection in the control panel.
+    }
     shapeElementTag() { return "circle"}
     shapeElementAttributes() {
         return {

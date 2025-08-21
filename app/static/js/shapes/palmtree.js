@@ -1,6 +1,9 @@
 import { MandalaShape } from "./mandalashape.js";
 
 export class PalmTreeShape extends MandalaShape {
+    includeInControlPanel() {
+        return false; // This shape needs some work to be functional for selection in the control panel.
+    }
     shapeElementTag() { return "path"; }
     shapeElementAttributes() {
         var foo = 5;

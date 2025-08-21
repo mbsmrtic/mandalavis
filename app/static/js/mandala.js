@@ -16,6 +16,7 @@ document.addEventListener('click', (event) => {
         }
         clearHighlights();
     }
+    
 });
 
 function clearHighlights() {
@@ -197,7 +198,15 @@ export class Mandala {
                 clearHighlights();
                 this.selectShape(event.target);
                 tooltipJustOpened = true;
-            });    
+            });
+            newEl.addEventListener('click', (event) => {
+                clearHighlights();
+                this.selectShape(event.target);
+                //select the cluster in the control panel
+                const clusterDropdown = document.getElementById("clusterdropdown");
+                clusterDropdown.value = newEl.getAttribute('clustername') || '';
+                clusterDropdown.dispatchEvent(new Event('change'));
+            });
          }
         return newEl;
     }
@@ -223,8 +232,12 @@ export class Mandala {
                     this.mandalaEl.appendChild(newEl);
                 }
             }
+        }   
     }
-}
+
+    removeAllShapes() {
+        this.mandalaEl.innerHTML = "";
+    }
 
     addCenteredCircle(r, stroke="#666", fill="none") {
         this.addElement("circle", {

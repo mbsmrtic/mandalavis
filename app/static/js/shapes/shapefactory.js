@@ -39,6 +39,12 @@ export const shapeClasses = {
     SCurve,
     WaveShape,
   };
+
+  // Some of the above shapes are functional to be selected in the control panel.
+  // These shapes would need some work to be functional for selection in the control panel.
+  export function controlPanel(shapeName) {
+    return shapeName in ['BetweenDotsDotShape', 'ImageShape', 'NordicShape'];
+  }
   
   export function createShape(type, ...args) {
     const ShapeClass = shapeClasses[type];
