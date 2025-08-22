@@ -43,7 +43,7 @@
                     </div>
                     <div class="field">
                         <label for="offset">Distance from center</label>
-                        <input id="offset" type="range" max="200" step="1" disabled
+                        <input id="offset" type="range" max="270" step="1" disabled
                             oninput="this.nextElementSibling.value = this.value">
                         <output></output>
                     </div>
@@ -61,7 +61,8 @@
                     </div>
                     <div class="field">
                         <label for="strokewidth">Stroke width</label>
-                        <input id="strokewidth" type="range" step="1" disabled
+                        <input id="strokewidth" type="range" step="1" max="30"
+                            disabled
                             oninput="this.nextElementSibling.value = this.value">
                         <output></output>
                     </div>
@@ -73,18 +74,22 @@
                     </div>
                 </div>
 
-                <svg id="mandala{{ post_id }}svg" width="600" height="600" 
-                    viewBox="0 00 600 600" fill="none" 
-                    transform="matrix(1 0 0 1 0 0)"
-                    xmlns="http://www.w3.org/2000/svg">
-                    {# {% include 'grid.html' %} #}
-                    <g id="mandala{{ post_id }}" transform="matrix(1 0 0 1 0 0)">
-                    </g>
-                    </svg>
+                <div class="mandalaarea">
+                    <svg id="mandala{{ post_id }}svg" width="600" height="600" 
+                        viewBox="0 00 600 600" fill="none" 
+                        transform="matrix(1 0 0 1 0 0)"
+                        xmlns="http://www.w3.org/2000/svg">
+                        {# {% include 'grid.html' %} #}
+                        <g id="mandala{{ post_id }}" transform="matrix(1 0 0 1 0 0)">
+                        </g>
+                        </svg>
+                    <div class="zoom-controls">
+                        <button id="zoom-in-{{ post_id }}" class="zoom-button">Zoom In</button>
+                        <button id="zoom-out-{{ post_id }}" class="zoom-button">Zoom Out</button>
+                    </div>    
+                </div>
             </div> 
             
-            <button id="zoom-in-{{ post_id }}" class="zoom-button">Zoom In</button>
-            <button id="zoom-out-{{ post_id }}" class="zoom-button">Zoom Out</button>
             <div></div>
             <p> {{ mandala_data.post_text_html|safe }}
             </p>

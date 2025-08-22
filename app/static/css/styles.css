@@ -51,7 +51,9 @@ nav a {
 /* Grid container */
 .grid-container {
     display: grid;
-    grid-template-areas: "controlpanel svg";
+    grid-template-areas: "controlpanel mandalaarea";
+    gap: 24px;
+    align-items: start;
 }
 
 /* Control panel area under tooltip */
@@ -67,16 +69,8 @@ nav a {
 }
 
 /* Each dropdown group */
-.controlpanel .field {
-    margin-bottom: 10px;
-}
-
-.controlpanel label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
+.controlpanel .field { margin-bottom: 10px;}
+.controlpanel label { display: block; font-weight: bold; margin-bottom: 5px;}
 .controlpanel select {
     width: 100%;
     padding: 6px;
@@ -85,26 +79,29 @@ nav a {
     border-radius: 4px;
 }
 
-
-svg {  
-    grid-area: svg;
-    display: block; /* Required for margin auto */  
-    margin: 0 auto; /* Horizontal centering */  
-}  
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.mandalaarea {
+    grid-area: mandalaarea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.mandalaarea svg {  
+    display: block; /* Required for margin auto */  
+    max-width: 100%;
+    height: auto;
+}  
 article {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
     font-size: 1.5rem;
+}
+.zoom-controls {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;       /* nice on small screens */
 }
 .zoom-button {
     background-color: #043D66; /* Blue */
@@ -150,4 +147,13 @@ article {
     position: absolute; /* Positioning the button */
     right: 123px; /* Distance from the right edge */
     /*bottom: 20px;  Optional: Distance from the bottom edge */
+}
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
