@@ -65,7 +65,7 @@ nav a {
     background: #f9f9f9;        /* light background to separate from page */
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
+    width: fit-content;
 }
 
 /* Each dropdown group */
@@ -77,6 +77,32 @@ nav a {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.hide-btn {
+  background: #ccc;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.panel-body {
+  transition: max-height 0.3s ease;
+  display: block;
 }
 
 .mandalaarea {

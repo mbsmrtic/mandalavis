@@ -19,58 +19,64 @@
 
             <div class="grid-container">
                 <div class="controlpanel">
-                    <div class="field">
-                        <label for="clusterdropdown">Cluster</label>
-                        <select id="clusterdropdown">
-                        </select>
+                    <button class="hide-btn" onclick="togglePanel(this)">Hide</button>
+                    <div class="panel-header">
+                        <h3>Control Panel</h3>
                     </div>
-                    <div class="field">
-                        <label for="shapedropdown">Shape</label>
-                        <select id="shapedropdown" disabled>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label for="widthinput">Shape width</label>
-                        <input id="widthinput" type="range" name="width" min="0" max="100" step="1" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="heightinput">Shape height</label>
-                        <input id="heightinput" type="range" min="0" max="100" step="1" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="offset">Distance from center</label>
-                        <input id="offset" type="range" max="270" step="1" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="anglestart">Angle offset</label>
-                        <input id="anglestart" type="range" max="180" step="1" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="strokecolor">Stroke color</label>
-                        <input id="strokecolor" type="color" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="strokewidth">Stroke width</label>
-                        <input id="strokewidth" type="range" step="1" max="30"
-                            disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
-                    </div>
-                    <div class="field">
-                        <label for="fillcolor">Fill color</label>
-                        <input id="fillcolor" type="color" disabled
-                            oninput="this.nextElementSibling.value = this.value">
-                        <output></output>
+                    <div class="panel-body">
+                        <div class="field">
+                            <label for="clusterdropdown">Cluster</label>
+                            <select id="clusterdropdown">
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="shapedropdown">Shape</label>
+                            <select id="shapedropdown" disabled>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="widthinput">Shape width</label>
+                            <input id="widthinput" type="range" name="width" min="0" max="100" step="1" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="heightinput">Shape height</label>
+                            <input id="heightinput" type="range" min="0" max="100" step="1" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="offset">Distance from center</label>
+                            <input id="offset" type="range" max="270" step="1" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="anglestart">Angle offset</label>
+                            <input id="anglestart" type="range" max="180" step="1" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="strokecolor">Stroke color</label>
+                            <input id="strokecolor" type="color" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="strokewidth">Stroke width</label>
+                            <input id="strokewidth" type="range" step="1" max="30"
+                                disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
+                        <div class="field">
+                            <label for="fillcolor">Fill color</label>
+                            <input id="fillcolor" type="color" disabled
+                                oninput="this.nextElementSibling.value = this.value">
+                            <output></output>
+                        </div>
                     </div>
                 </div>
 
@@ -97,4 +103,17 @@
         </article>
     {% endwith %}
     <script src="/static/js/mandalav2.js" type="module" defer></script>
+    <script>
+        function togglePanel(btn) {
+        const panelBody = btn.closest(".controlpanel").querySelector(".panel-body");
+            if (panelBody.style.display === "none") {
+                panelBody.style.display = "block";
+                btn.textContent = "Hide";
+            } else {
+                panelBody.style.display = "none";
+                btn.textContent = "Show";
+            }
+        }
+    </script>
+
 {% endblock %}

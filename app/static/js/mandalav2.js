@@ -214,3 +214,15 @@ function addShapes(mandala, cluster) {
     }, svgAttrs, cluster['tiltLeft']);
     mandala.addShape(newShape);
 }
+
+export { togglePanel };
+function togglePanel(btn) {
+  const panelBody = btn.closest(".controlpanel").querySelector(".panel-body");
+  if (panelBody.style.display === "none") {
+    panelBody.style.display = "block";
+    btn.textContent = "Hide";
+  } else {
+    panelBody.style.display = "none";
+    btn.textContent = "Show";
+  }
+}
