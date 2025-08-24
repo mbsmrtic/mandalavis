@@ -18,11 +18,14 @@ class MandalaPost18(MandalaPost):
 
     @property
     def posted_date_str(self):
-        return "June 1, 2025"
+        return "August 22, 2025"
 
     @property
     def post_text_html(self):
-        return " "
+        return "Big update with this mandala. I've added a control panel for changing the mandala. " \
+        "Users can now change the shapes and their size, color, angle and distance from the center. " \
+        "These changes are impermanent. At some point I'll add the ability to save your changes " \
+        " and edit the underlying data. But for now, experiment and have fun! "
     
 
     @functools.cached_property
@@ -81,7 +84,7 @@ class MandalaPost18(MandalaPost):
             offset=92,
             width=30,
             length=30,
-            stroke="#888",
+            stroke="#000000",
             strokeWidth=2,
             fill="none",
             angleStart=20,
@@ -98,7 +101,7 @@ class MandalaPost18(MandalaPost):
             offset=92,
             width=30,
             length=30,
-            stroke="#888",
+            stroke="#000000",
             strokeWidth=2,
             fill="none",
             angleStart=40,
@@ -142,7 +145,7 @@ class MandalaPost18(MandalaPost):
             offset=120,
             width=8,
             length=8,
-            fill="black",
+            fill="#666666",
             angleStart=30
         )
         db.session.add(cluster)
@@ -200,7 +203,7 @@ class MandalaPost18(MandalaPost):
             width=20,
             length=30,
             angleStart=15,
-            stroke="#888",
+            stroke="#000000",
             strokeWidth=2
         )
         db.session.add(cluster)
@@ -214,7 +217,7 @@ class MandalaPost18(MandalaPost):
             offset=42,
             width=35,
             length=40,
-            fill="#888",
+            fill="#000000",
             angleStart=30
         )
         db.session.add(cluster)
@@ -243,7 +246,7 @@ class MandalaPost18(MandalaPost):
             offset=58,
             width=42,
             length=49,
-            stroke="#888",
+            stroke="#000000",
             strokeWidth=2,
             fill="none",
             angleStart=30

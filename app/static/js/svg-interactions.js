@@ -34,6 +34,23 @@ function startDrag(e, mandalaElementId) {
   e.preventDefault();
 }
 
+function startZoom(e, mandalaElementId) {
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && initialDistance) {
+      const currentDistance = getDistance(e.touches);
+      const factor = currentDistance / initialDistance;
+      zoom(factor);
+    }
+    e.preventDefault();  //prevent browser default zoom
+  });
+  window.addEventListener('touchend', (e) => {
+    initialDistance = null;  //restart
+    window.removeEventListener('touchmove', this);
+  });
+  e.stopPropagation();
+  e.preventDefault();
+}
+
 function getTransform(mandalaElementId) {
   const matrix = document.getElementById(mandalaElementId).getAttribute('transform');
   return matrix.replace(/^matrix\(/, '').replace(/\)$/, '').split(' ').map(parseFloat);
@@ -123,7 +140,13 @@ export class MandalaInteractions {
     this.ratio = 1;
     this.canvas = {};
     this.mandalaElementId = 'mandala' + mandalaNum;
-  // }
+
+    let initialDistance = null;
+    function getDistance(touches) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
 
   // function initInteractions(mandalaNumber) {
       // mandalaNum = mandalaNumber;
@@ -138,8 +161,13 @@ export class MandalaInteractions {
         startDrag(e, mei);
       });
       this.svg.addEventListener('touchstart', function(e) {
-        e.currentTarget.style.cursor = 'grabbing';
-        startDrag(e, mei);
+        if (e.touches.length === 1) {  // only deal with one finger
+          e.currentTarget.style.cursor = 'grabbing';
+          startDrag(e, mei);
+        } else {
+          initialDistance = getDistance(e.touches);
+          startZoom(e, mei);
+        }
       });
       window.addEventListener('resize', this.updateRatio);
       this.scaleFn();
@@ -161,29 +189,28 @@ export class MandalaInteractions {
       const rect = this.svg.getBoundingClientRect();
       this.ratio = this.viewBox.width / rect.width;  
     }
-  }
+  };
 
 
   /// Zooming
 
-    
+  zoom(factor) {
+    let viewBox = this.svg.viewBox.baseVal;
+    let svg = this.svg;
+    var newWidth = viewBox.width / factor;
+    var widthDiff = viewBox.width - newWidth;
+    viewBox.x += widthDiff/2; //x
+    viewBox.width = newWidth;
+    var newHeight = viewBox.height / factor;
+    var heightDiff = viewBox.height - newHeight;
+    viewBox.y += heightDiff/2; //y
+    viewBox.height = newHeight;
+    setSvgViewBox(svg, viewBox);
+  }
+
   scaleFn() {
-      let viewBox = [0, 0, 1000, 1000]; // [x, y, width, height]
-      viewBox = this.svg.viewBox.baseVal;
-      let svg = this.svg;
-      function zoom(factor) {
-          var newWidth = viewBox.width / factor;
-          var widthDiff = viewBox.width - newWidth;
-          viewBox.x += widthDiff/2; //x
-          viewBox.width = newWidth;
-          var newHeight = viewBox.height / factor;
-          var heightDiff = viewBox.height - newHeight;
-          viewBox.y += heightDiff/2; //y
-          viewBox.height = newHeight;
-          setSvgViewBox(svg, viewBox);
-      }
-      document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => zoom(1.1);
-      document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => zoom(1/1.1);
+      document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => this.zoom(1.1);
+      document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => this.zoom(1/1.1);
   }
 
 }
