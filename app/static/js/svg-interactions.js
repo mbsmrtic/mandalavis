@@ -130,6 +130,7 @@ export function setSvgViewBox(svg, viewBox) {
   }
 }
 
+let initialDistance = null;
 
 export class MandalaInteractions {
   constructor(mandalaNum) {
@@ -141,7 +142,6 @@ export class MandalaInteractions {
     this.canvas = {};
     this.mandalaElementId = 'mandala' + mandalaNum;
 
-    let initialDistance = null;
     function getDistance(touches) {
       const dx = touches[0].clientX - touches[1].clientX;
       const dy = touches[0].clientY - touches[1].clientY;
