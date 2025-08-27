@@ -131,6 +131,11 @@ export function setSvgViewBox(svg, viewBox) {
 }
 
 let initialDistance = null;
+function getDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
 
 export class MandalaInteractions {
   constructor(mandalaNum) {
@@ -141,12 +146,6 @@ export class MandalaInteractions {
     this.ratio = 1;
     this.canvas = {};
     this.mandalaElementId = 'mandala' + mandalaNum;
-
-    function getDistance(touches) {
-      const dx = touches[0].clientX - touches[1].clientX;
-      const dy = touches[0].clientY - touches[1].clientY;
-      return Math.sqrt(dx * dx + dy * dy);
-    }
 
   // function initInteractions(mandalaNumber) {
       // mandalaNum = mandalaNumber;
