@@ -34,23 +34,6 @@ function startDrag(e, mandalaElementId) {
   e.preventDefault();
 }
 
-function startZoom(e, mandalaElementId) {
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2 && initialDistance) {
-      const currentDistance = getDistance(e.touches);
-      const factor = currentDistance / initialDistance;
-      zoom(factor);
-    }
-    e.preventDefault();  //prevent browser default zoom
-  });
-  window.addEventListener('touchend', (e) => {
-    initialDistance = null;  //restart
-    window.removeEventListener('touchmove', this);
-  });
-  e.stopPropagation();
-  e.preventDefault();
-}
-
 function getTransform(mandalaElementId) {
   const matrix = document.getElementById(mandalaElementId).getAttribute('transform');
   return matrix.replace(/^matrix\(/, '').replace(/\)$/, '').split(' ').map(parseFloat);
@@ -130,13 +113,6 @@ export function setSvgViewBox(svg, viewBox) {
   }
 }
 
-let initialDistance = null;
-function getDistance(touches) {
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
 export class MandalaInteractions {
   constructor(mandalaNum) {
     this.mandalaNum = mandalaNum;
@@ -159,13 +135,20 @@ export class MandalaInteractions {
         e.currentTarget.style.cursor = 'grabbing';
         startDrag(e, mei);
       });
+
+      let initialDistance = null;
+      function getDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      }
       this.svg.addEventListener('touchstart', function(e) {
         if (e.touches.length === 1) {  // only deal with one finger
           e.currentTarget.style.cursor = 'grabbing';
           startDrag(e, mei);
         } else {
           initialDistance = getDistance(e.touches);
-          startZoom(e, mei);
+          this.startZoom(e, mei);
         }
       });
       window.addEventListener('resize', this.updateRatio);
@@ -210,6 +193,23 @@ export class MandalaInteractions {
   scaleFn() {
       document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => this.zoom(1.1);
       document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => this.zoom(1/1.1);
+  }
+
+  startZoom(e, mandalaElementId) {
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2 && initialDistance) {
+        const currentDistance = getDistance(e.touches);
+        const factor = currentDistance / initialDistance;
+        zoom(factor);
+      }
+      e.preventDefault();  //prevent browser default zoom
+    });
+    window.addEventListener('touchend', (e) => {
+      initialDistance = null;  //restart
+      window.removeEventListener('touchmove', this);
+    });
+    e.stopPropagation();
+    e.preventDefault();
   }
 
 }
