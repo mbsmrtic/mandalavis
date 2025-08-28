@@ -101,6 +101,20 @@ function endDrag() {
   window.removeEventListener('touchend', mouseuphandler);
 }
 
+function zoom(factor, svg) {
+    let viewBox = svg.viewBox.baseVal;
+    var newWidth = viewBox.width / factor;
+    var widthDiff = viewBox.width - newWidth;
+    viewBox.x += widthDiff/2; //x
+    viewBox.width = newWidth;
+    var newHeight = viewBox.height / factor;
+    var heightDiff = viewBox.height - newHeight;
+    viewBox.y += heightDiff/2; //y
+    viewBox.height = newHeight;
+    setSvgViewBox(svg, viewBox);
+  }
+
+
 export function setSvgViewBox(svg, viewBox) {
   if (
     svg instanceof SVGElement &&
@@ -142,12 +156,13 @@ export class MandalaInteractions {
         const dy = touches[0].clientY - touches[1].clientY;
         return Math.sqrt(dx * dx + dy * dy);
       }
+      let thissvg = this.svg;
       function startZoom(e, mandalaElementId) {
         window.addEventListener('touchmove', (e) => {
           if (e.touches.length === 2 && initialDistance) {
             const currentDistance = getDistance(e.touches);
             const factor = currentDistance / initialDistance;
-            zoom(factor);
+            zoom(factor, thissvg);
           }
           e.preventDefault();  //prevent browser default zoom
         });
@@ -193,23 +208,10 @@ export class MandalaInteractions {
 
   /// Zooming
 
-  zoom(factor) {
-    let viewBox = this.svg.viewBox.baseVal;
-    let svg = this.svg;
-    var newWidth = viewBox.width / factor;
-    var widthDiff = viewBox.width - newWidth;
-    viewBox.x += widthDiff/2; //x
-    viewBox.width = newWidth;
-    var newHeight = viewBox.height / factor;
-    var heightDiff = viewBox.height - newHeight;
-    viewBox.y += heightDiff/2; //y
-    viewBox.height = newHeight;
-    setSvgViewBox(svg, viewBox);
-  }
 
   scaleFn() {
-      document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => this.zoom(1.1);
-      document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => this.zoom(1/1.1);
+      document.getElementById('zoom-in-' + this.mandalaNum).onclick = () => zoom(1.1, this.svg);
+      document.getElementById('zoom-out-' + this.mandalaNum).onclick = () => zoom(1/1.1, this.svg);
   }
 
 
