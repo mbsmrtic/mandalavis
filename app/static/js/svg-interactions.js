@@ -162,6 +162,7 @@ export class MandalaInteractions {
           if (e.touches.length === 2 && initialDistance) {
             const currentDistance = getDistance(e.touches);
             const factor = currentDistance / initialDistance;
+            initialDistance = currentDistance;  // reset for next move
             console.log('zoom factor', factor);
             zoom(factor, thissvg);
           }
