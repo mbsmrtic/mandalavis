@@ -45,7 +45,11 @@ articles.forEach(article => {
                 var c = dataForMandala['c'] ?? 1;
                 mandala = cm.addMandala(i, c, offset, angleStart);
                 clustersData = dataForMandala['clusters']
-                clustersData.forEach(cluster => addShapes(mandala,cluster))
+                //loop through adding each cluster - sorted by zindex
+                clustersData
+                    .slice() // makes a shallow copy so that we don’t mutate the original
+                    .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
+                    .forEach(cluster => addShapes(mandala, cluster));
             })
             clustersData = dataForMandalas[0]['clusters'];
             mandala = cm;
@@ -53,7 +57,11 @@ articles.forEach(article => {
         else if ('clusters' in myData) {
             mandala = new Mandala(mandalaElementId, 300, 300);
             clustersData = myData['clusters']
-            clustersData.forEach(cluster => addShapes(mandala, cluster));
+            //loop through adding each cluster - sorted by zindex
+            clustersData
+                .slice() // makes a shallow copy so that we don’t mutate the original
+                .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
+                .forEach(cluster => addShapes(mandala, cluster));
             // Fill dropdowns
             // Get the dropdowns elements
             const clusterDropdown = article.querySelector("#clusterdropdown");
@@ -190,7 +198,11 @@ function setColorValue(element, color) {
 
 function redrawmandala(mandala, clustersData) {
     mandala.removeAllShapes();
-    clustersData.forEach(cluster => addShapes(mandala, cluster));
+    //loop through adding each cluster - sorted by zindex
+    clustersData
+        .slice() // makes a shallow copy so that we don’t mutate the original
+        .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
+        .forEach(cluster => addShapes(mandala, cluster));
 }
 
 function getMandalaDataFromDOM(mandalaElementId) {

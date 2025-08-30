@@ -19,6 +19,7 @@ class MandalaCluster(Base):
     fill: Mapped[str] = mapped_column(nullable=True)
     angleStart: Mapped[int] = mapped_column(nullable=True)
     tiltLeft: Mapped[bool] = mapped_column(nullable=True)
+    zindex: Mapped[int]
 
     def to_mandaladata_cluster(self, items):
         cluster = Cluster(
@@ -30,6 +31,7 @@ class MandalaCluster(Base):
             angleStart=self.angleStart,
             tiltLeft=self.tiltLeft,
             svgAttrs={"stroke": self.stroke, "stroke-width": self.strokeWidth, "fill": self.fill},
-            data=items
+            data=items,
+            zindex=self.zindex
         )
         return cluster

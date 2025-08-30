@@ -88,7 +88,8 @@ class MandalaPost18(MandalaPost):
             strokeWidth=2,
             fill="none",
             angleStart=20,
-            tiltLeft=True
+            tiltLeft=True,
+            zindex=0,
             )
         db.session.add(cluster)
         db.session.commit()
@@ -105,6 +106,7 @@ class MandalaPost18(MandalaPost):
             strokeWidth=2,
             fill="none",
             angleStart=40,
+            zindex=1,
             )
         db.session.add(cluster)
         db.session.commit()
@@ -118,7 +120,8 @@ class MandalaPost18(MandalaPost):
             width=10,
             length=10,
             fill="#888",
-            angleStart=7
+            angleStart=7,
+            zindex=2,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -133,6 +136,7 @@ class MandalaPost18(MandalaPost):
             length=10,
             fill="#888",
             angleStart=53,
+            zindex=3,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -146,7 +150,8 @@ class MandalaPost18(MandalaPost):
             width=8,
             length=8,
             fill="#666666",
-            angleStart=30
+            angleStart=30,
+            zindex = 4,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -160,7 +165,8 @@ class MandalaPost18(MandalaPost):
             width=20,
             length=40,
             fill="#888",
-            angleStart=0
+            angleStart=0,
+            zindex=5,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -175,7 +181,8 @@ class MandalaPost18(MandalaPost):
             length=5,
             stroke="#888",
             strokeWidth=1,
-            fill="white"
+            fill="white",
+            zindex=6,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -189,11 +196,28 @@ class MandalaPost18(MandalaPost):
             width=20,
             length=20,
             angleStart=15,
-            fill="#666"
+            fill="#666",
+            zindex=7,
         )
         db.session.add(cluster)
         db.session.commit()
         addDataItemsToDb(cluster, 13)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="cluster 2",
+            shape=ShapeType.ARC.value,
+            offset=62,
+            width=35,
+            length=25,
+            stroke="#888",
+            strokeWidth=2,
+            angleStart=30,
+            zindex=8,
+        )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
@@ -204,7 +228,8 @@ class MandalaPost18(MandalaPost):
             length=30,
             angleStart=15,
             stroke="#000000",
-            strokeWidth=2
+            strokeWidth=2,
+            zindex=9,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -218,22 +243,8 @@ class MandalaPost18(MandalaPost):
             width=35,
             length=40,
             fill="#000000",
-            angleStart=30
-        )
-        db.session.add(cluster)
-        db.session.commit()
-        addDataItemsToDb(cluster, 7)
-
-        cluster = MandalaCluster(
-            mandalaId=self.mandala_num,
-            name="cluster 2",
-            shape=ShapeType.ARC.value,
-            offset=62,
-            width=35,
-            length=25,
-            stroke="#888",
-            strokeWidth=2,
-            angleStart=30
+            angleStart=30,
+            zindex=10,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -249,7 +260,8 @@ class MandalaPost18(MandalaPost):
             stroke="#000000",
             strokeWidth=2,
             fill="none",
-            angleStart=30
+            angleStart=30,
+            zindex=11,
         )
         db.session.add(cluster)
         db.session.commit()

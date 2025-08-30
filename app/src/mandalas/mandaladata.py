@@ -55,6 +55,7 @@ class Cluster(BaseModel):
     length: Optional[int] = None
     tiltLeft: Optional[bool] = True
     angleStart: Optional[float] = None
+    zindex: int = 0
     svgAttrs: Optional[dict] = None
     data: List[DataItem]
 
