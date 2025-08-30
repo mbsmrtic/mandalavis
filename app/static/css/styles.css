@@ -142,6 +142,11 @@ article {
     transition-duration: 0.4s; /* Smooth hover effect */
     cursor: pointer;
 }
+svg[id^="mandala"] {
+  touch-action: none;  /* lets the class handle panning/zooming */
+  cursor: grab;
+}
+
 .next-post {
     background-color: #043D66; /* Blue */
     color: white;

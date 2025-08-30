@@ -1,31 +1,29 @@
 import { Mandala } from "/static/js/mandala.js"
-import { MandalaInteractions, setSvgViewBox } from "/static/js/svg-interactions.js";
+import { MandalaInteractions } from "/static/js/svg-interactions.js";
 import { shapeClasses, createShape } from "/static/js/shapes/shapefactory.js";
 import { CompositeMandala } from "/static/js/mandala.js";
 
 
 // Loop through all the articles in the DOM
+const interactionsById = new Map();
+
 const articles = document.querySelectorAll('article')
 articles.forEach(article => {
     // Draw the mandala for that article
-    var mandalaNum = article.getAttribute('post_id');
-    if (! mandalaNum) 
-        return;
+    const mandalaNum = article.getAttribute('post_id');
+    if (! mandalaNum) return;
     const mandalaElementId = "mandala" + mandalaNum; 
-    var interactions = new MandalaInteractions(mandalaNum);
+    
+    const interactions = new MandalaInteractions(mandalaNum, { minZoom: 0.4, maxZoom: 30 });
+    interactionsById.set(mandalaNum, interactions);    
     
     const myData = getMandalaDataFromDOM(mandalaElementId);
 
     if (myData){
         if ('view_box' in myData) {
-            let viewboxDict = interactions.getViewBox(interactions.svg);
-            let vb = myData['view_box'];
+            const vb = myData['view_box'];
             if (vb) {
-                let newViewBoxArray = vb.split(' ').map(Number);
-                if (newViewBoxArray.length === 4) {
-                    [viewboxDict.x, viewboxDict.y, viewboxDict.width, viewboxDict.height] = newViewBoxArray;
-                }
-                setSvgViewBox(interactions.svg, viewboxDict);
+                interactions.setViewBoxFromString(vb);  // e.g., "0 0 600 600"
             }
         }
         // @todo: at some point we may want to support the control panel for composite mandalas.
@@ -172,6 +170,12 @@ articles.forEach(article => {
     
 })
 
+// page tear-down
+window.addEventListener('beforeunload', () => {
+  interactionsById.forEach(i => i.destroy());
+  interactionsById.clear();
+});
+
 function setColorValue(element, color) {
     color ??= ''; //default color
     if (color === 'none') {
@@ -192,7 +196,7 @@ function redrawmandala(mandala, clustersData) {
 function getMandalaDataFromDOM(mandalaElementId) {
     const dataElement = document.getElementById(mandalaElementId + '-data');
     if (! dataElement) {
-        throw new Error("Mandala data element not found: " + this.elementId + '-data');
+        throw new Error("Mandala data element not found: " + mandalaElementId + '-data');
     }
     const strData = dataElement.dataset.mandala;
     const validJson = strData.replace(/'/g, '"');
