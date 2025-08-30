@@ -2,7 +2,7 @@
 // svg[id^="mandala"] { touch-action: none; cursor: grab; }
 
 export class MandalaInteractions {
-  constructor(mandalaNum, {minZoom=0.4, maxZoom=30} = {}) {
+  constructor(mandalaNum, {minZoom=0.4, maxZoom=40} = {}) {
     this.mandalaNum = mandalaNum;
     this.svg = document.getElementById(`mandala${mandalaNum}svg`);
     this.g   = document.getElementById(`mandala${mandalaNum}`); // the <g> you pan

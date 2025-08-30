@@ -14,7 +14,7 @@ articles.forEach(article => {
     if (! mandalaNum) return;
     const mandalaElementId = "mandala" + mandalaNum; 
     
-    const interactions = new MandalaInteractions(mandalaNum, { minZoom: 0.4, maxZoom: 30 });
+    const interactions = new MandalaInteractions(mandalaNum, { minZoom: 0.4, maxZoom: 40 });
     interactionsById.set(mandalaNum, interactions);    
     
     const myData = getMandalaDataFromDOM(mandalaElementId);
