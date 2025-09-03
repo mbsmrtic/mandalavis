@@ -23,7 +23,7 @@ def favicon():
 @app.route('/')
 def index():
     template_data = {}
-    # template_data[18] = mandala_post_factory(18)
+    template_data[18] = mandala_post_factory(18)
     template_data[17] = mandala_post_factory(17)
     template_data[16] = mandala_post_factory(16)
     template_data[15] = mandala_post_factory(15)
