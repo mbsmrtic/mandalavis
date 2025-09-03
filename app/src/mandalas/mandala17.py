@@ -24,7 +24,7 @@ class MandalaPost17(MandalaPost):
         mandala_data.clusters = []
         clusterName = "2025"
         cluster = Cluster(
-            clustername=clusterName,
+            clustername="2025",
             shape=ShapeType.CURLY_BRACKET.value,
             offset=171,
             width=55,

@@ -79,17 +79,16 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 12",
+            name="left outer spiral",
             shape=ShapeType.SPIRAL.value,
             offset=92,
             width=30,
             length=30,
             stroke="#000000",
             strokeWidth=2,
-            fill="none",
+            fill="transparent",
             angleStart=20,
             tiltLeft=True,
-            zindex=0,
             )
         db.session.add(cluster)
         db.session.commit()
@@ -97,16 +96,15 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 11",
+            name="right outer spiral",
             shape=ShapeType.SPIRAL.value,
             offset=92,
             width=30,
             length=30,
             stroke="#000000",
             strokeWidth=2,
-            fill="none",
+            fill="transparent",
             angleStart=40,
-            zindex=1,
             )
         db.session.add(cluster)
         db.session.commit()
@@ -114,14 +112,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 10",
+            name="right dot",
             shape=ShapeType.DOT.value,
             offset=104,
             width=10,
             length=10,
             fill="#888",
             angleStart=7,
-            zindex=2,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -129,14 +126,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 9",
+            name="left dot",
             shape=ShapeType.DOT.value,
             offset=104,
             width=10,
             length=10,
             fill="#888",
             angleStart=53,
-            zindex=3,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -144,14 +140,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 8",
+            name="outer dot",
             shape=ShapeType.DOT.value,
             offset=120,
             width=8,
             length=8,
             fill="#666666",
             angleStart=30,
-            zindex = 4,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -159,14 +154,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 7",
+            name="potted plant",
             shape=ShapeType.POTTED_PLANT.value,
             offset=75,
             width=20,
             length=40,
             fill="#888",
             angleStart=0,
-            zindex=5,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -174,15 +168,14 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 6",
+            name="inner spirals",
             shape=ShapeType.SPIRAL.value,
             offset=32,
             width=5,
             length=5,
             stroke="#888",
             strokeWidth=1,
-            fill="white",
-            zindex=6,
+            fill="#ffffff",
         )
         db.session.add(cluster)
         db.session.commit()
@@ -190,14 +183,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 5",
+            name="droplets",
             shape=ShapeType.CURVY_DROPLETS.value,
             offset=35,
             width=20,
             length=20,
             angleStart=15,
             fill="#666",
-            zindex=7,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -205,7 +197,7 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 2",
+            name="arc around droplet",
             shape=ShapeType.ARC.value,
             offset=62,
             width=35,
@@ -213,7 +205,7 @@ class MandalaPost18(MandalaPost):
             stroke="#888",
             strokeWidth=2,
             angleStart=30,
-            zindex=8,
+            zindex=1,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -221,7 +213,7 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 4",
+            name="arc around droplets",
             shape=ShapeType.ARC.value,
             offset=35,
             width=20,
@@ -229,7 +221,7 @@ class MandalaPost18(MandalaPost):
             angleStart=15,
             stroke="#000000",
             strokeWidth=2,
-            zindex=9,
+            zindex=2,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -237,14 +229,13 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 3",
+            name="large droplet",
             shape=ShapeType.DROPLET.value,
             offset=42,
-            width=35,
+            width=34,
             length=40,
             fill="#000000",
             angleStart=30,
-            zindex=10,
         )
         db.session.add(cluster)
         db.session.commit()
@@ -252,16 +243,15 @@ class MandalaPost18(MandalaPost):
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="cluster 1",
+            name="curly bracket",
             shape=ShapeType.CURLY_BRACKET.value,
             offset=58,
             width=42,
             length=49,
             stroke="#000000",
             strokeWidth=2,
-            fill="none",
+            fill="transparent",
             angleStart=30,
-            zindex=11,
         )
         db.session.add(cluster)
         db.session.commit()

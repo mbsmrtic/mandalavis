@@ -192,6 +192,13 @@ export class MandalaInteractions {
       }
     }
 
+    function pointEquals(p1, p2, epsilon = 1e-6) {
+      return (
+        Math.abs(p1.x - p2.x) <= epsilon &&
+        Math.abs(p1.y - p2.y) <= epsilon
+      );
+    }
+
     // If no pointers remain, end gesture entirely
     if (this.activePtrs.size === 0) {
       this._dragActive = false;
@@ -200,6 +207,41 @@ export class MandalaInteractions {
       this.svg.removeEventListener('pointermove', this._pointerMoveHandler);
       this.svg.removeEventListener('pointerup',   this._pointerUpHandler);
       this.svg.removeEventListener('pointercancel', this._pointerUpHandler);
+
+      if (this.svg.hasPointerCapture(e.pointerId)) {
+        this.svg.releasePointerCapture(e.pointerId);
+        let elmPt = this._screenToElementWithMatrix(e.clientX, e.clientY, this.panAtStart);
+        // If the pointer did not move between pointer down and pointer up, consider it a click
+        if (pointEquals(elmPt, this.dragStartElm)) {
+          this._onClick(e);
+        }
+      }
+    }
+  }
+
+  _onClick(e) {
+    // The shape that that was temporarily moved to the front when the mouse entered,
+    //   is the shape from which we get the cluster id. 
+    // const shapeEl = this.svg.querySelector('.shape.tempmovetofront');
+    // const sub = elAtPoint.closest(':scope > *');
+    // const shapeEl = e.target.closest('.shape');
+    const elsAtPoint = document.elementsFromPoint(e.clientX, e.clientY);
+    const shapeElsAtPoint = elsAtPoint.filter(el => el.classList.contains('shape'));
+    if (shapeElsAtPoint.length > 0) {
+      const elAtPoint = shapeElsAtPoint[0];
+      if (elAtPoint) {
+        //get cluster and cluster dropdown
+        let foobar = "get the cluster id and set the cluster dropdown"
+        const clusterid = elAtPoint.getAttribute('clusterid');
+                //select the cluster in the control panel
+                const clusterDropdown = document.getElementById("clusterdropdown");
+                for (const option of clusterDropdown.options) {
+                  if (option.clusterid == clusterid) {
+                    option.selected = true;
+                    clusterDropdown.dispatchEvent(new Event('change'));            
+                  }
+                }
+      }
     }
   }
 

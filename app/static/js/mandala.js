@@ -16,7 +16,13 @@ document.addEventListener('click', (event) => {
         }
         clearHighlights();
     }
-    
+
+    const mandalaEl = event.target.closest('[mandalaid="mandala17"]');
+    if (mandalaEl) {
+        console.log("Clicked inside mandala17:", mandalaEl);
+    } else {
+        console.log("Clicked somewhere else");
+    }
 });
 
 function clearHighlights() {
@@ -100,7 +106,7 @@ export class Mandala {
         circle.setAttribute("cx", cx);
         circle.setAttribute("cy", cy);
         circle.setAttribute("r", r);
-        circle.setAttribute("fill", "none");
+        circle.setAttribute("fill", "transparent");
         circle.setAttribute("stroke", "black");
         circle.setAttribute("stroke-width", 2);
         circle.classList.add('tempMoveToFront');
@@ -128,6 +134,11 @@ export class Mandala {
         else {
             this.showToolTipText(element);
             this.highlight(element);
+                //select the cluster in the control panel
+                // const clusterDropdown = document.getElementById("clusterdropdown");
+                // clusterDropdown.value = element.getAttribute('clustername') || '';
+                // if (clusterDropdown.value != '')
+                //     clusterDropdown.dispatchEvent(new Event('change'));            
         }
     };
 
@@ -172,6 +183,7 @@ export class Mandala {
         for (var attrKey in shape.svgElementAttributes) {
             attributes[attrKey] = shape.svgElementAttributes[attrKey];
         }
+        attributes['clusterid'] = shape.clusterid;
 
         if (angle > 0)
             attributes['transform'] = 
@@ -179,6 +191,7 @@ export class Mandala {
         //create the DOM element
         const newEl = document.createElementNS(svgUrl, elementTag);
         newEl.setAttribute('mandalaid', this.elementId);
+        newEl.setAttribute('class', 'shape');
         for (const key in attributes) {
             newEl.setAttribute(key, attributes[key]);
         }
@@ -190,22 +203,24 @@ export class Mandala {
         //     and use event.target to access the relevant element
         newEl.textContent = this.#getToolTipText(shape, iElementInCluster);
         if (shape.toolTipText || groupElement) {
-            newEl.addEventListener('mouseenter', (event) => {
-                clearHighlights();
-                this.selectShape(event.target);
-            });
-            newEl.addEventListener('touchstart', (event) => {
-                clearHighlights();
-                this.selectShape(event.target);
-                tooltipJustOpened = true;
-            });
             newEl.addEventListener('click', (event) => {
                 clearHighlights();
                 this.selectShape(event.target);
                 //select the cluster in the control panel
-                const clusterDropdown = document.getElementById("clusterdropdown");
-                clusterDropdown.value = newEl.getAttribute('clustername') || '';
-                clusterDropdown.dispatchEvent(new Event('change'));
+                // const clusterDropdown = document.getElementById("clusterdropdown");
+                // clusterDropdown.value = newEl.getAttribute('clustername') || '';
+                // clusterDropdown.dispatchEvent(new Event('change'));
+            });
+            newEl.addEventListener('mouseenter', (event) => {
+                console.log('mousenter event');
+                clearHighlights();
+                this.selectShape(event.target);
+            });
+            newEl.addEventListener('touchstart', (event) => {
+                console.log('touchstart event');
+                clearHighlights();
+                this.selectShape(event.target);
+                tooltipJustOpened = true;
             });
          }
         return newEl;
@@ -239,7 +254,7 @@ export class Mandala {
         this.mandalaEl.innerHTML = "";
     }
 
-    addCenteredCircle(r, stroke="#666", fill="none") {
+    addCenteredCircle(r, stroke="#666", fill="transparent") {
         this.addElement("circle", {
             cx: this.centerX,
             cy: this.centerY,

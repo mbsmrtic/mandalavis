@@ -48,6 +48,7 @@ class DataItem(BaseModel):
 class Cluster(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
+    id: Optional[int] = None
     clustername: str
     shape: ShapeType
     offset: float

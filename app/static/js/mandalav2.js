@@ -67,9 +67,11 @@ articles.forEach(article => {
             const clusterDropdown = article.querySelector("#clusterdropdown");
             const shapeDropdown = article.querySelector("#shapedropdown");
             if (clusterDropdown && shapeDropdown) {
-                clusterDropdown.innerHTML = '<option value="" selected disabled hidden>-- Select cluster --</option>';
+                clusterDropdown.innerHTML = '<option value="" selected disabled hidden>-- Select level --</option>';
                 clustersData.forEach(cluster => {
                     const option = document.createElement("option");
+                    option.clusterid = cluster.id;
+                    option.id = cluster.id;
                     option.value = cluster.clustername;   // value attribute
                     option.textContent = cluster.clustername; // visible text
                     clusterDropdown.appendChild(option);
@@ -188,7 +190,9 @@ function setColorValue(element, color) {
     color ??= ''; //default color
     if (color === 'none') {
         color = '';
+        return;
     }
+    if (color == '') return;
     if (color.length == 4) {
         color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
     }
@@ -221,6 +225,7 @@ function getMandalaDataFromDOM(mandalaElementId) {
 function addShapes(mandala, cluster) {
     var svgAttrs = cluster['svgAttrs'] || null;
     var newShape = createShape(cluster.shape, {
+        clusterid: cluster.id,
         offset: cluster.offset,
         width: cluster.width,
         length: cluster.length,

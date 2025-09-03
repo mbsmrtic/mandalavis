@@ -10,9 +10,10 @@
 //   to see what attributes can be set.  
 export class MandalaShape {
     constructor(
-        {x, y, length=20, width=15, howMany=1, angleStart=0, color="#666", toolTipText=null, offset=0},
+        {x, y, length=20, width=15, howMany=1, angleStart=0, color="#666", toolTipText=null, offset=0, clusterid=0},
         svgElementAttributes={}
     ) {
+        this.clusterid = clusterid;
         this.x = x;
         this.y = y;
         this.offset = offset;
