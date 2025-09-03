@@ -13,8 +13,12 @@
     {% endwith %}
     {% with mandala_data=mandalaData.get(post_id) %}
         <article id="article{{ post_id }}" post_id="{{ post_id }}">
+
             <h2><a href="{{ url_for('render_post', post_id=post_id)}}">{{ mandala_data.title }}</a></h2>
             <p><small><text>Posted on {{ mandala_data.posted_date_str }}</text></small></p>
+
+            <p> {{ mandala_data.post_text_html|safe }} </p>            
+            
             <div class="tooltip"></div>
 
             <div class="grid-container">
@@ -97,8 +101,7 @@
             </div> 
             
             <div></div>
-            <p> {{ mandala_data.post_text_html|safe }}
-            </p>
+
             <div id="mandala{{ post_id }}-data" data-mandala='{{ mandala_data.mandala_data_json_str }}'></div>
         </article>
     {% endwith %}
