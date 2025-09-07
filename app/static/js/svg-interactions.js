@@ -220,27 +220,19 @@ export class MandalaInteractions {
   }
 
   _onClick(e) {
-    // The shape that that was temporarily moved to the front when the mouse entered,
-    //   is the shape from which we get the cluster id. 
-    // const shapeEl = this.svg.querySelector('.shape.tempmovetofront');
-    // const sub = elAtPoint.closest(':scope > *');
-    // const shapeEl = e.target.closest('.shape');
     const elsAtPoint = document.elementsFromPoint(e.clientX, e.clientY);
     const shapeElsAtPoint = elsAtPoint.filter(el => el.classList.contains('shape'));
     if (shapeElsAtPoint.length > 0) {
       const elAtPoint = shapeElsAtPoint[0];
-      if (elAtPoint) {
-        //get cluster and cluster dropdown
-        let foobar = "get the cluster id and set the cluster dropdown"
-        const clusterid = elAtPoint.getAttribute('clusterid');
-                //select the cluster in the control panel
-                const clusterDropdown = document.getElementById("clusterdropdown");
-                for (const option of clusterDropdown.options) {
-                  if (option.clusterid == clusterid) {
-                    option.selected = true;
-                    clusterDropdown.dispatchEvent(new Event('change'));            
-                  }
-                }
+      //get cluster and cluster dropdown
+      const clusterid = elAtPoint.getAttribute('clusterid');
+      //select the cluster in the control panel
+      const clusterDropdown = document.getElementById("clusterdropdown");
+      for (const option of clusterDropdown.options) {
+        if (option.clusterid == clusterid) {
+          option.selected = true;
+          clusterDropdown.dispatchEvent(new Event('change'));            
+        }
       }
     }
   }

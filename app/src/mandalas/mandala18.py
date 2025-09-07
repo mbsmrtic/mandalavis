@@ -117,7 +117,7 @@ class MandalaPost18(MandalaPost):
             offset=104,
             width=10,
             length=10,
-            fill="#888",
+            fill="#888888",
             angleStart=7,
         )
         db.session.add(cluster)
@@ -131,7 +131,7 @@ class MandalaPost18(MandalaPost):
             offset=104,
             width=10,
             length=10,
-            fill="#888",
+            fill="#888888",
             angleStart=53,
         )
         db.session.add(cluster)
@@ -159,7 +159,7 @@ class MandalaPost18(MandalaPost):
             offset=75,
             width=20,
             length=40,
-            fill="#888",
+            fill="#888888",
             angleStart=0,
         )
         db.session.add(cluster)
@@ -173,7 +173,7 @@ class MandalaPost18(MandalaPost):
             offset=32,
             width=5,
             length=5,
-            stroke="#888",
+            stroke="#888888",
             strokeWidth=1,
             fill="#ffffff",
         )
@@ -189,7 +189,7 @@ class MandalaPost18(MandalaPost):
             width=20,
             length=20,
             angleStart=15,
-            fill="#666",
+            fill="#666666",
         )
         db.session.add(cluster)
         db.session.commit()
@@ -202,7 +202,7 @@ class MandalaPost18(MandalaPost):
             offset=62,
             width=35,
             length=25,
-            stroke="#888",
+            stroke="#888888",
             strokeWidth=2,
             angleStart=30,
             zindex=1,

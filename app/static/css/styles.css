@@ -142,10 +142,6 @@ article {
     transition-duration: 0.4s; /* Smooth hover effect */
     cursor: pointer;
 }
-svg[id^="mandala"] {
-  touch-action: none;  /* lets the class handle panning/zooming */
-  cursor: grab;
-}
 
 .next-post {
     background-color: #043D66; /* Blue */
@@ -179,6 +175,21 @@ svg[id^="mandala"] {
     right: 123px; /* Distance from the right edge */
     /*bottom: 20px;  Optional: Distance from the bottom edge */
 }
+
+.toggle-btn {
+    grid-area: toggle-btn;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .5em;
+    line-height: .5;
+    margin-right: 0.5em;
+}
+
+.controlpanel.collapsed .panel-body {
+    display: none;
+}
+
 footer {
     text-align: center;
     padding: 10px 0;

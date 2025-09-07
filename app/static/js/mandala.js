@@ -16,13 +16,6 @@ document.addEventListener('click', (event) => {
         }
         clearHighlights();
     }
-
-    const mandalaEl = event.target.closest('[mandalaid="mandala17"]');
-    if (mandalaEl) {
-        console.log("Clicked inside mandala17:", mandalaEl);
-    } else {
-        console.log("Clicked somewhere else");
-    }
 });
 
 function clearHighlights() {
@@ -134,11 +127,6 @@ export class Mandala {
         else {
             this.showToolTipText(element);
             this.highlight(element);
-                //select the cluster in the control panel
-                // const clusterDropdown = document.getElementById("clusterdropdown");
-                // clusterDropdown.value = element.getAttribute('clustername') || '';
-                // if (clusterDropdown.value != '')
-                //     clusterDropdown.dispatchEvent(new Event('change'));            
         }
     };
 
@@ -197,20 +185,12 @@ export class Mandala {
         }
 
         // tooltip and shape highlight
-        // todo - maybe move this code to the top
+        // todo - maybe move this code to svginteractions
         //     maybe we don't need one event listener for each shape
-        //     we could just capture them in one place at the top
-        //     and use event.target to access the relevant element
+        //     we could just capture them in one place in svginteractions
+        //     and use elementsFromPoint (.shape) to access the relevant element
         newEl.textContent = this.#getToolTipText(shape, iElementInCluster);
         if (shape.toolTipText || groupElement) {
-            newEl.addEventListener('click', (event) => {
-                clearHighlights();
-                this.selectShape(event.target);
-                //select the cluster in the control panel
-                // const clusterDropdown = document.getElementById("clusterdropdown");
-                // clusterDropdown.value = newEl.getAttribute('clustername') || '';
-                // clusterDropdown.dispatchEvent(new Event('change'));
-            });
             newEl.addEventListener('mouseenter', (event) => {
                 console.log('mousenter event');
                 clearHighlights();

@@ -14,7 +14,7 @@ export class SShape extends MandalaShape {
                 this.x, this.y - this.length
             );
         return ({
-            fill: "none",
+            fill: "transparent",
             stroke: "#666",
             d: pathD
         });

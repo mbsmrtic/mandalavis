@@ -22,14 +22,19 @@
             <div class="tooltip"></div>
 
             <div class="grid-container">
+
                 <div class="controlpanel">
-                    <button class="hide-btn" onclick="togglePanel(this)">Hide</button>
+                    <!-- <button class="hide-btn" onclick="togglePanel(this)">Hide</button> -->
                     <div class="panel-header">
-                        <h3>Control Panel</h3>
+                        <button class="toggle-btn" aria-label="Toggle control panel"   onclick="togglePanel(this);">
+                            <span class="arrow">◀</span>
+                        </button>
                     </div>
                     <div class="panel-body">
                         <div class="field">
-                            <label for="clusterdropdown">Mandala Levels</label>
+                            <label for="clusterdropdown">
+                                Mandala Levels
+                            </label>
                             <select id="clusterdropdown">
                             </select>
                         </div>
@@ -76,6 +81,10 @@
                             <output></output>
                         </div>
                         <div class="field">
+                            <label for="fillcolordropdown">Fill color list</label>
+                            <select id="fillcolordropdown"></select>
+                        </div>
+                        <div class="field">
                             <label for="fillcolor">Fill color</label>
                             <input id="fillcolor" type="color" disabled
                                 oninput="this.nextElementSibling.value = this.value">
@@ -108,13 +117,17 @@
     <script src="/static/js/mandalav2.js" type="module" defer></script>
     <script>
         function togglePanel(btn) {
-        const panelBody = btn.closest(".controlpanel").querySelector(".panel-body");
+            const panel = btn.closest(".controlpanel");
+            panel.classList.toggle('collapsed');
+            const arrow = btn.querySelector('.arrow');
+            arrow.textContent = panel.classList.contains('collapsed') ? '▶' : '◀';
+            const panelBody = panel.querySelector(".panel-body");
             if (panelBody.style.display === "none") {
                 panelBody.style.display = "block";
-                btn.textContent = "Hide";
+                // btn.textContent = "Hide";
             } else {
                 panelBody.style.display = "none";
-                btn.textContent = "Show";
+                // btn.textContent = "Show";
             }
         }
     </script>

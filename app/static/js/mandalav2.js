@@ -187,9 +187,9 @@ window.addEventListener('beforeunload', () => {
 });
 
 function setColorValue(element, color) {
-    color ??= ''; //default color
+    color ??= 'transparent'; //default color
     if (color === 'none') {
-        color = '';
+        color = 'transparent';
         return;
     }
     if (color == '') return;

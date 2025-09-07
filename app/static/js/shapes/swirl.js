@@ -9,7 +9,7 @@ export class SwirlShape extends MandalaShape {
                 this.x + 3, this.y - 2
             );
         return {
-            fill: "none",
+            fill: "transparent",
             stroke: "black",
             'stroke-width': .3,
             d: pathD

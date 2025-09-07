@@ -18,7 +18,7 @@ export class ArcShape extends MandalaShape {
             );
 
         return {
-            fill: "none",
+            fill: "transparent",
             stroke: this.color,
             'stroke-width': .3,
             d: pathD

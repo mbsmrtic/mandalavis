@@ -12,6 +12,7 @@ from app.src.mandalas.postroute import get_url_for_post
 # This runs all imports in models/__init__.py
 #  only these models will be included in the create_all and drop_all below
 from app.models.db import db
+from app.models.preset_color import seed_colors
 
 app = Flask(__name__)
 
@@ -68,7 +69,7 @@ db.init_app(app)
 with app.app_context():
     db.drop_all()       ### Use this carefully - it deletes all tables and all data!!! 
     db.create_all()     # This creates tables for all models that are included in this context (aka in models/__init__.py)
-
+    seed_colors()
 
 with app.test_request_context():
     print(url_for('index'))

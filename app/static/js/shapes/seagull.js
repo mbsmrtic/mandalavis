@@ -15,7 +15,7 @@ export class Seagull extends MandalaShape {
                 rightCurvePt.x + xPtOffset, rightCurvePt.y, //nextCurve 
                 this.x + this.width/2, this.y - yPtOffset * 3); //end
         var elementAttrs = {
-            fill: "none",
+            fill: "transparent",
             stroke: "black",
             'stroke-width': .3,
             d: pathD
