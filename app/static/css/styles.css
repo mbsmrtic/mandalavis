@@ -69,8 +69,8 @@ nav a {
 }
 
 /* Each dropdown group */
-.controlpanel .field { margin-bottom: 10px;}
-.controlpanel label { display: block; font-weight: bold; margin-bottom: 5px;}
+.controlpanel .field { margin-bottom: 10px;font-size: 14px;}
+.controlpanel label { display: block; font-size: 14px; }
 .controlpanel select {
     width: 100%;
     padding: 6px;
@@ -199,3 +199,56 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* General slider track */
+input[type="range"] {
+  -webkit-appearance: none; /* reset default iOS look */
+  height: 30px;             /* bigger touch area */
+  background: transparent;  /* let track styles show */
+  touch-action: none;       /* avoid page scrolling while dragging */
+  margin: 1px 0;
+}
+
+/* Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+}
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+}
+
+/* Thumb (the draggable knob) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: #666;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  margin-top: -11px; /* aligns thumb vertically with track */
+} 
+input[type="range"]::-moz-range-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: #666;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Focus ring (accessibility) */
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]:focus::-webkit-slider-thumb {
+  background: #444;
+}
+input[type="range"]:focus::-moz-range-thumb {
+  background: #444;
+}
+
