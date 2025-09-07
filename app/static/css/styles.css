@@ -69,8 +69,8 @@ nav a {
 }
 
 /* Each dropdown group */
-.controlpanel .field { margin-bottom: 10px;font-size: 14px;}
-.controlpanel label { display: block; font-size: 14px; }
+.controlpanel .field { margin-bottom: 10px;font-size: 1.5rem;;}
+.controlpanel label { display: block; font-size: 1.5rem;}
 .controlpanel select {
     width: 100%;
     padding: 6px;
