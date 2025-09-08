@@ -65,7 +65,8 @@ nav a {
     background: #f9f9f9;        /* light background to separate from page */
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: fit-content;
+    width: 100%;
+    /* width: fit-content; */
 }
 
 /* Each dropdown group */
@@ -181,7 +182,7 @@ article {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: .5em;
+    font-size: 1em;
     line-height: .5;
     margin-right: 0.5em;
 }
@@ -204,6 +205,7 @@ footer {
 input[type="range"] {
   -webkit-appearance: none; /* reset default iOS look */
   height: 30px;             /* bigger touch area */
+  width: 80%;
   background: transparent;  /* let track styles show */
   touch-action: none;       /* avoid page scrolling while dragging */
   margin: 1px 0;
