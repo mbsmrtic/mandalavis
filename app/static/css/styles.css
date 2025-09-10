@@ -193,6 +193,48 @@ article {
     margin-right: 0.5em;
 }
 
+.icon-btn {
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5em;
+  cursor: pointer;
+  color: #444;
+  font-size: 1.2em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5em;      /* space between buttons */
+  transition: background 0.2s, color 0.2s;
+}
+
+.icon-btn:hover {
+  background: #ddd;
+}
+
+.icon-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.icon-btn:focus {
+  outline: 2px solid #666;
+  outline-offset: 2px;
+}
+
+/* Special coloring */
+.add-btn:hover {
+  background: #d4edda;   /* light green */
+  color: #155724;        /* dark green icon */
+}
+
+.delete-btn:hover {
+  background: #f8d7da;   /* light red */
+  color: #b00020;        /* dark red icon */
+}
+
+
 .controlpanel.collapsed .panel-body {
     display: none;
 }

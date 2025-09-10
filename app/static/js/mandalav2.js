@@ -67,15 +67,7 @@ articles.forEach(article => {
             const clusterDropdown = article.querySelector("#clusterdropdown");
             const shapeDropdown = article.querySelector("#shapedropdown");
             if (clusterDropdown && shapeDropdown) {
-                clusterDropdown.innerHTML = '<option value="" selected disabled hidden>-- Select level --</option>';
-                clustersData.forEach(cluster => {
-                    const option = document.createElement("option");
-                    option.clusterid = cluster.id;
-                    option.id = cluster.id;
-                    option.value = cluster.clustername;   // value attribute
-                    option.textContent = cluster.clustername; // visible text
-                    clusterDropdown.appendChild(option);
-                })
+                fillLevelsDropdown(clusterDropdown, clustersData);
                 //fill the shapes from the shapefactory list
                 shapeDropdown.innerHTML = '<option value="" selected disabled hidden>-- Select shape --</option>';
                 for (let shapeName in shapeClasses) {
@@ -94,6 +86,8 @@ articles.forEach(article => {
                 let strokecolorinput = article.querySelector("#strokecolor");
                 let strokewidthinput = article.querySelector("#strokewidth");
                 let fillcolorinput = article.querySelector("#fillcolor");
+                let deletelevelbtn = article.querySelector("#delete-mandala-level");
+                let addlevelbtn = article.querySelector("#add-mandala-level");
 
                 let selectedCluster = null;
                 //select the shape of the selected cluster
@@ -141,6 +135,7 @@ articles.forEach(article => {
                     strokecolorinput.disabled = false;
                     strokewidthinput.disabled = false;
                     fillcolorinput.disabled = false;
+                    deletelevelbtn.disabled = false;
                 });
                 shapeDropdown.addEventListener("change", function() {
                     selectedCluster.shape = this.value;
@@ -174,6 +169,44 @@ articles.forEach(article => {
                     selectedCluster.svgAttrs["fill"] = this.value;
                     redrawmandala(mandala, clustersData);
                 });
+                addlevelbtn.onclick = () => {
+                    const newLevelName = prompt("Enter new level name:");
+                    if (! newLevelName) 
+                        return;
+                    const howMany = prompt("How many items?", "10");
+                    if (! howMany)
+                        return;
+                    const numHowMany = parseInt(howMany) || 10;
+                    let dataitems = [];
+                    for (let i = 0; i < numHowMany; i++) {
+                        dataitems.push({desc: `${newLevelName} ${i}`});
+                    }
+                    
+                    //@todo This will create an id that is unique here but won't work when we 
+                    //    start saving these to the database.
+                    const maxId = clustersData.length ? Math.max(...clustersData.map(i => i.id)) : 0;
+
+                    clustersData.push({
+                        id: maxId + 1, clustername: newLevelName, 
+                        shape: "DropletShape", length: 30, 
+                        offset: 5, angleStart: 0,
+                        data: dataitems});
+                    //add it to the dropdown
+                    fillLevelsDropdown(clusterDropdown, clustersData);
+                    clusterDropdown.selectedIndex = clustersData.length;
+                    clusterDropdown.dispatchEvent(new Event("change"));
+                    redrawmandala(mandala, clustersData);
+                }
+                deletelevelbtn.onclick = () => {
+                    const iselected = clustersData.findIndex(obj => obj.id === selectedCluster.id);
+                    if (iselected !== -1) {
+                        clustersData.splice(iselected, 1);
+                        fillLevelsDropdown(clusterDropdown, clustersData);
+                        clusterDropdown.selectedIndex = 1;
+                        clusterDropdown.dispatchEvent(new Event("change"));
+                        redrawmandala(mandala, clustersData);
+                    }
+                }
             }
         }
     }
@@ -196,7 +229,7 @@ function setColorValue(element, color) {
     if (color.length == 4) {
         color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
     }
-    element.value = color;
+    element.value = (color == 'transparent') ? '#ffffff' : color;
     element.nextElementSibling.value = color;
 }
 
@@ -207,6 +240,18 @@ function redrawmandala(mandala, clustersData) {
         .slice() // makes a shallow copy so that we don’t mutate the original
         .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
         .forEach(cluster => addShapes(mandala, cluster));
+}
+
+function fillLevelsDropdown(clusterDropdown, clustersData) {
+    clusterDropdown.innerHTML = '<option value="" selected disabled hidden>-- Select level --</option>';
+    clustersData.forEach(cluster => {
+        const option = document.createElement("option");
+        option.clusterid = cluster.id;
+        option.id = cluster.id;
+        option.value = cluster.clustername;   // value attribute
+        option.textContent = cluster.clustername; // visible text
+        clusterDropdown.appendChild(option);
+    })
 }
 
 function getMandalaDataFromDOM(mandalaElementId) {

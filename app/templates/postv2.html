@@ -26,7 +26,9 @@
                 <div class="controlpanel">
                     <!-- <button class="hide-btn" onclick="togglePanel(this)">Hide</button> -->
                     <div class="panel-header">
-                        <button class="toggle-btn" aria-label="Toggle control panel"   onclick="togglePanel(this);">
+                        <button class="toggle-btn" aria-label="Toggle control panel"   
+                            onclick="togglePanel(this);"
+                            title="Collapse control panel">
                             <span class="arrow">◀</span>
                         </button>
                     </div>
@@ -51,13 +53,13 @@
                         </div>
                         <div class="field">
                             <label for="heightinput">Shape height</label>
-                            <input id="heightinput" type="range" min="0" max="100" step="1" disabled
+                            <input id="heightinput" type="range" min="-100" max="100" step="1" disabled
                                 oninput="this.nextElementSibling.value = this.value">
                             <output></output>
                         </div>
                         <div class="field">
                             <label for="offset">Distance from center</label>
-                            <input id="offset" type="range" max="270" step="1" disabled
+                            <input id="offset" type="range" min="-270" max="270" step="1" disabled
                                 oninput="this.nextElementSibling.value = this.value">
                             <output></output>
                         </div>
@@ -90,6 +92,31 @@
                                 oninput="this.nextElementSibling.value = this.value">
                             <output></output>
                         </div>
+                        <!-- <button id="delete-mandala-level" class="delete-btn" disabled
+                            title="Delete mandala level">
+                            🗑️
+                        </button> -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+                        <!-- <button id="delete-mandala-level"  
+                                class="delete-btn" 
+                                title="Delete mandala level" 
+                                disabled>
+                            <i class="fa-solid fa-trash"></i>
+                        </button> -->
+                        <div class="mandala-controls">
+                            <button id="add-mandala-level"  
+                                    class="icon-btn add-btn" 
+                                    title="Add mandala level">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                            <button id="delete-mandala-level"  
+                                    class="icon-btn delete-btn" 
+                                    title="Delete mandala level" 
+                                    disabled>
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -120,7 +147,9 @@
             const panel = btn.closest(".controlpanel");
             panel.classList.toggle('collapsed');
             const arrow = btn.querySelector('.arrow');
-            arrow.textContent = panel.classList.contains('collapsed') ? '▶' : '◀';
+            let isCollapsed = panel.classList.contains('collapsed');
+            arrow.textContent = isCollapsed ? '▶' : '◀';
+            arrow.title = isCollapsed ? 'Expand' : 'Collapse';
             const panelBody = panel.querySelector(".panel-body");
             if (panelBody.style.display === "none") {
                 panelBody.style.display = "block";
