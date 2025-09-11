@@ -281,7 +281,13 @@ input[type="range"]::-webkit-slider-thumb {
   border: 2px solid #fff;
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
   margin-top: -11px; /* aligns thumb vertically with track */
+  transition: transform 0.15s ease;
 } 
+/* While dragging (active state) */
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(2); /* thumb grows bigger while sliding */
+}
+
 input[type="range"]::-moz-range-thumb {
   height: 28px;
   width: 28px;
@@ -289,6 +295,10 @@ input[type="range"]::-moz-range-thumb {
   background: #666;
   border: 2px solid #fff;
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  transition: transform 0.15s ease;
+}
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(2);
 }
 
 /* Focus ring (accessibility) */
