@@ -62,7 +62,9 @@ articles.forEach(article => {
             .slice() // makes a shallow copy so that we don’t mutate the original
             .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
             .forEach(cluster => addShapes(mandala, cluster));
-        // Fill dropdowns
+
+        //var controlPanel = new ControlPanel(article, clustersData);
+
         // Get the dropdowns elements
         const clusterDropdown = article.querySelector("#clusterdropdown");
         const shapeDropdown = article.querySelector("#shapedropdown");
@@ -174,7 +176,7 @@ articles.forEach(article => {
             const newLevelName = prompt("Enter new level name:");
             if (! newLevelName) 
                 return;
-            const howMany = prompt("How many items?", "10");
+            const howMany = prompt("How many items?", "6");
             if (! howMany)
                 return;
             const numHowMany = parseInt(howMany) || 10;
