@@ -123,7 +123,7 @@ articles.forEach(article => {
             anglestartinput.max = (360 / Number(selectedCluster.data.length) - 1);
             anglestartinput.nextElementSibling.value = selectedCluster.angleStart;
             //svg attributes
-            if (! selectedCluster.svgAttrs || Object.keys(selectedCluster.svgAttrs).length === 0)
+            // if (! selectedCluster.svgAttrs || Object.keys(selectedCluster.svgAttrs).length === 0)
             if (selectedCluster.svgAttrs) {
                 //set the colors
                 //stroke color
