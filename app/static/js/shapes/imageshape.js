@@ -1,12 +1,10 @@
 import { MandalaShape } from "./mandalashape.js";
 
 export class ImageShape extends MandalaShape {
+    static includeInControlPanel = false;
     constructor(shapeArgs, imageUrl){
         super(shapeArgs, {});
         this.imageUrl = imageUrl ?? '/static/favicon.ico'
-    }
-    includeInControlPanel() {
-        return false; // This shape needs some work to be functional for selection in the control panel.
     }
     shapeElementTag() { return "image"; }
     shapeElementAttributes() {

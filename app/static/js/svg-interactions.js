@@ -229,7 +229,7 @@ export class MandalaInteractions {
       //select the cluster in the control panel
       const clusterDropdown = document.getElementById("clusterdropdown");
       for (const option of clusterDropdown.options) {
-        if (option.clusterid == clusterid) {
+        if (option.id == clusterid) {
           option.selected = true;
           clusterDropdown.dispatchEvent(new Event('change'));            
         }

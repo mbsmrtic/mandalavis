@@ -14,6 +14,7 @@ export class DotShape extends MandalaShape {
 }
 
 export class BetweenDotsDotShape extends MandalaShape {
+    static includeInControlPanel = false;
     constructor(biggerDot) {
         var littleR = biggerDot.width / 8;
         var shapeArgs = {
@@ -26,9 +27,6 @@ export class BetweenDotsDotShape extends MandalaShape {
             angleStart: (360/biggerDot.howMany)/2 - biggerDot.angleStart
         };        
         super(shapeArgs, biggerDot.svgElementAttributes);
-    }
-    includeInControlPanel() {
-        return false; // This shape needs some work to be functional for selection in the control panel.
     }
     shapeElementTag() { return "circle"}
     shapeElementAttributes() {

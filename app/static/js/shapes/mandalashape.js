@@ -9,6 +9,10 @@
 //      https://developer.mozilla.org/en-US/docs/Web/SVG 
 //   to see what attributes can be set.  
 export class MandalaShape {
+    // This is here because some shapes are not (yet?) functional enough to be selected in the control panel.
+    // By default, all shapes are included in the control panel.
+    static includeInControlPanel = true;
+
     constructor(
         {x, y, length=20, width=15, howMany=1, angleStart=0, color="#666", toolTipText=null, offset=0, clusterid=0},
         svgElementAttributes={}
@@ -40,11 +44,6 @@ export class MandalaShape {
 
     get howMany() {
         return this._howMany;
-    }
-
-    // This is here because some shapes are not (yet?) functional enough to be selected in the control panel.
-    includeInControlPanel() {
-        return true; // By default, all shapes are included in the control panel.
     }
 
     shapeElementAttributes() {
