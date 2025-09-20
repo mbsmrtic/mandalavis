@@ -35,7 +35,7 @@ export class ControlPanel {
         this.fieldInstArray.push(new AngleStartSlider('#anglestart', parentElement, 'angleStart'));
         this.fieldInstArray.push(new ColorField('#strokecolor', parentElement, 'svgAttrs.stroke'));
         this.fieldInstArray.push(new SliderField('#strokewidth', parentElement, 'svgAttrs.stroke-width'));
-        //this.fieldInstArray.push(new ColorField('#fillcolor', parentElement, 'svgAttrs.fill'));
+        this.fieldInstArray.push(new ColorField('#fillcolor', parentElement, 'svgAttrs.fill'));
         this.fieldInstArray.push(new DeleteButtonField('#delete-mandala-level', parentElement, 'clusters', true));
         this.fieldInstArray.push(new AddButtonField('#add-mandala-level', parentElement, 'clusters', true));
         
