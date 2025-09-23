@@ -1,5 +1,6 @@
 import { shapeClasses, createShape } from "/static/js/shapes/shapefactory.js";
-import { DropDownField, ColorField, SliderField, AngleStartSlider, DeleteButtonField, AddButtonField } from "/static/js/cpfield.js"
+import { DropDownField, ColorField, SliderField, AngleStartSlider, DeleteButtonField, 
+    AddButtonField, PredefinedColorsField } from "/static/js/cpfield.js"
 import { MandalaData } from "/static/js/mandaladata.js"
 
 export class ControlPanel {
@@ -28,6 +29,14 @@ export class ControlPanel {
         }
         shapesDropdown.addData(shapeArray, 'shape');
         this.fieldInstArray.push(shapesDropdown);
+
+        // predefined colors dropdown
+        //  todo - maybe create separate classes for these dropdowns in which they
+        //    fill themselves
+        let pdColorsDropdown = new PredefinedColorsField('#fillcolordropdown', parentElement, 'svgAttrs.fill');
+        const colors = pdColorsDropdown.loadPresetColors();
+        //pdColorsDropdown.addData(colors, 'color');
+        this.fieldInstArray.push(pdColorsDropdown);
 
         this.fieldInstArray.push(new SliderField('#widthinput', parentElement, 'width'));
         this.fieldInstArray.push(new SliderField('#heightinput', parentElement, 'length'));

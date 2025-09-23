@@ -1,13 +1,15 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import render_template, request, redirect
 from flask import url_for, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from sqlalchemy import select
 
 from jinja2 import TemplateNotFound 
 import os
 from app.src.mandalas.postfactory import mandala_post_factory, sidebar_data, mandala_posts
 from app.src.mandalas.postroute import get_url_for_post
+from app.models.preset_color import PresetColor
 
 # This runs all imports in models/__init__.py
 #  only these models will be included in the create_all and drop_all below
@@ -46,6 +48,12 @@ def render_post(post_id):
     else:
         template_filename = 'post.html'
     return render_template(template_filename, post_id=post_id, mandalaData=template_data)
+
+@app.get("/api/preset-colors")
+def list_preset_colors():
+    stmt = select(PresetColor)
+    colors = db.session.execute(stmt).scalars().all()
+    return jsonify([c.to_dict() for c in colors])
 
 @app.route('/testmandala')
 def render_testMandala():

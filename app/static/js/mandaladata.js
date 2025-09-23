@@ -52,7 +52,9 @@ export class MandalaData {
         // Create a unique id.
         // To get the max id we create an array of ids, ... spread the array into 
         //   numbers and get the max of those. 
-        const maxId = Math.max(...this.data.map(i => i.id));
+        var maxId = Math.max(...this.data.map(i => i.id));
+        if (maxId < 0)
+            maxId = 0;
         const newId = maxId + 1;
         // Create the level and add it to the data.
         this.data.push({
@@ -61,6 +63,7 @@ export class MandalaData {
             width: 27,
             offset: 5,  //distance from center
             angleStart: 0,
+            svgAttrs: {fill: '#666666'},
             data: dataitems
         });
         return newId;

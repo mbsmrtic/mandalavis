@@ -91,6 +91,36 @@ export class DropDownField extends CPField {
     }
 };
 
+export class PredefinedColorsField extends DropDownField {
+    async loadPresetColors() {
+        const res = await fetch('/api/preset-colors');
+        if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+        const colors = await res.json();
+
+        this.element.innerHTML = `<option value = "" selected disabled hidden>-- Select color --</option>`;
+        colors.forEach(item => {
+            const option = document.createElement("option");
+            option.id = item.id;
+            option.value = item.hexval;
+            option.textContent = item.colorname;
+            this.element.appendChild(option);
+        })
+
+        // return colors;
+    }
+    addData(dataArray, itemname) {
+        this.element.innerHTML = `<option value = "" selected disabled hidden>-- Select ${itemname} --</option>`;
+        dataArray.forEach(item => {
+            const option = document.createElement("option");
+            option.id = item.id;
+            option.value = item.hexval;
+            option.textContent = item.colorname;
+            this.element.appendChild(option);
+        })
+    }
+}
+
+
 export class SliderField extends CPField {
     setValue(value) {
         if (! value)
@@ -132,6 +162,7 @@ export class ColorField extends CPField {
         this.element.nextElementSibling.value = color;
     }
 };
+
 
 export class ButtonField extends CPField {
     eventTypeToHandle() {

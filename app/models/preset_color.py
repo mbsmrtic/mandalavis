@@ -17,6 +17,9 @@ class PresetColor(Base):
     colorname: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
     hexval: Mapped[str]   = mapped_column(String(9), nullable=False)  # "#RRGGBBTT" TT=transparency
 
+    def to_dict(self):
+        return {"id": self.id, "colorname": self.colorname, "hexval": self.hexval }
+
 DEFAULT_COLORS = [
     ("dove white", (239, 238, 229)),
     ("revere pewter", (203, 198, 184)),
