@@ -156,6 +156,13 @@ export class ColorField extends CPField {
         if (color.length == 4) {
             color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
         }
+        // if the color is #rrggbbtt change it to #rrggbb
+        else if (color.length == 9) {
+            let newcolor = '';
+            for (let i = 0; i < 7; i++)
+                newcolor += color[i];
+            color = newcolor;
+        }
         // set the value of the color in the color picker element
         this.element.value = (color == 'transparent') ? '#ffffff' : color;
         // set the value of the color in the text next to the picker element
