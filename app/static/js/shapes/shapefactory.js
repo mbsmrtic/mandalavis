@@ -1,7 +1,7 @@
 import { DotShape } from "/static/js/shapes/dot.js";
-import { CurvyDroplet, CurvyDroplets, DropletShape, TiltedCurvyDroplet, TiltedDropletShape, PottedPlant } from "/static/js/shapes/droplet.js";
+import { CurvyDroplet, CurvyDroplets, DropletShape, TiltedCurvyDroplet, RightTiltedCurvyDroplet, TiltedDropletShape, RightTiltedDroplet, PottedPlant } from "/static/js/shapes/droplet.js";
 import { DottedArcShape, ArcShape } from "/static/js/shapes/arc.js";
-import { SpiralShape } from "/static/js/shapes/spiral.js"
+import { SpiralShape, RightSpiral } from "/static/js/shapes/spiral.js"
 import { CurlyBracket } from "/static/js/shapes/curlybracket.js";
 import { Seagull } from "/static/js/shapes/seagull.js";
 import { BetweenDotsDotShape } from "/static/js/shapes/dot.js"
@@ -30,8 +30,11 @@ export const shapeClasses = {
     ImageShape,
     NordicShape,
     SpiralShape,
+    RightSpiral,
     TiltedCurvyDroplet,
+    RightTiltedCurvyDroplet,
     TiltedDropletShape,
+    RightTiltedDroplet,
     PalmTreeShape,
     PottedPlant,
     Seagull,

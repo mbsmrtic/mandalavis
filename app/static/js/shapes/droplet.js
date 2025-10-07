@@ -29,6 +29,12 @@ export class TiltedDropletShape extends DropletShape {
     }
 }
 
+export class RightTiltedDroplet extends TiltedDropletShape {
+    constructor(shapeArgs, svgElementAttributes){
+        super(shapeArgs, svgElementAttributes, false);
+    }
+}
+
 export class PottedPlant extends CompositeShape {
     constructor(shapeArgs, svgElementAttributes={}) {
         super(shapeArgs, svgElementAttributes);
@@ -144,6 +150,11 @@ export class TiltedCurvyDroplet extends MandalaShape {
             this.smoothCurveString(pt2.x, pt2.y, pt1.x, pt1.y); 
         return({fill: this.color, d: pathD});
     };
+}
+export class RightTiltedCurvyDroplet extends TiltedCurvyDroplet {
+    constructor(shapeArgs, svgElementAttributes) {
+        super(shapeArgs, svgElementAttributes, false);
+    }
 }
 
 export class CurvyDroplets extends CompositeShape {

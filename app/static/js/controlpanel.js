@@ -95,7 +95,12 @@ export class ControlPanel {
         if (targetFieldInst.isLevelsChange) {
             this.fillLevelsDropdown(idOfItem);
         }
+        if (idOfItem < 0) {
+            this.disableFields();
+        }
 
+        let clustersDropdownInst = this.fieldInstArray.find(fieldInst => fieldInst.elementId == '#clusterdropdown');
+        clustersDropdownInst.element.dispatchEvent(new Event('change'));
         this.redrawmandala();
     }
 
@@ -108,7 +113,9 @@ export class ControlPanel {
 
     disableFields(disable = true) {
         for (let fieldInst of this.fieldInstArray) {
-            fieldInst.disable(disable);
+            //The level/cluster dropdown we always leave enabled
+            if (fieldInst.elementId != "#clusterdropdown" && fieldInst.elementId != "#add-mandala-level")
+                fieldInst.disable(disable);
         }
     }
 

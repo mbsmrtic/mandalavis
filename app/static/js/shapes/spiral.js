@@ -42,3 +42,9 @@ export class SpiralShape extends MandalaShape {
         });
     }
 };
+
+export class RightSpiral extends SpiralShape {
+    constructor(shapeArgs, svgElementAttributes) {
+        super(shapeArgs, svgElementAttributes, false);
+    }
+}

@@ -148,27 +148,28 @@ export class AngleStartSlider extends SliderField {
 export class ColorField extends CPField {
     setValue(color) {
         color ??= 'transparent'; //default color
-        if (color === 'none' || color === '') {
-            color = 'transparent';
-            return;
-        }
-        // if the color is #rgb change it to #rrggbb
-        if (color.length == 4) {
-            color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`;
-        }
-        // if the color is #rrggbbtt change it to #rrggbb
-        else if (color.length == 9) {
-            let newcolor = '';
-            for (let i = 0; i < 7; i++)
-                newcolor += color[i];
-            color = newcolor;
-        }
+        color = this.normalizeColor(color);
         // set the value of the color in the color picker element
         this.element.value = (color == 'transparent') ? '#ffffff' : color;
         // set the value of the color in the text next to the picker element
         this.element.nextElementSibling.value = color;
     }
-};
+
+    // Normalize CSS hex colors to #rrggbb
+    normalizeColor(color) {
+        if (typeof color !== "string" || !color.startsWith("#")) return color;      
+        // #rgb → #rrggbb
+        if (color.length === 4) {
+          return "#" + [...color.slice(1)].map(c => c + c).join("");
+        }       
+        // #rrggbbtt → #rrggbb (drop alpha/transparency)
+        if (color.length === 9) {
+          return color.slice(0, 7);
+        }       
+        // already #rrggbb or invalid
+        return color;
+    };
+}
 
 
 export class ButtonField extends CPField {
