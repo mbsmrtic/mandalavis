@@ -123,7 +123,7 @@ export class PredefinedColorsField extends DropDownField {
 
 export class SliderField extends CPField {
     setValue(value) {
-        if (! value)
+        if (isNaN(value))
             return;
         // set the value within the slider
         this.element.value = Number(value);
