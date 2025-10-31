@@ -11,7 +11,7 @@ import { SCurve } from "/static/js/shapes/scurve.js"
 import { WaveShape } from "/static/js/shapes/wave.js"
 import { PalmTreeShape } from "/static/js/shapes/palmtree.js"
 import { NordicShape } from "/static/js/shapes/nordic.js";
-import { TreeShape } from "/static/js/shapes/tree.js";
+import { TreeShape, LeafyTreeShape } from "/static/js/shapes/tree.js";
 
 // shapeClasses is an object that maps shape types to their respective classes
 // This allows for easy instantiation of different shapes based on their type
@@ -42,7 +42,8 @@ export const shapeClasses = {
     SShape,
     SCurve,
     WaveShape,
-    TreeShape
+    TreeShape,
+    LeafyTreeShape
   };
 
   // Some of the above shapes are functional to be selected in the control panel.

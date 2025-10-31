@@ -42,6 +42,7 @@ export class ControlPanel {
         this.fieldInstArray.push(new SliderField('#heightinput', parentElement, 'length'));
         this.fieldInstArray.push(new SliderField('#offset', parentElement, 'offset'));
         this.fieldInstArray.push(new AngleStartSlider('#anglestart', parentElement, 'angleStart'));
+        this.fieldInstArray.push(new SliderField('#zindexinput', parentElement, 'zindex'));
         this.fieldInstArray.push(new ColorField('#strokecolor', parentElement, 'svgAttrs.stroke'));
         this.fieldInstArray.push(new SliderField('#strokewidth', parentElement, 'svgAttrs.stroke-width'));
         this.fieldInstArray.push(new ColorField('#fillcolor', parentElement, 'svgAttrs.fill'));

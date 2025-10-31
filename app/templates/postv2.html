@@ -70,6 +70,12 @@
                             <output></output>
                         </div>
                         <div class="field">
+                            <label for="zindexinput">Front to back index</label> 
+                            <input id="zindexinput" type="range" min="-10" max="10" step="1" disabled
+                                oninput="this.nextElementSibling.value = this.value"></input>
+                            <output></output>
+                        </div>
+                        <div class="field">
                             <label for="strokecolor">Stroke color</label>
                             <input id="strokecolor" type="color" disabled
                                 oninput="this.nextElementSibling.value = this.value">

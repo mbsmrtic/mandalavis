@@ -22,6 +22,7 @@ class ShapeType(str, Enum):
     DOT = "DotShape"
     DROPLET = "DropletShape"
     IMAGE = "ImageShape"
+    LEAFY_TREE = "LeafyTreeShape"
     NORDIC = "NordicShape"
     SPIRAL = "SpiralShape"
     TILTED_CURVY_DROPLET = "TiltedCurvyDroplet"
@@ -31,6 +32,7 @@ class ShapeType(str, Enum):
     SEAGULL = "Seagull"
     S = "SShape"
     S_CURVE = "SCurve"
+    TREE = "TreeShape"
     WAVE = "WaveShape"
 
 

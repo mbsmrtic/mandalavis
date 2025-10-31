@@ -48,7 +48,7 @@ articles.forEach(article => {
             //loop through adding each cluster - sorted by zindex
             clustersData
                 .slice() // makes a shallow copy so that we don’t mutate the original
-                .sort((a, b) => a.zindex - b.zindex) // ascending by zindex
+                .sort((a, b) => (a.zindex ?? 0) - (b.zindex ?? 0)) // ascending by zindex
                 .forEach(cluster => addShapes(mandala, cluster));
         })
         clustersData = dataForMandalas[0]['clusters'];
