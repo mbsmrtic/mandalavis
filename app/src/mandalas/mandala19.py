@@ -14,7 +14,7 @@ class MandalaPost19(MandalaPost):
 
     @property
     def title(self):
-        return "Tree test"
+        return "Tree snowflake"
 
     @property
     def posted_date_str(self):
@@ -22,7 +22,7 @@ class MandalaPost19(MandalaPost):
 
     @property
     def post_text_html(self):
-        return "Tree test "
+        return "Tree Snowflake "
     
 
     @functools.cached_property
@@ -74,13 +74,28 @@ class MandalaPost19(MandalaPost):
                 mci = MandalaClusterItem(clusterId=cluster.id, itemId=item.id)
                 db.session.add(mci)
 
+        # cluster = MandalaCluster(
+        #     mandalaId=self.mandala_num,
+        #     name="curly bracket",
+        #     shape=ShapeType.CURLY_BRACKET .value,
+        #     offset=30,
+        #     width=50,
+        #     length=60,
+        #     stroke="#888888",
+        #     strokeWidth=1,
+        #     angleStart=0,
+        #     )
+        # db.session.add(cluster)
+        # db.session.commit()
+        # addDataItemsToDb(cluster, 7)
+
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
-            name="trees",
-            shape=ShapeType.LEAFY_TREE.value,
-            offset=20,
-            width=50,
-            length=60,
+            name="snowflake",
+            shape=ShapeType.TREE.value,
+            offset=9,
+            width=59,
+            length=83,
             stroke="#888888",
             strokeWidth=1,
             fill="#888888",
@@ -90,7 +105,41 @@ class MandalaPost19(MandalaPost):
         db.session.commit()
         addDataItemsToDb(cluster, 7)
 
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="outer tree",
+            shape=ShapeType.LEAFY_TREE.value,
+            offset=86,
+            width=33,
+            length=48,
+            stroke="#888888",
+            strokeWidth=1,
+            fill="#ffffff",
+            angleStart=0,
+            )
+        db.session.add(cluster)
         db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="leafy trees",
+            shape=ShapeType.LEAFY_TREE.value,
+            offset=57,
+            width=50,
+            length=60,
+            stroke="#888888",
+            strokeWidth=1,
+            fill="#888888",
+            angleStart=30,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        db.session.commit()
+
 
     def __getDataFromDb(self, mandala_data):
         # get array of item descriptions from database
