@@ -138,6 +138,174 @@ class MandalaPost19(MandalaPost):
         db.session.commit()
         addDataItemsToDb(cluster, 7)
 
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="arc",
+            shape=ShapeType.ARC.value,
+            offset=83,
+            width=44,
+            length=69,
+            stroke="#888888",
+            strokeWidth=1,
+            fill="#ffffff",
+            angleStart=0,
+            zindex=-1,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="curly",
+            shape=ShapeType.CURLY_BRACKET.value,
+            offset=85,
+            width=45,
+            length=69,
+            stroke="#666666",
+            strokeWidth=1,
+            fill="#ffffff",
+            angleStart=30,
+            zindex=-2,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="outer tree",
+            shape=ShapeType.LEAFY_TREE.value,
+            offset=86,
+            width=33,
+            length=48,
+            stroke="#888888",
+            strokeWidth=1,
+            fill="#ffffff",
+            angleStart=0,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="dot",
+            shape=ShapeType.DOT.value,
+            offset=80,
+            width=6,
+            length=30,
+            stroke="#666666",
+            strokeWidth=1,
+            fill="#666666",
+            angleStart=15,
+            zindex=-1,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 13)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="outer dot",
+            shape=ShapeType.DOT.value,
+            offset=143,
+            width=5,
+            length=30,
+            stroke="#ffffff",
+            strokeWidth=1,
+            fill="#666666",
+            angleStart=32,
+            zindex=-1,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="curvy droplet",
+            shape=ShapeType.CURVY_DROPLET.value,
+            offset=85,
+            width=27,
+            length=53,
+            stroke="#888888",
+            strokeWidth=1,
+            fill="#888888",
+            angleStart=15,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 13)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="outer arc",
+            shape=ShapeType.DOTTED_ARC.value,
+            offset=126,
+            width=61,
+            length=35,
+            stroke="#666666",
+            strokeWidth=1,
+            fill="#ffffff",
+            angleStart=15,
+            zindex=-3,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 13)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="outer dot 2",
+            shape=ShapeType.DOT.value,
+            offset=143,
+            width=5,
+            length=30,
+            stroke="#ffffff",
+            strokeWidth=1,
+            fill="#666666",
+            angleStart=28,
+            zindex=-3,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 13)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="inner droplet",
+            shape=ShapeType.DROPLET.value,
+            offset=21,
+            width=20,
+            length=23,
+            stroke="#ffffff",
+            strokeWidth=1,
+            fill="#888888",
+            angleStart=30,
+            zindex=-3,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 7)
+
+        cluster = MandalaCluster(
+            mandalaId=self.mandala_num,
+            name="inner dot",
+            shape=ShapeType.DOT.value,
+            offset=18,
+            width=4,
+            length=0,
+            stroke="#ffffff",
+            strokeWidth=1,
+            fill="#666666",
+            angleStart=15,
+            zindex=-3,
+            )
+        db.session.add(cluster)
+        db.session.commit()
+        addDataItemsToDb(cluster, 13)
+
         db.session.commit()
 
 
