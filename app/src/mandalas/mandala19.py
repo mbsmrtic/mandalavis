@@ -18,7 +18,7 @@ class MandalaPost19(MandalaPost):
 
     @property
     def posted_date_str(self):
-        return "October, 2025"
+        return "December 5, 2025"
 
     @property
     def post_text_html(self):
