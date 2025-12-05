@@ -26,10 +26,10 @@ def favicon():
 @app.route('/')
 def index():
     template_data = {}
+    template_data[19] = mandala_post_factory(19)
     template_data[18] = mandala_post_factory(18)
     template_data[17] = mandala_post_factory(17)
     template_data[16] = mandala_post_factory(16)
-    template_data[15] = mandala_post_factory(15)
     sidebar_template_data = sidebar_data()
     return render_template('index.html', mandalaData=template_data, sidebar_data=sidebar_template_data)
 

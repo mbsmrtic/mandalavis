@@ -22,8 +22,10 @@ class MandalaPost19(MandalaPost):
 
     @property
     def post_text_html(self):
-        return "Tree Snowflake "
-    
+        return 'For this mandala, I added two kinds of trees. The first kind is all lines. ' \
+        'Like a tree during stick season. It makes a good base for a snowflake. The second ' \
+        'kind I call leafy tree. Simple sticks with leaves at the end of each branch. I wanted the ' \
+        'combination of snowflake and trees and dots to have a winter holiday feeling. '
 
     @functools.cached_property
     def mandala_data_json_str(self):
