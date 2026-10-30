@@ -1,7 +1,7 @@
 import { MandalaShape } from "/static/js/shapes/mandalashape.js";
 export class NordicShape extends MandalaShape {
     // This shape needs some work to be functional for selection in the control panel.
-    static includeInControlPanel = false;
+    static isDraft = true;
     shapeElementTag() { return "rect"; }
     shapeElementAttributes() {
         const pathD = '';

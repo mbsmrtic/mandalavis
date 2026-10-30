@@ -85,7 +85,7 @@ class MandalaData(BaseModel):
             offset=(radius * -1), 
             width=radius * 2,
             length=radius * 2,
-            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "white"},
+            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "0xffffff"},
             data=[DataItem(desc="Center circle")]
         )
         self.clusters.append(center_cluster)

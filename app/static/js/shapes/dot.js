@@ -14,7 +14,7 @@ export class DotShape extends MandalaShape {
 }
 
 export class BetweenDotsDotShape extends MandalaShape {
-    static includeInControlPanel = false;
+    static isDraft = true;
     constructor(biggerDot) {
         var littleR = biggerDot.width / 8;
         var shapeArgs = {

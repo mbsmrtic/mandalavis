@@ -1,4 +1,4 @@
-import { shapeClasses, createShape } from "/static/js/shapes/shapefactory.js";
+import { readyShapeClasses, createShape } from "/static/js/shapes/shapefactory.js";
 import { DropDownField, ColorField, SliderField, AngleStartSlider, DeleteButtonField, 
     AddButtonField, PredefinedColorsField } from "/static/js/cpfield.js"
 import { MandalaData } from "/static/js/mandaladata.js"
@@ -20,14 +20,8 @@ export class ControlPanel {
 
         // shapes dropdown
         let shapesDropdown = new DropDownField('#shapedropdown', parentElement, 'shape');
-        const shapeArray = [];
-        for (let shapeName in shapeClasses) {
-            let shape = shapeClasses[shapeName];
-            if (shape.includeInControlPanel) {
-                shapeArray.push({ id: shape.name, name: shape.name});  //add id, name to the array
-            }
-        }
-        shapesDropdown.addData(shapeArray, 'shape');
+        const shapeDropDownArray = readyShapeClasses.map(shape => ({ id: shape.name, name: shape.name }));
+        shapesDropdown.addData(shapeDropDownArray, 'shape');
         this.fieldInstArray.push(shapesDropdown);
 
         // predefined colors dropdown

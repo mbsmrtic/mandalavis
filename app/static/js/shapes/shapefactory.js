@@ -46,11 +46,25 @@ export const shapeClasses = {
     LeafyTreeShape
   };
 
-  // Some of the above shapes are functional to be selected in the control panel.
-  // These shapes would need some work to be functional for selection in the control panel.
-  export function controlPanel(shapeName) {
-    return shapeName in ['BetweenDotsDotShape', 'ImageShape', 'NordicShape'];
-  }
+// // // Shapes that still need work before they can be selected in the control panel.
+// // const EXCLUDED_SHAPES = new Set([
+// //   'BetweenDotsDotShape',
+// //   'ImageShape',
+// //   'NordicShape',
+// // ]);
+
+// // export function isExcludedShape(shapeName) {
+// //   return EXCLUDED_SHAPES.has(shapeName);
+// // }
+
+//   // Some of the above shapes are functional to be selected in the control panel.
+//   // These shapes would need some work to be functional for selection in the control panel.
+//   export function isFunctionalShape(shapeName) {
+//     let notFunctional = ['BetweenDotsDotShape', 'ImageShape', 'NordicShape'].includes(shapeName);
+//     return !notFunctional;
+//   }
+
+  export const readyShapeClasses = Object.values(shapeClasses).filter(cls => !cls.isDraft);
   
   export function createShape(type, ...args) {
     const ShapeClass = shapeClasses[type];

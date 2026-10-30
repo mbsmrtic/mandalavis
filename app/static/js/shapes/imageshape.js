@@ -1,7 +1,7 @@
 import { MandalaShape } from "./mandalashape.js";
 
 export class ImageShape extends MandalaShape {
-    static includeInControlPanel = false;
+    static isDraft = true;
     constructor(shapeArgs, imageUrl){
         super(shapeArgs, {});
         this.imageUrl = imageUrl ?? '/static/favicon.ico'

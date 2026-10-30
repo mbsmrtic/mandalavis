@@ -147,7 +147,7 @@ export class AngleStartSlider extends SliderField {
 
 export class ColorField extends CPField {
     setValue(color) {
-        color ??= 'transparent'; //default color
+        color ||= 'transparent'; //default color
         color = this.normalizeColor(color);
         // set the value of the color in the color picker element
         this.element.value = (color == 'transparent') ? '#ffffff' : color;

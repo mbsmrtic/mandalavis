@@ -141,7 +141,7 @@ class MandalaPost16(MandalaPost):
             width=20,
             length=37,
             angleStart=22.5,
-            svgAttrs={"stroke": "white", "stroke-width": 1},
+            svgAttrs={"stroke": "0xffffff", "stroke-width": 1},
             data=[DataItem(desc=f"curvy droplet {i}th item in cluster 0") for i in range(1, 9)]
         )
         mandala_data.clusters.append(cluster)
@@ -163,7 +163,7 @@ class MandalaPost16(MandalaPost):
             offset=-30,
             width=60,
             length=60,
-            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "white"},
+            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "0xffffff"},
             data=[DataItem(desc=f"dot {i}th item in center cluster") for i in range(1, 2)]
         )
         mandala_data.clusters.append(cluster)

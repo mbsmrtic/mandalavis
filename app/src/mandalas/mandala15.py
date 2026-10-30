@@ -75,7 +75,7 @@ class MandalaPost15(MandalaPost):
             width=50,
             length=50,
             angleStart=10,
-            svgAttrs={"stroke": "#666", "stroke-width": 2, "fill": "#white"},
+            svgAttrs={"stroke": "#666", "stroke-width": 2, "fill": "#ffffff"},
             data=[DataItem(desc=f"spiral {i}th item in cluster 2") for i in range(1, 16)]
         )
         mandala_data.clusters.append(cluster)
@@ -129,7 +129,7 @@ class MandalaPost15(MandalaPost):
             offset=-40,
             width=80,
             length=80,
-            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "#white"},
+            svgAttrs={"stroke": "#666", "stroke-width": 1, "fill": "#ffffff"},
             data=[DataItem(desc=f"dot {i}th item in center cluster") for i in range(1, 2)]
         )
         mandala_data.clusters.append(cluster)
