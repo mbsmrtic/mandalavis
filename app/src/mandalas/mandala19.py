@@ -1,5 +1,6 @@
 from app.src.mandalas.mandaladata import MandalaPost, MandalaData, ShapeType, DataItem
 import functools
+import traceback
 
 from app.models.db import db
 from app.models.mandala_cluster import MandalaCluster
@@ -35,7 +36,14 @@ class MandalaPost19(MandalaPost):
         stmt = select(exists().where(MandalaCluster.mandalaId == self.mandala_num))
         exists_ = db.session.execute(stmt).scalar()
         if not exists_:
-            self.__addDataToDb()
+            try:
+                self.__addDataToDb()
+                db.session.commit()
+            except Exception as exc:
+                db.session.rollback()
+                print(f"Seeding failed: {exc}")
+                traceback.print_exc()
+                raise
 
         mandala_data = MandalaData()
         mandala_data.view_box = "20 30 550 550"
@@ -72,24 +80,10 @@ class MandalaPost19(MandalaPost):
                 item_desc = f" {numstr} item in {cluster.name}"
                 item = MandalaItem(desc=item_desc)
                 db.session.add(item)
-                db.session.commit()
+                db.session.flush() # assigns item.id
+                # db.session.commit()
                 mci = MandalaClusterItem(clusterId=cluster.id, itemId=item.id)
                 db.session.add(mci)
-
-        # cluster = MandalaCluster(
-        #     mandalaId=self.mandala_num,
-        #     name="curly bracket",
-        #     shape=ShapeType.CURLY_BRACKET .value,
-        #     offset=30,
-        #     width=50,
-        #     length=60,
-        #     stroke="#888888",
-        #     strokeWidth=1,
-        #     angleStart=0,
-        #     )
-        # db.session.add(cluster)
-        # db.session.commit()
-        # addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
@@ -104,25 +98,8 @@ class MandalaPost19(MandalaPost):
             angleStart=0,
             )
         db.session.add(cluster)
-        db.session.commit()
+        db.session.flush() #assigns cluster.id
         addDataItemsToDb(cluster, 7)
-
-        cluster = MandalaCluster(
-            mandalaId=self.mandala_num,
-            name="outer tree",
-            shape=ShapeType.LEAFY_TREE.value,
-            offset=86,
-            width=33,
-            length=48,
-            stroke="#888888",
-            strokeWidth=1,
-            fill="#ffffff",
-            angleStart=0,
-            )
-        db.session.add(cluster)
-        db.session.commit()
-        addDataItemsToDb(cluster, 7)
-
 
         cluster = MandalaCluster(
             mandalaId=self.mandala_num,
@@ -137,7 +114,6 @@ class MandalaPost19(MandalaPost):
             angleStart=30,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -154,7 +130,6 @@ class MandalaPost19(MandalaPost):
             zindex=-1,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -171,7 +146,6 @@ class MandalaPost19(MandalaPost):
             zindex=-2,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -187,7 +161,6 @@ class MandalaPost19(MandalaPost):
             angleStart=0,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -204,7 +177,6 @@ class MandalaPost19(MandalaPost):
             zindex=-1,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -221,7 +193,6 @@ class MandalaPost19(MandalaPost):
             zindex=-1,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -237,7 +208,6 @@ class MandalaPost19(MandalaPost):
             angleStart=15,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -254,7 +224,6 @@ class MandalaPost19(MandalaPost):
             zindex=-3,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -271,7 +240,6 @@ class MandalaPost19(MandalaPost):
             zindex=-3,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -288,7 +256,6 @@ class MandalaPost19(MandalaPost):
             zindex=-3,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 7)
 
         cluster = MandalaCluster(
@@ -305,7 +272,6 @@ class MandalaPost19(MandalaPost):
             zindex=-3,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -322,7 +288,6 @@ class MandalaPost19(MandalaPost):
             zindex=0,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -339,7 +304,6 @@ class MandalaPost19(MandalaPost):
             zindex=0,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -356,7 +320,6 @@ class MandalaPost19(MandalaPost):
             zindex=-1,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -373,7 +336,6 @@ class MandalaPost19(MandalaPost):
             zindex=-2,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -390,7 +352,6 @@ class MandalaPost19(MandalaPost):
             zindex=-2,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 13)
 
         cluster = MandalaCluster(
@@ -407,11 +368,10 @@ class MandalaPost19(MandalaPost):
             zindex=0,
             )
         db.session.add(cluster)
-        db.session.commit()
         addDataItemsToDb(cluster, 25)
 
 
-        db.session.commit()
+        # db.session.commit()
 
 
     def __getDataFromDb(self, mandala_data):
